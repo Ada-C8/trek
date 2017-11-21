@@ -5,6 +5,15 @@ let getTrips = function getTrips() {
   const successCallback = function(response) {
     console.log('success!');
     console.log(response);
+
+    let tableRow = '<tr>'
+    for (let trip of response) {
+      for (let attr in trip) {
+        tableRow += '<td>' + trip[attr] + '</td>';
+      }
+      tableRow += '</tr>'
+    }
+    $('.trips table').append(tableRow);
   }
 
 
