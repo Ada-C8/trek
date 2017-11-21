@@ -1,3 +1,13 @@
+const createForm = function createForm() {
+  const formElements = ['Name', 'Email', 'Age'];
+  const tripID = $(this).attr('trip_id');
+  const formAction = `https://trektravel.herokuapp.com/trips/${tripID}/reservations`;
+  const sectionHTML = formElements.reduce((string, element) => `${string}<section><label>${element}</label><input type='text' id='${element.toLowerCase()}' name='${element.toLowerCase()}' /></section>`, '');
+  const formHTML = `<form action=${formAction}>${sectionHTML}<section><button type='submit'>Reserve</button></section></form>`;
+
+  $('#content').html(formHTML);
+};
+
 $(document).ready(() => {
   $('#load-trips').on('click', () => {
     $.get(
@@ -13,24 +23,25 @@ $(document).ready(() => {
       },
     );
   });
-  $('body').on('click', '.trip', (event) => {
+  $('#display').on('click', '.trip', (event) => {
     $.get(
       `https://trektravel.herokuapp.com/trips/${event.target.id}`,
       (response) => {
         const tripHTML = `<a id='reserve' href='#' trip_id='${response.id}'>Reserve</a><h4>Details</h4><ul><li>ID: ${response.id}</li><li>Continent: ${response.continent}</li><li>About: ${response.about}</li><li>Category: ${response.category}</li><li>Weeks: ${response.weeks}</li><li>Cost: ${response.cost}</li></ul>`;
         $('#title').html(`${response.name}`);
         $('#content').html(tripHTML);
+        $('#reserve').on('click', createForm);
       },
     );
   });
-  $('body').on('click', '#reserve', () => {
-    const formElements = ['Name', 'Email', 'Age'];
-    const sectionHTML = formElements.reduce((string, element) => {
-      return `${string}<section><label>${element}</label><input type='text' id='${element.toLowerCase()}' name='${element.toLowerCase()}' /></section>`;
-    }, '');
-    console.log(sectionHTML);
-    const formHTML = `<form>${sectionHTML}<section><button type='submit'>Reserve</button></section></form>`;
-
-    $('#content').html(formHTML);
+  $('body').on('submit', 'form', (e) => {
+    e.preventDefault();
+    const url = $('form').attr('action');
+    const formData = $('form').serialize();
+    $.post(url, formData, () => {
+      $('#messages').html('Reservation created.');
+    }).fail(() => {
+      $('#messages').html('Reservation failed.');
+    });
   });
 });
