@@ -44,6 +44,18 @@ header {
   margin: 5rem auto;
 }
 
+#hero > .button {
+  background-color: var(--dkgreen);
+  border-radius: 1rem;
+  color: var(--ltblue);
+  display: block;
+  font-size: 1.75rem;
+  height: 8rem;
+  padding-top: 3rem;
+  margin: auto;
+  width: 50%;
+}
+
 /**************/
 /* TRIP INDEX */
 /**************/
