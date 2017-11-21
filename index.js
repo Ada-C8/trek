@@ -22,9 +22,9 @@ let showAllTrips = function showAllTrips(){
 
       // $('.show').hide();
 
-      $('.trips').append(`<tr> <td class='trip-title'>${tripName}</td><td> ${continent} </td><td> ${weeks} </td> <tr>`);
+      $('.trips').append(`<tr> <td class='trip-title'><a href=javascript:void(0) onclick=showSingleTrip(${tripId})> ${tripName}</a></td><td> ${continent} </td><td> ${weeks} </td> <tr>`);
 
-      $('.trip-title').append(`<a href=javascript:void(0) onclick=showSingleTrip(${tripId}) />`);
+      $('.trip-title').innerHTML = (`<a href=javascript:void(0) onclick=showSingleTrip(${tripId}) />`);
       // $('trip-title').on('click', function(){
       //   showSingleTrip(tripId);
       // });
