@@ -16,10 +16,19 @@ let showAllTrips = function showAllTrips(){
 
     response.forEach(function (trip){
       let tripName = trip.name;
+      let tripId = trip.id;
       let continent = trip.continent;
       let weeks = trip.weeks;
 
-      $('.trips').append(`<tr> <td> ${tripName} </td><td> ${continent} </td><td> ${weeks} </td> <tr>`);
+      // $('.show').hide();
+
+      $('.trips').append(`<tr> <td class='trip-title'>${tripName}</td><td> ${continent} </td><td> ${weeks} </td> <tr>`);
+
+      $('.trip-title').append(`<a href=javascript:void(0) onclick=showSingleTrip(${tripId}) />`);
+      // $('trip-title').on('click', function(){
+      //   showSingleTrip(tripId);
+      // });
+
     });
 
   })
@@ -42,8 +51,12 @@ let showSingleTrip = function showSingleTrip(id){
     let about = response.about;
     let cost = response.cost;
 
-    $('.trips').hide();
+    // $('.trips').hide();
+
+
     $('.show').append(`<h1> ${tripName} </h1><h3> ${continent} </h3><h3> ${weeks} </h3><h3> ${cost} </h3><p> ${about} </p>`);
+
+
   })
 
   .fail(function(response){
@@ -53,25 +66,3 @@ let showSingleTrip = function showSingleTrip(id){
     console.log('always even if we have success or failure');
   });
 };
-
-// const showSingleTrip = function showSingleTrip(id){
-//   $.get(`https://trektravel.herokuapp.com/trips/${id}`,
-//     (response) => {
-//
-//       let tripName = trip.name;
-//       let continent = trip.continent;
-//       let weeks = trip.weeks;
-//       let about = trip.about;
-//       let cost = trip.cost;
-//
-//       $('.trips').hide();
-//       $('.show').append(`<h1> ${tripName} </h1><h3> ${continent} </h3><h3> ${weeks} </h3><h3> ${cost} </h3><p> ${about} </p>`);
-//     });
-//
-//     .fail(function(response){
-//       console.log(response);
-//     })
-//     .always(function(){
-//       console.log('always even if we have success or failure');
-//     });
-//   };
