@@ -2,6 +2,9 @@ $(document).ready(()=>{
   $('.view-all-trips').on('click', function(){
     showAllTrips();
   });
+
+  $('.reservation-form').hide();
+
 });
 
 let showAllTrips = function showAllTrips(){
@@ -29,6 +32,7 @@ let showAllTrips = function showAllTrips(){
 
 
 let showSingleTrip = function showSingleTrip(id){
+
   $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
     let tripName = response.name;
     let tripId = response.id;
@@ -37,7 +41,11 @@ let showSingleTrip = function showSingleTrip(id){
     let about = response.about;
     let cost = response.cost;
 
-    $('.show').append(`<h1> ${tripName} </h1><h3> ${continent} </h3><h3> ${weeks} </h3><h3> ${cost} </h3><p> ${about} </p>`);
+    $('.trips').hide();
+    $('.reservation-form').show();
+    $('.trip-info').empty();
+
+    $('.trip-info').append(`<h1> ${tripName} </h1><h3> ${continent} </h3><h3> ${weeks} </h3><h3> ${cost} </h3><p> ${about} </p>`);
 
     $('form').submit( function(e) {
 
@@ -47,9 +55,10 @@ let showSingleTrip = function showSingleTrip(id){
       const formData = $(this).serialize();
 
       $.post(url, formData, (response) => {
-        $('#message').html('<p> Reservation confirmed! </p>');
+        $('.reservation-form').hide();
+        $('.message').append('<p> Reservation confirmed! </p>');
       }).fail(() => {
-        $('#message').html('<p>Adding Reservation Failed</p>');
+        $('.message').append('<p>Adding Reservation Failed</p>');
       });
     });
 
