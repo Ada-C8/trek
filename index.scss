@@ -1,11 +1,20 @@
 
+body {
+  text-align: center;
+}
 
 .trip {
   display: inline-block;
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+}
 
-  ul {
-    list-style-type: none;
-  }
+ul {
+  list-style: none;
+}
+
+li {
+  display: inline;
+  margin-right: 10px;
 }
