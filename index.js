@@ -32,10 +32,17 @@ $(document).ready(()=> {
       <p>Destination: ${response.continent}</p>
       <p>Details: ${response.about}</p>
       <p>Cost: $${response.cost}</p>
-      <p>Length: ${response.weeks} weeks</p>
-      <button id="reserve" value="${response.id}">Reserve A Spot!</button>
-      `;
+      <p>Length: ${response.weeks} weeks</p>`;
       $('#show-trip').html(tripInfo);
+
+      let elem = $(`<button id="reserve" value="${response.id}">Reserve A Spot!</button>
+      `);
+
+      elem.click((event) => {
+        console.log(this.value);
+        console.log('reserve button was clicked');
+      });
+      $('#show-trip').append(elem);
     })
     .fail(function(response){
       console.log(response);
