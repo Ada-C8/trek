@@ -6,14 +6,9 @@ const GetAllTrips = (response) => {
   })
   $('section').append('</ul>');
 };
-const SendRequest = function (url, request) {
-  $.get(url, request);
-}
 
 $(document).ready(() => {
-  // const loadItem = document.getElementById('button');
   $('button').on('click', () => {
-    console.log('booga');
-    SendRequest('https://trektravel.herokuapp.com/trips', GetAllTrips);
+    $.get('https://trektravel.herokuapp.com/trips', GetAllTrips);
   });
 });
