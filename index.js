@@ -1,5 +1,7 @@
 const baseUrl = 'https://trektravel.herokuapp.com/trips'
-// ' Continent: ' + trip.continent + ' Weeks: ' + trip.weeks +
+
+
+// {"id":1,"trip_id":1,"name":"Diane","email":null}
 $(document).ready(()=> {
 
   let loadTrips = function loadTrips() {
@@ -31,6 +33,7 @@ $(document).ready(()=> {
       <p>Details: ${response.about}</p>
       <p>Cost: $${response.cost}</p>
       <p>Length: ${response.weeks} weeks</p>
+      <button id="reserve" value="${response.id}">Reserve A Spot!</button>
       `;
       $('#show-trip').html(tripInfo);
     })
@@ -51,6 +54,12 @@ $(document).ready(()=> {
   });
 
   $('#load').on('click', function(){
+    console.log(this.value);
     loadTrips();
+  });
+
+  $('#reserve').on('click', function(){
+    console.log(this.value);
+    console.log('reserve button was clicked');
   });
 });
