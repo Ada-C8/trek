@@ -10,9 +10,12 @@ const loadTrips = function loadTrips() {
       const location = `<li>${plane} ${trip.continent}</li>`;
       const week = (trip.week > 1 ? 'weeks' : 'week');
       const time = `<li>${clock} ${trip.weeks} ${week}</li>`;
-      console.log(location);
       $('#trips').append(`<div class="trip">${name}<ul>${location}${time}</ul></div>`);
     });
+  }).fail(() => {
+    $('#trips').html('<p>Oops.. Check back for more adventures soon!</p>');
+  }).always(() => {
+    console.log('YAY!');
   });
 };
 
