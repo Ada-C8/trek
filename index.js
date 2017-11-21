@@ -10,6 +10,11 @@ $(document).ready(()=>{
 let showAllTrips = function showAllTrips(){
   $.get('https://trektravel.herokuapp.com/trips',
   (response) => {
+    $('.trips').empty();
+    $('.trip-info').hide();
+    $('.reservation-form').hide();
+
+
 
     response.forEach(function (trip){
       let tripName = trip.name;
@@ -19,6 +24,8 @@ let showAllTrips = function showAllTrips(){
 
       $('.trips').append(`<tr> <td class='trip-title'><a href=javascript:void(0) onclick=showSingleTrip(${tripId})> ${tripName}</a></td><td> ${continent} </td><td> ${weeks} </td> <tr>`);
     });
+    $('.trips').show();
+
 
   })
   .fail(function(response){
@@ -61,9 +68,9 @@ let showSingleTrip = function showSingleTrip(id){
         $('.message').append('<p>Adding Reservation Failed</p>');
       });
     });
+    $('.trip-info').show();
 
   })
-
   .fail(function(response){
     console.log(response);
   })
