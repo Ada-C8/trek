@@ -13,14 +13,31 @@
   <div class="content-container">
 
 
-  <table class="trips">
+    <table class="trips">
 
-  </table>
+    </table>
 
-  <section class="show">
+    <section class="show">
 
-  </section>
-</div>
+
+      <!-- <div id="message"></div> -->
+      <form action="https://trektravel.herokuapp.com/trips/1/reservations" method="post">
+        <section>
+          <label>Name</label>
+          <input type="text" id="name" name="name"></input>
+        </section>
+        <section>
+          <label>Email</label>
+          <input type="text" id="email" name="email"></input>
+        </section>
+
+        <section class="button">
+          <button type="submit">Reserve Your Spot!</button>
+        </section>
+      </form>
+
+    </section>
+  </div>
 
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

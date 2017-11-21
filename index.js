@@ -2,12 +2,6 @@ $(document).ready(()=>{
   $('.view-all-trips').on('click', function(){
     showAllTrips();
   });
-
-  $('.view-one-trip').on('click', function(){
-    console.log('in the click');
-    showSingleTrip('1');
-  });
-
 });
 
 let showAllTrips = function showAllTrips(){
@@ -20,15 +14,7 @@ let showAllTrips = function showAllTrips(){
       let continent = trip.continent;
       let weeks = trip.weeks;
 
-      // $('.show').hide();
-
       $('.trips').append(`<tr> <td class='trip-title'><a href=javascript:void(0) onclick=showSingleTrip(${tripId})> ${tripName}</a></td><td> ${continent} </td><td> ${weeks} </td> <tr>`);
-
-      $('.trip-title').innerHTML = (`<a href=javascript:void(0) onclick=showSingleTrip(${tripId}) />`);
-      // $('trip-title').on('click', function(){
-      //   showSingleTrip(tripId);
-      // });
-
     });
 
   })
@@ -55,6 +41,20 @@ let showSingleTrip = function showSingleTrip(id){
 
 
     $('.show').append(`<h1> ${tripName} </h1><h3> ${continent} </h3><h3> ${weeks} </h3><h3> ${cost} </h3><p> ${about} </p>`);
+
+    $('form').submit( function(e) {
+
+      e.preventDefault();
+
+    const url = $(this).attr('action'); // Retrieve the action from the form
+    const formData = $(this).serialize();
+
+    $.post(url, formData, (response) => {
+    $('#message').html('<p> Pet added! </p>');
+    // What do we get in the response?
+    console.log(response);
+  });
+});
 
 
   })
