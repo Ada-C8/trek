@@ -4,7 +4,7 @@ $(document).ready(() => {
     $.get('https://trektravel.herokuapp.com/trips',
       (response) => {
         response.forEach(function(trip) {
-          const tripInfo = `<li><h3> Travel to ${trip.name}</h3></li>`
+          const tripInfo = `<li><p>${trip.name}</p></li>`
           $('#trips ol').append(tripInfo);
         });
       });
@@ -12,6 +12,7 @@ $(document).ready(() => {
 
   $('#load').on('click', function() {
     loadTrips();
+    $('h3').text("Select a Trip");
     $('#trips ol').empty();
   });
 }); // end of doc ready
