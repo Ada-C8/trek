@@ -25,7 +25,8 @@ $(document).ready(function(){
         </p>
         <a class="book-btn button no-collapse small-12 medium-6 large-3 columns">Book Now: $${cost}</a>
         <form class="hidden book-form no-collapse small-12 medium-8 columns row" id="book-form-${id}">
-          <input type="text" class="no-collapse small-12 medium-9 columns" name="name" placeholder="Your Name" />
+          <label for="email" class="no-collapse small-12 columns"><p><em>Enter your email address to reserve your spot now!</em></p></label>
+          <input type="text" class="no-collapse small-12 medium-9 columns" name="email" placeholder="example@test.com" />
 
           <input type="submit" class="no-collapse button small-12 medium-3 columns" />
         </form>
@@ -71,6 +72,6 @@ $(document).ready(function(){
 
   $('#trip-list').on('click', '.book-btn', function(e) {
     let id = e.target.closest('.trip').id;
-    $('#book-form-' + id).removeClass('hidden');
+    $('#book-form-' + id).toggleClass('hidden');
   });
 });

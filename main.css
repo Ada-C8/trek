@@ -118,12 +118,11 @@ header {
   padding: 1rem;
 }
 
-
 /*************/
 /* BOOK FORM */
 /*************/
 
-.book-form input[type="text"] {
+.book-form [type="text"] {
   border-radius: .5rem;
   line-height: 2;
 }
