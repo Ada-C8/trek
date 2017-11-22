@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Adventure Time</title>
+  <link rel="stylesheet" href="foundation.css">
+  <link rel="stylesheet" href="trek.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script type="text/javascript" src="trek.js"></script>
+</head>
+<body>
+  <header class="page-header row">
+    <h1>Adventure Time</h1>
+    <button class="button hollow" id="get-trips">Get Trips</button>
+  </header>
+
+  <main class="row"></main>
+
+  <script id="trip-list-template" type="text/template">
+    <article id="trip-list">
+      <% for (var i = 0; i < trips.length; i++) { %>
+        <h3><a href="#" id=<%- trips[i].id %>><%- trips[i].name %></a></h3>
+        <% } %>
+      </article>
+    </script>
+
+    <script id="show-trip-template" type="text/template">
+      <article>
+        <section class="columns large-7">
+          <h2><%- trip.name %></h2>
+          <ul>
+            <li><strong>Category</strong>: <%- trip.category %></li>
+            <li><strong>Continent</strong>: <%- trip.continent %></li>
+            <li><strong>Duration</strong>: <%- trip.weeks %> weeks</li>
+            <li><strong>Cost</strong>: $<%- trip.cost %></li>
+          </ul>
+          <p><%- trip.about %></p>
+        </section>
+
+        <section class="columns large-4">
+          <h3>Reserve Your Spot!</h3>
+          <form action=<%- url %> method="post">
+            Name:
+            <input type="text" name="name" />
+            Age:
+            <input type="text" name="age" />
+            Email:
+            <input type="text" name="email" />
+            <input class="button hollow" type="submit" value="Submit" />
+          </form>
+        </section>
+      </article>
+    </script>
+
+  </body>
+  </html>
