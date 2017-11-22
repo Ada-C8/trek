@@ -34,7 +34,7 @@ $(document).ready(() => {
           <p> About: ${response.about} </p>
           <p> Category: ${response.category} </p>
           <p> Weeks: ${response.weeks} </p>
-          <p> Costs: ${response.costs} </p>`;
+          <p> Costs: ${response.cost} </p>`;
 
           $('#trip').html(tripInfo);
 
