@@ -45,6 +45,27 @@ $(document).ready(()=>{
     $('#bookingForm').show();
     console.log(tripNum);
     const url = `https://trektravel.herokuapp.com/trips/${tripNum}/reservations`
-    $('#bookingForm').prepend(`<form action=${url} method="post">`)
-  })
+    $('#bookingForm form').attr('action', `${url}`)
+  });
+
+  $('form').submit(function(e) {
+    e.preventDefault();
+
+    const url = $(this).attr('action');
+    console.log(this)
+    console.log(url)
+    const formData = $(this).serialize();
+
+    console.log(formData);
+
+    $.post(url, formData, (response)=>{
+      $('#trips').html('Booked!')
+      console.log(response)
+    }).fail(() => {
+      $('#trips').html('<p>Booking Trip Failed</p>')
+    }).always(()=> {
+      console.log("We're hiring!!")
+    })
+  });
+
 });
