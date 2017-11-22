@@ -12,31 +12,42 @@ $(document).ready(() => {
         </article>`;
 
         $('#trips').append(tripInfo);
-      });
+// ====================================================
+        $('.trip-details').on('click',() =>{
+        });
+// ====================================================
+
+      // });
       const loadDetails = function loadDetails () {
-        $.get(`https://trektravel.herokuapp.com/trips/${"data-id"}`, (response) => {
+        $.get(`https://trektravel.herokuapp.com/trips/${data-id}`, (response) => {
           console.log('IT WORKED');
 
-          response.forEach(function(additionalInfo){
-            let addInfo = `<li></li><li></li><li></li>`
+          response.forEach(function(info){
+            let addInfo = `<ul data-id=${info.id} data-name=${info.name} data-continent=${info.continent} data-about=${info.about} data-weeks=${info.weeks} data-category=${info.category} data-cost=${info.cost}>
+              <li>${info.name}</li>
+              <li>${info.continent}</li>
+              <li>${info.about}</li>
+              <li>${info.weeks}</li>
+              <li>${info.category}</li>
+              <li>${info.cost}</li>
+            <ul>`;
+
+            $('#trips').append(addInfo);
           })
         });
       }
+     }); //here
     });
   }
-
-// put the url in the each loop!
-  // const loadDetails = function loadDetails () {
-  //   $.get('https://trektravel.herokuapp.com/trips/', (response) => {
-  //     console.log('IT WORKED');
-  //   });
-  // }
 
 
   $('#load').on('click', () => {
     $('#trips').empty();
     loadTrips();
   });
+
+
+
 });
 
 // tried turning off the click function.
