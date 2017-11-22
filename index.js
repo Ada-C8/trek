@@ -1,18 +1,19 @@
 $(document).ready(() => {
 
   const loadTrips = function loadTrips() {
-    $.get('https://trektravel.herokuapp.com/trips',
+    $.get(
+      'https://trektravel.herokuapp.com/trips',
       (response) => {
-        response.forEach(function(trip) {
-          const tripsInfo = `<li><p>${trip.name}</p></li>`
+        response.forEach((trip) => {
+          const tripsInfo = `<li><p>${trip.name}</p></li>`;
           $('#trips ol').append(tripsInfo);
         });
-    }).fail(() => {
+      },
+    ).fail(() => {
       $('#fail').html('<p>Request was unsuccessful</p>');
     }).always(() => {
       console.log('always message here');
     });
-
   }; // end of loadTrips
 
   // const loadTrip = function loadTrip(id) {
