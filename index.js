@@ -12,7 +12,7 @@ $(document).ready(() => {
               // id = trip.id,
               continent = trip.continent,
               weeks = trip.weeks;
-          let tripsAppend = `<li data-id=${trip.id}>` + '<h3 >' + name + '</h3></li>'
+          let tripsAppend = `<li data-id=${trip.id}>` + '<h5 >' + name + '</h5></li>'
 
           $('.list-trips ol').append(tripsAppend);
         });
@@ -36,10 +36,14 @@ $(document).ready(() => {
           $(this).append(
             '<p>Location: ' + response.continent + '</p>' + '<p>Length: ' + response.weeks + ' weeks</p>' +
             '<p>Category: ' + response.category + '</p>' + '<p>Cost: $' + response.cost + '</p>' + '<p>Description: ' + response.about + '</p>').toggleClass('toggle');
+          $(this).click((event) => {
+            event.stopPropagation();
+          })
       });
       let resUrl = tripUrl + '/reservations';
       $.post(resUrl, formData, successCallback).fail((response) => {
         console.log('Did not post');
-});
+      });
   });
+
 });
