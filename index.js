@@ -10,14 +10,12 @@ $( document ).ready(function() {
         // } // end of for loop
 
         response.forEach(function(trip) {
-          let tripInfo = `<li><h3>${trip.id}> ${trip.name} </a></h3><p> ${pet.continent}</li>`
+          let tripInfo = `<li><h3>${trip.name}</h3> <p>${trip.continent}</p></li>`
           $('ul').append(tripInfo);
         }); // end of forEach
 
       }) // end of $.get
   }; // end of loadTrips()
-
-
 
 
   loadTrip = function loadTrip(id) {
@@ -26,5 +24,16 @@ $( document ).ready(function() {
         console.log('success!');
         console.log(response);
       })
-  };
+  }; // end of loadTrip()
+
+
+  // EVENTS
+  $('ul').on('click', 'h3', function(){
+    let tripID = $(this).attr('data-id');
+    loadTrip(tripID);
+  });
+
+  $('#load').on('click', function(){
+    loadTrips();
+  });
 }); //end of document.ready
