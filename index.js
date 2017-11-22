@@ -19,7 +19,7 @@ const createForm = function createForm() {
   const tripID = $(this).attr('trip_id');
   const formAction = `https://trektravel.herokuapp.com/trips/${tripID}/reservations`;
   const sectionHTML = formElements.reduce((string, element) => `${string}<section><label>${element}</label><input type='text' id='${element.toLowerCase()}' name='${element.toLowerCase()}' /></section>`, '');
-  const formHTML = `<form action=${formAction}>${sectionHTML}<section><button type='submit'>Reserve</button></section></form>`;
+  const formHTML = `<form action=${formAction}>${sectionHTML}<section><button type='submit' class='button'>Reserve</button></section></form>`;
 
   $('#content').html(formHTML);
 };
