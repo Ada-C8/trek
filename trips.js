@@ -37,12 +37,12 @@ $(document).ready(()=>{
 
       $('#trips').append(details);
     })
-    // .fail(function() {
-    //   $('#trips').text('Sorry! Invalid Request.')
-    // })
-    // .always(function() {
-    //   console.log("this always happens!")
-    // })
+    .fail(function() {
+      $('#trips').text('Sorry! Invalid Request.')
+    })
+    .always(function() {
+      console.log("this always happens!")
+    })
   });
 
   $('#trips').on('click', '#book', function(){
