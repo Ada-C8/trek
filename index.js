@@ -10,7 +10,7 @@ $( document ).ready(function() {
         // } // end of for loop
 
         response.forEach(function(trip) {
-          let tripInfo = `<li><h3>${trip.name}</h3> <p>${trip.continent}</p></li>`
+          let tripInfo = `<li><h3 data-id=${trip.id}><a href="#">${trip.name}</a></h3><p>${trip.continent}</p></li>`
           $('ul').append(tripInfo);
         }); // end of forEach
 
