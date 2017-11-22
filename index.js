@@ -29,24 +29,71 @@ const viewTrip = function viewTrip(tripID) {
     <p> Category: ${response.category} </p>
     <p> Weeks: ${response.weeks} </p>
     <p> Cost: ${response.cost} </p>
-    <button id="button"> Reserve this Trip </button>
-    </div>`;
+    </div>
+    <button id="reserveFormButton" data-id="${response.id}"> Reserve this Trip </button>`;
     console.log(tripInfo);
     $('#tripInfo').append(tripInfo);
     $('#tripList ol').hide();
   })
-  .fail(function(response) {
+  .fail((response) => {
     console.log(response);
     $('#fail').html('<p>Request was unsuccessful</p>')
   })
-  .always(function() {
+  .always(() => {
     console.log('Looking for adventure...');
   });
 }; // end of viewTrip function
+
+const reserveForm = function reserveTripForm(tripID) {
+  console.log(tripID);
+  const reservationForm = `
+  <div id="message"></div>
+  <form action="https://trektravel.herokuapp.com/trips/${tripID}/reservations" method="post">
+  <section>
+  <label>Name</label>
+  <input type="text" id="name" name="name"></input>
+  </section>
+  <section class="button">
+  <button type="submit">Finalize Reservation</button>
+  </section>
+  </form>`;
+  $('#reserveFormField').append(reservationForm);
+  finalizeReservation();
+}; // end of reserveTrip function
+
+const finalizeReservation = function finalizeReservation() {
+  $('#reserveFormField').on('submit', 'form', function(e) {
+
+    e.preventDefault();
+    console.log('in finalizedReservation method');
+    const url = $(this).attr('action'); // Retrieve the action from the form
+    console.log(url);
+    const formData = $(this).serialize();
+    console.log(formData);
+
+    $.post(url, formData, (response) => {
+      $('#message').html('<p> Trip Reserved! </p>');
+      // What do we get in the response?
+      console.log(response);
+    }).fail(() => {
+      $('#message').html('<p>Reserving Trip Failed</p>');
+    });
+  });
+};
+
 $(document).ready(() => {
 
   $('#button').on('click', () => {
     getTrips();
+  });
+
+  $('#tripInfo').on('click', '#reserveFormButton', function() {
+    console.log('SOMETHING IS HAPPENING');
+
+    const tripID = $(this).attr('data-id');
+    console.log($(this));
+
+    reserveForm(tripID);
   });
 
   $('#tripList ol').on('click', 'li', function() {
@@ -55,11 +102,8 @@ $(document).ready(() => {
   });
 
   $('#tripInfo').on('click', 'div',  function() {
-    // const tripID = $(this).attr('data-id');
     $(this).hide();
     $('#tripList ol').show();
   });
-
 });
-
 // EVENTS
