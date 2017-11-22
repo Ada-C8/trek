@@ -8,7 +8,9 @@ const url = 'https://trektravel.herokuapp.com/trips';
 $(document).ready(() => {
 
 let loadTrips = function loadTrips() {
-
+  console.log("start detail function");
+  console.log($(".trip-details"));
+  console.log("end details");
   $.get('https://trektravel.herokuapp.com/trips', (response) => {
     response.forEach(function(trip)  {
       let tripInfo = `<li> <button class="button"> <h3 data-id=${trip.id}> ${trip.name} </a> </h3> </button> </li>`
@@ -21,6 +23,9 @@ let loadTrips = function loadTrips() {
 } //loadtrips function
 
 let loadDetail = function loadDetail(id) {
+  console.log("start detail function");
+  console.log($(".trip-details"));
+  console.log("end details");
   $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
     let tripDetail = `
       <h2> ${response.name} </h2>
@@ -30,10 +35,10 @@ let loadDetail = function loadDetail(id) {
       <p> ${response.cost} </p> `;
 console.log(id);
 console.log(typeof(id));
-console.log($(this));
+console.log("this is" + $(this));
 //recognizes
 //how to tell it to use th eid?
-      $('h3').first().after(tripDetail);
+      $('.trip-details').after(tripDetail);
     // $('h3').after(tripDetail); //works
   }); //get trip function
 
@@ -41,12 +46,15 @@ console.log($(this));
 
 $('#trips ul').on('click', 'h3', function () {
   let tripID = $(this).attr('data-id');
+  console.log("in the event handler!");
   loadDetail(tripID);
 }) //
 
 
 $('#load').on('click', function() {
+
   loadTrips();
+  
 });
 
 
