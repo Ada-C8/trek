@@ -1,3 +1,5 @@
+const imageUrls = ['backpack.jpg', 'belize.jpg', 'camino.jpg', 'farm.jpg', 'greenlake.jpg', 'london.jpg', 'rowhouses.jpg', 'seattle.jpg', 'snow.jpg', 'tent.jpg']
+
 $(document).ready(()=>{
 
   let allTrips = function allTrips() {
@@ -7,7 +9,7 @@ $(document).ready(()=>{
         let tripInfo = `<li id=${trip.id}><h3 data-id='${trip.id}'> ${trip.name} </h3><p> ${trip.continent}, ${trip.weeks} weeks</p></li>`
 
         $('#trips').append(tripInfo);
-        $('#load').addClass('disappear');
+        $('.centerbutton').addClass('disappear');
       });
     }); //get
   };
