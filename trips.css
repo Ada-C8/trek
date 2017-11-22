@@ -26,13 +26,14 @@ h3{
 }
 
 .tripListAll {
-  padding-top: 2vw;
+  margin-bottom: 1vw;
+  margin-top: 1vw;
+  /*padding: 3vw;*/
   /*display: inline-block;*/
   align-items: center;
-  height: 200px;
+  height: 250px;
   text-align: center;
-  border-left: 1px black solid;
-  border-right: 1px black solid;
+  border-bottom: 1px solid grey;
 
 }
 
