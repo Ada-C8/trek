@@ -10,7 +10,7 @@ $(document).ready(()=>{
       const allTrips = response;
       for (let i = 0; i < allTrips.length; i++){
         const trip = allTrips[i]
-        $('#trips').append($(`<h3>${trip.name}</h3>`).attr('id', `${trip.id}`));
+        $('#trips').append($(`<article><h3>${trip.name}</h3></article>`).attr('id', `${trip.id}`).addClass('tripListAll column small-12 large-4 float-right'));
         console.log(trip);
       }
     })
@@ -22,7 +22,7 @@ $(document).ready(()=>{
     })
   });
 
-  $('#trips').on('click', 'h3', function(){
+  $('#trips').on('click', '.tripListAll', function(){
     $('#bookingForm').hide();
     const id = $(this).attr('id');
     console.log(id)
@@ -32,10 +32,17 @@ $(document).ready(()=>{
       // console.log(thisTrip);
       $('#trips').empty()
 
-      const details = `<article id=${id}><h2>${thisTrip.name}</h2> <ul><li>${thisTrip.continent}</li><li>${thisTrip.category}</li><li>${thisTrip.about}</li><li>Cost: $${thisTrip.cost}</li><li>${thisTrip.weeks} Weeks</li></ul><button id="book">Book This Trip</button></article>`
+      const details = `<article id=${id} class="tripDetails"><h2>${thisTrip.name}</h2>
+      <h5>${thisTrip.weeks} Weeks in ${thisTrip.continent} | ${thisTrip.category.toUpperCase()} | $${thisTrip.cost}</h5><p>${thisTrip.about}</p><button id="book" class="button small-12 large-12">Book This Trip</button></article>`
 
       $('#trips').append(details);
     })
+    // .fail(function() {
+    //   $('#trips').text('Sorry! Invalid Request.')
+    // })
+    // .always(function() {
+    //   console.log("this always happens!")
+    // })
   });
 
   $('#trips').on('click', '#book', function(){
@@ -43,7 +50,7 @@ $(document).ready(()=>{
     console.log('CLICK!')
     $('#trips').empty()
     $('#bookingForm').show();
-    console.log(tripNum);
+    // console.log(tripNum);
     const url = `https://trektravel.herokuapp.com/trips/${tripNum}/reservations`
     $('#bookingForm form').attr('action', `${url}`)
   });

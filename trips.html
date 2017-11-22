@@ -2,12 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Don't Trip. Trekk.</title>
+  <title>Trek.</title>
+  <link rel="stylesheet" type="text/css" href="foundation.css"/>
+  <link rel="stylesheet" type="text/css" href="trips.css"/>
 </head>
 <body>
-  <h1>Trekk</h1>
+  <h1>Don't Trip. Trek.</h1>
+  <nav class="row cenetered">
+    <button id="all" class="button column small-12 large-12">Show All Trips</button>
+  </nav>
 
-  <section id="bookingForm">
+  <section id="bookingForm" class="form small-12 large-12">
     <form action="" method=post>
     <section>
       <label>Name</label>
@@ -28,16 +33,14 @@
     </section>
 
     </form>
-
   </section>
 
-
-  <button id="all">Show All Trips</button>
-  <section id="trips"></section>
+  <section id="trips" class="row small-12 large-12"></section>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <!-- <script src="js/jquery.min.js"></script> -->
+  <!-- <script src="js/foundation.min.js"></script> -->
 
   <script type="text/javascript" src="trips.js"></script>
 
