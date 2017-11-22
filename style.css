@@ -1,0 +1,19 @@
+html {
+  font-family: serif;
+}
+
+header {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.logo {
+  font-size: 6rem;
+}
+
+.view-all-trips {
+  margin-right: 0;
+}
