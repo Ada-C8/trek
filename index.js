@@ -27,7 +27,7 @@ $(document).ready(() => {
       }); // Note that this is where the semi-colon ends up
     });
 
-    // Event listening
+    // Event listening for individual trip click
     $('.list-trips').on('click', 'li', function(event) {
       let tripId = $(this).attr('data-id');
       let tripUrl = ALL_TRIPS_URL + '/' + `${tripId}`;
@@ -36,14 +36,31 @@ $(document).ready(() => {
           $(this).append(
             '<p>Location: ' + response.continent + '</p>' + '<p>Length: ' + response.weeks + ' weeks</p>' +
             '<p>Category: ' + response.category + '</p>' + '<p>Cost: $' + response.cost + '</p>' + '<p>Description: ' + response.about + '</p>').toggleClass('toggle');
-          $(this).click((event) => {
-            event.stopPropagation();
-          })
-      });
+
+        });
+      // generate form
+      $('li p:last-of-type').append('<form id="add-res"></form>');
+      $('form').append('<label for="name">Name: </label><input type="text" name="name"></input>');
+      $('form').append('<label for="age"></label>Age: <input type="number" name="age"></input>');
+      $('form').append('<label for="email">Email: </label><input type="text" name="email"></input>');
+      $('form').append('<input type="submit" value="Reserve trip"></input>');
+
+      let formData = $('#add-res').serialize();
+
+
       let resUrl = tripUrl + '/reservations';
-      $.post(resUrl, formData, successCallback).fail((response) => {
+      $.post(resUrl, formData, response => {
+        console.log('successful reservation');
+
+      })
+      .fail((response) => {
         console.log('Did not post');
       });
+
+      $(this).click((event) => {
+        event.stopPropagation();
+      })
+      
   });
 
 });
