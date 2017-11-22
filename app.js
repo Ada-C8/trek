@@ -25,12 +25,16 @@ $(document).ready(() => {
     // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC TRIP
     let loadTrip = function loadTrip(id){
       $.get(`https://trektravel.herokuapp.com/trips/${id}`,
-        console.log('this is result' + response);
         (response) => {
+          console.log('this is' + response);
           let tripInfo = `
           <h2> ${response.name} </h2>
+          <p> Id: ${response.id} </p>
           <p> Continent: ${response.continent} </p>
-          <p> Weeks: ${response.weeks} </p>`;
+          <p> About: ${response.about} </p>
+          <p> Category: ${response.category} </p>
+          <p> Weeks: ${response.weeks} </p>
+          <p> Costs: ${response.costs} </p>`;
 
           $('#trip').html(tripInfo);
 
