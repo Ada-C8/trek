@@ -40,9 +40,9 @@ $(document).ready(() => {
             }
           }
         }
+        tripInfo += '<button class="button" id="reserve">Book Trip</button>';
         tripInfo += '</section>';
 
-        console.log(tripInfo);
         // $('a').data(`id="${tripId}"`).after(tripInfo);
         // $(`a[data-id="${tripId}"]`).after(tripInfo);
         // $('a').data(`id: ${tripId}`).after(tripInfo);
@@ -66,5 +66,26 @@ $(document).ready(() => {
     } else {
       loadTrip(tripId);
     }
+  });
+
+  // display form when button is clicked
+  $('.trips').on('click', 'button', function show(tripId) {
+    console.log('clicking button');
+    const url = `${baseUrl}/${tripId}/reservations`;
+    let formInfo = `<form action=${url} method="post">`;
+
+    const params = ['Name', 'Age', 'Email'];
+    params.forEach((param) => {
+      const label = `<label>${param}</label>`;
+      const input = `<input type="text" id=${param} name=${param}/>`;
+
+      formInfo += `<section>${label}${input}</section>`;
+    });
+
+    const submitBtn = '<button type="submit" class="button">Save a Spot!</button>';
+    formInfo += `<section>${submitBtn}</section>`;
+    console.log(formInfo);
+
+    $(this).after(formInfo);
   });
 });
