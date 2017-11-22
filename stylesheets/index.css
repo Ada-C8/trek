@@ -45,3 +45,7 @@ article:nth-child(odd) {
 article:nth-child(even) {
   background-color: #EAF8FA;
 }
+
+article ul {
+  list-style: none;
+}

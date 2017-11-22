@@ -32,12 +32,12 @@ $(document).ready(function () {
             let tripDetails = $(
             '<ul>' +
             '<li>' + 'ID: ' + id + '</li>' +
-            '<li>' + 'Trip details: ' + about + '</li>' +
             '<li>' + 'Continent: ' + continent + '</li>' +
             '<li>' + 'Category: ' + category + '</li>' +
             '<li>' + 'Number of weeks: ' + weeks + '</li>' +
             '<li>' + 'Cost: $' + cost + '</li>' +
             '</ul>' +
+            '<p>' + 'Trip details: ' + about + '</p>' +
             `<button id="trip${id}">Book this trip</button>`);
 
             // append the trip details to the trip name (above I added the 'id' as a class for the h5 containing each name)
