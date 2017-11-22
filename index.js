@@ -48,7 +48,7 @@ $(document).ready(function () {
               // stops the tripHTML click event from running
               event.stopPropagation();
 
-              // replace the button with the form to book a trip
+              // replace the button with the form to book a trip when the button is clicked 
               let form = $(
                 `<div id="book">
                  <form action="https://trektravel.herokuapp.com/trips/1/reservations" method="post" id="book${id}">
