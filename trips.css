@@ -6,11 +6,23 @@ body {
 }
 
 h1 {
+  font-family: 'Shadows Into Light', cursive;
   text-align: center;
+  font-size: 8vw;
+  text-shadow: 2px 2px lightgrey;
+}
+
+h3{
+  font-family: 'Roboto Mono', monospace;
 }
 
 .tripDetails h2, h5 {
   text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.tripDetails {
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .tripListAll {
@@ -21,10 +33,20 @@ h1 {
   text-align: center;
   border-left: 1px black solid;
   border-right: 1px black solid;
+
 }
 
 #trips {
   margin-top: 2vw;
   border-top: solid black 1px;
   border-bottom: solid black 1px;
+}
+
+.button, button{
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+}
+
+form {
+  font-family: 'Roboto Condensed', sans-serif;
 }
