@@ -31,7 +31,26 @@ $(document).ready(() => {
         <p> Category: ${response.category} </p>
         <p> About: ${response.about} </p>
         <p> Weeks: ${response.weeks} </p>
-        <p> Cost: ${response.cost} </p>`;
+        <p> Cost: ${response.cost} </p>
+        <iframe name="hiddenFrame" class="hide"></iframe>
+        <form action="https://trektravel.herokuapp.com/trips/${tripID}/reservations" method="post" target="hiddenFrame">
+      <section>
+        <label>Name</label>
+        <input type="text" id="name" name="name"></input>
+      </section>
+      <section>
+        <label>Age</label>
+        <input type="text" id="age" name="age"></input>
+      </section>
+      <section>
+        <label>Email</label>
+        <input type="text" id="email" name="email"></input>
+      </section>
+
+      <section class="button">
+        <button type="submit">Make Reservation</button>
+      </section>
+    </form>`;
 
         $('#trip').html(tripInfo);
 
@@ -43,6 +62,7 @@ $(document).ready(() => {
         .always(function(){
           console.log('always even if we have success or failure');
         });
+
   });
 
 });
