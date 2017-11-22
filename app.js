@@ -5,13 +5,13 @@ $(function() {
          url: 'https://trektravel.herokuapp.com/trips',
          dataType: 'json',
          success: function(data) {
-           console.log(data);
           let travelData = [];
+          console.log(data);
           for(r in data) {
             let key = r;
             let val = data[r];
 
-            travelData.push('<li id="' + key + '">' + val + '</li>');
+            travelData.push('<li id="' + key + '">' + val.id + '</li>');
           }
           console.log(travelData);
 
