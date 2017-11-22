@@ -2,3 +2,7 @@
   font-weight: lighter;
   /*color: lightgreen;*/
 }
+
+#message h3 {
+  color: red;
+}
