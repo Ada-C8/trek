@@ -47,10 +47,13 @@ header {
   margin: 5rem auto;
 }
 
-#hero > .button {
+.button {
   background-color: var(--dkgreen);
   border-radius: 1rem;
   color: var(--ltblue);
+}
+
+#hero > .button {
   display: block;
   font-size: 1.75rem;
   height: 8rem;
@@ -97,4 +100,20 @@ header {
 
 .show {
   height: auto;
+  overflow: auto;
+}
+
+.trip-info {
+  padding-top: 1rem;
+}
+
+.trip-about {
+  display: inline;
+}
+
+.book-btn {
+  display: block;
+  float: none !important;
+  margin: 1rem auto;
+  padding: 1rem;
 }

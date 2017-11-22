@@ -5,7 +5,6 @@ $(document).ready(function(){
 
   $('#hero').on('click', '.button', function(e){
     $.get(URL, function(response) {
-      console.log(response);
       for(let i = 0; i < response.length; i++) {
         $('#trip-list').append(
           '<li class="trip" id="'
@@ -22,6 +21,31 @@ $(document).ready(function(){
     $('main > section').toggleClass('hidden');
   });
 
+  let tripAbout = function tripAbout(response){
+    let continent = response.continent;
+    let category = response.category;
+    let cost = response.cost;
+    let about = response.about;
+    return `<div class="about-trip">
+      <div class="trip-info small-12 medium-6 columns">
+        <p>
+          <strong>continent: </strong> ${continent}
+        </p>
+      </div>
+      <div class="trip-info small-12 medium-6 columns">
+        <p>
+          <strong>category: </strong> ${category}
+        </p>
+      </div>
+      <div class="trip-info small-12 columns">
+        <p class="trip-about">
+          <em>${about}</em>
+        </p>
+        <a class="button book-btn small-12 medium-6 large-3 columns">Book Now: $${cost}</a>
+      </div>
+    </div>`;
+  };
+
   $('#trip-list').on('click', function(e){
     let id = e.target.closest('.trip').id;
     $('.about-trip').remove();
@@ -32,20 +56,7 @@ $(document).ready(function(){
       $('.trip').removeClass('show');
       target.addClass('show');
       $.get(URL + id, function(response) {
-        console.log(response);
-        target.append(
-          '<div class="about-trip"><p><strong>continent:</strong> '
-          + response.continent
-          + '</p><p><strong>category: </strong> '
-          + response.category
-          + '</p><p><strong>length: </strong> '
-          + response.weeks + ' weeks'
-          + '</p><p><strong>cost: </strong> $'
-          + response.cost
-          + '</p><p><em> '
-          + response.about
-          + '</em></p></div>'
-        );
+        target.append(tripAbout(response));
       });
     }
   });
