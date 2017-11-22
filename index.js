@@ -63,7 +63,7 @@ $(document).ready(function () {
 
                   <input type="hidden" id="trip_id" name="trip_id" value="${id}">
 
-                  <input type="submit" value="Book this trip!"></input>`
+                  <input type="submit" value="Book this trip!" class="button"></input>`
               );
 
               $(`#trip${id}`).hide();
@@ -82,11 +82,11 @@ $(document).ready(function () {
                 $.post(url, formData, (response) => {
                   let tripName = $(`.${id}`).html();
                   debugger
-                  let successMessage = `<p> You\'re all booked to go on the ${tripName} trip! </p>`
+                  let successMessage = `<p class="success"> You\'re all booked to go on the ${tripName} trip! </p>`
                   $(`#book${id}`).hide();
                   $(`.${id}`).parent().append(successMessage)
                 }).fail( () => {
-                  let failureMessage = `<p> Sorry, we failed to book you for the ${tripName} trip. </p>`
+                  let failureMessage = `<p class="failure"> Sorry, we failed to book you for the ${tripName} trip. </p>`
                   $(`.${id}`).parent().append(failureMessage)
                 }) // .post
               }) // .on for submit

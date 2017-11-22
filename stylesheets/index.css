@@ -49,3 +49,16 @@ article:nth-child(even) {
 article ul {
   list-style: none;
 }
+
+/* form */
+.success {
+  background-color: white;
+  color: black;
+  padding: 2%;
+}
+
+.failure {
+  background-color: red;
+  color: white;
+  padding: 2%;
+}
