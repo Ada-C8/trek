@@ -43,6 +43,7 @@ $(document).ready(()=> {
         console.log(`trip id:${response.id}`);
         console.log('reserve button was clicked');
         $('#reserve-form').show();
+        $('#trip-form').attr('data-id' , `${response.id}`);
       });
       $('#show-trip').append(button);
     })
@@ -62,17 +63,20 @@ $(document).ready(()=> {
   // EVENTS
   $('#show-trips ul').on('click', 'h2', function(){
     let tripId = $(this).attr('data-id');
-    console.log('show trips event works test test test test');
     loadTrip(tripId);
   });
 
   $('#load').on('click', function(){
-    console.log(this.value);
     loadTrips();
   });
 
-  // $('#reserve').on('click', function(){
-  //   console.log(this.value);
-  //   console.log('reserve button was clicked');
-  // });
+  $('#trip-form').on('submit', function(event){
+    event.preventDefault();
+    let url = baseUrl + `/${$(this).data('id')}/reservations`;
+    console.log(url);
+    let formData = $('#trip-form').serialize();
+    console.log(formData);
+    $.post(url, formData)
+    // write success successCallback function!
+  });
 });
