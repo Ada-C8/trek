@@ -1,11 +1,10 @@
-// build all trips
 // build individual trip data
 // build form
 
-const ALL_TRIPS_URL = 'https://trektravel.herokuapp.com/trips';
+// build all trips
+let buildAllTrips = function buildAllTrips() {
+  const ALL_TRIPS_URL = 'https://trektravel.herokuapp.com/trips';
 
-$(document).ready(() => {
-  $('#all-trips').click(function() {
     $.get(ALL_TRIPS_URL,
       response => {
         response.forEach(function(trip) {
@@ -22,10 +21,11 @@ $(document).ready(() => {
       console.log('failure');
       $('#fail').html('<p>Request was unsuccessful</p>')
     })
-    .always(function(){
-      console.log('always even if we have success or failure');
-    });
-  }); //#all-trips
+};
+
+$(document).ready(() => {
+  // listen for all-trips
+  $('#all-trips').click(buildAllTrips); //#all-trips
 
   // Event listening for individual trip click
   $('.list-trips').on('click', 'li', function(event) {
