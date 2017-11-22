@@ -2,19 +2,14 @@
 // build individual trip data
 // build form
 
-
 const ALL_TRIPS_URL = 'https://trektravel.herokuapp.com/trips';
 
 $(document).ready(() => {
   $('#all-trips').click(function() {
     $.get(ALL_TRIPS_URL,
       response => {
-        console.log('success!');
-        console.log(response);
-
         response.forEach(function(trip) {
           let name = trip.name,
-              // id = trip.id,
               continent = trip.continent,
               weeks = trip.weeks;
           let tripsAppend = `<li data-id=${trip.id}>` + '<h5 >' + name + '</h5></li>'
@@ -39,7 +34,7 @@ $(document).ready(() => {
     $.get(tripUrl, response => {
       $(this).append(
         '<p>Location: ' + response.continent + '</p>' + '<p>Duration: ' + response.weeks + ' (week(s))</p>' +
-        '<p>Category: ' + response.category + '</p>' + '<p>Cost: $' + response.cost + '</p>' + '<p>Description: ' + response.about + '</p>').toggleClass('toggle');
+        '<p>Category: ' + response.category + '</p>' + '<p>Cost: $' + response.cost + '</p>' + '<p>Description: ' + response.about + '</p>')
       $(this).append('<div class="button">Make a Reservation</div>');
 
       $(this).click((event) => {
