@@ -14,7 +14,7 @@ $(document).ready(() => {
   const loadTrips = function loadTrips() {
     $.get(baseUrl, (response) => {
       response.forEach((trip) => {
-        const tripInfo = `<li><a data-id="${trip.id}">${trip.name}</a>`;
+        const tripInfo = `<li><a data-id=${trip.id}>${trip.name}</a>`;
 
         $('.trips > ul').append(tripInfo);
       });
@@ -23,7 +23,7 @@ $(document).ready(() => {
 
   const loadTrip = function loadTrip(tripId) {
     // check if already displayed
-    if (!$(`[data-id=${tripId}]`).hasClass('loaded')) {
+    if (!$(`a[data-id=${tripId}]`).hasClass('loaded')) {
       const url = `${baseUrl}/${tripId}`;
 
       $.get(url, (response) => {
@@ -40,16 +40,56 @@ $(document).ready(() => {
             }
           }
         }
-        tripInfo += '<button class="button" id="reserve">Book Trip</button>';
+        tripInfo += '</section>';
+        tripInfo += '<section class="reservation">';
+        tripInfo += `<button class="button" id="show-form" data-id=${tripId}>Book Trip</button>`;
         tripInfo += '</section>';
 
         // $('a').data(`id="${tripId}"`).after(tripInfo);
         // $(`a[data-id="${tripId}"]`).after(tripInfo);
         // $('a').data(`id: ${tripId}`).after(tripInfo);
-        $(`[data-id=${tripId}]`).addClass('loaded');
-        $(`[data-id=${tripId}]`).after(tripInfo);
+        $(`a[data-id=${tripId}]`).addClass('details-loaded');
+        $(`a[data-id=${tripId}]`).after(tripInfo);
       });
     }
+  };
+
+  const loadForm = function loadForm(tripId, btn) {
+    if (!$(`a[data-id=${tripId}]`).hasClass('form-loaded')) {
+      const url = `${baseUrl}/${tripId}/reservations`;
+      let formInfo = `<form action=${url} method="post">`;
+
+      const params = ['name', 'age', 'email'];
+      params.forEach((param) => {
+        formInfo += `<label>${param}</label>`;
+        formInfo += `<input type="text" id="${param}" name="${param}"/>`;
+      });
+
+      formInfo += '<button type="submit" class="button" id="reserve">Save a Spot!</button>';
+      console.log(formInfo);
+
+      $(`a[data-id=${tripId}]`).addClass('form-loaded');
+      // console.log($(this));
+      // $(`button[data-id]=${tripId}`).after(formInfo);
+      btn.after(formInfo);
+    }
+  };
+
+  const reserveTrip = function reserveTrip(form) {
+    const url = form.attr('action');
+    const formData = form.serialize();
+
+    console.log(url);
+    console.log(formData);
+
+    $.post(url, formData, (response) => {
+      console.log(response);
+      $('#reserve').after('<p>TRIP ADDED</p>');
+    }).fail(() => {
+      console.log('FAIL');
+    }).always(() => {
+      console.log('always say something');
+    });
   };
 
   // events
@@ -61,7 +101,7 @@ $(document).ready(() => {
     const tripId = $(this).data('id');
 
     // check if loaded
-    if ($(this).hasClass('loaded')) {
+    if ($(this).hasClass('details-loaded')) {
       $(this).next().toggle();
     } else {
       loadTrip(tripId);
@@ -69,23 +109,16 @@ $(document).ready(() => {
   });
 
   // display form when button is clicked
-  $('.trips').on('click', 'button', function show(tripId) {
-    console.log('clicking button');
-    const url = `${baseUrl}/${tripId}/reservations`;
-    let formInfo = `<form action=${url} method="post">`;
+  $('.trips').on('click', '#show-form', function show() {
+    const btn = $(this);
+    const tripId = btn.data('id');
+    console.log(tripId);
+    loadForm(tripId, btn);
+  });
 
-    const params = ['Name', 'Age', 'Email'];
-    params.forEach((param) => {
-      const label = `<label>${param}</label>`;
-      const input = `<input type="text" id=${param} name=${param}/>`;
+  $('.trips').on('submit', 'form', function book(event) {
+    event.preventDefault();
 
-      formInfo += `<section>${label}${input}</section>`;
-    });
-
-    const submitBtn = '<button type="submit" class="button">Save a Spot!</button>';
-    formInfo += `<section>${submitBtn}</section>`;
-    console.log(formInfo);
-
-    $(this).after(formInfo);
+    reserveTrip($(this));
   });
 });
