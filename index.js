@@ -25,7 +25,7 @@ $(document).ready(() => {
     .always(function(){
       console.log('always even if we have success or failure');
     });
-  });
+  }); //#all-trips
 
   // Event listening for individual trip click
   $('.list-trips').on('click', 'li', function(event) {
@@ -36,38 +36,23 @@ $(document).ready(() => {
         '<p>Location: ' + response.continent + '</p>' + '<p>Duration: ' + response.weeks + ' (week(s))</p>' +
         '<p>Category: ' + response.category + '</p>' + '<p>Cost: $' + response.cost + '</p>' + '<p>Description: ' + response.about + '</p>').toggleClass('toggle');
       $(this).append('<div class="button">Make a Reservation</div>');
+
       $(this).click((event) => {
         event.stopPropagation();
       });
-    // })
-    // .fail(function(response){
-    //   console.log(response);
-    //   console.log('failure');
-    //   $('#fail').html('<p>Request was unsuccessful</p>')
-    // })
-    // .always(function(){
-    //   console.log('always even if we have success or failure');
-    // });
 
-    // listen for button click to make reservation
-    $(this).one('click', 'div', function() {
-      // generate form
-      let form = `<form action="${tripURL}/reservations" id="add-res">
-      <label for="name">Name: </label><input type="text" name="name"></input>
-      <label for="age"></label>Age: <input type="number" name="age"></input>
-      <label for="email">Email: </label><input type="text" name="email"></input>
-      <input type="submit" value="Reserve trip"></input>
-      </form>`;
-      $(this).after(form);
-      // $( .button').hide();
-      // $( ".result" ).html( data );
-      // $(this).click((event) => {
-      //   event.stopPropagation();
-      // });
-    // });
-    // }); //show more details for individual trip
-  }); //.one click to make res
-
+      // listen for button click to make reservation
+      $(this).one('click', 'div', function() {
+        // generate form
+        let form = `<form action="${tripUrl}/reservations" id="add-res">
+        <label for="name">Name: </label><input type="text" name="name"></input>
+        <label for="age"></label>Age: <input type="number" name="age"></input>
+        <label for="email">Email: </label><input type="text" name="email"></input>
+        <input type="submit" value="Reserve trip"></input>
+        </form>`;
+        $(this).after(form);
+      }); //.one click to make res
+    });
   // listen for submit and post
   $('#add-res').submit(function(event) {
     event.preventDefault();
@@ -85,6 +70,5 @@ $(document).ready(() => {
       console.log('Did not reserve');
     });
   }); //submit res
-});
 });
 }); //document.ready
