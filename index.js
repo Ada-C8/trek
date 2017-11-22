@@ -15,7 +15,13 @@ let getTrips = function getTrips() {
       tableRow += '</tr>';
     }
     $('.trips table').append(tableRow);
-  }
+  } // end of successCallback
+
+  const failureCallback = function(response) {
+    let generatedHTML = '<p>Something went wrong! Please try again!</p>';
+
+    $('.trips').html(generatedHTML);
+  }; // end of failureCallback
 
 $.get(tripsURL, successCallback);
 
@@ -53,7 +59,13 @@ let getTripBuilder = function(id) {
 
     } //end of successCallback
 
-    $.get(tripsURL + `/${id}`, successCallback);
+    const failureCallback = function(response) {
+      let generatedHTML = '<p>Something went wrong! Please try again!</p>';
+
+      $('.trip').html(generatedHTML);
+    }; // end of failureCallback
+
+    $.get(tripsURL + `/${id}`, successCallback).fail(failureCallback);
 
   } // end of getTrip
   getTrip();
@@ -65,15 +77,21 @@ let makeReservation = function makeReservation(id) {
     console.log('POST -> success!');
     console.log(response);
 
-    let generatedHTML = '<p>Everything went well! Thank you for your reservation!</p>'
+    let generatedHTML = '<p>Everything went well! Thank you for your reservation!</p>';
 
     $('#reservation').html(generatedHTML);
 
-  } // end of callback
+  } // end of successCallback
+
+  const failureCallback = function(response) {
+    let generatedHTML = '<p>Something went wrong! Please try again!</p>';
+
+    $('#reservation').html(generatedHTML);
+  }; // end of failureCallback
 
   let reservationData = $('#reservation form').serialize();
   let reservationURL = tripsURL + `/${id}` + '/reservations';
-  $.post(reservationURL, reservationData, successCallback());
+  $.post(reservationURL, reservationData, successCallback).fail(failureCallback);
 
 } // end of makeReservation
 
