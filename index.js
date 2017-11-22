@@ -22,6 +22,7 @@ $( document ).ready(function() {
       response => {
         let tripInfo = `
         <h2> ${response.name} </h2>
+        <p> id: ${response.id} </p>
         <p> continent: ${response.continent} </p>
         <p> about: ${response.about} </p>
         <p> category: ${response.category} </p>
