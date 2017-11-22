@@ -1,4 +1,22 @@
+
+
 $(document).ready(()=>{
+
+
+  const successCallback = function(response) {
+    console.log("POST request was successful");
+    console.log(response);
+
+    let generatedHTML = '<p>Everything went great: ';
+    generatedHTML += `${response.name} is reserved for trip ID: ${ response.id } has been added to the DB!</p>`;
+    // $('#reservation-results').html(generatedHMTL);
+    $('#reservation-results').live( function() {
+      $('#reservation-results').hide().show('slow').html(generatedHTML);
+      setTimeout(function(){ $('#reservation-results').hide(); }, 30000);
+    });
+
+  };
+
 
   let loadTrips = function loadTrips() {
 
@@ -7,15 +25,12 @@ $(document).ready(()=>{
       console.log('success!');
       console.log(response);
 
-      // $('#trips').show();
-      // $('#trip').hide();
-
       $('#trips ul').html('');  //idempotent
-
+      $('#reservation-form').trigger('reset');
       response.forEach(function(trip) {
         let dataId = trip["id"];
         let tripData = `<li><h3> <a href="/" data-id=${trip["id"]}> ${trip["name"]} </a> </h3> </li>`;
-        // debugger
+
         $('#trips ul').append(tripData);
       });
 
@@ -28,7 +43,7 @@ $(document).ready(()=>{
 
   };
 
-  // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC PET
+  // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC TRIP
   let loadTrip = function loadTrip(id){
     $.get(`https://trektravel.herokuapp.com/trips/${id}`,
       (response) => {
@@ -41,19 +56,31 @@ $(document).ready(()=>{
         <p> Cost: ${response.cost} </p>
         <p> About: ${response.about} </p>`;
 
-        $('#trip').html(tripInfo);
+        $('.trip article').html(tripInfo);
+
+        $('#reservation-form').one('submit', function(event) {
+          event.preventDefault();
+
+          let formData = $('#reservation-form').serialize();
+          console.log(formData);
+          // console.log("Successfully reserved your spot!");
+
+          $.post(`https://trektravel.herokuapp.com/trips/${response.id}/reservations`, formData, successCallback).fail((response) => {
+            console.log("Sorry, your reservation did not go through, please try again.");
+          });
+
+          $('#reservation-form').hide();
+          $('#reservation-form').trigger('reset');
+        });
 
       })
-      .fail(function(response){
-          console.log(response);
-          $('#fail').html('<p>Request was unsuccessful</p>')
-        })
-        .always(function(){
-          console.log('always even if we have success or failure');
-        });
+
+
   };
 
 
+
+  //EXAMPLE:
   // $('#pets ul').on('click', 'h3', function(){
   //   let petID = $(this).attr('data-id');
   //   loadPet(petID);
@@ -61,11 +88,13 @@ $(document).ready(()=>{
 
 
 // EVENTS
+  $('#reserve-spot').hide();
+  $('#reservation-form').hide();
   $('#load-all-trips').on('click', loadTrips);
 
   $('#load-all-trips').on('click', function(event){
     $('#trips').show();
-    $('#trip').hide();
+    $('.trip').hide();
   });
 
 
@@ -73,9 +102,17 @@ $(document).ready(()=>{
     event.preventDefault();
     let tripID = $(this).attr('data-id');
     loadTrip(tripID);
-    $('#trip').show();
+    $('#reservation-form').hide();
+    $('.trip').show();
     $('#trips').hide();
+    $('#reserve-spot').show();
   });
+
+  $('#reserve-spot').on('click', function(event) {
+    $('#reservation-form').show();
+  });
+
+
 
 });
 

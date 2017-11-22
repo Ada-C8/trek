@@ -9,24 +9,39 @@
   </head>
   <body>
     <div id="fail"></div>
+
       <button id="load-all-trips"> All Trips </button>
 
-      <div id="trip"></div>
+
 
       <div id="trips">
-      <ul>
-      </ul>
+        <ul>
+        </ul>
       </div>
 
-      <form id="add-pet-form">
-      <label for="name">Name:</label>
-      <input type="text" name="name"></input>
+      <div class="trip">
 
-      <label for="age">Age:</label>
-      <input type="number" name="age"></input>
+        <article id="trip-info"> </article>
+        <button id="reserve-spot"> Reserve a spot! </button>
 
-      <input type="submit" value="Register Pet"></input>
-    </form>
+        <div id="reservation-results"></div>
+
+        <form id="reservation-form">
+        <label for="name">Name:</label>
+        <input type="text" name="name"></input>
+
+        <label for="age">Age:</label>
+        <input type="number" name="age"></input>
+
+        <label for ="email">Email:</label>
+        <input type="text" name="email"></input>
+
+        <input type="submit" value="Reserve"></input>
+
+        </form>
+
+
+      </div>
 
   </body>
 </html>
