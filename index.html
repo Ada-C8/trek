@@ -13,19 +13,24 @@
     </header>
 
     <section>
-      <button id="loadTrips"> Find Trips </button>
+      <button id="load-trips"> Find Trips </button>
 
 
-      <div id="trips">
-        <ul></ul>
-      </div>
+      <div id="trips"><ul></ul></div>
     </section>
 
     <section>
-      <div id="trip">
-        
+      <div id="ajax-results"></div>
+      <div id="trip" hidden=true>
+        <form id="add-res">
+          <label for="name"> Name </label>
+          <input type="text" name="name"></input>
+
+          <input type="submit" value="Reserve Trip"></input>
+        </form>
       </div>
     </section>
+
 
 
   </body>
