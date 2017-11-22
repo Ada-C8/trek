@@ -27,40 +27,72 @@ $(document).ready(() => {
   let loadTrip = function loadTrip(id) {
     $.get((baseURL + '/' + id),
     (response) => {
-      let tripInfo = `
+      let tripInfo = `<section class= "indTrip" id="${response.id}">
       <h2> ${response.name} </h2>
       <p> id: ${response.id} </p>
       <p> Continent: ${response.continent} </p>
       <p> About: ${response.about} </p>
       <p> Category: ${response.category} </p>
       <p> Weeks: ${response.weeks} </p>
-      <p> Cost: ${response.cost} </p>`;
+      <p> Cost: ${response.cost} </p>
+      </section>`;
 
       $('.triplist ul').html("");
-      $('.tripView').html(tripInfo);
-
+      $('.tripView').append(tripInfo);
     })
     .fail(function(response){
-    console.log(response);
-    $('#fail').html('<p>Request was unsuccessful</p>')
-  })
-  .always(function(){
-    console.log('always even if we have success or failure');
+      console.log(response);
+      $('#fail').html('<p>Request was unsuccessful</p>')
+    })
+    .always(function(){
+      console.log('always even if we have success or failure');
+    });
+  };
+
+  // for post
+  // id: 3,
+  // trip_id: 1,
+  // name: "kimberley",
+  // email: ""
+  let reserveTrip = function reserveTrip(id, formData) {
+    reserveURL = (baseURL+'/'+ id + '/reservations');
+    console.log(reserveURL);
+    $.post(reserveURL, formData, (response) => {
+      $('#makeReservation').html('<p> Reservation added! </p>');
+      console.log(response);
+    })
+    .fail(function(response){
+      $('#fail').html('<p>Request was unsuccessful</p>')
+    })
+    .always(function(){
+      console.log('always even if we have success or failure');
+    });
+  };
+
+  // EVENTS
+
+  $('.triplist button').on('click', function() {
+    loadTrips();
   });
-};
-
-// EVENTS
-
-$('.triplist button').on('click', function() {
-  loadTrips();
-});
 
 
-$('.triplist ul').on('click', 'h3', function() {
-  let tripID = $(this).attr('data-id');
-  // console.log(`this is the data id ${tripID}`);
-  // console.log(`this is the this ${this}`);
-  loadTrip(tripID);
-});
+  $('.triplist ul').on('click', 'h3', function() {
+    let tripID = $(this).attr('data-id');
+    loadTrip(tripID);
+  });
+
+  $('#makeReservation').on('submit', function(event){
+    // this helps not to refresh the page
+    event.preventDefault();
+    tripID = $(`.indTrip`).attr('id');
+    // console.log(`this is the value ${value}`);
+    // tripID = 3
+    // let tripID = $(event).prop('id');
+    // console.log(`this is the ${tripID}`);
+
+    // this is a jQuery function that will take our form and turn it into query params
+    let formData = $('#makeReservation').serialize();
+    reserveTrip(tripID, formData);
+  })
 
 }); // document.ready end
