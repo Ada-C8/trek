@@ -5,6 +5,14 @@
 const BASE_URL = 'https://trektravel.herokuapp.com/trips';
 const continents = [];
 const getTrips = () => {
+  const selectFilter = ` <p>Filter By: <select id="first-choice">
+  <option selected value="default">Please Select</option>
+  <option value="continent budget weeks category">Continent</option>
+  <option value="budget">Budget</option>
+  <option value="weeks">Weeks</option>
+  <option value="category">Category</option>
+</select> </p>`
+  $('#trip-list').prepend(selectFilter);
   $.get(BASE_URL, (response) => {
     console.log('success!');
     response.forEach((trip) => {
@@ -20,6 +28,9 @@ const getTrips = () => {
       console.log('Adenture awaits you!');
   });
 };
+const filterTrips = () => {
+}
+
 const addTrip = () => {
   const newTripForm = `
   <h3> Add a New Trip! </h3>
