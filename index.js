@@ -10,9 +10,11 @@ $(document).ready(function(){
         $('#trip-list').append(
           '<li class="trip" id="'
           + response[i].id
-          + '"><h3 class="trip-component">'
+          + '"><div class="row"><h3>'
           + response[i].name
-          + '</h3></li>'
+          + '</h3><h5>'
+          + response[i].weeks
+          + ' weeks</h5></div></li>'
         );
       }
     });
@@ -20,8 +22,8 @@ $(document).ready(function(){
     $('main > section').toggleClass('hidden');
   });
 
-  $('#trip-list').on('click', '.trip-component', function(e){
-    let id = e.target.parentElement.id;
+  $('#trip-list').on('click', function(e){
+    let id = e.target.closest('.trip').id;
     $('.about-trip').remove();
     target = $('#' + id);
     if (target.hasClass('show')) {
@@ -32,7 +34,7 @@ $(document).ready(function(){
       $.get(URL + id, function(response) {
         console.log(response);
         target.append(
-          '<div class="about-trip trip-component"><p><strong>continent:</strong> '
+          '<div class="about-trip"><p><strong>continent:</strong> '
           + response.continent
           + '</p><p><strong>category: </strong> '
           + response.category
