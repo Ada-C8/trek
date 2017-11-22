@@ -29,8 +29,8 @@ let loadDetail = function loadDetail(id) {
       <p> ${response.weeks} </p>
       <p> ${response.cost} </p> `;
 
-
-    $('.trip-details').html(tripDetail);
+      $('li').after(tripDetail);
+    // $('h3').after(tripDetail); //works
   }); //get trip function
 
 } //trip detail function
@@ -48,7 +48,15 @@ $('#load').on('click', function() {
 
 }); //end doc ready
 
-
+// $(document).ready(function() {
+//   $('button').on('click', function() {
+//     var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
+//     $(this).after(message); //puts it after whatever button is clicked.
+//     // $('.usa').append(message); //appends it only on this one trip
+//     $(this).remove(); //will only remove 'this' button, the one clicked on.
+//     // $('button').remove(); //will remove all buttons when a button is clicked
+//   });
+// });
 
 
 
