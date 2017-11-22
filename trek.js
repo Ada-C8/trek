@@ -33,6 +33,10 @@ $(document).ready( function() {
           <p> Cost: ${response.cost}</p>
           <button id="reserve" data-trip=${response.id}> Reserve this trip! </button>`;
           $('#tripDetail').html(details);
+          $('#reserve').on('click', function(){
+            let tripId = $(this).attr('data-trip');
+            generateForm(tripId);
+          });
         })
       };
       // end loadOneTrip
@@ -49,28 +53,31 @@ $(document).ready( function() {
       };
 
 
-      let generateForm = function generateForm(){
+      let generateForm = function generateForm(id){
+
+                event.preventDefault();
+                let form =
+                `<label for="name">Name:</label>
+                <input type="text" name="name"></input>
+                <input type="hidden" name="trip_id" value="${id}" ></input>
+                <label for="email">Email:</label>
+                <input type="text" email="email"></input>
+                <input id="submitForm" type="submit" value="Reserve Trip"></input>
+                `
+                $('#reserveTrip').html(form);
+
+                $('#submitForm').on('click', function(){
+                  event.preventDefault();
+                  reserveTrip(id);
+                });
 
       };
 
       let reserveTrip = function reserveTrip(tripId){
+
         let urlReservation =
         `https://trektravel.herokuapp.com/trips/${tripId}/reservations`;
 
-        event.preventDefault();
-        // ver como poner el id del viaje, se debe pasar la misma Id del trip que esta viendo
-        let form =
-        `<label for="name">Name:</label>
-        <input type="text" name="name"></input>
-        <label for="id">Id:</label>
-        <input type="text" id="id"></input>
-        <label for="trip_id">Trip ID:</label>
-        <input type="text" trip_id="trip_id"></input>
-        <label for="email">Email:</label>
-        <input type="text" email="email"></input>
-        <input type="submit" value="Reserve Trip"></input>
-        `
-        $('#reserveTrip').html(form);
 
         let formData = $('#reserveTrip').serialize();
 
@@ -90,10 +97,6 @@ $(document).ready( function() {
         loadTrips();
       });
 
-      $('#tripDetail').on('click', '#reserve', function(){
-        let oneTrip = $(this).attr('data-trip');
-        reserveTrip(oneTrip);
-      })
 
 
 
