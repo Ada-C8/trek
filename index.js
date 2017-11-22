@@ -29,7 +29,19 @@ $( document ).ready(function() {
         <p> weeks: ${response.weeks} </p>
         <p> cost: ${response.cost} </p>`;
 
+        let reserveButton = `<button type="button" name="button">Reserve Spot</button>`
+
+        let form = `<form class="reserve" action="https://trektravel.herokuapp.com/trips/id/reservations" method="post">Reserve a spot!
+          <input type="text" name="name" value="your full name">
+          <input type="text" name="age" value="your age">
+          <input type="text" name="email" value="your email">
+          <input type="submit" value="Submit">
+        </form>`
+
         $('#trip').html(tripInfo);
+        $('#reserve').html(reserveButton);
+        $('#reserve').html(form);
+
 
       }) // end .get
       .fail(function(response){
