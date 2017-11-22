@@ -21,21 +21,25 @@ const viewTrip = function viewTrip(tripID) {
   $.get(`https://trektravel.herokuapp.com/trips/${tripID}`, (response) => {
     // console.log(response);
     const tripInfo =
-    `<h2> ${response.name} </h2>
+    `<div data-id="${response.id}">
+    <p> ~ Click Anywhere to Hide ~ </p>
+    <h2> ${response.name} </h2>
     <p> Continent: ${response.continent} </p>
-    <p> Description: ${response.description} </p>
+    <p> Description: ${response.about} </p>
     <p> Category: ${response.category} </p>
     <p> Weeks: ${response.weeks} </p>
-    <p> Cost: ${response.cost} </p>`;
+    <p> Cost: ${response.cost} </p>
+    <button id="button"> Reserve this Trip </button>
+    </div>`;
     console.log(tripInfo);
     $('#tripInfo').append(tripInfo);
     $('#tripList ol').hide();
   })
-  .fail(function(response){
+  .fail(function(response) {
     console.log(response);
     $('#fail').html('<p>Request was unsuccessful</p>')
   })
-  .always(function(){
+  .always(function() {
     console.log('Looking for adventure...');
   });
 }; // end of viewTrip function
@@ -48,6 +52,12 @@ $(document).ready(() => {
   $('#tripList ol').on('click', 'li', function() {
     const tripID = $(this).attr('data-id');
     viewTrip(tripID);
+  });
+
+  $('#tripInfo').on('click', 'div',  function() {
+    // const tripID = $(this).attr('data-id');
+    $(this).hide();
+    $('#tripList ol').show();
   });
 
 });
