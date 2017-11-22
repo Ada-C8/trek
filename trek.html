@@ -40,7 +40,7 @@
 
         <section class="columns large-4">
           <h3>Reserve Your Spot!</h3>
-          <form action=<%- url %> method="post">
+            <form action="https://trektravel.herokuapp.com/trips/<%- trip.id %>/reservations" method="post">
             Name:
             <input type="text" name="name" />
             Age:
