@@ -10,10 +10,9 @@ $(document).ready(()=>{
     let generatedHTML = '<p>Everything went great: ';
     generatedHTML += `${response.name} is reserved for trip ID: ${ response.id } has been added to the DB!</p>`;
     // $('#reservation-results').html(generatedHMTL);
-    $('#reservation-results').live( function() {
+    // $('#reservation-results').live('submit', function() {
       $('#reservation-results').hide().show('slow').html(generatedHTML);
-      setTimeout(function(){ $('#reservation-results').hide(); }, 30000);
-    });
+      setTimeout(function(){ $('#reservation-results').hide(); }, 10000);
 
   };
 
@@ -58,7 +57,9 @@ $(document).ready(()=>{
 
         $('.trip article').html(tripInfo);
 
-        $('#reservation-form').one('submit', function(event) {
+        $('#reservation-form').off('submit')  //This turns off any previous handlers for submit
+
+        $('#reservation-form').on('submit', function(event) {
           event.preventDefault();
 
           let formData = $('#reservation-form').serialize();
@@ -71,6 +72,8 @@ $(document).ready(()=>{
 
           $('#reservation-form').hide();
           $('#reservation-form').trigger('reset');
+          // $('#reservation-form').hide().show('slow');
+          // setTimeout(function(){ $('#reservation-form').show(); }, 11000);
         });
 
       })
@@ -102,7 +105,8 @@ $(document).ready(()=>{
     event.preventDefault();
     let tripID = $(this).attr('data-id');
     loadTrip(tripID);
-    $('#reservation-form').hide();
+    // $('#reservation-form').hide();
+    $('#reservation-results').hide();
     $('.trip').show();
     $('#trips').hide();
     $('#reserve-spot').show();
