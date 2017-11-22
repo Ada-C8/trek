@@ -1,27 +1,26 @@
-/* eslint-disable */
+// /* eslint-disable */
 $(document).ready(() => {
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
   const loadTrips = function loadTrips() {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       // console.log(response);
-      $('#trips-body').html('');
 
+      // Create Table Header and append each trip to body
       const tableHeaders = `
-        <thead>
           <tr>
             <th width="100">ID</th>
             <th width="200">Name</th>
             <th width="200">Continent</th>
             <th width="200">Weeks</th>
             <th width="200">Trip Details</th>
-          </tr>
-        </thead>`;
+          </tr>`;
 
-      $('#trips-table').append(tableHeaders);
+      $('#trips-head').html(tableHeaders);
+
+      $('#trips-body').html('');
 
       response.forEach((trip) => {
         console.log(trip);
-        // create html components to format each trip
         const tableBody = `
           <tr>
             <td>${trip.id}</td>
@@ -39,9 +38,15 @@ $(document).ready(() => {
     });
   };
 
-  // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
+  // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR TRIP DETAILS
   const getTripDetails = function getTripDetails() {
+    $.get('https://trektravel.herokuapp.com/trips', (response) => {
+      console.log(response);
 
+    }).fail(() => {
+      console.log('Did not load successfully!');
+      $('#featured-content').html('<em>An error has occurred. The trip details could not be loaded.</em>');
+    });
   };
 
   // EVENTS
