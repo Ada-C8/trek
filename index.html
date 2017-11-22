@@ -16,14 +16,39 @@
         Find your adventure!
       </p>
 
-      <ul class="dropdown menu" data-dropdown-menu>
+      <ul class="dropdown menu" data-dropdown-menu data-click-open="true" data-close-on-click="true" data-close-on-click-inside="false">
         <li class="is-dropdown-submenu-parent">
           <a href="#" id="parent-cont">Continents</a>
           <ul id="continents">
           </ul>
         </li>
-        <li><a href="#">Trip Length</a></li>
-        <li><a href="#">Max Budget</a></li>
+        <li><a href="#">Trip Length</a>
+          <ul>
+            <li>
+              <div class="slider" data-slider data-initial-start="1" data-end="10" data-step="1">
+                <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="weekSet"></span>
+                <span class="slider-fill" data-slider-fill></span>
+              </div>
+            </li>
+            <li>
+              <input type="number" id="weekSet">
+            </li>
+            <li><button id="weekGo">GO!</button></li>
+          </ul>
+        </li>
+        <li><a href="#">Max Budget</a>
+          <ul>
+            <li>
+              <div class="slider" data-slider data-initial-start="500" data-end="5000" data-step="100">
+                <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="budgetSet"></span>
+                <span class="slider-fill" data-slider-fill></span>
+              </div>
+            </li>
+            <li>
+              <input type="number" id="budgetSet">
+            </li>
+            <li><button id="budgetGo">GO!</button></li>
+          </ul></li>
       </ul>
       </header>
 

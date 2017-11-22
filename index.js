@@ -23,7 +23,7 @@ const addDropdown = function addDropdown() {
 
 const loadTrips = function loadTrips(...args) {
   let tripUrl = 'https://trektravel.herokuapp.com/trips';
-  tripUrl += (args.length === 0) ? '' : `/continent?query=${args[0]}`;
+  tripUrl += (args.length === 0) ? '' : `/${Object.keys(args[0])[0]}?query=${Object.values(args[0])[0]}`;
   $.get(tripUrl, (response) => {
     $('#trips').empty();
     // printing trips
@@ -42,7 +42,7 @@ const loadTrips = function loadTrips(...args) {
 };
 
 const openTrip = function openTrip(id) {
-  let tripUrl = 'https://trektravel.herokuapp.com/trips';
+  const tripUrl = 'https://trektravel.herokuapp.com/trips';
   $.get(`${tripUrl}/${id}`, (trip) => {
     const name = `<h2>${trip.name}</h2>`;
     const idNum = `<li>${idIcon} ${trip.id}</li>`;
@@ -94,8 +94,20 @@ $(document).ready(() => {
     if (query === 'All') {
       loadTrips();
     } else {
-      loadTrips(query);
+      loadTrips({ continent: query });
     }
+  });
+
+  $('#budgetGo').on('click', () => {
+    let value = $('#budgetSet')[0].value;
+    console.log({ budget: value });
+    loadTrips({ budget: value });
+  });
+
+  $('#weekGo').on('click', () => {
+    let value = $('#weekSet')[0].value;
+    console.log(value);
+    loadTrips({ weeks: value });
   });
 
   $('form').submit(function fix(e) {
