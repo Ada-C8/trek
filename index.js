@@ -6,12 +6,13 @@ let getTrips = function getTrips() {
     console.log('success!');
     console.log(response);
 
-    let tableRow = '<tr>'
+    let tableRow = '';
     for (let trip of response) {
+      tableRow += `<tr data-id=${trip.id}>`;
       for (let attr in trip) {
         tableRow += '<td>' + trip[attr] + '</td>';
       }
-      tableRow += '</tr>'
+      tableRow += '</tr>';
     }
     $('.trips table').append(tableRow);
   }
@@ -24,15 +25,33 @@ let getTripBuilder = function(id) {
   let getTrip = function getTrip() {
     const successCallback = function(response) {
       console.log('success!');
-      // console.log(response);
 
       let listItem = '';
       for (let attr in response) {
         listItem += '<li>' + attr + ': ' + response[attr] + '</li>';
       }
-      // console.log(listItem);
-      $('#trip').append(listItem);
-    }
+      // what would be displayed
+      $('#trip').html(listItem);
+      // make reservation
+      let reservationForm =
+      `<form id="reservation">
+
+        <label for="name">Name: </label>
+        <input type="text" name="name"></input>
+
+        <label for="age">Age: </label>
+        <input type="number" name="age"></input>
+
+        <label for="email">Email: </label>
+        <input type="text" name="email"></input>
+
+        <input type="submit" value="Reserve a trip"></input>
+
+      </form>`
+
+      $('#trip').append(reservationForm);
+
+    } //end of successCallback
 
     $.get(tripsURL + `/${id}`, successCallback);
 
@@ -49,13 +68,12 @@ $(document).ready( function() {
     getTrips();
   });
 
+  //get info for specific trip
   $('.trips').on('click', 'table tr', function() {
-    getTripBuilder($('.trips table tr td:first-of-type').html());
-    console.log($('.trips table tr td:first-of-type').html());
+    let tripID = $(this).attr('data-id');
+    getTripBuilder(tripID);
+    console.log(tripID);
   });
-
-
-
 
 
 
