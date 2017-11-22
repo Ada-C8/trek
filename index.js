@@ -40,9 +40,13 @@ $(document).ready(() => {
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR TRIP DETAILS
   const getTripDetails = function getTripDetails() {
-    $.get('https://trektravel.herokuapp.com/trips', (response) => {
-      console.log(response);
+    $('#trips-head').html('');
+    $('#trips-body').html('');
 
+    $.get('https://trektravel.herokuapp.com/trips', (response) => {
+      // console.log(response);
+      // response.forEach((trip) => {
+      // });
     }).fail(() => {
       console.log('Did not load successfully!');
       $('#featured-content').html('<em>An error has occurred. The trip details could not be loaded.</em>');
@@ -54,7 +58,8 @@ $(document).ready(() => {
     loadTrips();
   });
 
-  $('#trip-details').on('click', function() {
+  $('#featured-content').on('click', '#trip-details', function() {
+    //console.log('Button trip details clicked');
     getTripDetails();
   });
 });
