@@ -1,5 +1,4 @@
 
-
 const tripUrl = 'https://trektravel.herokuapp.com/trips';
 const clockIcon = '<i class="fa fa-clock-o" aria-hidden="true"></i>';
 const planeIcon = '<i class="fa fa-plane" aria-hidden="true"></i>';
@@ -10,6 +9,16 @@ const categoryIcon = '<i class="fa fa-photo" aria-hidden="true"></i>';
 const loadTrips = function loadTrips() {
   $.get(tripUrl, (response) => {
     $('#trips').empty();
+    const continents = response.map(trip => trip.continent);
+    const uniqueContinents = continents.filter((item, pos) => {
+      return (continents.indexOf(item) === pos && item !== null);
+    });
+    let dropdown = ``;
+    uniqueContinents.forEach((continent) => {
+      dropdown += `<li><a href="#">${continent}</a></li>`;
+    });
+    console.log(dropdown);
+    $('#continents').html(dropdown);
     response.forEach((trip) => {
       const name = `<h3>${trip.name}</h3>`;
       const location = `<li>${planeIcon} ${trip.continent}</li>`;
@@ -35,16 +44,6 @@ const openTrip = function openTrip(id) {
     const category = `<li>${categoryIcon} ${trip.category}</li>`;
     const about = `<p>${trip.about}</p>`;
     $('#trips').html(`${name}<ul>${idNum}${location}${time}${category}${cost}</ul>${about}`);
-
-    // let bookingHTML = `<h3>Book Now!</h3><form action='${tripUrl}/${trip.id}/reservations' method="post">`;
-    // bookingHTML += '<section><label>Name</label><input type="text" id="name" name="name"></input></section>';
-    // bookingHTML += '<section><label>Age</label><input type="text" id="age" name="age"></input></section>';
-    // bookingHTML += '<section><label>Email</label><input type="text" id="email" name="email"></input></section>';
-    // bookingHTML += '<section class="button"><button type="submit">RESERVE!</button></section></form>';
-    // $('#booking').html(`<h3>Book Now!</h3><form action='${tripUrl}/${trip.id}/reservations' method="post"><section><label>Name</label><input type="text" id="name" name="name"></input></section>
-    // <section><label>Age</label><input type="text" id="age" name="age"></input></section>
-    // <section><label>Email</label><input type="text" id="email" name="email"></input></section>
-    // <section class="button"><button type="submit">RESERVE!</button></section></form>`);
     $('form').attr('action', `${tripUrl}/${trip.id}/reservations`);
   }).fail(() => {
     $('#trips').html('<p>Oops.. looks like that trip left without you!</p>');
@@ -54,30 +53,36 @@ const openTrip = function openTrip(id) {
 };
 
 $(document).ready(() => {
+  $('ul.dropdown > li.is-dropdown-submenu-parent > a:eq(0)').click();
+
   $('#booking').hide();
+  $('.dropdown').hide();
   $('h1').on('click', () => {
     $('#booking').hide();
+    $('.dropdown').hide();
     $('#reserve').empty();
     $('#trips').empty();
   });
 
   $('#trips').on('click', '.trip', function fx() {
     console.log('you clicked a trip!');
+    $('.dropdown').hide();
     openTrip(this.id);
     $('#reserve').empty();
     $('#booking').show();
   });
 
   $('#load').on('click', () => {
+    $('.dropdown').show();
+    $('#reserve').empty();
+    $('#booking').hide();
     loadTrips();
   });
 
   $('form').submit(function fix(e) {
     e.preventDefault();
     const url = $(this).attr('action');
-    console.log(url);
     const formData = $(this).serialize();
-    console.log('YOU GOT A RESERVATION');
     $.post(url, formData, () => {
       $('#booking').hide();
       $('#reserve').html('<p> Reservation Saved! </p>');
