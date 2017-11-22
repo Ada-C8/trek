@@ -1,5 +1,4 @@
 
-
 $(document).ready(function () {
   // click to see all the trips
   $('#get-trips').on('click', () => {
@@ -11,13 +10,13 @@ $(document).ready(function () {
         let name = data[i]["name"];
 
         // make a jQuery object from the api response
-        let tripHTML = $('<article>' + `<h3 class="${id}">` + name + '</h3>' + '</article>');
+        let tripHTML = $('<article>' + `<h3 class="${id}">` + name + '</h3>' + `<button id="button${id}">Trip details</button>` + '</article>');
 
         // append the trip names to the all-trips section
         $('#all-trips').append(tripHTML);
 
         // create click event for each trip name
-        tripHTML.on('click', 'h3', (event) => {
+        tripHTML.on('click', 'button', (event) => {
 
           let url =  'https://trektravel.herokuapp.com/trips/' + id
 
@@ -48,7 +47,7 @@ $(document).ready(function () {
               // stops the tripHTML click event from running
               event.stopPropagation();
 
-              // replace the button with the form to book a trip when the button is clicked 
+              // replace the button with the form to book a trip when the button is clicked
               let form = $(
                 `<div id="book">
                  <form action="https://trektravel.herokuapp.com/trips/1/reservations" method="post" id="book${id}">
