@@ -1,4 +1,10 @@
 #trip{
   border-radius: .5em;
-  background-color: beige;
+  background-color: lightgrey;
+}
+body{
+  background-color: darkgrey;
+}
+button {
+  border-radius: .2em;
 }
