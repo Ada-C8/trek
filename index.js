@@ -17,4 +17,10 @@ $(document).ready(function(){
 
     $('main > section').toggleClass('hidden');
   });
+
+  $('#trip-list').on('click', 'h3', function(e){
+    let id = e.target.parentElement.id;
+    $('.trip').removeClass('show');
+    $('#' + id).addClass('show');
+  });
 });

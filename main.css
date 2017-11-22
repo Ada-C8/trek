@@ -76,3 +76,12 @@ header {
   background-color: var(--medgreen);
   color: var(--white);
 }
+
+
+/*************/
+/* TRIP SHOW */
+/*************/
+
+.show {
+  height: 15rem;
+}
