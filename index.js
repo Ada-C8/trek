@@ -20,7 +20,7 @@ const loadTrips = function loadTrips() {
   }).fail(() => {
     $('#trips').html('<p>Oops.. Check back for more adventures soon!</p>');
   }).always(() => {
-    console.log('YAY!');
+    console.log('YAY! YOU GET A TRIP AND YOU GET A TRIP!');
   });
 };
 
@@ -36,20 +36,26 @@ const openTrip = function openTrip(id) {
     const about = `<p>${trip.about}</p>`;
     $('#trips').html(`${name}<ul>${id}${location}${time}${category}${cost}</ul>${about}`);
   }).fail(() => {
-
+    $('#trips').html('<p>Oops.. looks like that trip left without you!</p>');
   }).always(() => {
-
+    console.log('YOU GOT A TRIP!');
   });
 };
 
 $(document).ready(() => {
+  $('#booking').hide();
+  $('h1').on('click', () => {
+    $('#trips').empty();
+  });
+
   $('#trips').on('click', '.trip', function() {
     console.log('you clicked a trip!');
     openTrip(this.id);
+    $('#booking').show();
   });
 
   $('#load').on('click', () => {
-    console.log('you clicked this');
+    $('#booking').hide();
     loadTrips();
   });
 });
