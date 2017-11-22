@@ -47,17 +47,20 @@ $(document).ready(function(){
   };
 
   $('#trip-list').on('click', function(e){
-    let id = e.target.closest('.trip').id;
-    $('.about-trip').remove();
-    target = $('#' + id);
-    if (target.hasClass('show')) {
-      target.addClass('show');
-    } else {
-      $('.trip').removeClass('show');
-      target.addClass('show');
-      $.get(URL + id, function(response) {
-        target.append(tripAbout(response));
-      });
+    console.log(e);
+    if (!e.target.className.includes('button')) {
+      let id = e.target.closest('.trip').id;
+      $('.about-trip').remove();
+      target = $('#' + id);
+      if (target.hasClass('show')) {
+        target.addClass('show');
+      } else {
+        $('.trip').removeClass('show');
+        target.addClass('show');
+        $.get(URL + id, function(response) {
+          target.append(tripAbout(response));
+        });
+      }
     }
   });
 });
