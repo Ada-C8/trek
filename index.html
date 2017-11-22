@@ -14,9 +14,42 @@
     <link href="styles/main.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Trek!</h1>
+
+
+    <div id='top-show'>
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">TREK</a></h1>
+          </li>
+          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li class="has-dropdown">
+              <a href="#">Explore</a>
+              <ul class="dropdown">
+                <li><a href="#">All Trips</a></li>
+                <li><a href="#">First link in dropdown</a></li>
+                <li class="active"><a href="#">Active link in dropdown</a></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </nav>
+    </div>
     <button id="load" value="testsss">View Trips!</button>
-    <div id="show-trip"><ul></ul></div>
+    <div>
+      <div id="show-trip">
+
+        <ul></ul>
+      </div>
+    </div>
+
+
     <div id="reserve-form">
       <form id='trip-form'>
         <label for="name">Name:</label>
@@ -30,5 +63,17 @@
     </div>
     <div id="show-trips"><ul></ul></div>
     <div id="fail"></div>
+    <div id='foot'>
+      <footer>
+        <p>
+          footer here
+        </p>
+      </footer>
+    </div>
+
+
+    <script>
+    $(document).foundation();
+    </script>
   </body>
 </html>

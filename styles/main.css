@@ -1,3 +1,45 @@
+/*
+picture options
+bwca - https://www.rei.com/events/images/csi/subProgram/131/course/50458-ad25749ec4cdc26c42ed052e8e049792.null?type=jpg&asset=preview&res=high
+
+walking on water
+http://www.mountainadventure.co.nz/modules/homeslider/images/5d1818a94d4dec680966ee99a56c7b31d7d56fd3_Trekking1_BerndRitschel%20long.jpg
+
+camping https://www.goabroad.com/images/program_content/prime-how-to-choose-the-best-adventure-travel-tour-companies-1504752924.jpg
+
+antelope canyon
+1
+https://farm3.staticflickr.com/2821/11137802655_9caeff1fc4_b.jpg
+
+hiker antelop canyon
+http://www.traveltipsor.com/wp-content/uploads/2015/08/Antelope-Canyon-%E2%80%93-Page-1024x372.jpg
+*/
+
 body {
   background-color: lightblue;
+}
+.top-bar a {
+  color: white;
+  font-size: 2em;
+}
+
+.sticky {
+  width: 100%;
+}
+.top-bar  {
+  background-color: rgba(0,0,0,0);
+  height: 5rem;
+}
+.top-bar ul {background-color: transparent;}
+
+#top-show{
+  background: url('https://farm3.staticflickr.com/2821/11137802655_9caeff1fc4_b.jpg') no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: 70vh;
+}
+
+#foot {
+  height: 10vh;
+  background-color: yellow;
 }

@@ -4,10 +4,9 @@ const successCallback = function(response){
   console.log("POST request to reserve a spot on a trip was successful");
   console.log(response);
 };
-// {"id":1,"trip_id":1,"name":"Diane","email":null}
+
 $(document).ready(()=> {
   $('#reserve-form').hide();
-
 
   let loadTrips = function loadTrips() {
     $.get(baseUrl, (response) => {
@@ -42,7 +41,6 @@ $(document).ready(()=> {
 
       button.click((event) => {
         console.log(`trip id:${response.id}`);
-        console.log('reserve button was clicked');
         $('#reserve-form').show();
         $('#trip-form').attr('data-id' , `${response.id}`);
       });
@@ -53,10 +51,6 @@ $(document).ready(()=> {
       $('#fail').html('<p>Request was unsuccessful</p>')
     });
   };
-
-  // let reserveTrip = function reserveTrip(id){
-  //
-  // }
 
   // EVENTS
   $('#show-trips ul').on('click', 'h2', function(){
@@ -71,12 +65,10 @@ $(document).ready(()=> {
   $('#trip-form').on('submit', function(event){
     event.preventDefault();
     let url = baseUrl + `/${$(this).data('id')}/reservations`;
-    // console.log(`URL: ${url}`);
     let formData = $('#trip-form').serialize();
-    // console.log('formData');
     // console.log(formData);
     $.post(url, formData,successCallback).fail((response) => {
-      // console.log("Didn't go so hot");
+      console.log("Didn't go so hot");
     });
   });
 });
