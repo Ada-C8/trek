@@ -16,11 +16,13 @@ $(document).ready(() => {
   };
   $('.index-button').click((e) => {
     $(e.target).hide();
+    $('.index-trips').show();
     $('table:first-child').replaceWith('<table class="trips"><tr><th>Name</th><th>Continent</th><th>Duration</th></tr></table>');
     index();
   })
   $('.show-button').click(() => {
     show(1);
     $('.index-button').show();
+    $('.index-trips').hide();
   })
 });
