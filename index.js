@@ -1,27 +1,20 @@
 $(document).ready(function() {
   $('#allTrips').on('click', function() {
-    let data = [
-      {
-          "id": 1,
-          "name": "Cairo to Zanzibar",
-          "continent": "Africa",
-          "weeks": 5
+    $.ajax('https://trektravel.herokuapp.com/trips', {
+      dataType: "json",
+      success: function(response) {
+        let html = "<ul>";
+        for(let i = 0; i < response.length; i++) {
+          html += `<li><a class="trip" href="#">${response[i].name}</a></li>`;
+        }
+        html += "</ul>";
+
+        $('#listOfTrips').html(html);
       },
-      {
-          "id": 2,
-          "name": "Everest Base Camp Trek",
-          "continent": "Asia",
-          "weeks": 2
+      error: function(request, errorType, errorMessage) {
+        // TODO: handle errors here
       }
-    ];
-
-    let html = "<ul>";
-    for(let i = 0; i < data.length; i++) {
-      html += `<li><a class="trip" href="#">${data[i].name}</a></li>`;
-    }
-    html += "</ul>";
-
-    $('#listOfTrips').html(html);
+    });
   });
 
   $('#listOfTrips').on('click', '.trip', function(event) {
