@@ -35,6 +35,16 @@ const openTrip = function openTrip(id) {
     const category = `<li>${categoryIcon} ${trip.category}</li>`;
     const about = `<p>${trip.about}</p>`;
     $('#trips').html(`${name}<ul>${idNum}${location}${time}${category}${cost}</ul>${about}`);
+
+    // let bookingHTML = `<h3>Book Now!</h3><form action='${tripUrl}/${trip.id}/reservations' method="post">`;
+    // bookingHTML += '<section><label>Name</label><input type="text" id="name" name="name"></input></section>';
+    // bookingHTML += '<section><label>Age</label><input type="text" id="age" name="age"></input></section>';
+    // bookingHTML += '<section><label>Email</label><input type="text" id="email" name="email"></input></section>';
+    // bookingHTML += '<section class="button"><button type="submit">RESERVE!</button></section></form>';
+    // $('#booking').html(`<h3>Book Now!</h3><form action='${tripUrl}/${trip.id}/reservations' method="post"><section><label>Name</label><input type="text" id="name" name="name"></input></section>
+    // <section><label>Age</label><input type="text" id="age" name="age"></input></section>
+    // <section><label>Email</label><input type="text" id="email" name="email"></input></section>
+    // <section class="button"><button type="submit">RESERVE!</button></section></form>`);
     $('form').attr('action', `${tripUrl}/${trip.id}/reservations`);
   }).fail(() => {
     $('#trips').html('<p>Oops.. looks like that trip left without you!</p>');
@@ -47,28 +57,32 @@ $(document).ready(() => {
   $('#booking').hide();
   $('h1').on('click', () => {
     $('#booking').hide();
+    $('#reserve').empty();
     $('#trips').empty();
   });
 
   $('#trips').on('click', '.trip', function fx() {
     console.log('you clicked a trip!');
     openTrip(this.id);
+    $('#reserve').empty();
     $('#booking').show();
   });
 
   $('#load').on('click', () => {
-    $('#booking').hide();
     loadTrips();
   });
 
   $('form').submit(function fix(e) {
     e.preventDefault();
     const url = $(this).attr('action');
+    console.log(url);
     const formData = $(this).serialize();
+    console.log('YOU GOT A RESERVATION');
     $.post(url, formData, () => {
-      $('#booking').html('<p> Reservation Saved! </p>');
+      $('#booking').hide();
+      $('#reserve').html('<p> Reservation Saved! </p>');
     }).fail(() => {
-      $('#booking').html('<p> Oops.. That didn\'t seem to save </p>');
+      $('#reserve').html('<p> Oops.. That didn\'t seem to save </p>');
     });
   });
 });
