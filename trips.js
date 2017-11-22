@@ -1,20 +1,45 @@
 
 const url = 'https://trektravel.herokuapp.com/trips';
 
-const successCallback = (response) => {
-  console.log('success');
-}
+// const successCallback = (response) => {
+//   console.log('success');
+// }
 
 $(document).ready(() => {
 
-$.get(url, successCallback);
+let loadTrips = function loadTrips() {
 
+  $.get('https://trektravel.herokuapp.com/trips', (response) => {
+    response.forEach(function(trip)  {
+      let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name} </a></h3></li>`
 
+      $('#trips ul').append(tripInfo);
+    }); //for each
 
+  });// get response
 
+} //loadtrips function
+
+$('#load').on('click', function() {
+  loadTrips();
+});
 
 
 }); //end doc ready
+
+
+
+
+
+//
+// $.get(url, successCallback);
+//
+
+
+
+
+
+
 
 
 
