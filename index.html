@@ -9,8 +9,8 @@
 <body>
 
   <header>
-    <span class="logo">Trek</span>
-    <span class="view-all-trips">View All Trips</span>
+    <div class="logo">Trek</div>
+    <div class="view-all-trips">View All Trips</div>
 </header>
 
 
@@ -26,30 +26,29 @@
 
     <section class="show">
 
+      <section class="trip-info">
 
-      <!-- <div id="message"></div> -->
-      <form class="reservation-form" method="post">
-        <section>
+      </section>
+
+      <form class="reservation-form" method="post" style="display:inline!important;">
+        <span>
           <label>Name</label>
           <input type="text" id="name" name="name"></input>
-        </section>
-        <section>
+        </span>
+        <span>
           <label>Email</label>
           <input type="text" id="email" name="email"></input>
-        </section>
+        </span>
 
-        <section class="button">
+        <span class="button">
           <button type="submit">Reserve Your Spot!</button>
-        </section>
+        </span>
       </form>
 
       <section class="message">
 
       </section>
 
-      <section class="trip-info">
-
-      </section>
 
     </section>
   </div>

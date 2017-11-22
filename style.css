@@ -1,9 +1,10 @@
 html {
   font-family: serif;
+  min-width: 100%;
 }
 
 header {
-  display: inline-block;
+  display: block;
   text-align: center;
   width: 100%;
   text-transform: uppercase;
@@ -14,6 +15,33 @@ header {
   font-size: 6rem;
 }
 
-.view-all-trips {
-  margin-right: 0;
+.content-container {
+  margin-top: 3rem;
+  text-align: center;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.trips td a{
+  float: left;
+}
+
+.show {
+  text-align: left;
+}
+
+.show h1, .show h3 {
+  text-align: left;
+  width: 100%;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.reservation-form {
+  display: inline;
+}
+
+.reservation-form label, button {
+  text-transform: uppercase;
+  font-style: italic;
 }

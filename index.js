@@ -48,7 +48,8 @@ let showSingleTrip = function showSingleTrip(id){
     $('.reservation-form').show();
     $('.trip-info').empty();
 
-    $('.trip-info').append(`<h1> ${tripName} </h1><h3> ${continent} </h3><h3> ${weeks} </h3><h3> ${cost} </h3><p> ${about} </p>`);
+    $('.trip-info').append(`<h1> ${tripName} </h1><h3> Taking Place in ${continent} /// ${weeks} Weeks /// At a cost of ${cost} </h3><p> ${about} </p>`);
+
 
     $('form').submit( function(e) {
 
