@@ -7,14 +7,6 @@ let getTrips = function getTrips() {
     console.log(response);
     console.log(response[0]);
 
-    // let tableHead =
-    // `<tr>
-    //      <th>ID</th>
-    //      <th>Name</th>
-    //      <th>Continent</th>
-    //      <th>Weeks</th>
-    //    </tr>`;
-
     let tableHead = '<tr>';
     for (let attr in response[0]) {
       tableHead += '<th>' + attr.toUpperCase() + '</th>';

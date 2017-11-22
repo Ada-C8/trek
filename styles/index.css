@@ -2,11 +2,13 @@
 /*light-blue: #D4F3FD*/
 /*dark-blue: #147C9D*/
 
+/*CLASSES*/
 .white-text {
   color: #fff;
   text-shadow: 0 0 .8rem #075B69;
 }
 
+/*GENERAL*/
 body {
   font-family: 'Berkshire Swash';
   font-size: 16px;
@@ -78,6 +80,38 @@ h1 {
   display: block;
   margin: 1.5rem auto;
 }
+
+/*TRIPS TABLE*/
+.trips table {
+  /*margin-bottom: 5rem; */
+  border-collapse: separate;
+  border-spacing: 0 .4rem;
+}
+
+.trips table tr td, .trips table tr th {
+  padding: .8rem;
+  font-size: 1.2rem;
+}
+
+.trips table thead, .trips table tbody {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+
+
+
+
+/*.trips table {
+  background: rgba(255, 0, 0, 0);
+}
+
+.trips table tr {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.trips table tr td {
+  background: rgba(255, 0, 0, 0);
+}*/
 
 /*FOOTER*/
 footer {
