@@ -1,8 +1,9 @@
 const baseUrl = 'https://trektravel.herokuapp.com/trips'
 
-
 // {"id":1,"trip_id":1,"name":"Diane","email":null}
 $(document).ready(()=> {
+  $('#reserve-form').hide();
+
 
   let loadTrips = function loadTrips() {
     $.get(baseUrl, (response) => {
@@ -35,14 +36,15 @@ $(document).ready(()=> {
       <p>Length: ${response.weeks} weeks</p>`;
       $('#show-trip').html(tripInfo);
 
-      let elem = $(`<button id="reserve" value="${response.id}">Reserve A Spot!</button>
+      let button = $(`<button id="reserve" value="${response.id}">Reserve A Spot!</button>
       `);
 
-      elem.click((event) => {
-        console.log(this.value);
+      button.click((event) => {
+        console.log(`trip id:${response.id}`);
         console.log('reserve button was clicked');
+        $('#reserve-form').show();
       });
-      $('#show-trip').append(elem);
+      $('#show-trip').append(button);
     })
     .fail(function(response){
       console.log(response);
@@ -52,6 +54,10 @@ $(document).ready(()=> {
       console.log('always even if we have success or failure');
     });
   };
+
+  // let reserveTrip = function reserveTrip(id){
+  //
+  // }
 
   // EVENTS
   $('#show-trips ul').on('click', 'h2', function(){
@@ -65,8 +71,8 @@ $(document).ready(()=> {
     loadTrips();
   });
 
-  $('#reserve').on('click', function(){
-    console.log(this.value);
-    console.log('reserve button was clicked');
-  });
+  // $('#reserve').on('click', function(){
+  //   console.log(this.value);
+  //   console.log('reserve button was clicked');
+  // });
 });
