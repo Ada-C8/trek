@@ -28,8 +28,10 @@ $(document).ready(()=>{
       const thisTrip = response
       console.log(thisTrip);
       $('#trips').empty()
-      const details = `<h2>${thisTrip.name}</h2> <ul><li>${thisTrip.continent}</li><li>${thisTrip.category}</li><li>${thisTrip.about}</li><li>$${thisTrip.cost}</li><li>${thisTrip.weeks}</li></ul>`
-      $('#trips').append(details)
+      const details = `<h2>${thisTrip.name}</h2> <ul><li>${thisTrip.continent}</li><li>${thisTrip.category}</li><li>${thisTrip.about}</li><li>Cost: $${thisTrip.cost}</li><li>${thisTrip.weeks} Weeks</li></ul><button id='book'>Book This Trip</button>`
+      $('#trips').append($(details).attr('id', 'tripDetails'))
     })
   })
+
+  $()
 });
