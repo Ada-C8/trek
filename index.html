@@ -11,52 +11,52 @@
   <body>
     <header>
       <h1>TREKKenridge</h1>
-
       <p>
         Find your adventure!
       </p>
-
-      <ul class="dropdown menu" data-dropdown-menu data-click-open="true" data-close-on-click="true" data-close-on-click-inside="false">
-        <li class="is-dropdown-submenu-parent">
-          <a href="#" id="parent-cont">Continents</a>
-          <ul id="continents">
+      <section id="dropdown" class="row">
+        <ul class="dropdown menu" data-dropdown-menu data-click-open="true" data-close-on-click="true" data-close-on-click-inside="false">
+          <li class="is-dropdown-submenu-parent">
+            <a href="#" id="parent-cont">Continents</a>
+            <ul id="continents">
+            </ul>
+          </li>
+          <li><a href="#">Trip Length</a>
+            <ul>
+              <li>
+                <div class="slider" data-slider data-initial-start="1" data-end="10" data-step="1">
+                  <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="weekSet"></span>
+                  <span class="slider-fill" data-slider-fill></span>
+                </div>
+              </li>
+              <li>
+                <input type="number" id="weekSet">
+              </li>
+              <li><button id="weekGo">GO!</button></li>
+            </ul>
+          </li>
+          <li><a href="#">Max Budget</a>
+            <ul>
+              <li>
+                <div class="slider" data-slider data-initial-start="500" data-end="5000" data-step="100">
+                  <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="budgetSet"></span>
+                  <span class="slider-fill" data-slider-fill></span>
+                </div>
+              </li>
+              <li>
+                <input type="number" id="budgetSet">
+              </li>
+              <li><button id="budgetGo">GO!</button></li>
+            </ul></li>
           </ul>
-        </li>
-        <li><a href="#">Trip Length</a>
-          <ul>
-            <li>
-              <div class="slider" data-slider data-initial-start="1" data-end="10" data-step="1">
-                <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="weekSet"></span>
-                <span class="slider-fill" data-slider-fill></span>
-              </div>
-            </li>
-            <li>
-              <input type="number" id="weekSet">
-            </li>
-            <li><button id="weekGo">GO!</button></li>
-          </ul>
-        </li>
-        <li><a href="#">Max Budget</a>
-          <ul>
-            <li>
-              <div class="slider" data-slider data-initial-start="500" data-end="5000" data-step="100">
-                <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="budgetSet"></span>
-                <span class="slider-fill" data-slider-fill></span>
-              </div>
-            </li>
-            <li>
-              <input type="number" id="budgetSet">
-            </li>
-            <li><button id="budgetGo">GO!</button></li>
-          </ul></li>
-      </ul>
+      </section>
       </header>
 
     <section class="row">
       <article id="trips">
 
       </article>
-      <article id="booking">
+      <article id="booking" class="row">
         <h3>Book Now!</h3>
         <form action='temp' method="post">
           <section>
@@ -76,14 +76,13 @@
           </section>
         </form>
       </article>
-      <article id="reserve"></article>
+      <article id="reserve" class="row"></article>
       <p>
         <button id="load"> TREK! </button>
       </p>
     </section>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="foundation.js"></script>
-    <!-- <script type="text/javascript" src="foundation.dropdelem = new Foundation.DropdownMenu(element, options);></script> -->
     <script> $(document).foundation(); </script>
     <script type="text/javascript" src="index.js"></script>
 

@@ -28,11 +28,13 @@ const loadTrips = function loadTrips(...args) {
     $('#trips').empty();
     // printing trips
     response.forEach((trip) => {
-      const name = `<h3>${trip.name}</h3>`;
-      const location = `<li>${planeIcon} ${trip.continent}</li>`;
-      const week = (trip.week > 1 ? 'weeks' : 'week');
-      const time = `<li>${clockIcon} ${trip.weeks} ${week}</li>`;
-      $('#trips').append(`<div class="trip" id="${trip.id}">${name}<ul>${location}${time}</ul></div>`);
+      if (trip.name !== null && trip.continent !== null && trip.weeks !== null) {
+        const name = `<h3>${trip.name}</h3>`;
+        const location = `<li>${planeIcon} ${trip.continent}</li>`;
+        const week = (trip.weeks > 1 ? 'weeks' : 'week');
+        const time = `<li>${clockIcon} ${trip.weeks} ${week}</li>`;
+        $('#trips').append(`<div class="trip" id="${trip.id}">${name}<ul>${location}${time}</ul></div>`);
+      }
     });
   }).fail(() => {
     $('#trips').html('<p>Oops.. Check back for more adventures soon!</p>');
@@ -47,7 +49,7 @@ const openTrip = function openTrip(id) {
     const name = `<h2>${trip.name}</h2>`;
     const idNum = `<li>${idIcon} ${trip.id}</li>`;
     const location = `<li>${planeIcon} ${trip.continent}</li>`;
-    const week = (trip.week > 1 ? 'weeks' : 'week');
+    const week = (trip.weeks > 1 ? 'weeks' : 'week');
     const time = `<li>${clockIcon} ${trip.weeks} ${week}</li>`;
     const cost = `<li>${moneyIcon} $${trip.cost.toFixed(2)}</li>`;
     const category = `<li>${categoryIcon} ${trip.category}</li>`;
