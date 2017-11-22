@@ -22,11 +22,14 @@ $(document).ready(function() {
     });
   });
 
+  let reserveTripUrl = "";
+
   $('#listOfTrips').on('click', '.trip', function(event) {
     event.preventDefault();
 
     $tripId = $(this);
     let tripUrl = `https://trektravel.herokuapp.com/trips/${$tripId.data("id")}`;
+    reserveTripUrl = `https://trektravel.herokuapp.com/trips/${$tripId.data("id")}/reservations`;
 
     $.ajax(tripUrl, {
       dataType: "json",
@@ -44,6 +47,35 @@ $(document).ready(function() {
       },
       error: function(request, errorType, errorMessage) {
         // TODO: handle errors here
+      }
+    });
+  });
+
+  $('#reserveBtn').on('click', function() {
+    $('#reservationForm').show();
+    $('button').hide();
+  });
+
+  $('#reservation').submit(function(event) {
+    event.preventDefault();
+    const url = reserveTripUrl;
+    const formData = $(this).serialize();
+
+    // $.post(url, formData, (response) => {
+    //   $('#message').html('<p>Reserved!</p>');
+    // }).fail(() => {
+    //   $('#message').html('<p>Unable to add trip.</p>');
+    // });
+
+    $.ajax(url, {
+      method: "POST",
+      data: formData,
+      dataType: "json",
+      success: function(trip) {
+        $('#message').html('<p>Reserved!</p>');
+      },
+      error: function(request, errorType, errorMessage) {
+        $('#message').html('<p>Unable to add trip.</p>');
       }
     });
   });
