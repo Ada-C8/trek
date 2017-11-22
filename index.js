@@ -61,7 +61,7 @@ $(document).ready(function () {
                   <label for="email">Email:</label>
                   <input type="text" name="email"></input>
 
-                  <input id="trip_id" name="trip_id" value="${id}">
+                  <input type="hidden" id="trip_id" name="trip_id" value="${id}">
 
                   <input type="submit" value="Book this trip!"></input>`
               );
@@ -90,13 +90,9 @@ $(document).ready(function () {
                   $(`.${id}`).parent().append(failureMessage)
                 }) // .post
               }) // .on for submit
-
-
             }) // .click for button
           })// .get for trip data
         }) // .click
-
-
       }; // for loop
     }); // .get
   });// .on for get-trips
