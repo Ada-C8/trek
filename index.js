@@ -3,11 +3,22 @@ const URL = 'https://trektravel.herokuapp.com/trips/';
 $(document).ready(function(){
   let numTrips = 10;
 
+  let tripTitle = function tripTitle(response, id){
+    let name = response.name || 'untitled';
+    let weeks = response.weeks || '0';
+    return `<li class="trip" id="${response.id}">
+      <div class="row">
+        <h3>${response.name}</h3>
+        <h5>${response.weeks} weeks</h5>
+      </div>
+    </li>`;
+  };
+
   let tripAbout = function tripAbout(response, id){
-    let continent = response.continent;
-    let category = response.category;
-    let cost = response.cost;
-    let about = response.about;
+    let continent = response.continent || 'unavailable';
+    let category = response.category || 'unavailable';
+    let cost = response.cost || '0';
+    let about = response.about || 'no information currently available' ;
     return `<div class="about-trip">
       <div class="trip-info small-12 medium-6 columns">
         <p>
@@ -37,15 +48,7 @@ $(document).ready(function(){
   $('#hero').on('click', '.button', function(e){
     $.get(URL, function(response) {
       for(let i = 0; i < response.length; i++) {
-        $('#trip-list').append(
-          '<li class="trip" id="'
-          + response[i].id
-          + '"><div class="row"><h3>'
-          + response[i].name
-          + '</h3><h5>'
-          + response[i].weeks
-          + ' weeks</h5></div></li>'
-        );
+        $('#trip-list').append(tripTitle(response[i], i));
       }
     });
 
@@ -74,4 +77,16 @@ $(document).ready(function(){
     let id = e.target.closest('.trip').id;
     $('#book-form-' + id).toggleClass('hidden');
   });
+
+  $('#trip-list').on('submit', 'form', function(e){
+    e.preventDefault();
+    let id = e.target.closest('.trip').id;
+    console.log(id);
+    let formData = $('#book-form-' + id).serialize();
+    let postURL = URL + id + '/reservations';
+    $.post(postURL, formData, function(response){
+      console.log(response);
+    });
+    $('#book-form-' + id).html('<h4>Reservation request submitted.</h4>\n<h4><small>We will get back to you as soon as possible.</small></h4>');
+  })
 });
