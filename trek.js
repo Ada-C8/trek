@@ -1,6 +1,5 @@
 $(document).ready(() => {
-
-  $('#load').click(function trips() {
+  $('#load').click(() => {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       response.forEach((place) => {
         const locations = `
