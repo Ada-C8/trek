@@ -1,42 +1,39 @@
+const ALL_TRIPS_URL = 'https://trektravel.herokuapp.com/trips';
+
 // build individual trip data
 // build form
 
 // build all trips
 let buildAllTrips = function buildAllTrips() {
-  const ALL_TRIPS_URL = 'https://trektravel.herokuapp.com/trips';
 
-$(document).ready(() => {
-  $('#all-trips').click(function() {
+  const successResponse = function successResponse(response) {
+    $(".result").html("Success");
+    response.forEach(function(trip) {
+      let name = trip.name,
+          continent = trip.continent,
+          weeks = trip.weeks;
+      let tripsAppend = `<li data-id=${trip.id}>` + '<h5 >' + name + '</h5></li>'
 
-    const successResponse = function successResponse() {
-      console.log('Post successful');
-      $("#add-res").html("Successfully made reservation");
-    };
+      $('.list-trips ul').append(tripsAppend);
+    });
+  };
 
-    const failResponse = function failResponse() {
-      console.log('Post unsuccessful');
-      $(".result").html("Failed to make reservation");
-    };
+  const failResponse = function failResponse() {
+    $(".result").html("Failed to make reservation");
+  };
 
-    $.get(ALL_TRIPS_URL,
-      response => {
-        response.forEach(function(trip) {
-          let name = trip.name,
-              continent = trip.continent,
-              weeks = trip.weeks;
-          let tripsAppend = `<li data-id=${trip.id}>` + '<h5 >' + name + '</h5></li>'
-
-          $('.list-trips ol').append(tripsAppend);
-        });
-      })
-    .fail(function(response){
-      $('.result').html('<p>Request was unsuccessful</p>')
+  $.get(ALL_TRIPS_URL,
+    response => {
+      successResponse(response);
     })
+  .fail(failResponse())
 };
 
 $(document).ready(() => {
   // listen for all-trips
-  $('#all-trips').click(buildAllTrips); //#all-trips
+  $('#all-trips').click(function() {
+    buildAllTrips()
+  }); //#all-trips
 
   // Event listening for individual trip click
   $('.list-trips').on('click', 'li', function(event) {
@@ -80,7 +77,7 @@ $(document).ready(() => {
             $(".result").html("Failed to make reservation");
           };
 
-          $.post(resUrl, formData, successResponse).fail(failResponse)
+          $.post(resUrl, formData, successResponse()).fail(failResponse())
           // });
         }); //submit res
 
