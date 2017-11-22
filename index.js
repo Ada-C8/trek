@@ -17,7 +17,12 @@ $('#load-trips').click(function(event) {
             <td>CATEGORY: ${trip.category}</td>
             <td>WEEKS: ${trip.weeks}</td></tr></table>
             <table>
-            <tr><td>ABOUT: ${trip.about}</td></tr></table>`);
+            <tr><td>ABOUT: ${trip.about}</td></tr></table>
+            <form action='https://trektravel.herokuapp.com/trips/${trip.id}/reservations' method='post'>
+            <section>
+            <button type="submit">Reserve a Spot for ${trip.name}</button>
+            </section>
+            </form>`);
         });
         })
 
