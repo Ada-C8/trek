@@ -1,14 +1,14 @@
 
-const tripUrl = 'https://trektravel.herokuapp.com/trips';
+
 const clockIcon = '<i class="fa fa-clock-o" aria-hidden="true"></i>';
 const planeIcon = '<i class="fa fa-plane" aria-hidden="true"></i>';
 const moneyIcon = '<i class="fa fa-money" aria-hidden="true"></i>';
 const idIcon = '<i class="fa fa-folder-o" aria-hidden="true"></i>';
 const categoryIcon = '<i class="fa fa-photo" aria-hidden="true"></i>';
 
-const loadTrips = function loadTrips() {
+const addDropdown = function addDropdown() {
+  let tripUrl = 'https://trektravel.herokuapp.com/trips';
   $.get(tripUrl, (response) => {
-    $('#trips').empty();
     const continents = response.map(trip => trip.continent);
     const uniqueContinents = continents.filter((item, pos) => {
       return (continents.indexOf(item) === pos && item !== null);
@@ -17,8 +17,17 @@ const loadTrips = function loadTrips() {
     uniqueContinents.forEach((continent) => {
       dropdown += `<li><a href="#">${continent}</a></li>`;
     });
-    console.log(dropdown);
     $('#continents').html(dropdown);
+  });
+};
+
+const loadTrips = function loadTrips(...args) {
+  let tripUrl = 'https://trektravel.herokuapp.com/trips';
+  tripUrl += (args.length === 0) ? '' : `/continent?query=${args[0]}`;
+  console.log(tripUrl);
+  $.get(tripUrl, (response) => {
+    $('#trips').empty();
+    // printing trips
     response.forEach((trip) => {
       const name = `<h3>${trip.name}</h3>`;
       const location = `<li>${planeIcon} ${trip.continent}</li>`;
@@ -34,6 +43,7 @@ const loadTrips = function loadTrips() {
 };
 
 const openTrip = function openTrip(id) {
+  let tripUrl = 'https://trektravel.herokuapp.com/trips';
   $.get(`${tripUrl}/${id}`, (trip) => {
     const name = `<h2>${trip.name}</h2>`;
     const idNum = `<li>${idIcon} ${trip.id}</li>`;
@@ -73,19 +83,26 @@ $(document).ready(() => {
   });
 
   $('#load').on('click', () => {
+    addDropdown();
     $('.dropdown').show();
     $('#reserve').empty();
     $('#booking').hide();
     loadTrips();
   });
 
+  $('.dropdown').on('click', 'ul li a', function fn() {
+    const query = this.innerHTML;
+    loadTrips(query);
+  });
+
   $('form').submit(function fix(e) {
     e.preventDefault();
     const url = $(this).attr('action');
     const formData = $(this).serialize();
-    $.post(url, formData, () => {
+    $.post(url, formData, (response) => {
+      console.log(response);
       $('#booking').hide();
-      $('#reserve').html('<p> Reservation Saved! </p>');
+      $('#reserve').html(`<p>Thanks ${response.name}! Your reservation has been saved! </p>`);
     }).fail(() => {
       $('#reserve').html('<p> Oops.. That didn\'t seem to save </p>');
     });
