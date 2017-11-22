@@ -3,24 +3,63 @@ $(document).ready(()=>{
   console.log('we are inside');
   //$('#trips').append('<h3>A list of trips should go here.</h3>')
 
+  // const filtersHTML =
+  //   '<button class="continent-all is-active">All Items</button> \
+	// 	<button class="continent-asia">Asia</button> \
+	// 	<button class="continent-africa">Africa</button> \
+	// 	<button class="continent-europe">Europe</button> \
+  //   <button class="continent-southamerica">South America</button>\
+  //   <button class="continent-australasia">Australasia</button>'
+
+  // let fActive;
+  // function filterContinent(continent){
+  //   if(fActive != continent){
+  //     $('.listed-trip').filter('.'+continent).slideDown();
+  //     $('.listed-trip').filter(':not(.'+continent+')').slideUp();
+  //     fActive = continent;
+  // 		$('button').removeClass("is-active");
+  //   }
+  // }
+  //
+  // $('.continent-asia').click(function(){
+  //   filterColor('blue');
+  //   $(this).addClass("is-active");
+  // });
+  // $('.continent-africa').click(function(){
+  //   filterColor('green');
+  //   $(this).addClass("is-active");
+  // });
+  //
+  // $('.continent-all').click(function(){
+  //   $('.listed-trip').slideDown();
+  //   fActive = 'all';
+  // 	$(this).addClass("is-active");
+  // });
+  //
+  // let applyFilters = function applyFilters() {
+  //   $('trips ul').append(filtersHTML)
+  // };
+
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
   let loadTrips = function loadTrips() {
+     $('#trips ul').append('<h2>Pick Your Adventure:</h3>');
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
-
+      console.log('success!');
       response.forEach(function(trip) {
         let tripInfo =
-        `<li><h3 trip-id=${trip.id}>Name: ${trip.name}</li>
-        <li> Continent: ${trip.continent}</li>`;
+        `<li><h3 class='listed-trip' trip-id=${trip.id}>${trip.name}</li>`;
+        //took this out of tripInfo:
+        //<li> Continent: ${trip.continent}</li>
+        //console.log(trip);
         $('#trips ul').append(tripInfo);
-        console.log('success!');
-        console.log(trip);
+        $('#load').hide();
       });
     })
         .fail(function(){
           console.log('failure');
         })
         .always(function(){
-          console.log('always even if we have success or failure');
+          console.log('Action complete');
         });
   };
 
@@ -31,7 +70,7 @@ $(document).ready(()=>{
           console.log(response);
           let indivTripInfo = `
           <h2 id="trip-name" reservation-trip-id=${response.id}> ${response.name} </h2>
-          <p> Continent: ${response.continent} </p>
+          <p class=${response.continent}> Continent: ${response.continent} </p>
           <p> Trip Duration: ${response.weeks} week(s)</p>
           <p> Trip Category: ${response.category} </p>
           <p> Cost: $${response.cost} </p>
@@ -40,6 +79,7 @@ $(document).ready(()=>{
           `;
 
           $('#trip').html(indivTripInfo);
+          $(this).scrollTop(0);
           //
 
         })
@@ -69,19 +109,24 @@ const submitReservation = function submitReservation() {
     let form = document.createElement("form")
     let tripID = $('#trip-name').attr('reservation-trip-id')
     const url = $(this).attr('action') + tripID + '/reservations'; // Retrieve the action from the form
-    console.log(`URL: ${url}`);
-    const personName = $(this);
-    console.log(`person-name: ${personName}`);
+    //console.log(`URL: ${url}`);
+    const personName = $(this).serializeArray()[0].value;
     const formData = $(this).serialize();
-    console.log(`fromData: ${formData}`)
+    console.log(`formData: ${formData}`)
 
     $.post(url, formData, (response) => {
-      $('#message').html(`<p> Reservation confirmed for ${formData} </p>`);
-      // What do we get in the response?
+      //$('#message').html(`<p> Reservation confirmed for ${personName} </p>`);
+      alert(`Reservation confirmed for ${personName}` );
+      console.log(`successfully posted reservation for ${personName}`)
       console.log(response);
+    })
+    .fail(function(response){
+      console.log(response);
+      $('#fail').html('<p>Post was unsuccessful</p>')
+    })
+    .always(function(){
+      console.log('always even if we have success or failure');
     });
-
-    //document.body.removeChild(form)
   });
 };
 
