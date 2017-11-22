@@ -1,17 +1,43 @@
 <html>
   <head>
-    <title>Noises</title>
+    <title>Trek</title>
     <meta charset="utf-8">
     <link href="index.css" media="screen" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </head>
+
   <body>
-    <button id="load">See All Trips</button>
-      <aside id="trip">
-      </aside>
-      <section id="trips">
-        <ul></ul>
+
+    <button id="load">See All Trips
+    </button>
+
+    <aside id="trip">
+      <div id="show-reservation-form"></div>
+    </aside>
+
+    <div id="message"></div>
+    <form id="reservation-form" action="https://trektravel.herokuapp.com/trips/" method="post">
+      <section>
+        <label>Name</label>
+        <input type="text" id="name" name="name"></input>
       </section>
+      <section>
+        <label>Age</label>
+        <input type="text" id="age" name="age"></input>
+      </section>
+      <section>
+        <label>Email</label>
+        <input type="text" id="email" name="email"></input>
+      </section>
+      <section class="button">
+        <button type="submit">Confirm Reservation</button>
+      </section>
+    </form>
+
+    <section id="trips">
+      <ul></ul>
+    </section>
+
   </body>
 </html>
