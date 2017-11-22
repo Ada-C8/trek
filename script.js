@@ -22,4 +22,18 @@ $(document).ready(() => {
       },
     );
   });
+
+  // someBODY once told me memes were outdated
+  $('#shrekify').on('click', () => {
+    const buttonText = $('#shrekify')[0];
+    if (buttonText.innerHTML.includes('Exit')) {
+      $('#site-title h2').html('T R E K');
+      buttonText.innerHTML = 'Visit The Swamp';
+      $('body').css('background-image', 'none');
+    } else {
+      $('#site-title h2').html('S H R E K');
+      buttonText.innerHTML = 'Exit The Swamp';
+      $('body').css('background-image', "url('http://eskipaper.com/images/shrek-4.jpg')");
+    }
+  });
 });
