@@ -27,14 +27,15 @@ const loadTrips = function loadTrips() {
 const openTrip = function openTrip(id) {
   $.get(`${tripUrl}/${id}`, (trip) => {
     const name = `<h2>${trip.name}</h2>`;
-    const id = `<li>${idIcon} ${trip.id}</li>`;
+    const idNum = `<li>${idIcon} ${trip.id}</li>`;
     const location = `<li>${planeIcon} ${trip.continent}</li>`;
     const week = (trip.week > 1 ? 'weeks' : 'week');
     const time = `<li>${clockIcon} ${trip.weeks} ${week}</li>`;
     const cost = `<li>${moneyIcon} $${trip.cost.toFixed(2)}</li>`;
     const category = `<li>${categoryIcon} ${trip.category}</li>`;
     const about = `<p>${trip.about}</p>`;
-    $('#trips').html(`${name}<ul>${id}${location}${time}${category}${cost}</ul>${about}`);
+    $('#trips').html(`${name}<ul>${idNum}${location}${time}${category}${cost}</ul>${about}`);
+    $('form').attr('action', `${tripUrl}/${trip.id}/reservations`);
   }).fail(() => {
     $('#trips').html('<p>Oops.. looks like that trip left without you!</p>');
   }).always(() => {
@@ -45,10 +46,11 @@ const openTrip = function openTrip(id) {
 $(document).ready(() => {
   $('#booking').hide();
   $('h1').on('click', () => {
+    $('#booking').hide();
     $('#trips').empty();
   });
 
-  $('#trips').on('click', '.trip', function() {
+  $('#trips').on('click', '.trip', function fx() {
     console.log('you clicked a trip!');
     openTrip(this.id);
     $('#booking').show();
@@ -57,5 +59,16 @@ $(document).ready(() => {
   $('#load').on('click', () => {
     $('#booking').hide();
     loadTrips();
+  });
+
+  $('form').submit(function fix(e) {
+    e.preventDefault();
+    const url = $(this).attr('action');
+    const formData = $(this).serialize();
+    $.post(url, formData, () => {
+      $('#booking').html('<p> Reservation Saved! </p>');
+    }).fail(() => {
+      $('#booking').html('<p> Oops.. That didn\'t seem to save </p>');
+    });
   });
 });
