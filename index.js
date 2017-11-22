@@ -3,31 +3,34 @@ $(document).ready(() => {
     $.get('https://trektravel.herokuapp.com/trips/', (response) => {
       console.log('success!');
 
-      for (i = 0; i < response.length; i++) {
-        let tripInfo = `<article data-id="${response[i].id}" data-name="${response[i].name}" data-continent="${response[i].continent}" data-weeks="${response[i].weeks}">
-
+      response.forEach(function(trip){
+        let tripInfo = `<article data-id=${trip.id} data-name=${trip.name} data-continent=${trip.continent} data-weeks=${trip.weeks}>
           <ul>
-            <li>${response[i].name}</li>
+            <li>${trip.name}</li>
             <button class="trip_details">View Trip Details</button>
           </ul>
-        </article>`
+        </article>`;
+
         $('#trips').append(tripInfo);
+      });
+      const loadDetails = function loadDetails () {
+        $.get(`https://trektravel.herokuapp.com/trips/${"data-id"}`, (response) => {
+          console.log('IT WORKED');
+
+          response.forEach(function(additionalInfo){
+            let addInfo = `<li></li><li></li><li></li>`
+          })
+        });
       }
-
-      $('.trip_details').on('click', function () {
-
-        let list = $(this).siblings()[0];
-
-        let parentArticle = $(this).closest('article');
-
-        let details = `<li>${parentArticle.attr("data-id")}</li>
-          <li>${parentArticle.attr("data-weeks")}</li>
-          <li>${parentArticle.attr("data-continent")}</li>`
-
-        $(list).append(details);
-      })
     });
   }
+
+// put the url in the each loop!
+  // const loadDetails = function loadDetails () {
+  //   $.get('https://trektravel.herokuapp.com/trips/', (response) => {
+  //     console.log('IT WORKED');
+  //   });
+  // }
 
 
   $('#load').on('click', () => {
@@ -35,3 +38,9 @@ $(document).ready(() => {
     loadTrips();
   });
 });
+
+// tried turning off the click function.
+// limiting the click functions. (effects all buttons).
+// tried creating a new function.
+// something to do with it loading on page.
+// does not work outside of the load trips function.
