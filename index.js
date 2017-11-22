@@ -4,8 +4,8 @@ $(document).ready(()=>{
     $.get('https://trektravel.herokuapp.com/trips',
     (response) => {
       response.forEach(function(trip) {
-        let tripInfo = `<h3 data-id=${trip.id}> ${trip.name}</a></h3><p> `
-        $('#trips').append(tripInfo);
+        let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name}, ${trip.continent}</a></li></h3><p> `
+        $('#trips ol').append(tripInfo);
       }); // forEach
     }) // .get, response
     .fail(function(response){
@@ -24,12 +24,12 @@ $(document).ready(()=>{
       (response) => {
         console.log(response);
         let tripInfo = `
-        <h2> ${response.name} </h2>
-        <p><b> Continent: </b>${response.continent}</p>
-        <p> <b> About: </b>${response.about}</p>
+        <div class="row"><h2> ${response.name} </h2>
+        <p> <b> Continent: </b>${response.continent}</p>
+        <p> <b> About: </b> </p>${response.about}</p>
         <p> <b> Category: </b> ${response.category}</p>
         <p> <b> Weeks: </b>${response.weeks}</p>
-        <p> <b> Cost: </b>${response.cost}</p>
+        <p> <b> Cost: </b>${response.cost}</p></div>
 
         <form id="add-trip-form" action = "https://trektravel.herokuapp.com/trips/${id}/reservations">
         <label for="name">Name:</label>
@@ -38,7 +38,7 @@ $(document).ready(()=>{
         <label for="email">Email:</label>
         <input type="text" name="email"></input>
 
-        <input type="submit" value="Reserve a spot"></input>
+        <input type="submit" value="Reserve a spot" class="button"></input>
         </form>`;
         // <p> <button>  Go back </button> </p>
         $('#trip').html(tripInfo);
@@ -86,7 +86,11 @@ $(document).ready(()=>{
       loadTrips();
     });
 
-    $("#back").click(function(){
+    $("#load").click(function(){
         $("#trip").hide();
     });
+
+    // $("#back").click(function(){
+    //     $("#trip").hide();
+    // });
   }); //.ready
