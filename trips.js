@@ -37,14 +37,14 @@ $(document).ready(()=>{
       $('#trips').append(details);
     })
   });
-  
+
   $('#trips').on('click', '#book', function(){
     const tripNum = $(this).parent().attr('id');
     console.log('CLICK!')
     $('#trips').empty()
     $('#bookingForm').show();
     console.log(tripNum);
-    // const url = `https://trektravel.herokuapp.com/trips/${id}/reservations`
-    // $('#bookingForm').prepend(<form action= method="post">)
+    const url = `https://trektravel.herokuapp.com/trips/${tripNum}/reservations`
+    $('#bookingForm').prepend(`<form action=${url} method="post">`)
   })
 });
