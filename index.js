@@ -35,7 +35,6 @@ const displayDetails = function displayDetails(id) {
 const postReservation = function postReservation(response) {
   const url = `${apiUrl}/${response[0].id}/reservations`;
   const formData = response;
-  console.log(formData.serialize());
   $.post(url, formData.serialize(), (data) => {
     $('#confirmation').html(`${data.name} is booked!`);
   })
@@ -46,14 +45,24 @@ const postReservation = function postReservation(response) {
 
 // Perform
 $(document).ready(() => {
+  // PREP
   $('#reservation-form').hide();
+
+  // BASICS
   $('#get-list').click(displayList);
   $('#list').on('click', 'li', function fx() {
     displayDetails($(this)[0].id);
   });
+
+  // FORM
+  $('input').focusin(function fx() {
+    $(this).next('span').removeClass('hide');
+  });
+  $('input').focusout(function fx() {
+    $(this).next('span').addClass('hide');
+  });
   $('form').submit(function fx(e) {
     e.preventDefault();
-    console.log($(this)[0].id);
     postReservation($(this));
   });
 });
