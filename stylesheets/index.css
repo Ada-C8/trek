@@ -33,3 +33,15 @@ article button {
   font-size: 10px;
   margin-bottom: 10%;
 }
+
+article {
+  padding: 2%;
+}
+
+article:nth-child(odd) {
+  background-color: #D3F2F7;
+}
+
+article:nth-child(even) {
+  background-color: #EAF8FA;
+}
