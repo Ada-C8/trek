@@ -65,12 +65,10 @@ const finalizeReservation = function finalizeReservation() {
   $('#reserveFormField').on('submit', 'form', function(e) {
 
     e.preventDefault();
-    console.log('in finalizedReservation method');
     const url = $(this).attr('action'); // Retrieve the action from the form
     console.log(url);
     const formData = $(this).serialize();
-    console.log(formData);
-
+    $(this).hide();
     $.post(url, formData, (response) => {
       $('#message').html('<p> Trip Reserved! </p>');
       // What do we get in the response?
@@ -92,6 +90,7 @@ $(document).ready(() => {
 
     const tripID = $(this).attr('data-id');
     console.log($(this));
+    $(this).hide();
 
     reserveForm(tripID);
   });
