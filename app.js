@@ -16,7 +16,7 @@ $(document).ready(()=>{
     $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) =>{
       // console.log(response);
 
-      let tripDetails = `<li id=${response.id}><h3 data-id='${response.id}'> ${response.name} </h3><p> ${response.continent}, ${response.weeks} weeks</p></li>`;
+      let tripDetails = `<h3 data-id='${response.id}'> ${response.name} </h3><p> ${response.continent}, ${response.weeks} weeks</p>`;
       tripDetails += `<p class='cost'>${response.category}, $${response.cost}</p>`;
       tripDetails += `<p>${response.about}</p>`;
       tripDetails += `<button class='signup' data-id=${id}>Sign me up!</button>`;
@@ -75,7 +75,11 @@ $(document).ready(()=>{
       $('#message').html('<p> Registered for trip! </p>');
       // What do we get in the response?
       console.log(response);
+      $(`#trips li#${response.trip_id} .formspace`).addClass('disappear');
+      $(`#trips li#${response.trip_id} .signup`).addClass('disappear');
+      $(`#trips li#${response.trip_id}`).append(`<p>You're all signed up!</p>`);
     });
+
   });
 
 });
