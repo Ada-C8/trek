@@ -1,4 +1,5 @@
 const loadTrips = function loadTrips(response) {
+  $('#title').html('');
   $('#content').html('<div id="content"><ul id="list"></ul></div>');
   for (let i = 0; i < response.length; i += 1) {
     const trip = response[i];

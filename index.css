@@ -1,4 +1,12 @@
 /*general*/
+.row {
+  margin-left: 2.5%;
+  max-width: 95%;
+}
+
+#title {
+  text-align: center;
+}
 
 
 /*all trips*/
@@ -8,3 +16,7 @@
 
 
 /*reserve trip*/
+form {
+  margin-left: 15%;
+  max-width: 70%;
+}
