@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Trek</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
     <!-- Compressed CSS -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
     <link rel="stylesheet" href="app.css"/> -->
@@ -17,14 +18,28 @@
       </nav>
     </header>
 
-
-    <div id="featured-content"><ul></ul></div>
+    <div id="featured-content"></div>
+    <table id="trips-table">
+      <thead>
+        <tr>
+          <th width="100">ID</th>
+          <th width="200">Name</th>
+          <th width="200">Continent</th>
+          <th width="200">Weeks</th>
+          <th width="200">Trip Details</th>
+        </tr>
+      </thead>
+      <tbody id="trips-body">
+      </tbody>
+    </table>
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.js"
       integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
       crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>
+
+    <script type="test/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <!-- Compressed JavaScript -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script> -->
