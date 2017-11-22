@@ -1,3 +1,21 @@
+// make the form to book a trip
+// let form = $(
+//   `<div id="book">
+//    <form id="book-trip">
+//     <label for="name">Name:</label>
+//     <input type="text" name="name"></input>
+//
+//     <label name="age">Age:</label>
+//     <input type="text" name="age"></input>
+//
+//     <label for="email">Email:</label>
+//     <input type="text" name="email"></input>
+//
+//     <input type="submit" value="Book this trip!"></input>`
+// );
+
+
+
 // click to see all the trips
 $(document).ready(function () {
   // load all of the trips
@@ -16,7 +34,7 @@ $(document).ready(function () {
         $('#all-trips').append(tripHTML);
 
         // create click event for each trip name
-        tripHTML.click((event) => {
+        tripHTML.on('click', 'h3', (event) => {
 
           let url =  'https://trektravel.herokuapp.com/trips/' + id
 
@@ -35,13 +53,63 @@ $(document).ready(function () {
             '<li>' + 'Continent: ' + continent + '</li>' +
             '<li>' + 'Category: ' + category + '</li>' +
             '<li>' + 'Number of weeks: ' + weeks + '</li>' +
-            '<li>' + 'Cost: ' + cost + '</li>' +
-            '</ul>' );
+            '<li>' + 'Cost: $' + cost + '</li>' +
+            '</ul>' +
+            `<button id="trip${id}">Book this trip</button>`);
 
-            // append the trip details to the trip name
-            // $(`.${name}`).html('change?');
-            $(`.${id}`).append(tripDetails);
+            // append the trip details to the trip name (above I added the 'id' as a class for the h5 containing each name)
+            $(`.${id}`).parent().append(tripDetails);
 
+            // create a click event for the button to book a trip
+            $(`#trip${id}`).click((event) => {
+              // stops the tripHTML click event from running
+              event.stopPropagation();
+
+              // replace the button with the form to book a trip
+              let form = $(
+                `<div id="book">
+                 <form action="https://trektravel.herokuapp.com/trips/1/reservations" method="post" id="book${id}">
+                  <label for="name">Name:</label>
+                  <input type="text" name="name"></input>
+
+                  <label name="age">Age:</label>
+                  <input type="text" name="age"></input>
+
+                  <label for="email">Email:</label>
+                  <input type="text" name="email"></input>
+
+                  <input id="trip_id" name="trip_id" value="${id}">
+
+                  <input type="submit" value="Book this trip!"></input>`
+              );
+
+              $(`#trip${id}`).hide();
+              // append to the article using .parent()
+              $(`.${id}`).parent().append(form)
+
+              // submit for form
+              $(`#book${id}`).submit( function (event) {
+                // stop the page from reloading
+                event.preventDefault();
+
+                let url = $(this).attr('action');
+                const formData = $(this).serialize();
+                console.log(url, formData);
+
+                $.post(url, formData, (response) => {
+                  let tripName = $(`.${id}`).html();
+                  debugger
+                  let successMessage = `<p> You\'re all booked to go on the ${tripName} trip! </p>`
+                  $(`#book${id}`).hide();
+                  $(`.${id}`).parent().append(successMessage)
+                }).fail( () => {
+                  let failureMessage = `<p> Sorry, we failed to book you for the ${tripName} trip. </p>`
+                  $(`.${id}`).parent().append(failureMessage)
+                }) // .post
+              }) // .on for submit
+
+
+            }) // .click for button
           })// .get for trip data
         }) // .click
 
@@ -49,12 +117,4 @@ $(document).ready(function () {
       }; // for loop
     }); // .get
   });// .on for get-trips
-
 }); // .ready
-
-
-// '<ul>' +
-// '<li>' + 'ID: ' + id + '</li>' +
-// '<li>' + 'Continent: ' + continent + '</li>' +
-// '<li>' + 'Number of weeks: ' + weeks + '</li>' +
-// '</ul>' +
