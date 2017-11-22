@@ -5,6 +5,21 @@ let getTrips = function getTrips() {
   const successCallback = function(response) {
     console.log('success!');
     console.log(response);
+    console.log(response[0]);
+
+    // let tableHead =
+    // `<tr>
+    //      <th>ID</th>
+    //      <th>Name</th>
+    //      <th>Continent</th>
+    //      <th>Weeks</th>
+    //    </tr>`;
+
+    let tableHead = '<tr>';
+    for (let attr in response[0]) {
+      tableHead += '<th>' + attr.toUpperCase() + '</th>';
+    }
+    tableHead += '</tr>'
 
     let tableRow = '';
     for (let trip of response) {
@@ -14,6 +29,7 @@ let getTrips = function getTrips() {
       }
       tableRow += '</tr>';
     }
+    $('.trips table').append(tableHead);
     $('.trips table').append(tableRow);
   } // end of successCallback
 
