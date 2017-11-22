@@ -14,7 +14,7 @@ $(document).ready(() => {
   const loadTrips = function loadTrips() {
     $.get(baseUrl, (response) => {
       response.forEach((trip) => {
-        const tripInfo = `<li><a data-id=${trip.id}>${trip.name}</a>`;
+        const tripInfo = `<li><section class="trip"><a data-id=${trip.id}>${trip.name}</a></section>`;
 
         $('.trips > ul').append(tripInfo);
       });
@@ -27,7 +27,7 @@ $(document).ready(() => {
       const url = `${baseUrl}/${tripId}`;
 
       $.get(url, (response) => {
-        let tripInfo = '<section class="trip loaded">';
+        let tripInfo = '<div class="trip-wrapper"><section class="details loaded">';
         const headings = Object.keys(response);
 
         for (let i = 0; i < headings.length; i += 1) {
@@ -40,28 +40,27 @@ $(document).ready(() => {
             }
           }
         }
+        tripInfo += `<button id="show-form" data-id=${tripId}>Interested?</button>`;
         tripInfo += '</section>';
         tripInfo += '<section class="reservation">';
-        tripInfo += `<button class="button" id="show-form" data-id=${tripId}>Book Trip</button>`;
-        tripInfo += '</section>';
+        // tripInfo += `<button class="button" id="show-form" data-id=${tripId}>Book Trip</button>`;
+        tripInfo += '</section></div>';
 
-        // $('a').data(`id="${tripId}"`).after(tripInfo);
-        // $(`a[data-id="${tripId}"]`).after(tripInfo);
-        // $('a').data(`id: ${tripId}`).after(tripInfo);
         $(`a[data-id=${tripId}]`).addClass('details-loaded');
         $(`a[data-id=${tripId}]`).after(tripInfo);
       });
     }
   };
 
-  const loadForm = function loadForm(tripId, btn) {
+  const loadResForm = function loadResForm(tripId) {
     if (!$(`a[data-id=${tripId}]`).hasClass('form-loaded')) {
       const url = `${baseUrl}/${tripId}/reservations`;
       let formInfo = `<form action=${url} method="post">`;
 
       const params = ['name', 'age', 'email'];
       params.forEach((param) => {
-        formInfo += `<label>${param}</label>`;
+        // capitalize label
+        formInfo += `<label>${param[0].toUpperCase() + param.slice(1)}</label>`;
         formInfo += `<input type="text" id="${param}" name="${param}"/>`;
       });
 
@@ -71,7 +70,8 @@ $(document).ready(() => {
       $(`a[data-id=${tripId}]`).addClass('form-loaded');
       // console.log($(this));
       // $(`button[data-id]=${tripId}`).after(formInfo);
-      btn.after(formInfo);
+      // btn.after(formInfo);
+      $('.reservation').append(formInfo);
     }
   };
 
@@ -84,13 +84,17 @@ $(document).ready(() => {
 
     $.post(url, formData, (response) => {
       console.log(response);
-      $('#reserve').after('<p>TRIP ADDED</p>');
+      $('form').trigger('reset');
+      $('#reserve').after(`<p>trip reserved for ${response.name}</p>`);
     }).fail(() => {
-      console.log('FAIL');
-    }).always(() => {
-      console.log('always say something');
+      console.log('Failed to reserve trip');
     });
   };
+
+  // const addTrip = function addTrip() {
+  //   const url = `${baseUrl}/new`;
+  //
+  // };
 
   // events
   $('#load').on('click', () => {
@@ -103,6 +107,11 @@ $(document).ready(() => {
     // check if loaded
     if ($(this).hasClass('details-loaded')) {
       $(this).next().toggle();
+      // const details = $(this).next();
+      // const reservation = details.next();
+      // // $(this).next().toggle();
+      // details.toggle();
+      // reservation.toggle();
     } else {
       loadTrip(tripId);
     }
@@ -110,10 +119,20 @@ $(document).ready(() => {
 
   // display form when button is clicked
   $('.trips').on('click', '#show-form', function show() {
-    const btn = $(this);
-    const tripId = btn.data('id');
+    const tripId = $(this).data('id');
     console.log(tripId);
-    loadForm(tripId, btn);
+
+    // check if loaded
+    if ($(`a[data-id=${tripId}]`).hasClass('form-loaded')) {
+      const res = $(this).parent().next();
+      console.log(res);
+
+      res.toggle();
+    } else {
+      // const btn = $(this);
+      console.log(tripId);
+      loadResForm(tripId);
+    }
   });
 
   $('.trips').on('submit', 'form', function book(event) {
