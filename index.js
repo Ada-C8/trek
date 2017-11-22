@@ -24,7 +24,7 @@ $(document).ready(() => {
       })
       .always(function(){
         console.log('always even if we have success or failure');
-      }); // Note that this is where the semi-colon ends up
+      });
     });
 
     // Event listening for individual trip click
@@ -36,22 +36,24 @@ $(document).ready(() => {
           $(this).append(
             '<p>Location: ' + response.continent + '</p>' + '<p>Length: ' + response.weeks + ' weeks</p>' +
             '<p>Category: ' + response.category + '</p>' + '<p>Cost: $' + response.cost + '</p>' + '<p>Description: ' + response.about + '</p>').toggleClass('toggle');
-
+          $(this).append('<div class="button">Make a Reservation</div>');
         });
-      // generate form
-      $('li p:last-of-type').append('<form id="add-res"></form>');
-      $('form').append('<label for="name">Name: </label><input type="text" name="name"></input>');
-      $('form').append('<label for="age"></label>Age: <input type="number" name="age"></input>');
-      $('form').append('<label for="email">Email: </label><input type="text" name="email"></input>');
-      $('form').append('<input type="submit" value="Reserve trip"></input>');
+
+      // listen for button click to make reservation
+      $('.button').click(function() {
+        // generate form
+        $('li p:last-of-type').append('<form id="add-res"></form>');
+        $('form').append('<label for="name">Name: </label><input type="text" name="name"></input>');
+        $('form').append('<label for="age"></label>Age: <input type="number" name="age"></input>');
+        $('form').append('<label for="email">Email: </label><input type="text" name="email"></input>');
+        $('form').append('<input type="submit" value="Reserve trip"></input>');
+      })
 
       let formData = $('#add-res').serialize();
-
 
       let resUrl = tripUrl + '/reservations';
       $.post(resUrl, formData, response => {
         console.log('successful reservation');
-
       })
       .fail((response) => {
         console.log('Did not post');
@@ -59,8 +61,6 @@ $(document).ready(() => {
 
       $(this).click((event) => {
         event.stopPropagation();
-      })
-      
+      });
   });
-
-});
+      });
