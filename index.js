@@ -1,24 +1,7 @@
-// make the form to book a trip
-// let form = $(
-//   `<div id="book">
-//    <form id="book-trip">
-//     <label for="name">Name:</label>
-//     <input type="text" name="name"></input>
-//
-//     <label name="age">Age:</label>
-//     <input type="text" name="age"></input>
-//
-//     <label for="email">Email:</label>
-//     <input type="text" name="email"></input>
-//
-//     <input type="submit" value="Book this trip!"></input>`
-// );
 
 
-
-// click to see all the trips
 $(document).ready(function () {
-  // load all of the trips
+  // click to see all the trips
   $('#get-trips').on('click', () => {
     // make api request to get all of the names of the trips
     $.get('https://trektravel.herokuapp.com/trips', function(data) {
@@ -27,10 +10,10 @@ $(document).ready(function () {
         let id = data[i]["id"];
         let name = data[i]["name"];
 
+        // make a jQuery object from the api response
+        let tripHTML = $('<article>' + `<h3 class="${id}">` + name + '</h3>' + '</article>');
 
-        let tripHTML = $('<article>' + `<h3 class="${id}">` + name + '</h3>' +
-          '</article>');
-
+        // append the trip names to the all-trips section
         $('#all-trips').append(tripHTML);
 
         // create click event for each trip name
