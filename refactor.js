@@ -1,10 +1,12 @@
 /*eslint-disable*/
 $(document).ready(() => {
+  $('.show-trip').hide();
   let index = function index() {
     const url = 'https://trektravel.herokuapp.com/trips';
     $.get(url, (indexResponse) => {
+      $('table:first-child').replaceWith('<table class="trips"><tr><th>Name</th><th>Continent</th><th>Duration</th></tr></table>');
       indexResponse.forEach((trip) => {
-        $('.trips').append(`<tr class="${trip.id} basic"><td class="${trip.id}">${trip.name}</td><td class="${trip.id}">${trip.continent}</td><td class="${trip.id}">${trip.weeks} Weeks</td></tr>`);
+        $('.trips').append(`<tr class="${trip.id}"><td>${trip.name}</td><td>${trip.continent}</td><td>${trip.weeks} Weeks</td></tr>`);
       })
     })
   }
@@ -16,13 +18,17 @@ $(document).ready(() => {
   };
   $('.index-button').click((e) => {
     $(e.target).hide();
+    $('.show-trip').hide();
     $('.index-trips').show();
-    $('table:first-child').replaceWith('<table class="trips"><tr><th>Name</th><th>Continent</th><th>Duration</th></tr></table>');
+    $('.show-button').show();
     index();
   })
-  $('.show-button').click(() => {
-    show(1);
+  $('.index-trips').on('click', 'tr', (e) => {
+    // $(e.target).hide();
+    const id = e.target.closest('tr').className;
     $('.index-button').show();
     $('.index-trips').hide();
+    $('.show-trip').show();
+    show(id);
   })
 });
