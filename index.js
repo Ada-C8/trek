@@ -49,9 +49,10 @@ $(document).ready(function () {
               event.stopPropagation();
 
               // replace the button with the form to book a trip when the button is clicked
+              let action = 'https://trektravel.herokuapp.com/trips/' + `${id}` +  '/reservations';
               let form = $(
                 `<div id="book">
-                 <form action="https://trektravel.herokuapp.com/trips/1/reservations" method="post" id="book${id}">
+                 <form action="${action}" method="post" id="book${id}">
                   <label for="name">Name:</label>
                   <input type="text" name="name"></input>
 

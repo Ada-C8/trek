@@ -23,7 +23,11 @@ $(document).ready(function () {
       `<button class="${tripId}">Book this trip</button>`);
       $(`#${tripId}`).parent().append(tripDetails);
     }) // .get for trip details
-  }
+  } // getTripData
+
+  const getForm = function getForm(id) {
+
+  } // getForm
 
   // click to see all the trips
   $('#get-trips').on('click', () => {
@@ -48,6 +52,11 @@ $(document).ready(function () {
           console.log(tripId);
           getTripDetails(tripId);
         }) // .on to get trip details
+
+        // click event to get form to show up
+        $(`#trip${id}`).click((event) => {
+            getForm(`${id}`);
+        }) // .click to show form
       } // for loop
     }) // .get to get all trips
   }); // .on to get all the trips
