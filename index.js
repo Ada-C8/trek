@@ -30,16 +30,17 @@ $(document).ready(()=>{
         (response) => {
           console.log(response);
           let indivTripInfo = `
-          <h2> ${response.name} </h2>
+          <h2 id="trip-name" reservation-trip-id=${response.id}> ${response.name} </h2>
           <p> Continent: ${response.continent} </p>
           <p> Trip Duration: ${response.weeks} week(s)</p>
           <p> Trip Category: ${response.category} </p>
           <p> Cost: $${response.cost} </p>
           <p> Description: ${response.about} </p>
+          <button id="reserve-button" reservation-trip-id=${response.id}> Make a Reservation </button>
           `;
 
           $('#trip').html(indivTripInfo);
-          $('#reservation-form').show()
+          //
 
         })
         .fail(function(response){
@@ -50,48 +51,64 @@ $(document).ready(()=>{
             console.log('always even if we have success or failure');
           });
 
-          //ADD A LINK TO A RESERVATION FORM HERE
-          
     };
 
 
 //CREATE FORM WHEN CLICK "RESERVE" BUTTON
-  let showForm = function showForm(id) {
+  // let showForm = function showForm(id) {
+  //
+  // };
+//
 
-  };
 
 
 //POST RESERVATION INFO (RECEIVE INFO FROM FORM)
+const submitReservation = function submitReservation() {
   $('form').submit( function(e) {
-    // By default, the form will attempt to do it's own
-    // local POST so we want to prevent that default
-    // behavior
     e.preventDefault();
     let form = document.createElement("form")
-    console.log(`THIS: ${$(this)}`);
-    const url = $(this).attr('action') + $(this).id + '/reservations'; // Retrieve the action from the form
+    let tripID = $('#trip-name').attr('reservation-trip-id')
+    const url = $(this).attr('action') + tripID + '/reservations'; // Retrieve the action from the form
     console.log(`URL: ${url}`);
+    const personName = $(this);
+    console.log(`person-name: ${personName}`);
     const formData = $(this).serialize();
     console.log(`fromData: ${formData}`)
 
     $.post(url, formData, (response) => {
-      $('#message').html('<p> Reservation confirmed </p>');
+      $('#message').html(`<p> Reservation confirmed for ${formData} </p>`);
       // What do we get in the response?
       console.log(response);
     });
 
     //document.body.removeChild(form)
   });
+};
 
 //EVENTS
   $('#load').on('click', function(){
-     loadTrips();
-   });
+    loadTrips();
+  });
 
-   $('#trips ul').on('click', 'h3', function(){
-  let tripID = $(this).attr('trip-id');
-  loadTrip(tripID);
-});
+  $('#trips ul').on('click', 'h3', function(){
+    let tripID = $(this).attr('trip-id');
+    loadTrip(tripID);
+  });
 
+  //show reservation form button
+  $('#trip').on('click','#reserve-button', function(){
+    console.log('inside reservation form button');
+    console.log($(this).attr('reservation-trip-id'));
+    let tripID = $(this).attr('reservation-trip-id');
+    $('#reservation-form').show()
+    $('#reserve-button').hide();
+  });
+
+  //submit reservation button
+  $('#reservation-form').on('click','#submit-reservation', function(){
+    console.log('submitted reservation');
+    submitReservation();
+    $('#reservation-form').hide();
+  });
 
 });
