@@ -1,4 +1,3 @@
-/*eslint-disable*/
 $(document).ready(() => {
   const index = function index() {
     const url = 'https://trektravel.herokuapp.com/trips';
@@ -15,6 +14,8 @@ $(document).ready(() => {
         <td>${trip.weeks} Weeks</td>
         </tr>`);
       });
+    }).fail(() => {
+      $('.message').html('<h2>Sorry, something went wrong! Try back later...</h2>');
     });
   };
   const show = function show(trip) {
@@ -40,8 +41,9 @@ $(document).ready(() => {
             <button type="submit">Make Reservation</button>
           </section>
         </form>
-        </div>`
-      );
+      </div>`);
+    }).fail(() => {
+      $('.message').html('<h2>Sorry, something went wrong! Try back later...</h2>');
     });
   };
   $('.index-button').click((e) => {
@@ -49,6 +51,7 @@ $(document).ready(() => {
     $('.show-trip').hide();
     $('.index-trips').show();
     $('.show-trip').replaceWith('<div class="show-trip"></div>');
+    $('.message').empty();
     index();
   });
   $('.index-trips').on('click', 'tr', (e) => {
@@ -63,8 +66,10 @@ $(document).ready(() => {
     const url = $('form').attr('action'); // Retrieve the action from the form
     const formData = $('form').serialize();
 
-    $.post(url, formData, (response) => {
-      alert('Reservation Succeeded');
-  });
+    $.post(url, formData, () => {
+      $('.message').html('<h2>Pack your bags: your reservation is confirmed!</h2>');
+    }).fail(() => {
+      $('.message').html('<h2>Sorry, something went wrong! Please try again!</h2>');
+    });
   });
 });
