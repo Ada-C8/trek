@@ -9,7 +9,7 @@ $(document).ready(function(){
     return `<li class="trip" id="${response.id}">
       <div class="row">
         <h3>${response.name}</h3>
-        <h5>${response.weeks} weeks</h5>
+        <h5 class="trip-weeks">${response.weeks} weeks</h5>
       </div>
     </li>`;
   };
@@ -21,14 +21,14 @@ $(document).ready(function(){
     let about = response.about || 'no information currently available' ;
     return `<div class="about-trip">
       <div class="trip-info small-12 medium-6 columns">
-        <p>
+        <h5>
           <strong>continent: </strong> ${continent}
-        </p>
+        </h5>
       </div>
       <div class="trip-info small-12 medium-6 columns">
-        <p>
+        <h5>
           <strong>category: </strong> ${category}
-        </p>
+        </h5>
       </div>
       <div class="trip-info small-12 columns">
         <p class="trip-about">
