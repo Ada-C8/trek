@@ -5,6 +5,19 @@
 let buildAllTrips = function buildAllTrips() {
   const ALL_TRIPS_URL = 'https://trektravel.herokuapp.com/trips';
 
+$(document).ready(() => {
+  $('#all-trips').click(function() {
+
+    const successResponse = function successResponse() {
+      console.log('Post successful');
+      $("#add-res").html("Successfully made reservation");
+    };
+
+    const failResponse = function failResponse() {
+      console.log('Post unsuccessful');
+      $(".result").html("Failed to make reservation");
+    };
+
     $.get(ALL_TRIPS_URL,
       response => {
         response.forEach(function(trip) {
@@ -17,9 +30,7 @@ let buildAllTrips = function buildAllTrips() {
         });
       })
     .fail(function(response){
-      console.log(response);
-      console.log('failure');
-      $('#fail').html('<p>Request was unsuccessful</p>')
+      $('.result').html('<p>Request was unsuccessful</p>')
     })
 };
 
@@ -50,7 +61,7 @@ $(document).ready(() => {
         <label for="email">Email: </label><input type="text" name="email"></input>
         <input type="submit" value="Reserve trip"></input>
         </form>`;
-        $(this).after(form);
+        $(this).after(form).hide();
 
         // listen for submit and post
         $('#add-res').submit(function(event) {
