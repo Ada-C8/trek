@@ -8,6 +8,13 @@ $( document ).ready(function() {
         }); // end of forEach
 
       }) // end of $.get
+      .fail(function(response){
+          console.log(response);
+          $('#fail').html('<p>Request was unsuccessful</p>')
+        }) // end .fail
+        .always(function(){
+          console.log('always even if we have success or failure');
+        });
   }; // end of loadTrips()
 
   loadTrip = function loadTrip(id) {
@@ -24,7 +31,14 @@ $( document ).ready(function() {
 
         $('#trip').html(tripInfo);
 
-      })
+      }) // end .get
+      .fail(function(response){
+          console.log(response);
+          $('#fail').html('<p>Request was unsuccessful</p>')
+        }) // end .fail
+        .always(function(){
+          console.log('always even if we have success or failure');
+        });
   }; // end of loadTrip()
 
 
