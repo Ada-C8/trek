@@ -13,7 +13,7 @@ const addDropdown = function addDropdown() {
     const uniqueContinents = continents.filter((item, pos) => {
       return (continents.indexOf(item) === pos && item !== null);
     });
-    let dropdown = ``;
+    let dropdown = '<li><a href="#">All</a></li>';
     uniqueContinents.forEach((continent) => {
       dropdown += `<li><a href="#">${continent}</a></li>`;
     });
@@ -24,7 +24,6 @@ const addDropdown = function addDropdown() {
 const loadTrips = function loadTrips(...args) {
   let tripUrl = 'https://trektravel.herokuapp.com/trips';
   tripUrl += (args.length === 0) ? '' : `/continent?query=${args[0]}`;
-  console.log(tripUrl);
   $.get(tripUrl, (response) => {
     $('#trips').empty();
     // printing trips
@@ -92,7 +91,11 @@ $(document).ready(() => {
 
   $('.dropdown').on('click', 'ul li a', function fn() {
     const query = this.innerHTML;
-    loadTrips(query);
+    if (query === 'All') {
+      loadTrips();
+    } else {
+      loadTrips(query);
+    }
   });
 
   $('form').submit(function fix(e) {
