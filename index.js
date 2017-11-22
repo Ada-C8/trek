@@ -1,3 +1,8 @@
+// build all trips
+// build individual trip data
+// build form
+
+
 const ALL_TRIPS_URL = 'https://trektravel.herokuapp.com/trips';
 
 $(document).ready(() => {
@@ -51,24 +56,32 @@ $(document).ready(() => {
         <input type="submit" value="Reserve trip"></input>
         </form>`;
         $(this).after(form);
+
+        // listen for submit and post
+        $('#add-res').submit(function(event) {
+          event.preventDefault();
+
+          let resUrl = $('#add-res').attr('action');
+          let formData = $('#add-res').serialize();
+
+          const successResponse = function successResponse() {
+            console.log('Post successful');
+            $("#add-res").html("Successfully made reservation");
+          };
+
+          const failResponse = function failResponse() {
+            console.log('Post unsuccessful');
+            $(".result").html("Failed to make reservation");
+          };
+
+          $.post(resUrl, formData, successResponse).fail(failResponse)
+          // });
+        }); //submit res
+
       }); //.one click to make res
+
     });
-  // listen for submit and post
-  $('#add-res').submit(function(event) {
-    event.preventDefault();
 
-    let resURL = $('#add-res').attr('action');
-    let formData = $('#add-res').serialize();
 
-    // let resUrl = tripUrl + '/reservations';
-
-    $.post(resUrl, formData, response => {
-      console.log('successful reservation');
-      $(".result").html(response);
-    })
-    .fail((response) => {
-      console.log('Did not reserve');
-    });
-  }); //submit res
 });
 }); //document.ready
