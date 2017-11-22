@@ -1,5 +1,9 @@
 const baseUrl = 'https://trektravel.herokuapp.com/trips'
 
+const successCallback = function(response){
+  console.log("POST request to reserve a spot on a trip was successful");
+  console.log(response);
+};
 // {"id":1,"trip_id":1,"name":"Diane","email":null}
 $(document).ready(()=> {
   $('#reserve-form').hide();
@@ -16,9 +20,6 @@ $(document).ready(()=> {
     .fail(function(response){
       console.log(response);
       $('#fail').html('<p>Request was unsuccessful</p>');
-    })
-    .always(function(){
-      console.log('always even if we have success or failure');
     });
   };
 
@@ -50,9 +51,6 @@ $(document).ready(()=> {
     .fail(function(response){
       console.log(response);
       $('#fail').html('<p>Request was unsuccessful</p>')
-    })
-    .always(function(){
-      console.log('always even if we have success or failure');
     });
   };
 
@@ -73,10 +71,12 @@ $(document).ready(()=> {
   $('#trip-form').on('submit', function(event){
     event.preventDefault();
     let url = baseUrl + `/${$(this).data('id')}/reservations`;
-    console.log(url);
+    // console.log(`URL: ${url}`);
     let formData = $('#trip-form').serialize();
-    console.log(formData);
-    $.post(url, formData)
-    // write success successCallback function!
+    // console.log('formData');
+    // console.log(formData);
+    $.post(url, formData,successCallback).fail((response) => {
+      // console.log("Didn't go so hot");
+    });
   });
 });
