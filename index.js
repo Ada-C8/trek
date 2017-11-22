@@ -23,6 +23,8 @@ let getTrips = function getTrips() {
     }
     $('.trips table').append(tableHead);
     $('.trips table').append(tableRow);
+
+    $('#trips').toggle();
   } // end of successCallback
 
   const failureCallback = function(response) {
