@@ -5,49 +5,49 @@ $(document).ready(() => {
 
       response.forEach(function(trip){
         let tripInfo = `<article data-id=${trip.id} data-name=${trip.name} data-continent=${trip.continent} data-weeks=${trip.weeks}>
-          <ul>
+          <ul class="details">
             <li>${trip.name}</li>
-            <button class="trip_details">View Trip Details</button>
+            <button class="trip-details">View Trip Details</button>
           </ul>
         </article>`;
 
         $('#trips').append(tripInfo);
-// ====================================================
-        $('.trip-details').on('click',() =>{
+
+        // moving this inside of the first each loop so that we have access to the ID so we can pass it to the loadDetails function.
+        $('.trip-details').on('click',() => {
+          console.log('WORKING?????');
+          loadDetails(trip.id);
         });
-// ====================================================
 
       // });
-      const loadDetails = function loadDetails () {
-        $.get(`https://trektravel.herokuapp.com/trips/${data-id}`, (response) => {
+      const loadDetails = function loadDetails(id) {
+        $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
           console.log('IT WORKED');
 
-          response.forEach(function(info){
-            let addInfo = `<ul data-id=${info.id} data-name=${info.name} data-continent=${info.continent} data-about=${info.about} data-weeks=${info.weeks} data-category=${info.category} data-cost=${info.cost}>
-              <li>${info.name}</li>
-              <li>${info.continent}</li>
-              <li>${info.about}</li>
-              <li>${info.weeks}</li>
-              <li>${info.category}</li>
-              <li>${info.cost}</li>
-            <ul>`;
+          // response.forEach(function(info){
+            let addInfo = `<ul data-id=${response.id} data-name=${response.name} data-continent=${response.continent} data-about=${response.about} data-weeks=${response.weeks} data-category=${response.category} data-cost=${response.cost}>
+              <li>${response.name}</li>
+              <li>${response.continent}</li>
+              <li>${response.about}</li>
+              <li>${response.weeks}</li>
+              <li>${response.category}</li>
+              <li>${response.cost}</li>
+            </ul`;
 
-            $('#trips').append(addInfo);
-          })
+            // let firstLi = $(this).closest('li');
+            $('.details').append(addInfo);
+            // $('.trip_details').remove();
+          // })
         });
-      }
-     }); //here
+       }
+     });
     });
   }
-
 
   $('#load').on('click', () => {
     $('#trips').empty();
     loadTrips();
   });
-
-
-
 });
 
 // tried turning off the click function.
