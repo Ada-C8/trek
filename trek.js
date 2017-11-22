@@ -1,15 +1,14 @@
 $(document).ready(() => {
 
   const allTrips = () => {
-    // const allTheTrips = ()
-
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
-      const locations = `
-      <h2> ${response[0].name} </h2>`;
-      console.log(locations);
-      console.log('success!');
-      $('#locations').append(locations);
-      response.forEach();
+      response.forEach((place) => {
+        const locations = `
+        <h2> ${place.name} </h2>`;
+        console.log(locations);
+        // console.log('success!');
+        $('#locations').append(locations);
+      });
     });
   };
   allTrips();
