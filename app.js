@@ -12,7 +12,44 @@ $(document).ready(() => {
 
       });
     })
+    .fail(function(response) {
+      //{"readyState":0,"status":0,"statusText":"error"}
+      // console.log('what returns '+ JSON.stringify(response));
+      $('#error').append("Content cannot be retrieved");
+      console.log('failure');
+    })
+    .always(function(){
+      console.log('always even if we have success or failure');
+    });
 
+    // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC TRIP
+    let loadTrip = function loadTrip(id){
+      $.get(`https://trektravel.herokuapp.com/trips/${id}`,
+        console.log('this is result' + response);
+        (response) => {
+          let tripInfo = `
+          <h2> ${response.name} </h2>
+          <p> Continent: ${response.continent} </p>
+          <p> Weeks: ${response.weeks} </p>`;
+
+          $('#trip').html(tripInfo);
+
+        })
+        .fail(function(response){
+            console.log(response);
+            $('#fail').html('<p>Request was unsuccessful</p>')
+          })
+          .always(function(){
+            console.log('always even if we have success or failure');
+          });
+    };
+
+
+    // EVENTS
+    $('#trips ul').on('click', 'h3', function(){
+      let tripID = $(this).attr('data-id');
+      loadTrip(tripID);
+    });
 
   });
 });
