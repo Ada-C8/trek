@@ -10,8 +10,9 @@ $(document).ready(function () {
         let name = data[i]["name"];
 
         // make a jQuery object from the api response
-        let tripHTML = $('<article>' + `<h3 class="${id}">` + name + '</h3>' + `<button id="button${id}">Trip details</button>` + '</article>');
-
+        let tripHTML = $('<article class="row">' + `<h3 class="${id} large-9 column">` + name + '</h3>' + `<button id="button${id}">Trip details</button>` + '</article>');
+        // hide the 'see all trips' button
+        $('#get-trips').hide()
         // append the trip names to the all-trips section
         $('#all-trips').append(tripHTML);
 

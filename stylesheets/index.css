@@ -1,8 +1,8 @@
 /* body */
 body {
-  background-image: url('https://www.worldmapsonline.com/images/murals/miller_world_physical_wall_mural_lg.jpg');
-}
+  /*background-image: url('https://www.worldmapsonline.com/images/murals/miller_world_physical_wall_mural_lg.jpg');*/
 
+}
 
 
 /* HEADER */
@@ -12,6 +12,7 @@ header {
   opacity: 0.9;
   color: white;
   height: 200px;
+  margin-bottom: 5%;
 }
 
 h1.title {
@@ -24,4 +25,11 @@ header p {
   display: inline-block;
   font-size: 150%;
   padding-left: 2%;
+  padding-bottom: 2%;
+}
+
+/* all trips */
+article button {
+  font-size: 10px;
+  margin-bottom: 10%;
 }
