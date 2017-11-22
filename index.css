@@ -17,8 +17,7 @@ body.container-fluid {
   font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
 }
-a { color: var(--black); }
-button:hover { cursor: pointer; }
+a:hover, button:hover { cursor: pointer; }
 
 .row { margin: 0; }
 
@@ -41,6 +40,7 @@ div.image-wrapper {
   height: inherit;
   padding-top: 15%;
   background: rgba(0,0,0,0.5);
+  transition: .4s ease-in-out;
 }
 
 div.wtf-row {
@@ -53,7 +53,7 @@ h1.title {
   color: var(--white);
   font-size: 2.5em;
 }
-h1.title i { margin-right: 1%; }
+i.fa { margin-right: 1%; }
 button#all-trips {
   background: rgba(255, 255, 255, 0.2);
   border: 2px solid var(--white);
@@ -62,5 +62,18 @@ button#all-trips {
   color: var(--owhite);
 }
 
-
+section.trips { padding: 0; }
 .trip-table { display: none; }
+.trip-table tr { transition: .1s ease-in-out; }
+.trip-table tr:hover { background: #ccc; }
+.trip-table thead tr:hover { background: none; }
+a.trip-title {
+  color: var(--owhite) !important;
+  font-weight: bold;
+}
+
+tr.trip-deets td {
+  padding: 1% 6% 2%;
+  border: none;
+}
+td.about-text { font-size: 12px; }

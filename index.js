@@ -5,7 +5,7 @@ $(document).ready(function() {
       for (let trip of data) {
         let tripInfo = $(
           '<tr id="trip' + trip.id + '">'
-          + '<td data-id =' + trip.id + '>' + trip.name + '</td>'
+          + '<td>' + '<a class="trip-title" data-id =' + trip.id + '>' + trip.name + '</a>' + '</td>'
           + '<td>' + trip.continent + '</td>'
           + '<td>' + trip.weeks + '</td>'
           + '</tr>'
@@ -18,29 +18,40 @@ $(document).ready(function() {
   let loadTrip = function loadTrip(id) {
     url = `https://trektravel.herokuapp.com/trips/${id}`
     $.get(`${url}`, function(data) {
+      data.category = data.category.charAt(0).toUpperCase() + data.category.slice(1);
+      data.cost = parseFloat(Math.round(data.cost * 100) / 100).toFixed(2);
       let tripInfo = $(
-        '<tr>'
+        '<tr class="trip-deets">'
         + '<td colspan="3">'
         + '<table>'
         + '<tr>'
-        + '<td>' + data.category + '</td>'
-        + '<td>' + data.cost + '</td>'
+        + '<td>' + '<i class="fa fa-tags"></i> Category: ' + data.category + '</td>'
+        + '<td>' + '<i class="fa fa-usd"></i> Cost: ' + data.cost + '</td>'
         + '</tr>'
         + '<tr>'
-        + '<td colspan="2">' + data.about + '</td>'
+        + '<td class="about-text" colspan="2">' + data.about + '</td>'
         + '</tr>'
         + '</table>'
         + '</td>'
         + '</tr>'
-      )
+      );
 
-      $(`tr.trip${id}`).append(tripInfo);
+      $(`tr#trip${data.id}`).after(tripInfo);
     });
   };
 
-  $('tbody#trip-list').on('click', 'td', function() {
+  let details_exist = false;
+
+  $('tbody#trip-list').on('click', 'a', function() {
     let tripID = $(this).attr('data-id');
+    if (details_exist == true) {
+      $('table.table').find('tr.trip-deets').each(function() {
+        $(this).remove();
+      });
+      details_exist = false;
+    }
     loadTrip(tripID);
+    details_exist = true;
   });
 
   $('#all-trips').on('click', function(event) {
