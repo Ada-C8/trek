@@ -19,35 +19,41 @@ const displayList = function displayList() {
 
 // Display Details of Trip
 const displayDetails = function displayDetails(id) {
-  $.get(`${apiUrl}${id}`, (response) => {
-    $('#trip-detail').html(`<h3>${response.name}</h3>
+  $('#reservation-form').show();
+  $.get(`${apiUrl}/${id}`, (response) => {
+    $('#details').html(`<h3>${response.name}</h3>
       <h4>${response.weeks} weeks | ${response.continent} | ${response.category}</h4>
       <div class="about">${response.about}</div>
       <div class="cost">${response.cost}</div>`);
+    $('#reservation-form').attr('id', id);
   }).fail(() => {
     $('#message').addClass('failure').html('Oops! Something went wrong!');
   });
 };
 
 // Reservation Form Submission
-// $('form').submit((e) => {
-//   e.preventDefault();
-//
-//   const url = `${apiUri}/${id}/reservations`;
-//   const formData = $(this).serialize();
-//   console.log($(this));
-//   // $.post(url, formData, (response) => {
-//   //   $('#message').html('<p> Pet added! </p>');
-//   //   // What do we get in the response?
-//   //   console.log(response);
-//   // });
-// });
+const postReservation = function postReservation(response) {
+  const url = `${apiUrl}/${response[0].id}/reservations`;
+  const formData = response;
+  console.log(formData.serialize());
+  $.post(url, formData.serialize(), (data) => {
+    $('#confirmation').html(`${data.name} is booked!`);
+  })
+    .fail(() => {
+      $('#confirmation').addClass('failure').html('Uhh... Something happened. Please try again.');
+    });
+};
 
 // Perform
 $(document).ready(() => {
+  $('#reservation-form').hide();
   $('#get-list').click(displayList);
   $('#list').on('click', 'li', function fx() {
     displayDetails($(this)[0].id);
   });
-
+  $('form').submit(function fx(e) {
+    e.preventDefault();
+    console.log($(this)[0].id);
+    postReservation($(this));
+  });
 });
