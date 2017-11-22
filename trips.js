@@ -1,6 +1,8 @@
 /*eslint-disable*/
 $(document).ready(()=>{
+  $('#bookingForm').hide();
   $('#all').on('click', () => {
+    $('#bookingForm').hide();
     const url = 'https://trektravel.herokuapp.com/trips'
 
     $.get(url, response => {
@@ -21,17 +23,29 @@ $(document).ready(()=>{
   });
 
   $('#trips').on('click', 'h3', function(){
+    $('#bookingForm').hide();
     const id = $(this).attr('id');
     console.log(id)
     const url2 = `https://trektravel.herokuapp.com/trips/${id}`
     $.get(url2, response => {
       const thisTrip = response
-      console.log(thisTrip);
+      // console.log(thisTrip);
       $('#trips').empty()
-      const details = `<h2>${thisTrip.name}</h2> <ul><li>${thisTrip.continent}</li><li>${thisTrip.category}</li><li>${thisTrip.about}</li><li>Cost: $${thisTrip.cost}</li><li>${thisTrip.weeks} Weeks</li></ul><button id='book'>Book This Trip</button>`
-      $('#trips').append($(details).attr('id', 'tripDetails'))
-    })
-  })
 
-  $()
+      const details = `<article id=${id}><h2>${thisTrip.name}</h2> <ul><li>${thisTrip.continent}</li><li>${thisTrip.category}</li><li>${thisTrip.about}</li><li>Cost: $${thisTrip.cost}</li><li>${thisTrip.weeks} Weeks</li></ul></article>`
+
+      $(details).append('<button id="book">Book This Trip</button>');
+      $('#trips').append(details);
+    })
+  });
+  //
+  // $('#trips').on('click', '#book', function(){
+  //   const tripNum = $(this).parent().attr('id');
+  //   console.log('CLICK!')
+  //   $('#trips').empty()
+  //   $('#bookingForm').show();
+  //   console.log(tripNum);
+  //   // const url = `https://trektravel.herokuapp.com/trips/${id}/reservations`
+  //   // $('#bookingForm').prepend(<form action= method="post">)
+  // })
 });
