@@ -1,0 +1,60 @@
+  html {
+  background-image: url(blue.jpg);
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  background-repeat: repeat-y;
+
+  animation: animatedBackground 40s linear infinite;
+}
+
+@keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position: 100% 0; }
+}
+
+header {
+  color: white;
+  text-align: center;
+}
+
+header .button.hollow {
+  border-color: white;
+  color: white;
+  background-color: RGBA(205, 208, 215,.4);
+}
+
+header .button.hollow:hover {
+  border-color: #102c3d;
+  color: #102c3d;
+}
+
+body {
+  background-color: inherit;
+}
+
+main.row {
+  background-color: rgba(255,255,255, 0.8);
+  margin: 4rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 4px;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+ul {
+  margin-left: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+#trip-list a{
+  color: #40E0D0;
+  text-shadow: 1px 1px 1px #000000;
+}
