@@ -2,6 +2,7 @@
 $(document).ready(() => {
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
   const loadTrips = function loadTrips() {
+    $('#single-trip-info').hide();
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       // console.log(response);
 
@@ -44,6 +45,7 @@ $(document).ready(() => {
     // Clear existing table
     $('#trips-head').html('');
     $('#trips-body').html('');
+    $('#single-trip-info').show();
 
     const singleTripURL = `https://trektravel.herokuapp.com/trips/${id}`;
 
@@ -89,7 +91,7 @@ $(document).ready(() => {
         <label for="email">Email:</label>
         <input type="text" name="email"></input>
 
-        <button id="reserve-trip" type="submit">Reserve Trip</button>
+        <button id="reserve-trip" class="button" type="submit">Reserve Trip</button>
       </form>
       `;
 
