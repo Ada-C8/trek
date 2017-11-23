@@ -28,36 +28,32 @@ $(document).ready(() => {
 
   // view trip details on click
   $('#results').on('click', 'button.view-trip-details-btn', function callback() {
-    const tripID = $(this).data('trip-id');
-    const url = `https://trektravel.herokuapp.com/trips/${tripID}`;
-    $.get(
-      url,
-      (response) => {
-        // id, name, about, continent, category, weeks, cost
-        const tripDetailsContainer = $(this).next();
-        console.log(`toggle status before press: ${tripDetailsContainer.data('toggled')}`);
-
-        // if toggled is true
-        if (tripDetailsContainer.data('toggled') === 'true') {
-          // hide details
-          tripDetailsContainer.data('toggled', 'false');
-          console.log('hid text');
-          tripDetailsContainer.html('');
-          $(this).text('More Information');
-        } else { // if toggled is false
-          // show details
-          console.log('showed text');
+    // id, name, about, continent, category, weeks, cost
+    const tripDetailsContainer = $(this).next();
+    // if toggled is true
+    if (tripDetailsContainer.data('toggled') === 'true') {
+      // hide details
+      tripDetailsContainer.data('toggled', 'false');
+      tripDetailsContainer.html('');
+      $(this).text('More Information');
+    } else { // if toggled is false
+      const tripID = $(this).data('trip-id');
+      const url = `https://trektravel.herokuapp.com/trips/${tripID}`;
+      // show details
+      $.get(
+        url,
+        (response) => {
           tripDetailsContainer.data('toggled', 'true');
           const detailsText = `<h3>Details:</h3>
-          <p>Category: ${response.category}</p>
-          <p>Cost: $${response.cost}</p>
-          <p>About: ${response.about}</p>`;
+                               <p>Category: ${response.category}</p>
+                               <p>Cost: $${response.cost}</p>
+                               <p>About: ${response.about}</p>
+                               <button class="button make-reservation-btn">Make Reservation</button>`;
           tripDetailsContainer.html(detailsText);
           $(this).text('Hide Information');
-        }
-        console.log(`toggle status after press: ${tripDetailsContainer.data('toggled')}`);
-      },
-    );
+        },
+      );
+    }
   });
 
 
