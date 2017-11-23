@@ -16,6 +16,38 @@ const getTrips = function getTrips() {
   });
 }; // end of getTrips function
 
+const viewTripsbyContinent = function viewTripsbyContinent() {
+  const continentDropdown = `<select>
+  <option value="africa">Africa</option>
+  <option value="asia">Asia</option>
+  <option value="australia">Australia</option>
+  <option value="europe">Europe</option>
+  <option value="northAmerica">North America</option>
+  <option value="southAmerica">South America</option>
+  </select>`;
+  $('#tripsByContientSelector').append(continentDropdown);
+
+  /* When the user clicks on the button,
+  toggle between hiding and showing the dropdown content */
+  function myFunction() {
+    document.getElementById('myDropdown').classList.toggle('show');
+  }
+
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = (event) => {
+    if (!event.target.matches('.dropbtn')) {
+
+      let dropdowns = document.getElementsByClassName("dropdown-content");
+      let i;
+      for (i = 0; i < dropdowns.length; i++) {
+        let openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+};
 
 const viewTrip = function viewTrip(tripID) {
   $.get(`https://trektravel.herokuapp.com/trips/${tripID}`, (response) => {
@@ -48,7 +80,7 @@ const reserveForm = function reserveTripForm(tripID) {
   console.log(tripID);
   const reservationForm = `
   <div id="message"></div>
-  <form action="https://trektravel.herokuapp.com/trips/${tripID}/reservations" method="post">
+  <form action="https://trektravel.herokuapp.com/trips/${tripID}/reservations" method="post" data-id="${tripID}">
   <section>
   <label>Name</label>
   <input type="text" id="name" name="name"></input>
@@ -81,6 +113,8 @@ const finalizeReservation = function finalizeReservation() {
 
 $(document).ready(() => {
 
+  viewTripsbyContinent();
+
   $('#button').on('click', () => {
     getTrips();
   });
@@ -101,7 +135,13 @@ $(document).ready(() => {
   });
 
   $('#tripInfo').on('click', 'div',  function() {
+    const tripID = $(this).attr('data-id');
+    console.log(tripID);
     $(this).hide();
+    const buttonToHide = $( `[data-id="${tripID}"][id="reserveFormButton"]`)
+    $(buttonToHide).hide();
+    const formToHide = $(`[data-id="${tripID}"][action]`)
+    $(formToHide).hide();
     $('#tripList ol').show();
   });
 });
