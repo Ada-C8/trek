@@ -48,7 +48,7 @@ $(document).ready(()=>{
   $('#trips').on('click', '#book', function(){
     const tripNum = $(this).parent().attr('id');
     console.log('CLICK!')
-    $('#trips').empty()
+    // $('#trips').empty()
     $('#bookingForm').show();
     // console.log(tripNum);
     const url = `https://trektravel.herokuapp.com/trips/${tripNum}/reservations`
@@ -66,7 +66,7 @@ $(document).ready(()=>{
     console.log(formData);
 
     $.post(url, formData, (response)=>{
-      $('#trips').html('Booked!')
+      $('#trips').html(`Booked your trip!`)
       console.log(response)
     }).fail(() => {
       $('#trips').html('<p>Booking Trip Failed</p>')
