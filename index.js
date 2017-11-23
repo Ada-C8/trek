@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 $.get(
   'https://trektravel.herokuapp.com/trips',
   (response) => {
@@ -36,7 +37,7 @@ const singleTrip = (id) => {
       const { category } = response;
 
       $(`#${id} .trip-info`).hide();
-      $(`#${id} .landscape`).animate({height:200},600);
+      $(`#${id} .landscape`).animate({ height:200 }, 600);
       $(`#${id} article`).append(`
         <section class='trip-details'>
         <p>${weeks} weeks</p>
@@ -61,12 +62,11 @@ $(document).ready(() => {
     const tripId = event.currentTarget.id;
     const tripDetail = `#${tripId} .trip-details`;
 
-    if($(tripDetail).length){
-
+    if ($(tripDetail).length) {
       $(`#${tripId} .trip-info`).show();
-      $(`#${tripId} .landscape`).animate({height:480},600);
+      $(`#${tripId} .landscape`).animate({ height: 480 }, 600);
       $(tripDetail).remove();
-    }else{
+    } else {
       singleTrip(tripId);
     }
   });
