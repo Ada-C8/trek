@@ -12,28 +12,37 @@
   <script type="text/javascript" src="form.js">
   </script>
 </head>
-<body>
-  <h1><a href= "index.html">TREK</a></h1>
-  <div class="form-container">
-    <p class="trip-name">  </p>
+<body class ="lightblue">
+  <header>
+    <div class="page-header">
+      <div class="row">
+        <h1 class="text-center"><a href= "index.html">TREK</a></h1>
+      </div>
+    </div>
+  </header>
+  <div class="error-message">
+  </div>
+  <div class="form-container row">
+    <h3 class="trip-name columns large-8 medium-10 small-12 text-centered">  </h3>
     <form id="reserve-form" method="post">
-    <section>
-    <label>Name</label>
-    <input type="text" id="name" name="name"></input>
-    </section>
-    <section>
-    <label>Age</label>
-    <input type="text" id="age" name="age"></input>
-    </section>
-    <section>
-    <label>Email</label>
-    <input type="text" id="email" name="email"></input>
-    </section>
-    <section class="button">
-    <button type="submit">Make Reservation!</button>
-    </section>
+      <section class= "columns large-8 medium-10 small-12 text-centered">
+        <label>Name</label>
+        <input type="text" id="name" name="name"></input>
+      </section>
+      <section class= "columns large-8 medium-10 small-12 text-centered">
+        <label>Age</label>
+        <input type="text" id="age" name="age"></input>
+      </section>
+      <section class= "columns large-8 medium-10 small-12 text-centered">
+        <label>Email</label>
+        <input type="text" id="email" name="email"></input>
+      </section>
+      <section class="columns large-8 medium-10 small-12 text-centered float-left">
+        <button class="reserve button" type="submit">Make Reservation!</button>
+      </section>
     </form>
   </div>
-  <div class="message"> </h3>
+  <div class="success-message">
+  </div>
 </body>
 </html>
