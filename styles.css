@@ -6,7 +6,10 @@ body, h1 {
 }
 
 #bg-image {
-  background: url('dubai-skyline.jpg') no-repeat center center;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),url('dubai-skyline.jpg') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
@@ -30,4 +33,5 @@ body, h1 {
 footer {
   color: black;
   text-align: center;
+  height: 1vh;
 }
