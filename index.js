@@ -43,12 +43,12 @@ $(document).ready(()=>{
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
   let loadTrips = function loadTrips() {
      $('.globe-large').hide();
-     $('#trips ul').append('<h2 class="adventure">Pick Your Adventure:</h3>');
+     $('#trips ul').before('<div class="adventure-container"><h2 class="adventure">Pick Your Adventure:</h2></div>');
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       console.log('success!');
       response.forEach(function(trip) {
         let tripInfo =
-        `<li><h3 id='listed-trip' trip-id=${trip.id}>${trip.name}</li>`;
+        `<li id='listed-trip' trip-id=${trip.id}>${trip.name}</li>`;
         //took this out of tripInfo:
         //<li> Continent: ${trip.continent}</li>
         //console.log(trip);
@@ -136,7 +136,7 @@ const submitReservation = function submitReservation() {
     loadTrips();
   });
 
-  $('#trips ul').on('click', 'h3', function(){
+  $('#trips ul').on('click', 'li', function(){
     let tripID = $(this).attr('trip-id');
     loadTrip(tripID);
   });

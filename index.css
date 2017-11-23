@@ -77,29 +77,55 @@ header {
   /*align-items: center;*/
   background-color: lightblue;
   list-style: none;
+  /*column-count: 3;
+  column-gap: 30px;*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
 }
 
 #listed-trip {
-  font-size:.5em;
+  font-size:1.3em;
   /*list-style: none;*/
-  /*column-count: 3;*/
-  /*column-gap: 30px;*/
-  /*line-height: 2em;*/
 }
 
 #trips ul li:hover {
-  border: none;
   color: orange;
 }
 
 #trips ul li {
+  /*width:300px;
+  padding: 8px;
+  background-color: #327a9e;
+  border: black;*/
+  color:#444;
+  border:1px solid #CCC;
+  background:#DDD;
+  /*box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);*/
+  /*cursor:pointer;*/
+  vertical-align:middle;
+  padding: 5px;
+  /*text-align: center;*/
+  margin:10px;
+  padding: 20px;
+  border-radius: 25px;
+}
 
+.adventure-container {
+  background-color: #327a9e;
+  display: flex;
+  justify-content: center;
+  border-top: 10px;
+  border-color: white;
 }
 
 .adventure {
     font-family: 'Alegreya SC', serif;
     font-size: 2.5em;
-    margin-bottom: 0;
+    /*padding-top: 0.5em;*/
+    margin: 0;
     color: white;
 }
 
@@ -116,6 +142,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
 
   /*border: 2px solid black;*/
 }
@@ -153,8 +180,8 @@ label {
   align-self: flex-start;
 }
 
-.h_line {
+/*.h_line {
   width: 100%;
   background: blue;
   size: 5px;
-}
+}*/
