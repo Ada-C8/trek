@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+body, h1 {
+  font-family: 'Varela Round', sans-serif;
+  color: white;
+}
+
+#bg-image {
+  background: url('dubai-skyline.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+#logo-wrapper {
+  /*border: 2px solid white;*/
+  width: 50%;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+}
+
+#logo {
+  text-align: center;
+  min-height: 10em;
+  position: absolute;
+  top: 45%;
+}
+
+footer {
+  color: black;
+  text-align: center;
+}
