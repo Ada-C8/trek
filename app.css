@@ -1,17 +1,16 @@
 td.atrip-cell {
   vertical-align: text-top;
   text-align: justify;
-  /*width: 100%;
-  height: 100%;*/
   margin: 0;
-  padding: 1em;
-  overflow: auto;
+  height: 2px;
+}
+
+
+#atrip-table {
+  overflow-x: scroll;
 }
 
 .scrollable {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
