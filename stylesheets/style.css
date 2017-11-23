@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Walter+Turncoat');
 
-*, h1, h2, h3, h4, h5{
+*, h1, h2, h3, h4, h5, .button{
   font-family: 'Walter Turncoat', cursive, sans-serif;
 }
 
+.button, .trip-container{
+  border-radius: 10px;
+}
+
 body {
-  /*background-image: url("http://eskipaper.com/images/shrek-4.jpg");*/
   background-color: steelblue;
 }
 
@@ -19,4 +22,9 @@ header {
 
 #nav-buttons a{
   margin-right: 40px;
+}
+
+.trip-container {
+  background-color: #ccc;
+  margin-top: 10px;
 }
