@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Kreon:700|Ubuntu" rel="stylesheet">
+  <link rel="icon" type="image/png" href="cruise.png">
   <link rel="stylesheet" href="index.css">
 </head>
 
@@ -35,12 +36,48 @@
     </div>
 
     <section class="col-12 trips">
+
+      <div id="reserve-modal">
+        <p>
+          <i class="fa fa-times fa-2x modal-close"></i>
+        </p>
+        <form id="reserve-form">
+          <div class="form-group">
+            <label for="res-name"><i class="fa fa-user"></i> Name</label>
+            <input type="text" class="form-control" id="res-name" placeholder="Enter name">
+          </div>
+          <div class="form-group">
+            <label for="res-age"><i class="fa fa-birthday-cake"></i> Age</label>
+            <input type="number" class="form-control" id="res-age" placeholder="Enter age">
+          </div>
+          <div class="form-group">
+            <label for="res-email"><i class="fa fa-envelope"></i> Email</label>
+            <input type="email" class="form-control" id="res-email" placeholder="Enter email">
+          </div>
+          <div class="submit-wrapper">
+            <button type="submit" class="btn btn-lg btn-primary" id="res-submit">Submit</button>
+          </div>
+    	  </form>
+      </div>
+
       <table class="table trip-table">
         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Continent</th>
-            <th>Weeks</th>
+          <tr class="headings">
+            <th>
+              <i class="fa fa-map-marker"></i>
+              Name
+              <!-- <i id="name-sort" class="fa fa-sort"></i> -->
+            </th>
+            <th>
+              <i class="fa fa-globe"></i>
+              Continent
+              <!-- <i id="cont-sort" class="fa fa-sort"></i> -->
+            </th>
+            <th>
+              <i class="fa fa-calendar"></i>
+              Weeks
+              <!-- <i id="week-sort" class="fa fa-sort"></i> -->
+            </th>
           </tr>
         </thead>
         <tbody id="trip-list"></tbody>
@@ -50,8 +87,8 @@
   </main>
 
   <footer class="row footer">
-
   </footer>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
