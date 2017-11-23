@@ -10,7 +10,7 @@ $.get(
       const { weeks } = response[i];
 
       $('#trips').append(`<li id='${id}'>
-      <div class='landscape'><img src="assets/landscape.jpg"/></div>
+      <div class='landscape'><img src="assets/${continent}land.jpg"/></div>
       <article>
       <div class='continent'><img src="assets/${continent}.png"/></div>
         <h3>${name}</h3>
