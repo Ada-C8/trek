@@ -1,44 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Trek On</title>
-    <link href="style.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.css" media="screen" rel="stylesheet" type="text/css">
+<head>
+  <meta charset="utf-8">
+  <title>Trek On</title>
+  <link href="style.css" media="screen" rel="stylesheet" type="text/css">
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.css" media="screen" rel="stylesheet" type="text/css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation-flex.css" />
 
-  </head>
-  <body>
+</head>
+<body>
+    <nav class="row">
+      <div class="column small-12 home">
+        <section id="get-list"><h1>Trek On!</h1></section>
 
-    <div class="link" id="get-list">Click to show all trips</div>
-    <section id="message"></section>
-    <section id="list"></section>
-    <section id="trip-detail">
-      <section id="confirmation"></section>
-      <section id="details"></section>
-      <form id="reservation-form">
-        <section>
-          <label>Name</label>
-          <input type="text" id="name" name="name"></input>
-        </section>
-        <section>
-          <label>Age</label>
-          <input type="text" id="age" name="age"><span class="hide"> Enter a number</span></input>
-        </section>
-        <section>
-          <label>Email</label>
-          <input type="text" id="email" name="email"></input>
-        </section>
+        <section id="message"></section>
+      </div>
+    </nav>
+  <main class="row">
+    <div class="small-12 medium-4 column small-order-2 medium-order-1">
+      <section id="list" class="scrollbox hide"></section>
+    </div>
+    <div class="small-12 medium-8 column small-order-1 medium-order-2">
+      <section id="trip-detail">
+        <section id="confirmation"></section>
+        <section id="details"></section>
+        <form id="reservation-form">
+          <section>
+            <label>Name</label>
+            <input type="text" id="name" name="name"></input>
+          </section>
+          <section>
+            <label>Age</label>
+            <input type="text" id="age" name="age"><span class="hide"> Enter a number</span></input>
+          </section>
+          <section>
+            <label>Email</label>
+            <input type="text" id="email" name="email"></input>
+          </section>
 
-        <section class="button">
-          <button type="submit">Reserve!</button>
-        </section>
-      </form>
-    </section>
-  </body>
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-
-  <script type="text/javascript" src="index.js"></script>
+          <section class="button">
+            <button type="submit">Reserve!</button>
+          </section>
+        </form>
+      </section>
+    </div>
+  </main>
+</body>
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+<script type="text/javascript" src="index.js"></script>
 </html>

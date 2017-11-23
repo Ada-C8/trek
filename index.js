@@ -4,10 +4,11 @@ const apiUrl = 'https://trektravel.herokuapp.com/trips';
 
 // Display List of Trips
 const displayList = function displayList() {
+  $('.home').removeClass('home');
+  $('#list').removeClass('hide');
   $.get(apiUrl, (response) => {
     let list = '<ul>';
     response.forEach((thing) => {
-      console.log(thing);
       list += `<li id="${thing.id}">${thing.name}</li>`;
     });
     list += '</ul>';
