@@ -23,6 +23,7 @@ let loadTrips = function loadTrips() {
 } //loadtrips function
 
 let loadDetail = function loadDetail(id) {
+  $('.trip-details').children().hide();
   console.log("start detail function");
   console.log($(".trip-details"));
   console.log("end details");
@@ -38,11 +39,16 @@ console.log(typeof(id));
 console.log("this is" + $(this));
 //recognizes
 //how to tell it to use th eid?
-      $('.trip-details').after(tripDetail);
+      $('.trip-details').append(tripDetail);
     // $('h3').after(tripDetail); //works
   }); //get trip function
 
 } //trip detail function
+$('#trips ul').on('click', 'h3', function () {
+  console.log('ready to hide');
+
+}) //
+
 
 $('#trips ul').on('click', 'h3', function () {
   let tripID = $(this).attr('data-id');
@@ -51,10 +57,10 @@ $('#trips ul').on('click', 'h3', function () {
 }) //
 
 
-$('#load').on('click', function() {
 
+
+$('#load').on('click', function() {
   loadTrips();
-  
 });
 
 
