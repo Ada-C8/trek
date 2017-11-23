@@ -48,7 +48,7 @@ $(document).ready(()=>{
       console.log('success!');
       response.forEach(function(trip) {
         let tripInfo =
-        `<li><h3 class='listed-trip' trip-id=${trip.id}>${trip.name}</li>`;
+        `<li><h3 id='listed-trip' trip-id=${trip.id}>${trip.name}</li>`;
         //took this out of tripInfo:
         //<li> Continent: ${trip.continent}</li>
         //console.log(trip);
