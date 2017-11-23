@@ -4,7 +4,7 @@ $(document).ready(() => {
       console.log('success!');
 
       response.forEach((trip) => {
-        const tripInfo = $(`<article data-id=${trip.id} data-name=${trip.name} data-continent=${trip.continent} data-weeks=${trip.weeks}>
+        const tripInfo = $(`<article data-id=${trip.id} data-name=${trip.name}>
           <ul class="details">
             <li>${trip.name}</li>
             <button class="trip-details">View Trip Details</button>
