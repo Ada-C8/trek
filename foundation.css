@@ -560,6 +560,8 @@ pre {
   padding-right: 0;
   padding-left: 0; }
 
+
+@media print, screen and (max-width: 39em) {
 .small-1 {
   width: 8.33333%; }
 
@@ -715,7 +717,9 @@ pre {
   margin-left: 83.33333%; }
 
 .small-12 {
-  width: 100%; }
+  width: 100%;
+  /*line-height: 3;*/
+}
 
 .small-offset-11 {
   margin-left: 91.66667%; }
@@ -830,8 +834,12 @@ pre {
   float: left;
   margin-right: 0;
   margin-left: 0; }
+.button.small-12 {
+  line-height: 3;
+}
+}
 
-@media print, screen and (min-width: 40em) {
+@media print, screen and (min-width: 50em) {
   .medium-1 {
     width: 8.33333%; }
   .medium-push-1 {
@@ -2215,10 +2223,12 @@ select {
       margin-bottom: 0; } }
   @media screen and (max-width: 39.9375em) {
     .button-group.stacked-for-small.expanded {
-      display: block; }
+      display: block;
+      line-height: 3; }}
       .button-group.stacked-for-small.expanded .button {
         display: block;
-        margin-right: 0; } }
+        margin-right: 0;
+        line-height: 3; } }
 
 .callout {
   position: relative;

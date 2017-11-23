@@ -10,7 +10,7 @@ $(document).ready(()=>{
       const allTrips = response;
       for (let i = 0; i < allTrips.length; i++){
         const trip = allTrips[i]
-        $('#trips').append($(`<article><h3>${trip.name}</h3></article>`).attr('id', `${trip.id}`).addClass('tripListAll column small-12 large-4 float-right'));
+        $('#trips').append($(`<article><h3>${trip.name}</h3><p id="subDeets"> ${trip.continent} | ${trip.weeks} week(s)</p></article>`).attr('id', `${trip.id}`).addClass('tripListAll column small-12 large-6 float-right'));
         console.log(trip);
       }
     })
@@ -33,7 +33,7 @@ $(document).ready(()=>{
       $('#trips').empty()
 
       const details = `<article id=${id} class="tripDetails"><h2>${thisTrip.name}</h2>
-      <h5>${thisTrip.weeks} Weeks in ${thisTrip.continent} | ${thisTrip.category.toUpperCase()} | $${thisTrip.cost}</h5><p>${thisTrip.about}</p><button id="book" class="button small-12 large-12">Book This Trip</button></article>`
+      <h5>${thisTrip.weeks} Weeks in ${thisTrip.continent} | ${thisTrip.category.toUpperCase()} | $${thisTrip.cost}</h5><img src='http://images.all-free-download.com/images/graphiclarge/beautiful_natural_scenery_01_hd_picture_166232.jpg', alt='a beautiful generic picture'/><p>${thisTrip.about}</p><button id="book" class="button small-12 large-12">Book This Trip</button></article>`
 
       $('#trips').append(details);
     })
