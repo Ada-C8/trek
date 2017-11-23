@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  $('#clickme').on('click', function() {
+  $('#search-trips').on('click', function() {
 
     $.get('https://trektravel.herokuapp.com/trips',
     response => {
@@ -125,7 +125,7 @@ $(document).ready(() => {
   //   loadTrip(tripID);
   //   // console.log(loadTrip);
   // });
-  $("#clickme").click(function(){
+  $("#search-trips").click(function(){
         $("#trip").hide();
     });
 
