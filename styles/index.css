@@ -8,8 +8,6 @@
   text-shadow: 0 0 .8rem #075B69;
 }
 
-
-
 /*GENERAL*/
 body {
   font-family: 'Berkshire Swash';
@@ -99,21 +97,48 @@ h1 {
   background: rgba(255, 255, 255, 0.7);
 }
 
-
-
-
-
-/*.trips table {
-  background: rgba(255, 0, 0, 0);
+.trips table td {
+  text-align: center;
 }
 
-.trips table tr {
-  background: rgba(255, 0, 0, 0.5);
+.trips table tr:hover {
+  text-shadow: 0 0 1rem #075B69;
+  box-shadow: 0 0 1rem #075B69;
 }
 
-.trips table tr td {
-  background: rgba(255, 0, 0, 0);
-}*/
+/*TRIP BLOCK*/
+.trip {
+  position: fixed;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: 65%;
+  max-width: 700px;
+  background: #fff;
+  padding: 1rem;
+  overflow: scroll;
+  box-shadow: 0 0 1rem #075B69;
+}
+
+.wrapper {
+  min-height: 100%;
+  width: 100%;
+  /*#CCF5FC --> (204,245,252)*/
+  /*#398694 --> (57,134,148)*/
+  background: -webkit-linear-gradient(left top, rgba(204,245,252,.8), rgba(57,134,148,.8)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, rgba(204,245,252,.8), rgba(57,134,148,.8)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, rgba(204,245,252,.8), rgba(57,134,148,.8)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, rgba(204,245,252,.8), rgba(57,134,148,.8)); /* Standard syntax */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+}
 
 /*FOOTER*/
 footer {

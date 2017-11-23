@@ -46,8 +46,6 @@ let getTripBuilder = function(id) {
       for (let attr in response) {
         listItem += '<li>' + attr + ': ' + response[attr] + '</li>';
       }
-      // what would be displayed
-      $('#trip').html(listItem);
       // make reservation
       let reservationForm =
       `<form data-id=${id}>
@@ -65,7 +63,15 @@ let getTripBuilder = function(id) {
 
       </form>`
 
+      // what would be displayed
+      // $('.trip').toggle();
+      $('.wrapper').toggle();
+
+
+
+      $('#trip').html(listItem);
       $('#reservation').html(reservationForm);
+
 
     } //end of successCallback
 
@@ -119,6 +125,7 @@ $(document).ready( function() {
     let tripID = $(this).attr('data-id');
     getTripBuilder(tripID);
     console.log(tripID);
+
   });
 
   //make reservation
