@@ -1,15 +1,17 @@
-.row-id {
-  width: 10%;
+td.atrip-cell {
+  vertical-align: text-top;
+  text-align: justify;
+  /*width: 100%;
+  height: 100%;*/
+  margin: 0;
+  padding: 1em;
+  overflow: auto;
 }
 
-.row-name {
-  width: 30%;
-}
-
-.row-continent {
-  width: 30%;
-}
-
-.row-weeks {
-  width: 20%;
+.scrollable {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
 }
