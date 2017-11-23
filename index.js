@@ -62,8 +62,8 @@ let buildIndividualTrip = function buildIndividualTrip(event) {
     $.get(tripUrl, response => {
       let $div = $('<div></div>');
       $($div).append(
-        '<p>Location: ' + response.continent + '</p>' + '<p>Duration: ' + response.weeks + ' (week(s))</p>' +
-        '<p>Category: ' + response.category + '</p>' + '<p>Cost: $' + response.cost + '</p>' + '<p>Description: ' + response.about + '</p>' +
+        '<p><span>Location: </span>' + response.continent + '</p>' + '<p><span>Duration: </span>' + response.weeks + ' (week(s))</p>' +
+        '<p><span>Category: </span>' + response.category + '</p>' + '<p><span>Cost: </span>$' + response.cost + '</p>' + '<p><span>Description: </span>' + response.about + '</p>' +
         '<div class="button make-reservation">Make a Reservation</div>')
       $($div).append('');
       $(this).append($div);
@@ -76,9 +76,9 @@ let buildIndividualTrip = function buildIndividualTrip(event) {
         // generate form
         event.stopPropagation();
         let form = `<form action="${tripUrl}/reservations" id="add-res">
-        <label for="name">Name: </label><input type="text" name="name"></input>
-        <label for="age"></label>Age: <input type="number" name="age"></input>
-        <label for="email">Email: </label><input type="text" name="email"></input>
+        <label for="name"><span>Name:</span></label><input type="text" name="name"></input>
+        <label for="age"><span>Age: </span></label><input type="number" name="age"></input>
+        <label for="email"><span>Email: </span></label><input type="text" name="email"></input>
         <input type="submit" value="Reserve trip"></input>
         </form>`;
         $(this).after(form).hide();

@@ -46,8 +46,19 @@ h5 {
 }
 
 /*INDIVIDUAL TRIP DETAILS*/
+#add-res {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 10px;
+
+}
+
 li div p {
   font-weight: bold;
+}
+
+li div p span {
+  color: rgb(103, 221, 159);
 }
 
 li div p:last-of-type {
@@ -59,4 +70,20 @@ li div p:last-of-type {
 
 .make-reservation {
   margin-top: 20px;
+}
+
+/*FORM STYLING*/
+label {
+  font-family: courier;
+  color: white;
+  font-size: 20px;
+}
+
+label span {
+  color: rgb(103, 221, 159);
+}
+
+input {
+  background-color: rgb(44, 65, 54);
+  margin-bottom: 20px;
 }
