@@ -15,6 +15,7 @@ $(document).ready(() => {
 
   const clearTrips = function clearTrips() {
     $('.trips > ul').empty();
+    $('section.trips').removeClass('loaded');
   };
 
   const getTrips = function getTrips(url) {
@@ -23,6 +24,7 @@ $(document).ready(() => {
         const tripInfo = `<li class="small-6 medium-4 large-3 cell data-equalizer-watch"><section class="trip"><a class="trip-name" data-id=${trip.id}>${trip.name}</a></section>`;
 
         $('.trips > ul').append(tripInfo);
+        $('section.trips').addClass('loaded');
       });
     });
   };
@@ -47,33 +49,39 @@ $(document).ready(() => {
 
   const loadTrip = function loadTrip(tripId) {
     // check if already displayed
-    if (!$(`a[data-id=${tripId}]`).hasClass('loaded')) {
-      const url = `${baseUrl}/${tripId}`;
+    // if (!$(`a[data-id=${tripId}]`).hasClass('loaded')) {
+    const url = `${baseUrl}/${tripId}`;
 
-      $.get(url, (response) => {
-        let tripInfo = '<div class="trip-wrapper"><section class="details loaded">';
-        const headings = Object.keys(response);
+    $.get(url, (response) => {
+      // let tripInfo = '<div class="trip-wrapper"><section class="details loaded">';
+      let tripInfo = `<section class="details" data-id="${tripId}">`;
+      const headings = Object.keys(response);
 
-        for (let i = 0; i < headings.length; i += 1) {
-          // skip name bc already displayed
-          if (headings[i] !== 'name') {
-            if (headings[i] === 'cost') {
-              tripInfo += `<p>${headings[i]}: ${formatCost(response[headings[i]])}</p>`;
-            } else {
-              tripInfo += `<p>${headings[i]}: ${response[headings[i]]}</p>`;
-            }
+      for (let i = 0; i < headings.length; i += 1) {
+        // skip name bc already displayed
+        if (headings[i] !== 'name') {
+          if (headings[i] === 'cost') {
+            tripInfo += `<p>${headings[i]}: ${formatCost(response[headings[i]])}</p>`;
+          } else {
+            tripInfo += `<p>${headings[i]}: ${response[headings[i]]}</p>`;
           }
         }
-        tripInfo += `<button id="show-form" data-id=${tripId}>Interested?</button>`;
-        tripInfo += '</section>';
-        tripInfo += '<section class="reservation">';
-        // tripInfo += `<button class="button" id="show-form" data-id=${tripId}>Book Trip</button>`;
-        tripInfo += '</section></div>';
+      }
+      tripInfo += `<button id="show-form" data-id=${tripId}>Interested?</button>`;
+      // tripInfo += '</section>';
+      tripInfo += '<section class="reservation">';
+      // tripInfo += `<button class="button" id="show-form" data-id=${tripId}>Book Trip</button>`;
+      // tripInfo += '</section></div>';
+      tripInfo += '</section></section>';
 
-        $(`a[data-id=${tripId}]`).addClass('details-loaded');
-        $(`a[data-id=${tripId}]`).after(tripInfo);
-      });
-    }
+      $(`a[data-id=${tripId}]`).addClass('details-loaded');
+      // $(`a[data-id=${tripId}]`).after(tripInfo);
+      $('.trip-details').append(tripInfo);
+      $('.trips').hide();
+      $('.details').hide();
+      $(`section[data-id=${tripId}]`).show();
+    });
+    // }
   };
 
   const loadResForm = function loadResForm(tripId) {
@@ -121,14 +129,23 @@ $(document).ready(() => {
   // };
 
   // events
-  $('#load').on('click', () => {
+  $('.load').on('click', () => {
     // fix styling
-    // $('body').removeClass('init');
-    $('div.init').removeClass('init');
-    // $('div.main').hidden = false;
-    $('div.main').toggle();
-    console.log('loading trips');
-    loadTrips();
+    $('body').removeClass('init');
+    // $('div.init').removeClass('init');
+    $('div.init').hide();
+    $('header').show();
+    $('main').show();
+
+    // check if already loaded
+    if ($('.trips').hasClass('loaded')) {
+      $('.trips').show();
+    } else {
+      // $('div.main').hidden = false;
+      // $('div.main').toggle();
+      console.log('loading trips');
+      loadTrips();
+    }
   });
 
   $('.trips').on('click', 'a', function load() {
@@ -136,7 +153,9 @@ $(document).ready(() => {
 
     // check if loaded
     if ($(this).hasClass('details-loaded')) {
-      $(this).next().toggle();
+      // $(this).next().toggle();
+      $('.details').hide();
+      $(`section[data-id=${tripId}]`).show();
       // const details = $(this).next();
       // const reservation = details.next();
       // // $(this).next().toggle();
@@ -148,7 +167,7 @@ $(document).ready(() => {
   });
 
   // display form when button is clicked
-  $('.trips').on('click', '#show-form', function show() {
+  $('.trip-details').on('click', '#show-form', function show() {
     const tripId = $(this).data('id');
     console.log(tripId);
 

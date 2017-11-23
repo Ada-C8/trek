@@ -23,7 +23,7 @@ body > div.init {
   transform: translateY(-50%);
 }
 
-#load {
+button.load {
   margin: 0;
   text-align: center;
   padding: 1.5rem 3.5rem;
@@ -35,10 +35,33 @@ body > div.init {
   border-radius: 5px;
 }
 
-#load:hover {
+.load:hover {
   background-color: rgba(255, 255, 255, .3)
 }
 
+// body > header > menu.ul > li > a {
+//   color: white;
+// }
+ul.menu > li.is-dropdown-submenu-parent > a {
+  color: white;
+}
+
+.dropdown.menu>li.is-dropdown-submenu-parent>a::after {
+  border-top-color: white;
+}
+
+// $dropdownmenu-arrow-color: white;
+
 section.trip {
   background-color: white;
+}
+
+header {
+  background-image: url('./mts-cow.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.details p {
+  margin: 0 auto;
 }
