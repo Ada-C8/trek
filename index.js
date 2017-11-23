@@ -8,9 +8,13 @@ $.get(
       const { continent } = response[i];
       const { weeks } = response[i];
       $('#trips').append(`<li id='${id}'>
+      <div class='landscape'><img src="assets/landscape.jpg"/></div>
+      <div class='continent'><img src="assets/${continent}.png"/></div>
+      <section class='trip-info'>
         <h3 id='${id}'>${name}</h3>
-        <p>Continent: ${continent}</p>
-        <p>Duration: ${weeks} weeks</p>
+        <p>Modern expedition excursion traveling food culture like a local AirBnb. Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
+        <h5>Explore ➤<span class='float-right'>${weeks} weeks</span></h5>
+        </section>
       </li>`);
     }
   },
@@ -29,32 +33,14 @@ const singleTrip = (id) => {
       const { about } = response;
       const { cost } = response;
       const { category } = response;
-      $(`#${id}`).html(`<h3>${name}</h3>
-        <p>Continent: ${continent}</p>
-        <p>Duration: ${weeks} weeks</p>
-        <p>Cost: ${cost}</p>
-        <p>Category: ${category}</p>
+      $(`#${id}`).html(`<div class='continent'><img src="assets/${continent}.png"/></div>
+        <h3>${name}</h3>
+        <p>${continent}</p>
+        <p>${weeks} weeks</p>
+        <p>$ ${cost}</p>
+        <p>${category}</p>
         <p>${about}</p>
-        <form action='https://trektravel.herokuapp.com/trips/${id}/reservations' method='post'>
-          <section>
-            <label>Name</label>
-            <input type='text' id='name' name='name' />
-          </section>
-
-          <section>
-            <label>Age</label>
-            <input type='text' id='age' name='age' />
-          </section>
-
-          <section>
-            <label>Email</label>
-            <input type='text' id='email' name='email' />
-          </section>
-
-          <section>
-            <button type='submit'>Reserve Trip</button>
-          </section>
-        </form>`);
+        `);
     },
   )
     .fail(() => {
@@ -68,6 +54,7 @@ $(document).ready(() => {
   });
 
   $('#trips').on('click', 'h3', function(event) {
+    console.log(event);
     singleTrip(event.currentTarget.id);
   });
 

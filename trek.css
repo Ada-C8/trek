@@ -1,7 +1,55 @@
-.show {
-  background: pink;
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #393945;
+  background: #f6f6f6;
 }
 
-.hide {
-  display: none;
+li {
+  background: #fff;
+  border-radius: 10px;
+  list-style: none;
+  margin: 0 auto 20px;
+  max-width: 400px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+
+ul {
+  margin: 0 20px;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 0.7em;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.landscape img{
+  border-radius: 5px 5px 0 0;
+}
+
+.continent {
+  margin-top: -24px;
+  text-align: center;
+}
+
+.continent img{
+  width: 44px;
+  height: auto;
+  background: white;
+  padding: 8px 4px;
+  border-radius: 50%;
+}
+
+.trip-info {
+  padding: 10px 20px 20px;
+}
+
+.trip-info p{
+  color: #999;
 }
