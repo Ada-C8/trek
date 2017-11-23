@@ -10,8 +10,8 @@ $.get(
       $('#trips').append(`<li id='${id}'>
       <div class='landscape'><img src="assets/landscape.jpg"/></div>
       <div class='continent'><img src="assets/${continent}.png"/></div>
-      <section class='trip-info'>
-        <h3 id='${id}'>${name}</h3>
+        <h3>${name}</h3>
+        <section class='trip-info'>
         <p>Modern expedition excursion traveling food culture like a local AirBnb. Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
         <h5>Explore ➤<span class='float-right'>${weeks} weeks</span></h5>
         </section>
@@ -27,19 +27,17 @@ const singleTrip = (id) => {
   $.get(
     `https://trektravel.herokuapp.com/trips/${id}`,
     (response) => {
-      const { name } = response;
-      const { continent } = response;
       const { weeks } = response;
       const { about } = response;
       const { cost } = response;
       const { category } = response;
-      $(`#${id}`).html(`<div class='continent'><img src="assets/${continent}.png"/></div>
-        <h3>${name}</h3>
-        <p>${continent}</p>
+      $(`#${id}`).append(`
+        <section class='trip-details'>
         <p>${weeks} weeks</p>
-        <p>$ ${cost}</p>
+        <h1>$ ${cost}</h1>
         <p>${category}</p>
         <p>${about}</p>
+        </section>
         `);
     },
   )
@@ -53,23 +51,27 @@ $(document).ready(() => {
     $('#trips').toggle();
   });
 
-  $('#trips').on('click', 'h3', function(event) {
-    console.log(event);
-    singleTrip(event.currentTarget.id);
+  $('#trips').on('click', 'li', (event) => {
+
+    if($(`#${event.currentTarget.id} h1`).length){
+      console.log("GOT IT!");
+    }else{
+      singleTrip(event.currentTarget.id);
+    }
   });
 
-  $('form').submit( function(e) {
-    e.preventDefault();
-    const url = $(this).attr('action');
-    const formData = $(this).serialize();
-
-    $.post(url, formData, (response) => {
-      $('form').append('<h3>Trip Reserved</h3>');
-      console.log(response);
-    }).fail(() => {
-      $('form').append('<h3>Trip failed to reserve</h3>');
-    }).always(() => {
-      console.log('Making code');
-    });
-  });
+  // $('form').submit( function(e) {
+  //   e.preventDefault();
+  //   const url = $(this).attr('action');
+  //   const formData = $(this).serialize();
+  //
+  //   $.post(url, formData, (response) => {
+  //     $('form').append('<h3>Trip Reserved</h3>');
+  //     console.log(response);
+  //   }).fail(() => {
+  //     $('form').append('<h3>Trip failed to reserve</h3>');
+  //   }).always(() => {
+  //     console.log('Making code');
+  //   });
+  // });
 });
