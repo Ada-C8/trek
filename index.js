@@ -54,6 +54,9 @@ $(document).ready(function() {
       $('#about').append(response.about)
 
       // I am not sure if putting the reservation code with in the scope of the $.get trip is best practice. It is here because this was the simplest way to access the trip's id. I tried using the .data()
+
+      
+      // Form code for submitting a reservation.
       $('#add-res').on('submit', function(event) {
         event.preventDefault();
 
@@ -100,5 +103,4 @@ $(document).ready(function() {
 
 
 
-// Form code for submitting a reservation.
 })
