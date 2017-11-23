@@ -17,23 +17,22 @@ $(document).ready(() => {
     });
   });
 
-
-
-
   let loadTrips = function loadTrips() {
     $.get('https://trektravel.herokuapp.com/trips',
       (response) => {
+
         response.forEach(function(trip) {
           let name = trip.name;
           let continent = trip.continent;
           let weeks = trip.weeks;
           let id = trip.id;
           let basicInfo = `
-            <section class='panel${id}'>
+            <section class='main-info'>
               <h2 data-id=${id} class='accordion2'>${name}</h2>
               <p>Continent: ${continent}</p>
               <p>Duration: ${weeks} week(s)</p>
-            </section>`;
+            </section>
+            <section class='panel${id}'></section>`;
             $('.panel').append(basicInfo);
         }); //loop ends here
       })
@@ -50,12 +49,14 @@ $(document).ready(() => {
   let loadTrip = function loadTrip(id) {
     $.get(`https://trektravel.herokuapp.com/trips/${id}`,
       (response) => {
-        let basicInfo = `
+        let tripDeets = `
+
+          <section class='panel-info'>
+
             <p>ID: ${response.id}</p>
             <p>About: ${response.about}</p>
             <p>Category: ${response.category}</p>
-            <p>Duration: ${response.weeks} week(s)</p>
-            <p>Cost: ${response.cost}</p>
+            <p>Cost: $${response.cost.toFixed(2)}</p>
             <section id='message'></section>
             <form action='https://trektravel.herokuapp.com/trips/${id}/reservations' method='post'>
               <section>
@@ -73,8 +74,12 @@ $(document).ready(() => {
               <section class='button'>
                 <button class='reserve' type='submit'>Reserve Now</button>
               </section>
-            </form>`;
-        $(`.panel${id}`).append(basicInfo);
+            </form>
+
+          </section>
+
+            `;
+        $(`.panel${id}`).html(tripDeets);
       }) //loop ends here
       .fail(function(response) {
         console.log(response);
@@ -86,71 +91,78 @@ $(document).ready(() => {
 
   }; //end of loadTrip
 
-  let accordion = function accordion(){
-    let acc = $('.accordion');
-    let i;
-
-    for (i = 0; i < acc.length; i++) {
-      acc[i].onclick = function(){
-        this.classList.toggle('active');
-        let panel = this.nextElementSibling;
-        if (panel.style.display === 'block') {
-            panel.style.display = 'none';
-        } else {
-            panel.style.display = 'block';
-        }
-      }
-    }
-  }
-
-  // let accordion2 = function accordion2(){
-  //   let acc = $(".accordion2");
-  //   console.log(acc);
-  //   let i;
-  //
-  //   for (i = 0; i < acc.length; i++) {
-  //
-  //     acc[i].onclick = function(){
-  //       this.classList.toggle("active");
-  //       let panel = this.nextElementSibling;
-  //
-  //       if (panel.style.display === "block") {
-  //           panel.style.display = "none";
-  //       } else {
-  //           panel.style.display = "block";
-  //       }
-  //     }
-  //   }
-  // }
 // *****************EVENTS
 
 
   $('.panel').on('click', 'h2', function() {
     let tripId = $(this).attr('data-id');
-    loadTrip(tripId);
+loadTrip(tripId);
+    $(`.panel${tripId}`).addClass('info').toggle();
+
   });
-  $('.allTrips').on('click', function(){
+  // $('.allTrips').on('click', function(){
+  //   loadTrips();
+    // let val;
+    // if ($(this).text() == 'All Trips') {
+    //   return 'Hide';
+    // } else {
+    //   return 'All Trips';
+    // }
+    // // let linkText = $(this).text() == 'All Trips' ? 'Hide' : 'All Trips';
+    // $('.tripsButton').html(linkText);
+  // });
+
+  $('.allTrips').on('click', function() {
+    $('.panel').addClass('active').toggle();
+    // let linkText = $('.panel')[0].childElementCount == 0 ? 'Hide' : 'All Trips' ;
+    // $('.allTrips').html(linkText);
     loadTrips();
-    let val;
-    if ($(this).text() == 'All Trips') {
-      return 'Hide';
-    } else {
-      return 'All Trips';
-    }
-    // let linkText = $(this).text() == 'All Trips' ? 'Hide' : 'All Trips';
-    $('.tripsButton').html(linkText);
+
+
+
+
+    // if ($('.panel').style.display === 'block') {
+    //     $('.panel').style.display = 'none';
+    // } else {
+    //     $('.panel').style.display = 'block';
+    // }
   });
 
-    // accordion();
+});
 
-    // accordion2();
+// let accordion = function accordion(){
+//   let effect = $('.accordion');
+//   let i;
+//
+//   for (i = 0; i < acc.length; i++) {
+//     acc[i].onclick = function(){
+//       this.classList.toggle('active');
+//       let panel = this.nextElementSibling;
+//       if (panel.style.display === 'block') {
+//           panel.style.display = 'none';
+//       } else {
+//           panel.style.display = 'block';
+//       }
+//     }
+//   }
+// }
 
-  // //   $('.allTrips').toggle();
-
-   // });
-  // //
-  // // $('.allTrips ul').on('click', 'p', function() {
-  // //   console.log($(this).text());
-  // // })
-
-})
+// let accordion2 = function accordion2(){
+//   let acc = $(".accordion2");
+//   console.log(acc);
+//   let i;
+//
+//   for (i = 0; i < acc.length; i++) {
+//
+//     acc[i].onclick = function(){
+//       this.classList.toggle("active");
+//       let panel = this.nextElementSibling;
+//
+//       if (panel.style.display === "block") {
+//           panel.style.display = "none";
+//       } else {
+//           panel.style.display = "block";
+//       }
+//     }
+//   }
+// }

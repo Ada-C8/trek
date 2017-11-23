@@ -1,7 +1,18 @@
-/*section.panel {
-  display: none;
+section.panel {
+  /*display: none;*/
+  background: red;
 }
 
-section.panel2 {
-  display: none;
-}*/
+/*section.panel2 {*/
+  /*display: none;*/
+/*}*/
+
+.active {
+  display:block;
+}
+.info {
+  display: block;
+}
+.button {
+  content: "";
+}
