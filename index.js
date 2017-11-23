@@ -1,47 +1,11 @@
 $(document).ready(()=>{
   $('#reservation-form').hide();
   console.log('we are inside');
-  //$('#trips').append('<h3>A list of trips should go here.</h3>')
-
-  // const filtersHTML =
-  //   '<button class="continent-all is-active">All Items</button> \
-	// 	<button class="continent-asia">Asia</button> \
-	//  	<button class="continent-africa">Africa</button> \
-	//  	<button class="continent-europe">Europe</button> \
-  //   <button class="continent-southamerica">South America</button>\
-  //   <button class="continent-australasia">Australasia</button>';
-  //
-  // function filterContinent(continent){
-  //   if(fActive != continent){
-  //     $('.listed-trip').filter('.'+continent)
-  //     let fActive = continent;
-  // 		$('#listed-trip').removeClass("is-active");
-  //   }
-  // }
-  //
-  // $('.continent-asia').click(function(){
-  //   filterColor('blue');
-  //   $(this).addClass("is-active");
-  // });
-  // $('.continent-africa').click(function(){
-  //   filterColor('green');
-  //   $(this).addClass("is-active");
-  // });
-  //
-  // $('.continent-all').click(function(){
-  //   $('.listed-trip').slideDown();
-  //   fActive = 'all';
-  // 	$(this).addClass("is-active");
-  // });
-  //
-  // let applyFilters = function applyFilters() {
-  //   $('trips ul').append(filtersHTML)
-  // };
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
   let loadTrips = function loadTrips() {
      $('.globe-large').hide();
-     $('#trips #trips-ul').before('<div class="adventure-container"><h2 class="adventure">Pick Your Adventure:</h2></div>');
+     $('#trips').before('<div class="adventure-container"><h2 class="adventure">Pick Your Adventure:</h2></div>');
 
      //stores array of continents:
      let continentArray = []
@@ -51,7 +15,7 @@ $(document).ready(()=>{
       console.log('success!');
       response.forEach(function(trip) {
         let tripInfo =
-        `<li id='listed-trip' trip-id=${trip.id} trip-continent=${trip.continent}>${trip.name}</li>`;
+        `<li class='listed-trip ${trip.continent}' trip-id=${trip.id}>${trip.name}</li>`;
         //console.log(trip);
         $('#trips #trips-ul').append(tripInfo);
         continentArray.push(trip.continent);
@@ -71,13 +35,16 @@ $(document).ready(()=>{
   };
 
   //create html elements to create a button for each continent
-  let continents = ['Africa','Asia','Australasia','Europe','South America','North America','Antarctica'];
-  let continentsHTML = '';
+    let createFilters = function createFilters() {
+      console.log('inside create filters');
+      const continents = ['Africa','Asia','Australasia','Europe','South America','North America','Antarctica'];
 
-  continents.forEach(function(continent) {
-    // continentsHTML +=<li class='continent></li>'
-  });
-
+      continents.forEach(function(continent) {
+        let continentHTML = `<li class='continent' class=${continent} continent-name=${continent} >${continent}</li>`;
+        $('#trips #continent-ul').append(continentHTML);
+        console.log('printed continents!');
+      });
+    };
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC TRIP
     let loadTrip = function loadTrip(id){
@@ -149,6 +116,7 @@ const submitReservation = function submitReservation() {
 //EVENTS
   $('#load').on('click', function(){
     loadTrips();
+    createFilters();
     //tried the below to try to receive the set of continents. returns an empty array.
     //let continentList = loadTrips();
     //console.log(continentList);
@@ -163,7 +131,7 @@ const submitReservation = function submitReservation() {
   $('#trip').on('click','#reserve-button', function(){
     console.log('inside reservation form button');
     console.log($(this).attr('reservation-trip-id'));
-    let tripID = $(this).attr('reservation-trip-id');
+    // let tripID = $(this).attr('reservation-trip-id');
     $('#reservation-form').show()
     $('#reserve-button').hide();
   });
@@ -176,9 +144,12 @@ const submitReservation = function submitReservation() {
   });
 
 //FILTER EVENTS
-  $('#trips #continentFilters').on('click', '#continent', function(){
-    let tripID = $(this).attr('trip-id');
-    loadTrip(tripID);
+  $('#continent-ul').on('click', '.continent', function(){
+    console.log('clicked continent button');
+    let continentName = $(this).attr('continent-name');
+    console.log(continentName);
+    $(`.listed-trip`).hide();
+    $('.listed-trip').filter(`.${continentName}`).show();
   });
 
 });
