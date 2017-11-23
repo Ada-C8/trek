@@ -1,21 +1,24 @@
+// a tag event.preventDefault
+
 const ALL_TRIPS_URL = 'https://trektravel.herokuapp.com/trips';
 
 // build all trips
 let buildAllTrips = function buildAllTrips() {
 
   const successResponse = function successResponse(response) {
+    let allTrips = '';
     response.forEach(function(trip) {
       let name = trip.name,
           continent = trip.continent,
           weeks = trip.weeks;
       let tripsAppend = `<li data-id=${trip.id}>` + '<h5 >' + name + '</h5></li>'
-
-      $('.list-trips ul').append(tripsAppend);
+      allTrips += tripsAppend;
     });
+    $('.list-trips ul').html(allTrips);
   };
 
   const failResponse = function failResponse() {
-    $(".result").html("Failed to make reservation");
+    $(".result").html("Failed to make reservation").show().delay(1000).fadeOut();
   };
 
   $.get(ALL_TRIPS_URL,
@@ -35,6 +38,7 @@ let createReservation = function createReservation(event) {
   const successResponse = function successResponse() {
     console.log('Post successful');
     $("#add-res").html("Successfully made reservation");
+    $(this).siblings('.make-reservation').show();
   };
 
   const failResponse = function failResponse() {
@@ -48,21 +52,29 @@ let createReservation = function createReservation(event) {
 
 // build individual trip data
 let buildIndividualTrip = function buildIndividualTrip(event) {
+  console.log($(this).children());
+  if ($(this).find('div').length > 0) {
+    $(this).find('div')[0].remove();
+    return;
+  }
     let tripId = $(this).attr('data-id');
     let tripUrl = ALL_TRIPS_URL + '/' + `${tripId}`;
     $.get(tripUrl, response => {
-      $(this).append(
+      let $div = $('<div></div>');
+      $($div).append(
         '<p>Location: ' + response.continent + '</p>' + '<p>Duration: ' + response.weeks + ' (week(s))</p>' +
-        '<p>Category: ' + response.category + '</p>' + '<p>Cost: $' + response.cost + '</p>' + '<p>Description: ' + response.about + '</p>')
-      $(this).append('<div class="button">Make a Reservation</div>');
-
-      $(this).click((event) => {
-        event.stopPropagation();
-      });
+        '<p>Category: ' + response.category + '</p>' + '<p>Cost: $' + response.cost + '</p>' + '<p>Description: ' + response.about + '</p>' +
+        '<div class="button make-reservation">Make a Reservation</div>')
+      $($div).append('');
+      $(this).append($div);
+      // $(this).click((event) => {
+      //   event.stopPropagation();
+      // });
 
       // listen for button click to make reservation
-      $(this).one('click', 'div', function() {
+      $(this).one('click', 'div.button', function(event) {
         // generate form
+        event.stopPropagation();
         let form = `<form action="${tripUrl}/reservations" id="add-res">
         <label for="name">Name: </label><input type="text" name="name"></input>
         <label for="age"></label>Age: <input type="number" name="age"></input>
@@ -71,11 +83,14 @@ let buildIndividualTrip = function buildIndividualTrip(event) {
         </form>`;
         $(this).after(form).hide();
       }); //.one click to make res
-
     });
-
 }
+// function to stop propagation of click event
+let stopPropagation = function stopPropagation(event) {
+  event.stopPropagation();
+};
 
+// li represents each trip;
 $(document).ready(() => {
   // listen for all-trips
   $('#all-trips').click(function() {
@@ -87,4 +102,5 @@ $(document).ready(() => {
 
   // listen for submit and post
   $('.list-trips').on('submit', '#add-res', createReservation);
+  $('.list-trips').on('click', '#add-res', stopPropagation);
 }); //document.ready
