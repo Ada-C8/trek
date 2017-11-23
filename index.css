@@ -49,7 +49,7 @@ body{
   color: #FF5733;
 }
 
-.button a{
+.button a, input.button{
   text-align: center;
   border: 1px black solid;
   border-radius: .2em ;

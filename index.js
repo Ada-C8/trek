@@ -3,10 +3,16 @@ $(document).ready(()=>{
   let loadTrips = function loadTrips (){
     $.get('https://trektravel.herokuapp.com/trips',
     (response) => {
+      let tripInfo = '';
+        // let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name}, ${trip.continent}</a></li></h3><p> `
       response.forEach(function(trip) {
-        let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name}, ${trip.continent}</a></li></h3><p> `
-        $('#trips ol').append(tripInfo);
-      }); // forEach
+        tripInfo += `<tr data-id=${trip.id}>`
+        for (let attr in trip) {
+          tripInfo += '<td>' + trip[attr] + '</td>'
+        } // for loop
+        tripInfo += '</tr>'
+      })// forEach
+      $('#trips table').html(tripInfo);
     }) // .get, response
     .fail(function(response){
       console.log(response);
@@ -31,7 +37,7 @@ $(document).ready(()=>{
         <p> <b> Weeks: </b>${response.weeks}</p>
         <p> <b> Cost: </b>${response.cost}</p></div>
 
-        <form id="add-trip-form" action = "https://trektravel.herokuapp.com/trips/${id}/reservations">
+        <form id="add-trip-form" class="row" action = "https://trektravel.herokuapp.com/trips/${id}/reservations">
         <label for="name">Name:</label>
         <input type="text" name="name"></input>
 
@@ -49,34 +55,41 @@ $(document).ready(()=>{
         $('#fail').html('<p> Request was unsuccessful </p>')
       });
     };
+    // $('#trips table').on('click', 'tr',  function(){
+    //   let tripID = $(this).attr('data-id');
+    //   console.log(tripID);
+    //   loadTrip(tripID);
+    //   // console.log(loadTrip);
+    // });
 
     // Function to submit form to the DB
 
-      const successCallback = function(response) {
-        console.log("POST request was successful");
-        console.log(response);
+    const successCallback = function(response) {
+      console.log("POST request was successful");
+      console.log(response);
 
-        let generatedHMTL = '<p>Everything went great,';
-        generatedHMTL += `and your trip ${ response["name"] } has been added to the DB!</p>`;
-        $('#ajax-results').html(generatedHMTL);
-      }
+      let generatedHMTL = '<p>Everything went great,';
+      generatedHMTL += `and your trip ${ response["name"] } has been added to the DB!</p>`;
+      $('#ajax-results').html(generatedHMTL);
+      // $('#trip').html('');
+    }
 
-      $('#trip').on('submit','#add-trip-form',function(event){
-        event.preventDefault();
+    $('#trip').on('submit','#add-trip-form',function(event){
+      event.preventDefault();
 
-        let formData = $('#add-trip-form').serialize();
-        console.log(formData);
+      let formData = $('#add-trip-form').serialize();
+      console.log(formData);
 
-        const url = $('#add-trip-form').attr('action');
+      const url = $('#add-trip-form').attr('action');
 
-        $.post(url, formData, successCallback).fail((response) => {
-          console.log("Couldn't post the data ");
-        });
+      $.post(url, formData, successCallback).fail((response) => {
+        console.log("Couldn't post the data ");
       });
+    });
 
     // Events
 
-    $('#trips').on('click', 'h3', function(){
+    $('#trips table').on('click', 'tr', function(){
       let tripID = $(this).attr('data-id');
       $('#trip').show();
       loadTrip(tripID);
@@ -87,10 +100,7 @@ $(document).ready(()=>{
     });
 
     $("#load").click(function(){
-        $("#trip").hide();
+      $("#trip").hide();
     });
 
-    // $("#back").click(function(){
-    //     $("#trip").hide();
-    // });
   }); //.ready
