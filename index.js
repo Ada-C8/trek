@@ -1,7 +1,6 @@
 
 const getTrips = function getTrips() {
-  // if (query[0].empty()) {
-    $('#tripList ol').show();
+    $('#tripList ol').empty();
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       console.log(response);
       response.forEach((trip) => {
@@ -14,29 +13,26 @@ const getTrips = function getTrips() {
     })
     .always(() => {
       console.log('always even if we have success or failure');
-    }); // } else {
-
-    // }
-
+    });
   }; // end of getTrips function
 
   const viewTripsbyContinent = function viewTripsbyContinent() {
     const continentDropdown = `<select id="continentSelector">
     <option value="null">Continents</option>
-    <option value="africa">Africa</option>
-    <option value="asia">Asia</option>
-    <option value="australia">Australia</option>
-    <option value="europe">Europe</option>
-    <option value="northAmerica">North America</option>
-    <option value="southAmerica">South America</option>
+    <option value="Africa">Africa</option>
+    <option value="Asia">Asia</option>
+    <option value="Australasia">Australasia</option>
+    <option value="Europe">Europe</option>
+    <option value="NorthAmerica">North America</option>
+    <option value="SouthAmerica">South America</option>
     </select>`;
-    $('#tripsByContientSelector').append(continentDropdown);
-    $('#tripsByContientSelector').change(function() {
-      // $('#tripList ol').hide();
+    $('#tripsByContinentSelector').append(continentDropdown);
+    $('#tripsByContinentSelector').change(function() {
+      $('#tripList ol').empty();
       let e = document.getElementById('continentSelector');
       // console.log(e);
       let selectedContinent = e.options[e.selectedIndex].text;
-      // console.log(selectedContinent);
+      console.log(selectedContinent);
 
       $.get(`https://trektravel.herokuapp.com/trips/continent?query=${selectedContinent}`, (response) => {
         console.log(response);
