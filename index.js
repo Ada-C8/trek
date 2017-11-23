@@ -7,14 +7,17 @@ $.get(
       const { name } = response[i];
       const { continent } = response[i];
       const { weeks } = response[i];
+
       $('#trips').append(`<li id='${id}'>
       <div class='landscape'><img src="assets/landscape.jpg"/></div>
+      <article>
       <div class='continent'><img src="assets/${continent}.png"/></div>
         <h3>${name}</h3>
         <section class='trip-info'>
         <p>Modern expedition excursion traveling food culture like a local AirBnb. Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
         <h5>Explore ➤<span class='float-right'>${weeks} weeks</span></h5>
         </section>
+        </article>
       </li>`);
     }
   },
@@ -31,7 +34,10 @@ const singleTrip = (id) => {
       const { about } = response;
       const { cost } = response;
       const { category } = response;
-      $(`#${id}`).append(`
+
+      $(`#${id} .trip-info`).hide();
+      $(`#${id} .landscape`).animate({height:200},600);
+      $(`#${id} article`).append(`
         <section class='trip-details'>
         <p>${weeks} weeks</p>
         <h1>$ ${cost}</h1>
@@ -52,11 +58,16 @@ $(document).ready(() => {
   });
 
   $('#trips').on('click', 'li', (event) => {
+    const tripId = event.currentTarget.id;
+    const tripDetail = `#${tripId} .trip-details`;
 
-    if($(`#${event.currentTarget.id} h1`).length){
-      console.log("GOT IT!");
+    if($(tripDetail).length){
+
+      $(`#${tripId} .trip-info`).show();
+      $(`#${tripId} .landscape`).animate({height:480},600);
+      $(tripDetail).remove();
     }else{
-      singleTrip(event.currentTarget.id);
+      singleTrip(tripId);
     }
   });
 
