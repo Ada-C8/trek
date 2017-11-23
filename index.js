@@ -1,25 +1,39 @@
 /* eslint-disable */
 
+// --------------- All Trips HTML ---------------
+const tripAppend = (trip) => {
+  $('#trips').append(`
+  <li id='${trip.id}'>
+    <div class='landscape'><img src="assets/${trip.continent}land.jpg"/></div>
+    <article>
+      <div class='continent'><img src="assets/${trip.continent}.png"/></div>
+      <h3>${trip.name}</h3>
+      <section class='trip-info'>
+        <p>Modern expedition excursion traveling food culture like a local AirBnb. Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
+      </section>
+      <h5>Explore ➤<span class='float-right'>${trip.weeks} weeks</span></h5>
+    </article>
+  </li>`);
+};
+
+// --------------- All Trips -------------------
+const tripArray = [];
+
 $.get(
   'https://trektravel.herokuapp.com/trips',
   (response) => {
     for (let i = 0; i < response.length; i += 1) {
-      const { id } = response[i];
-      const { name } = response[i];
-      const { continent } = response[i];
-      const { weeks } = response[i];
+      const trip = {};
+      trip.id = response[i].id;
+      trip.name = response[i].name;
+      trip.continent = response[i].continent;
+      trip.weeks = response[i].weeks;
 
-      $('#trips').append(`<li id='${id}'>
-      <div class='landscape'><img src="assets/${continent}land.jpg"/></div>
-      <article>
-      <div class='continent'><img src="assets/${continent}.png"/></div>
-        <h3>${name}</h3>
-        <section class='trip-info'>
-        <p>Modern expedition excursion traveling food culture like a local AirBnb. Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
-        <h5>Explore ➤<span class='float-right'>${weeks} weeks</span></h5>
-        </section>
-        </article>
-      </li>`);
+      tripArray.push(trip);
+
+      if (i < 5) {
+        tripAppend(trip);
+      }
     }
   },
 )
@@ -27,20 +41,19 @@ $.get(
     $('#main').append('<h3>Request failed</h3>');
   });
 
+// -------------- Single Trip ------------------
 const singleTrip = (id) => {
   $.get(
     `https://trektravel.herokuapp.com/trips/${id}`,
     (response) => {
-      const { weeks } = response;
       const { about } = response;
       const { cost } = response;
       const { category } = response;
 
       $(`#${id} .trip-info`).hide();
-      $(`#${id} .landscape`).animate({ height:200 }, 600);
+      $(`#${id} .landscape`).animate({ height: 200 }, 600);
       $(`#${id} article`).append(`
         <section class='trip-details'>
-        <p>${weeks} weeks</p>
         <h1>$ ${cost}</h1>
         <p>${category}</p>
         <p>${about}</p>
@@ -53,6 +66,7 @@ const singleTrip = (id) => {
     });
 };
 
+// -------------- Document Ready ------------------
 $(document).ready(() => {
   $('#all-trips').click(() => {
     $('#trips').toggle();
@@ -70,19 +84,21 @@ $(document).ready(() => {
       singleTrip(tripId);
     }
   });
+});
 
-  // $('form').submit( function(e) {
-  //   e.preventDefault();
-  //   const url = $(this).attr('action');
-  //   const formData = $(this).serialize();
-  //
-  //   $.post(url, formData, (response) => {
-  //     $('form').append('<h3>Trip Reserved</h3>');
-  //     console.log(response);
-  //   }).fail(() => {
-  //     $('form').append('<h3>Trip failed to reserve</h3>');
-  //   }).always(() => {
-  //     console.log('Making code');
-  //   });
-  // });
+// -------------- Infinite Scroll ---------------
+
+document.addEventListener('scroll', () => {
+  const scrollHeight = $(document).height();
+  const scrollPosition = $(window).height() + $(window).scrollTop();
+  const start = $('#trips')[0].childElementCount;
+
+  if (((scrollHeight - scrollPosition) / scrollHeight === 0) && start < tripArray.length) {
+    const tripsLeft = tripArray.length - start;
+    const end = tripsLeft < 5 ? start + tripsLeft : (start) + 5;
+
+    for (let i = (start); i < end; i += 1) {
+      tripAppend(tripArray[i]);
+    }
+  }
 });
