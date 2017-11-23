@@ -1,18 +1,16 @@
-const url = 'https://trektravel.herokuapp.com/trips'
+const url = 'https://trektravel.herokuapp.com/trips';
 
-const successCallback = function(response) {
-  console.log("POST request was successful");
-  console.log(response);
+const successCallback = function successCallback(response) {
+  // console.log('POST request was successful');
+  // console.log(response);
 
   let generatedHMTL = '<p>Everything went great,';
-  generatedHMTL += ` and your reservation ${ response["name"] } has been added to the DB!</p>`;
+  generatedHMTL += ` and your reservation ${response.name} has been added to the DB!</p>`;
   $('#ajax-results').html(generatedHMTL);
 };
 
 $(document).ready(function() {
-  const getTrips = function getTrips () {
-    // let url = 'https://trektravel.herokuapp.com/trips'
-
+  const getTrips = getTrips() => {
     $.get(url,
       function (response) {
         $('#trips ul').html('')
@@ -55,7 +53,7 @@ $(document).ready(function() {
 
       // I am not sure if putting the reservation code with in the scope of the $.get trip is best practice. It is here because this was the simplest way to access the trip's id. I tried using the .data()
 
-      
+
       // Form code for submitting a reservation.
       $('#add-res').on('submit', function(event) {
         event.preventDefault();
@@ -80,7 +78,6 @@ $(document).ready(function() {
     });
   } // end trip(id)
 
-  // $('#loadTrips').on('click', getTrips)
   $('#load-trips').on('click', getTrips)
 
 
@@ -100,7 +97,4 @@ $(document).ready(function() {
     $('#trip').show();
     $('#trips').hide();
   });
-
-
-
 })
