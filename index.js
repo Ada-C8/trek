@@ -51,7 +51,7 @@ $(document).ready(() => {
       console.log(response);
       const singleTripTable = `
       <h3>Trip Details</h3>
-      <table id="atrip-table" class="responsive">
+      <table id="atrip-table" class="responsive scroll">
         <thead id="atrip-head">
           <tr>
             <th>ID</th>
