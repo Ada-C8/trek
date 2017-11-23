@@ -16,8 +16,8 @@ $(document).ready(() => {
                               <h2>${trip.name}</h2>
                               <p>Continent: ${trip.continent}</p>
                               <p>Weeks: ${trip.weeks}</p>
-                              <button id="${trip.id}" class="button view-trip-details-btn">More Information</button>
-                              <section class="trip-details"></section>
+                              <button data-trip-id="${trip.id}" class="button view-trip-details-btn">More Information</button>
+                              <section data-toggled="false" class="trip-details"></section>
                             </article>`;
           allTrips += tripText;
         });
@@ -28,20 +28,34 @@ $(document).ready(() => {
 
   // view trip details on click
   $('#results').on('click', 'button.view-trip-details-btn', function callback() {
-    const tripID = $(this).attr('id');
+    const tripID = $(this).data('trip-id');
     const url = `https://trektravel.herokuapp.com/trips/${tripID}`;
     $.get(
       url,
       (response) => {
         // id, name, about, continent, category, weeks, cost
-        // create html for more details and add text
-        // create button to reserve a spot
-        const detailsText = `<h3>Details:</h3>
-                             <p>Category: ${response.category}</p>
-                             <p>Cost: $${response.cost}</p>
-                             <p>About: ${response.about}</p>`;
         const tripDetailsContainer = $(this).next();
-        tripDetailsContainer.html(detailsText);
+        console.log(`toggle status before press: ${tripDetailsContainer.data('toggled')}`);
+
+        // if toggled is true
+        if (tripDetailsContainer.data('toggled') === 'true') {
+          // hide details
+          tripDetailsContainer.data('toggled', 'false');
+          console.log('hid text');
+          tripDetailsContainer.html('');
+          $(this).text('More Information');
+        } else { // if toggled is false
+          // show details
+          console.log('showed text');
+          tripDetailsContainer.data('toggled', 'true');
+          const detailsText = `<h3>Details:</h3>
+          <p>Category: ${response.category}</p>
+          <p>Cost: $${response.cost}</p>
+          <p>About: ${response.about}</p>`;
+          tripDetailsContainer.html(detailsText);
+          $(this).text('Hide Information');
+        }
+        console.log(`toggle status after press: ${tripDetailsContainer.data('toggled')}`);
       },
     );
   });
