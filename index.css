@@ -1,0 +1,24 @@
+#landing {
+  background-image: url('alfred-aloushy-256267.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 2em;
+}
+
+.index-button {
+  font-size: 2em;
+}
+
+.site-name, .index-button {
+  display: inline-block;
+}
+
+.site-name {
+  margin-right: 2em;
+}
+
+.trip-container {
+  background-color: white;
+  padding: 2em;
+  border-color: black;
+}

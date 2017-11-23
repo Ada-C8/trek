@@ -3,7 +3,7 @@ $(document).ready(() => {
     const url = 'https://trektravel.herokuapp.com/trips';
     $.get(url, (indexResponse) => {
       $('table:first-child').replaceWith(`<table class="trips"><tr>
-      <th>Name</th>
+      <th>Trip Name</th>
       <th>Continent</th>
       <th>Duration</th>
       </tr></table>`);
@@ -21,19 +21,20 @@ $(document).ready(() => {
   const show = function show(trip) {
     const url = `https://trektravel.herokuapp.com/trips/${trip}`;
     $.get(url, (showResponse) => {
-      $('.show-trip').replaceWith(`<div class="show-trip">
-        <h2>${showResponse.name}</h2>
-        <h3>Price: $${showResponse.cost}</h3>
-        <h3>Trip Duration: ${showResponse.weeks} Weeks</h3>
-        <h3>Continent: ${showResponse.continent}</h3>
-        <h3>Category: ${showResponse.category}</h3>
+      $('.show-trip').replaceWith(`<div class="show-trip"><div class="trip-container">
+        <h3>${showResponse.name}</h3>
+        <h4>Price: $${showResponse.cost}</h4>
+        <h4>Trip Duration: ${showResponse.weeks} Weeks</h4>
+        <h4>Continent: ${showResponse.continent}</h4>
+        <h4>Category: ${showResponse.category}</h4>
+        <h4>About Trip:</h4>
         <p>${showResponse.about}</p>
         <form action="https://trektravel.herokuapp.com/trips/${trip}/reservations" method="post">
           <section>
             <label>Name</label>
             <input type="text" id="name" name="name" />
             <label>Age</label>
-            <input type="integer" id="age" name="age" />
+            <input type="text" id="age" name="age" />
             <label>Email</label>
             <input type="text" id="email" name="email" />
           </section>
@@ -41,6 +42,7 @@ $(document).ready(() => {
             <button type="submit">Make Reservation</button>
           </section>
         </form>
+      </div>
       </div>`);
     }).fail(() => {
       $('.message').html('<h2>Sorry, something went wrong! Try back later...</h2>');
@@ -48,6 +50,7 @@ $(document).ready(() => {
   };
   $('.index-button').click((e) => {
     $(e.target).hide();
+    $(e.target).addClass('off-landing');
     $('.show-trip').hide();
     $('.index-trips').show();
     $('.show-trip').replaceWith('<div class="show-trip"></div>');
