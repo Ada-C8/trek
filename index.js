@@ -1,5 +1,3 @@
-// a tag event.preventDefault
-
 const ALL_TRIPS_URL = 'https://trektravel.herokuapp.com/trips';
 
 // build all trips
@@ -11,14 +9,14 @@ let buildAllTrips = function buildAllTrips() {
       let name = trip.name,
           continent = trip.continent,
           weeks = trip.weeks;
-      let tripsAppend = `<li data-id=${trip.id}>` + '<h5 >' + name + '</h5></li>'
+      let tripsAppend = `<li data-id=${trip.id}>` + '<h5><a href>' + name + '</a></h5></li>'
       allTrips += tripsAppend;
     });
     $('.list-trips ul').html(allTrips);
   };
 
   const failResponse = function failResponse() {
-    $(".result").html("Failed to make reservation").show().delay(1000).fadeOut();
+    $(".failure").html("Failed to make reservation").show().delay(1000).fadeOut();
   };
 
   $.get(ALL_TRIPS_URL,
@@ -37,13 +35,14 @@ let createReservation = function createReservation(event) {
 
   const successResponse = function successResponse() {
     console.log('Post successful');
-    $("#add-res").html("Successfully made reservation");
+    $("#add-res").html("Successfully made reservation").addClass('success');
+    // TODO: below code isn't working - how to make button reappear?
     $(this).siblings('.make-reservation').show();
   };
 
   const failResponse = function failResponse() {
     console.log('Post unsuccessful');
-    $(".result").html("Failed to make reservation");
+    $(".failure").html("Failed to make reservation");
   };
 
   $.post(resUrl, formData, successResponse()).fail(failResponse)
@@ -52,6 +51,7 @@ let createReservation = function createReservation(event) {
 
 // build individual trip details
 let buildIndividualTrip = function buildIndividualTrip(event) {
+  event.preventDefault();
   console.log($(this).children());
   if ($(this).find('div').length > 0) {
     $(this).find('div')[0].remove();

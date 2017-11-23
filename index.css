@@ -33,6 +33,14 @@ h1 {
   background-color: rgb(57, 103, 79);
 }
 
+.success {
+  color: rgb(37, 143, 23);
+}
+
+.failure {
+  color: rgb(171, 24, 77);
+}
+
 /*TRIPS LIST*/
 .list-trips ul {
   list-style-type: none;
@@ -44,6 +52,19 @@ h5 {
   font-family: courier;
   color: white;
 }
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: rgb(103, 221, 159);
+}
+
+/*TODO: blow code doesn't work; a tags are colored blue after being clicked - how to change this color?*/
+/*a:visited {
+  color: rgb(103, 221, 159);
+}*/
 
 /*INDIVIDUAL TRIP DETAILS*/
 #add-res {
