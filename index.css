@@ -8,7 +8,6 @@ font-family: 'Biryani', sans-serif;*/
 
 
 html {
-  /*margin-left: 15px;*/
   font-family: 'Roboto', sans-serif;
   /*height: 100%;*/
   /*box-sizing: border-box;*/
@@ -71,7 +70,7 @@ header {
   color:black;
 }*/
 
-#trips ul {
+#trips #trips-ul {
   /*display: flex;*/
   /*flex-direction: column;*/
   /*align-items: center;*/
@@ -83,6 +82,8 @@ header {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
 
 }
 
@@ -91,11 +92,11 @@ header {
   /*list-style: none;*/
 }
 
-#trips ul li:hover {
+#trips #trips-ul li:hover {
   color: orange;
 }
 
-#trips ul li {
+#trips #trips-ul li {
   /*width:300px;
   padding: 8px;
   background-color: #327a9e;
@@ -154,6 +155,7 @@ header {
 p {
   margin: 0;
   padding: 5px;
+  padding-bottom: 10px;
 }
 
 form {

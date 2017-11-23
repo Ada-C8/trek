@@ -6,18 +6,16 @@ $(document).ready(()=>{
   // const filtersHTML =
   //   '<button class="continent-all is-active">All Items</button> \
 	// 	<button class="continent-asia">Asia</button> \
-	// 	<button class="continent-africa">Africa</button> \
-	// 	<button class="continent-europe">Europe</button> \
+	//  	<button class="continent-africa">Africa</button> \
+	//  	<button class="continent-europe">Europe</button> \
   //   <button class="continent-southamerica">South America</button>\
-  //   <button class="continent-australasia">Australasia</button>'
-
-  // let fActive;
+  //   <button class="continent-australasia">Australasia</button>';
+  //
   // function filterContinent(continent){
   //   if(fActive != continent){
-  //     $('.listed-trip').filter('.'+continent).slideDown();
-  //     $('.listed-trip').filter(':not(.'+continent+')').slideUp();
-  //     fActive = continent;
-  // 		$('button').removeClass("is-active");
+  //     $('.listed-trip').filter('.'+continent)
+  //     let fActive = continent;
+  // 		$('#listed-trip').removeClass("is-active");
   //   }
   // }
   //
@@ -43,18 +41,25 @@ $(document).ready(()=>{
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
   let loadTrips = function loadTrips() {
      $('.globe-large').hide();
-     $('#trips ul').before('<div class="adventure-container"><h2 class="adventure">Pick Your Adventure:</h2></div>');
+     $('#trips #trips-ul').before('<div class="adventure-container"><h2 class="adventure">Pick Your Adventure:</h2></div>');
+
+     //stores array of continents:
+     let continentArray = []
+     let continentSet = [];
+
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       console.log('success!');
       response.forEach(function(trip) {
         let tripInfo =
-        `<li id='listed-trip' trip-id=${trip.id}>${trip.name}</li>`;
-        //took this out of tripInfo:
-        //<li> Continent: ${trip.continent}</li>
+        `<li id='listed-trip' trip-id=${trip.id} trip-continent=${trip.continent}>${trip.name}</li>`;
         //console.log(trip);
-        $('#trips ul').append(tripInfo);
-        $('#load').hide();
+        $('#trips #trips-ul').append(tripInfo);
+        continentArray.push(trip.continent);
       });
+      $('#load').hide();
+      //console.log(`continentArray: ${continentArray}`);
+      continentSet = [...new Set(continentArray)];
+      console.log(`continentSet: ${continentSet}`);
     })
         .fail(function(){
           console.log('failure');
@@ -62,7 +67,17 @@ $(document).ready(()=>{
         .always(function(){
           console.log('Action complete');
         });
+      //return continentSet;
   };
+
+  //create html elements to create a button for each continent
+  let continents = ['Africa','Asia','Australasia','Europe','South America','North America','Antarctica'];
+  let continentsHTML = '';
+
+  continents.forEach(function(continent) {
+    // continentsHTML +=<li class='continent></li>'
+  });
+
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC TRIP
     let loadTrip = function loadTrip(id){
@@ -134,9 +149,12 @@ const submitReservation = function submitReservation() {
 //EVENTS
   $('#load').on('click', function(){
     loadTrips();
+    //tried the below to try to receive the set of continents. returns an empty array.
+    //let continentList = loadTrips();
+    //console.log(continentList);
   });
 
-  $('#trips ul').on('click', 'li', function(){
+  $('#trips #trips-ul').on('click', 'li', function(){
     let tripID = $(this).attr('trip-id');
     loadTrip(tripID);
   });
@@ -155,6 +173,12 @@ const submitReservation = function submitReservation() {
     console.log('submitted reservation');
     submitReservation();
     $('#reservation-form').hide();
+  });
+
+//FILTER EVENTS
+  $('#trips #continentFilters').on('click', '#continent', function(){
+    let tripID = $(this).attr('trip-id');
+    loadTrip(tripID);
   });
 
 });
