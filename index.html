@@ -15,13 +15,20 @@
     <section>
       <button id="load-trips"> Find Trips </button>
 
+      <div id="fail">
 
+      </div>
       <div id="trips"><ul></ul></div>
     </section>
 
     <section>
       <div id="ajax-results"></div>
       <div id="trip" hidden=true>
+        <p id="name"></p>
+        <p> Category: <span id="category"></span></p>
+        <p> Duration: <span id="duration"></span></p>
+        <p> Cost: <span id="cost"></span></p>
+        <p> About: <span id="about"></span></p>
         <form id="add-res">
           <label for="name"> Name </label>
           <input type="text" name="name"></input>

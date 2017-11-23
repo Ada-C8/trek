@@ -22,9 +22,12 @@ $(document).ready(function() {
 
           $('#trips ul').append(`<li><a href="" data-id="${trip['id']}" >${trip.name}</a></li>`)
         })
-
       } // end function (response)
     ) // end $.get
+    .fail(function(response){
+      console.log(response);
+      $('#fail').html('<p>Request was unsuccessful</p>');
+    });
   } // end getTrips()
 
   const trip = function trip (id) {
@@ -38,17 +41,14 @@ $(document).ready(function() {
       let tripInfo =
       `
       <h2 data-id=${response.id}> ${response.name} </h2>
-      <p> Category: ${response.category} </p>
-      <p> Duration: ${response.weeks} weeks </p>
-      <p> Cost: $${response.cost} </p>
-      <p> About: ${response.about} </p>
-
-
-
       `;
 
 
-      $('#trip').html(tripInfo)
+      $('#name').append(tripInfo)
+      $('#category').append(response.category)
+      $('#duration').append(response.duration)
+      $('#cost').append(response.cost)
+      $('#about').append(response.about)
     }) // end $.get
 
   } // end trip(id)
