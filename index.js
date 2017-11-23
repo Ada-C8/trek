@@ -42,7 +42,8 @@ $(document).ready(()=>{
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
   let loadTrips = function loadTrips() {
-     $('#trips ul').append('<h2>Pick Your Adventure:</h3>');
+     $('.globe-large').hide();
+     $('#trips ul').append('<h2 class="adventure">Pick Your Adventure:</h3>');
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       console.log('success!');
       response.forEach(function(trip) {
@@ -70,11 +71,11 @@ $(document).ready(()=>{
           console.log(response);
           let indivTripInfo = `
           <h2 id="trip-name" reservation-trip-id=${response.id}> ${response.name} </h2>
-          <p class=${response.continent}> Continent: ${response.continent} </p>
-          <p> Trip Duration: ${response.weeks} week(s)</p>
-          <p> Trip Category: ${response.category} </p>
-          <p> Cost: $${response.cost} </p>
-          <p> Description: ${response.about} </p>
+          <p class=${response.continent}><strong>Continent:</strong> ${response.continent}</p>
+          <p> <strong>Trip Duration:</strong> ${response.weeks} week(s)</p>
+          <p> <strong>Trip Category:</strong> ${response.category} </p>
+          <p> <strong>Cost: $${response.cost}</strong> </p>
+          <p class="about"> <strong>Description:</strong> ${response.about} </p>
           <button id="reserve-button" reservation-trip-id=${response.id}> Make a Reservation </button>
           `;
 
