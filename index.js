@@ -50,7 +50,7 @@ let createReservation = function createReservation(event) {
   // });
 }; //submit res
 
-// build individual trip data
+// build individual trip details
 let buildIndividualTrip = function buildIndividualTrip(event) {
   console.log($(this).children());
   if ($(this).find('div').length > 0) {

@@ -40,8 +40,23 @@ h1 {
 }
 
 h5 {
+  font-weight: bold;
   font-family: courier;
   color: white;
 }
 
 /*INDIVIDUAL TRIP DETAILS*/
+li div p {
+  font-weight: bold;
+}
+
+li div p:last-of-type {
+  max-width: 500px;
+  height: 200px;
+  overflow: auto;
+  margin: auto;
+}
+
+.make-reservation {
+  margin-top: 20px;
+}
