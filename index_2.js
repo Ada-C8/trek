@@ -18,20 +18,20 @@ $(document).ready(function () {
       '<li>' + 'Cost: $' + cost + '</li>' +
       '</ul>' +
       '<p>' + 'Trip details: ' + about + '</p>' +
-      `<button class="${tripId} book">Book this trip</button>`);
+      `<button class="${tripId}">Book this trip</button>`);
       $(`#${tripId}`).parent().append(tripDetails);
     }) // .get for trip details
 
-    console.log('right before the .on for the book trip');
     $(`#all-trips`).on('click', 'button:not(.details)', (event) => {
         alert('in the click event for the form!')
         // stops the tripHTML click event from running
-        console.log('inside the click event to get the form!');
         event.stopPropagation();
         // TODO: GET THE GETFORM FUNCTION TO RUN!
-
-        getForm(`$(event.target).attr('id')`);
+        // let maybe = $(this);
+        let et = event.target.attributes.class.value;
         debugger
+        getForm(event.target.attributes.class.value);
+
         // hide the book trip button
         $(`#trip${id}`).hide();
     }) // .click to show form
