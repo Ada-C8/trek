@@ -8,12 +8,40 @@
     <title>Trek!</title>
   </head>
   <body>
-    <section id="main">
-      <button id="all-trips" class='button'>View Trips</button>
-      <ul id="trips" style="display:none">
-<!-- style="display:none" -->
-      </ul>
-    </section>
+    <main>
+      <div id="message">
+      </div>
+      <section class='row query'>
+        <button id="all-trips" class='button'>View Trips</button>
+      </section>
+
+      <ul id="trips" class='row' style="display:none" ></ul>
+
+<!-- article hidden, make jquery functionality -->
+      <article class='booking-form' style="display:none">
+        <form action='https://trektravel.herokuapp.com/trips/1/reservations' method='post'>
+          <section>
+            <label>Name</label>
+            <input type='text' id='name' name='name' />
+          </section>
+
+          <section>
+            <label>Age</label>
+            <input type='text' id='age' name='age' />
+          </section>
+
+          <section>
+            <label>Email</label>
+            <input type='text' id='email' name='email' />
+          </section>
+
+          <section>
+            <button type='submit' class='button'>Complete Booking</button>
+          </section>
+        </form>
+      </article>
+    </main>
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </body>

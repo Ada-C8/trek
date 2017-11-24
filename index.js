@@ -3,7 +3,7 @@
 // --------------- All Trips HTML ---------------
 const tripAppend = (trip) => {
   $('#trips').append(`
-  <li id='${trip.id}'>
+  <li id='${trip.id}' class='small-12 medium-7 large-5 small-centered columns'>
     <div class='featured-image'><img src="assets/${trip.continent}land.jpg"/></div>
     <article>
       <div class='continent'><img src="assets/${trip.continent}.png"/></div>
@@ -16,6 +16,48 @@ const tripAppend = (trip) => {
     </article>
   </li>`);
 };
+
+// ------------ Booking Form HTML --------------
+
+const bookTrip = (id) => {
+  $(`#${id}`).after(`<form action='https://trektravel.herokuapp.com/trips/${id}/reservations' method='post'>
+    <section>
+      <label>Name</label>
+      <input type='text' id='name' name='name' />
+    </section>
+
+    <section>
+      <label>Age</label>
+      <input type='text' id='age' name='age' />
+    </section>
+
+    <section>
+      <label>Email</label>
+      <input type='text' id='email' name='email' />
+    </section>
+
+    <section>
+      <button type='submit'>Reserve</button>
+    </section>
+  </form>`);
+};
+
+$(document).ready(() => {
+  $('body').on('submit', 'form', function(e) {
+    e.preventDefault();
+    const url = $(this).attr('action');
+    const formData = $(this).serialize();
+
+    $.post(url, formData, (response) => {
+      $('#message').html('<h3>Pet added!</h3>');
+      console.log(response);
+    }).fail(() => {
+      $('#message').html('<h3>Adding pet failed.</h3>');
+    }).always(() => {
+      console.log('Making code');
+    });
+  });
+});
 
 // --------------- All Trips -------------------
 const tripArray = [];
@@ -58,9 +100,10 @@ const singleTrip = (id) => {
         <section class='trip-details'>
         <p><span class='flag float-left'>${category}</span>${weeks} weeks</p>
         <p>${about}</p>
-        <p>$ ${parseInt(cost)}</p>
+        <p>$ ${parseInt(cost, 10)} <small>+ TAX</small></p>
         </section>
         `);
+      $(`#${id}`).after(`<p id='booking-btn' class='small-12 medium-7 large-5 small-centered columns'>book now</p>`);
     },
   )
     .fail(() => {
@@ -80,11 +123,20 @@ $(document).ready(() => {
 
     if ($(tripDetail).length) {
       $(`#${tripId} .trip-info`).show();
-      $(`#${tripId} .featured-image`).animate({ height: 480 }, 600);
+      $(`#${tripId} .featured-image`).animate({ height: 450 }, 600);
       $(tripDetail).remove();
+      $('#booking-btn').remove();
     } else {
       singleTrip(tripId);
     }
+  });
+
+  $('body').on('click', '#booking-btn', (event) => {
+    const tripId = event.currentTarget.previousElementSibling.id;
+    bookTrip(tripId);
+
+    // on click, full screen white 0.5 opacity background
+    // form overlay section fill
   });
 });
 
