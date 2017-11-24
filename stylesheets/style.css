@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Walter+Turncoat');
+@import url('https://fonts.googleapis.com/css?family=Bitter');
 
 *, h1, h2, h3, h4, h5, .button{
-  font-family: 'Walter Turncoat', cursive, sans-serif;
+  font-family: 'Bitter', serif;
 }
 
-.button, .trip-container{
+.button, .trip-container, .reservation-form-container{
   border-radius: 10px;
 }
 
@@ -27,4 +27,14 @@ header {
 .trip-container {
   background-color: #ccc;
   margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.reservation-form-container{
+  background-color: white;
+}
+
+.reservation-form-container form{
+  padding: 20px;
 }

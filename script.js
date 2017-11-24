@@ -12,7 +12,7 @@ $(document).ready(() => {
         let allTrips = '';
         response.forEach((trip) => {
           // id, name, continent, weeks
-          const tripText = `<article data-trip-id="${trip.id}" class="trip-container large-8 medium-8 medium-centered large-centered columns">
+          const tripText = `<article data-trip-id="${trip.id}" class="trip-container large-8 medium-8 small-10 small-centered medium-centered large-centered columns">
                               <h2>${trip.name}</h2>
                               <p>Continent: ${trip.continent}</p>
                               <p>Weeks: ${trip.weeks}</p>
@@ -38,7 +38,6 @@ $(document).ready(() => {
       $(this).text('More Information');
     } else { // if toggled is false
       const tripID = $(this).parent().data('trip-id');
-      console.log(`Trip ID from trip details click${tripID}`);
       const url = `https://trektravel.herokuapp.com/trips/${tripID}`;
       // show details
       $.get(
@@ -49,7 +48,8 @@ $(document).ready(() => {
                                <p>Category: ${response.category}</p>
                                <p>Cost: $${response.cost}</p>
                                <p>About: ${response.about}</p>
-                               <button class="button make-reservation-btn">Make Reservation</button>`;
+                               <button class="button make-reservation-btn">Make Reservation</button>
+                               <section class="reservation-form-container">`;
           tripDetailsContainer.html(detailsText);
           $(this).text('Hide Information');
         },
@@ -60,9 +60,36 @@ $(document).ready(() => {
   // show form on click and send data to the API
   $('#results').on('click', '.make-reservation-btn', function callback() {
     //data to input then send: name, age, email
-    const tripContainer = $(this).parent().parent();
-    const tripID = tripContainer.data('trip-id');
-    console.log(`trip ID from form button ${tripID}`);
+
+    const formContainer = $(this).parent().find('.reservation-form-container');
+    console.log(formContainer);
+    const tripID = $(this).parent().parent().data('trip-id');
+    const postURL = `https://trektravel.herokuapp.com/trips/${tripID}/reservations`;
+    const formHTML = `<hr>
+                      <form action="${postURL}" method="post">
+                        <h4>Reservation Form:</h4>
+                        <section class="row">
+                          <section class="large-6 columns">
+                            <label>
+                              <input type="text" id="name" placeholder="Name" />
+                            </label>
+                          </section>
+                          <section class="large-6 columns">
+                            <label>
+                              <input type="number" id="age" placeholder="Age" />
+                            </label>
+                          </section>
+                          <section class="large-12 columns">
+                            <label>
+                              <input type="text" id="email" placeholder="Email" />
+                            </label>
+                          </section>
+                          <section class="large-12 columns">
+                            <button type="submit" class="button">Submit</button>
+                          </section>
+                        </section>
+                      </form>`;
+    formContainer.html(formHTML);
   });
 
 
