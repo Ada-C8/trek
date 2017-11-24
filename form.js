@@ -7,31 +7,50 @@ $(document).ready(()=>{
     const postUrl = `https://trektravel.herokuapp.com/trips/${id}/reservations`
     const url = $(this).attr("action"); // Retrieve the action from the form
     const name = $('#reserve-form input[name="name"]').val()
+
+
+    const successMessage = `
+    <div class="success text-center">
+    <h2>${name}'s trip reserved!</h2>
+    </div>`
+
+
     if (name!== ""){
       const formData = $(this).serialize();
       $.post(postUrl, formData, function(response){
         e.preventDefault();
-        $('.message').append('<p>Trip reserved!</p>');
+        $('.success-message').append(successMessage);
+        $('#reserve-form').hide()
+        $(".error-message").hide()
+        // $(".trip-name").hide()
       }).fail(function(e) {
-        $(".message").append("<p>Failed to communicate with API</p>");
+        $(".error-message").html('<p class="fail text-center">Failed to communicate with API</p>');
       });
 
     }else if (name === ""){
-      $(".message").append('You must enter your name to reserve a spot on this trip!');
+      $(".error-message").html('<p class="fail text-center">You must enter your name to reserve a spot on this trip!</p>');
     }
   });
 
-  const loadName  = function LoadName(){
+  const loadName  = function loadName(){
     const id = localStorage.getItem("id")
     const oneTripUrl = 'https://trektravel.herokuapp.com/trips/' + id
     $.get(oneTripUrl, (response) => {
-      let name = response.name;
-      console.log(response)
-      $(".trip-name").append(`Reserve your spot on our <strong>${name}</strong> trip!`);
+      let tripName = response.name;
+      $(".trip-name").append(`Reserve your spot on our <strong>${tripName}</strong> trip!`);
     });
-
   };
 
-  loadName()
+    // const findName = function findName(){
+    //   const id = localStorage.getItem("id");
+    //   const oneTripUrl = 'https://trektravel.herokuapp.com/trips/' + id;
+    //   $.get(oneTripUrl, (response) => {
+    //     let tripName = response.name;
+    //     console.log(tripName)
+    //     return tripName;
+    //   });
+    // };
 
-});
+    loadName()
+
+  });
