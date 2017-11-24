@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <title>TREK</title>
 
+    <link rel="stylesheet" href="foundation-6.4.2-essential/css/foundation.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="favicon.png" type="favicon.png">
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </head>
@@ -13,7 +17,7 @@
     </header>
 
     <section>
-      <button id="load-trips"> Find Trips </button>
+      <button id="load-trips" class="button"> Find Trips </button>
 
       <div id="fail">
 
@@ -24,6 +28,9 @@
     <section>
       <div id="trip" hidden=true>
         <div id="ajax-results"></div>
+        <div id="fail">
+
+        </div>
         <p id="name"></p>
         <p> Category: <span id="category"></span></p>
         <p> Duration: <span id="duration"></span></p>
@@ -33,7 +40,7 @@
           <label for="name"> Name </label>
           <input type="text" name="name"></input>
 
-          <input type="submit" value="Reserve Trip"></input>
+          <input type="submit" value="Reserve Trip" class+"button"></input>
         </form>
       </div>
     </section>

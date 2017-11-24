@@ -10,7 +10,7 @@ const successCallback = function successCallback(response) {
 };
 
 $(document).ready(function() {
-  const getTrips = getTrips() => {
+  const getTrips = function getTrips() {
     $.get(url,
       function (response) {
         $('#trips ul').html('')
@@ -26,7 +26,7 @@ $(document).ready(function() {
       console.log(response);
       $('#fail').html('<p>Request was unsuccessful</p>');
     });
-  } // end getTrips()
+  }; // end getTrips()
 
   const tripId = ''
   const trip = function trip (id) {
