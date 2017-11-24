@@ -12,16 +12,89 @@
 *
 *= require_tree .
 *= require_self
-*= require foundation_and_overrides
+*= require foundation
 
 */
 
 /*= require foundation */
 
+
 /*///////////////////////////////
 GENERAL
 /////////////////////////*/
-/*
-a {
-  text-decoration: none;
-}*/
+
+
+
+
+ul {
+  list-style-type: none;
+  li a {
+    font-weight: bold;
+    color: black;
+    list-style: none;
+  }
+}
+
+li a:hover {
+  color: #74B555;
+}
+
+body {
+  background-image: url('https://images.unsplash.com/photo-1490380169520-0a4b88d52565?auto=format&fit=crop&w=1050&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D');
+  margin:0;
+  padding:0;
+  height:100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  padding-bottom: 10rem;
+  min-height: 100%;
+}
+
+main {
+  margin: 2% 5%;
+}
+
+header {
+  background-color: white;
+  opacity: 0.5;
+}
+
+div {
+  opacity: 0.7;
+  background-color: white;
+  border-radius: 3em;
+  max-width: 50%;
+  justify-content: center;
+  font-weight: bold;
+}
+
+li {
+  padding: 2% 2% 0% 2%;
+  margin: 2%;
+}
+
+#load-all-trips {
+  font-size: 2em;
+  /*max-width: 50%;*/
+  box-sizing: inherit;
+  /*width: 50%;*/
+  margin: 1%;
+  padding: 2%;
+  border-radius: 50%;
+  float: right;
+  opacity: 0.9;
+
+}
+
+button {
+  background-color: darkblue;
+  color: white;
+  font-weight: bold;
+}
+
+#load-all-trips:hover {
+  background-color: gold;
+}

@@ -28,7 +28,7 @@ $(document).ready(()=>{
       $('#reservation-form').trigger('reset');
       response.forEach(function(trip) {
         let dataId = trip["id"];
-        let tripData = `<li><h3> <a href="/" data-id=${trip["id"]}> ${trip["name"]} </a> </h3> </li>`;
+        let tripData = `<li><h4> <a href="/" data-id=${trip["id"]}> ${trip["name"]} </a> </h4> </li>`;
 
         $('#trips ul').append(tripData);
       });
