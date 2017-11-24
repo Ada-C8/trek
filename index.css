@@ -1,8 +1,6 @@
-
-body {
+/*lightgray #f1f0eb*/
+html, body {
   box-sizing: border-box;
-  text-align: center;
-  font-family: 'Oswald', sans-serif;
   min-height: 100%;
   background-image: url('images/header.jpg');
   background-attachment: fixed;
@@ -11,34 +9,37 @@ body {
   background-size: cover;
 }
 
-h1 {
-  padding-top: 1em;
-  font-family: 'Permanent Marker';
+/*@media (min-width: 1120px), (min-height: 630px) {
+    body { background-size: auto; }
+}*/
+
+* {
+  font-family: 'PT Sans Narrow', sans-serif;
+  box-sizing: border-box;
 }
 
-h3 {
-  font-family: 'Oswald', sans-serif;
+h1 {
+  padding-top: 1em;
+  font-family: 'PT Serif';
+}
+
+header h3 {
+  font-family: 'PT Serif';
+  color: #9ea0a6;
+  text-transform: capitalize;
+  font-size: 1.5em;
 }
 
 header {
-  max-width: 100%;
-  height: 200px;
-
+  min-width: 100%;
+  height: 180px;
+  background-color: #fff;
+  padding-left: 1em;
 }
 
-.trip {
-  display: inline-block;
-  width: 500px;
-  height: 400px;
-  padding: 5px;
+.body {
   text-align: center;
-  margin: 1.5em;
-  /*border: 1px solid #cacaca;*/
-  font-family: 'Oswald', sans-serif;
-}
-
-.trip h3 {
-  font-size: 1.25em;
+  color: #404040;
 }
 
 ul {
@@ -47,40 +48,161 @@ ul {
 
 li {
   display: inline;
-  margin-right: 10px;
+  margin-right: 0.5em;
+  margin-left: 1em;
 }
 
-/*.crop {
-width: 300px;
-overflow: hidden;
+.trip {
+  /*clear: both;*/
+  /*position: relative;*/
+  /*display: inline-block;*/
+  /*width: 350px;
+  height: 350px;
+  padding: 5px;
+  text-align: center;
+  margin: 2em;
+  border: 1px solid #cacaca;
+  background-color: #f9f9f9;
+  font-family: 'PT Sans Narrow', sans-serif;
+  text-transform: uppercase;
+  overflow: hidden;*/
+  /*width: 45%;
+  height: 200px;
+  margin: 2em 1em;*/
 }
-.crop img {
-height: 350px;
-width: auto;
-}*/
+
+.trip img {
+  /*float: left;*/
+  width: 300px;
+}
 
 .title {
-  background-color: #cacaca;
-  border-radius: 10px;
-  /*padding: 3em 1em 1em 1em;*/
+  text-align: left;
+  background-color: #f1f0eb;
+  padding: 1em;
+  margin: 0.5em;
+  height: 200px;
+}
+
+.title li, .title ul {
+  font-family: 'PT Serif';
+  margin-left: 0;
+  font-size: 3vh;
+}
+
+.title h3 {
+  /*font-weight: bold;*/
+  /*background-image: linear-gradient(to right, #07dcdc, #20e3b2, #29ffc6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;*/
+  /*margin-left: 1em;*/
+  font-size: 4vh;
+  text-transform: uppercase;
+  border-bottom: 3px solid #af1f31;
 }
 
 .crop {
-  width: 490px;
-  /*height: 300px;*/
-  /*overflow: hidden;*/
+  /*width: 400px;
+  height: 400px;
+  overflow: hidden;*/
   /*margin-bottom: 10px;*/
+  /*margin: -25% 0;*/
 }
 
-.crop img {
-  /*width: 600px;*/
-  /*border-radius: 10px;*/
-  /*height: 300px;*/
-  /*margin: -75px 0 0 -100px;*/
+/*.crop img {
+  min-width: 200%;
+  margin: -15%;
+}*/
+
+.dropdown {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e3de;
+  text-transform: uppercase;
+}
+.dropdown a {
+  color: #404040;
 }
 
-button {
-  padding: 10px;
-  border: 1px solid #cacaca;
-  margin-top: 10px;
+.dropdown a:hover {
+  color: #af1f31;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+  color: #af1f31;
+
+}
+.dropdown.menu .is-active > a {
+  color: #af1f31;
+}
+
+.dropdown.menu:hover{
+  color: #af1f31;
+}
+
+.slider-handle:hover {
+    background-color: #af1f31;
+}
+
+
+button, [type='submit'] {
+  padding: 10px 30px;
+  color: #fff;
+  background-color: #151515;
+  margin-top: 1em;
+  font-family: 'PT Sans Narrow';
+  /*font-size: 2em;*/
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+li button {
+  margin-left: 30%;
+}
+
+#booking {
+  padding: 2em 0;
+  background-color: #9ea0a6;
+  /*opacity: 0.8;*/
+}
+
+#booking h3 {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #af1f31;
+}
+
+label {
+  /*display: inline-block;*/
+  text-transform: uppercase;
+  font-size: 1em;
+  /*text-align: right;
+  padding-right: 0.5em;*/
+}
+
+[type='text'] {
+  width: 30%;
+  margin: 0 auto 0.5em auto;
+  /*display: inline-block;*/
+}
+
+.tripSale {
+  margin: 3em 0;
+  padding: 3em 6em;
+  background-color: #f1f0eb;
+}
+
+.tripSale h2{
+  text-transform: uppercase;
+  border-bottom: 3px solid #af1f31;
+}
+
+.tripSale p {
+  font-style: italic;
+}
+
+@media only screen and (min-width: 100px) {
+  .row {
+    max-width: 90%;
+  }
 }

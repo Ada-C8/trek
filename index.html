@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>TREKKenridge</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Oswald:300,400,600|Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow|PT+Serif|Permanent+Marker" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="foundation.css" rel="stylesheet" type="text/css">
+    <link href="foundation2.css" rel="stylesheet" type="text/css">
     <link href="index.css" rel="stylesheet">
   </head>
   <body>
@@ -14,78 +15,78 @@
       <h3>
         Find your adventure!
       </h3>
-      </header>
+    </header>
 
-      <section id="dropdown" class="row">
-        <ul class="dropdown menu" data-dropdown-menu data-click-open="true" data-close-on-click="true" data-close-on-click-inside="false">
-          <li class="is-dropdown-submenu-parent">
-            <a href="#" id="parent-cont">Continents</a>
-            <ul id="continents">
-            </ul>
-          </li>
-          <li><a href="#">Trip Length</a>
-            <ul>
-              <li>
-                <div class="slider" data-slider data-initial-start="1" data-end="10" data-step="1">
-                  <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="weekSet"></span>
-                  <span class="slider-fill" data-slider-fill></span>
-                </div>
-              </li>
-              <li>
-                <input type="number" id="weekSet">
-              </li>
-              <li><button id="weekGo">GO!</button></li>
-            </ul>
-          </li>
-          <li><a href="#">Max Budget</a>
-            <ul>
-              <li>
-                <div class="slider" data-slider data-initial-start="500" data-end="5000" data-step="100">
-                  <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="budgetSet"></span>
-                  <span class="slider-fill" data-slider-fill></span>
-                </div>
-              </li>
-              <li>
-                <input type="number" id="budgetSet">
-              </li>
-              <li><button id="budgetGo">GO!</button></li>
-            </ul></li>
+    <section id="dropdown">
+      <ul class="dropdown menu" data-dropdown-menu data-click-open="true" data-close-on-click="true" data-close-on-click-inside="false">
+        <li class="is-dropdown-submenu-parent">
+          <a href="#" id="parent-cont">Continents</a>
+          <ul id="continents">
           </ul>
+        </li>
+        <li><a href="#">Trip Length</a>
+          <ul>
+            <li>
+              <div class="slider" data-slider data-initial-start="1" data-end="10" data-step="1">
+                <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="weekSet"></span>
+                <span class="slider-fill" data-slider-fill></span>
+              </div>
+            </li>
+            <li>
+              <input type="number" id="weekSet">
+            </li>
+            <li><button id="weekGo">GO!</button></li>
+          </ul>
+        </li>
+        <li><a href="#">Max Budget</a>
+          <ul>
+            <li>
+              <div class="slider" data-slider data-initial-start="500" data-end="5000" data-step="100">
+                <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="budgetSet"></span>
+                <span class="slider-fill" data-slider-fill></span>
+              </div>
+            </li>
+            <li>
+              <input type="number" id="budgetSet">
+            </li>
+            <li><button id="budgetGo">GO!</button></li>
+          </ul></li>
+        </ul>
       </section>
 
-    <section class="row">
-      <article id="trips">
+      <section class="body">
+        <article id="trips" class="row">
 
-      </article>
-      <article id="booking" class="row">
-        <h3>Book Now!</h3>
-        <form action='temp' method="post">
-          <section>
-            <label>Name</label>
-            <input type="text" id="name" name="name"></input>
-          </section>
-          <section>
-            <label>Age</label>
-            <input type="text" id="age" name="age"></input>
-          </section>
-          <section>
-            <label>Email</label>
-            <input type="text" id="email" name="email"></input>
-          </section>
-          <section class="button">
-            <button type="submit">RESERVE!</button>
-          </section>
-        </form>
-      </article>
-      <article id="reserve" class="row"></article>
-      <p>
-        <button id="load"> TREK! </button>
-      </p>
-    </section>
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="foundation.js"></script>
-    <script> $(document).foundation(); </script>
-    <script type="text/javascript" src="index.js"></script>
+        </article>
+        <article id="booking" class="row">
+          <h3>Book Now!</h3>
+          <form action='temp' method="post">
+            <section>
+              <label>Name</label>
+              <input type="text" id="name" name="name"></input>
+            </section>
+            <section>
+              <label>Age</label>
+              <input type="text" id="age" name="age"></input>
+            </section>
+            <section>
+              <label>Email</label>
+              <input type="text" id="email" name="email"></input>
+            </section>
+            <section>
+              <button type="submit">RESERVE!</button>
+            </section>
+          </form>
+        </article>
+        <article id="reserve" class="row"></article>
+        <p>
+          <button id="load"> TREK! </button>
+        </p>
+      </section>
+      <script type="text/javascript" src="jquery.js"></script>
+      <script type="text/javascript" src="foundation.js"></script>
+      <script> $(document).foundation(); </script>
+      <script type="text/javascript" src="index.js"></script>
 
-  </body>
+    </body>
 </html>

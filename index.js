@@ -33,8 +33,10 @@ const loadTrips = function loadTrips(...args) {
         const location = `<li>${planeIcon} ${trip.continent}</li>`;
         const week = (trip.weeks > 1 ? 'weeks' : 'week');
         const time = `<li>${clockIcon} ${trip.weeks} ${week}</li>`;
-        const num = Math.floor(Math.random() * 6);
-        $('#trips').append(`<div class="trip" id="${trip.id}"><div class="crop"><img src="images/${num}.jpg" alt="trip image" /></div><div class="title">${name}<ul>${location}${time}</ul></div></div>`);
+        // const num = Math.floor(Math.random() * 6);
+        $('#trips').append(`<div id="${trip.id}" class="trip">
+        <div class="small-11 large-5 columns title">
+        ${name}<ul>${location}${time}</ul></div></div>`);
       }
     });
   }).fail(() => {
@@ -55,7 +57,7 @@ const openTrip = function openTrip(id) {
     const cost = `<li>${moneyIcon} $${trip.cost.toFixed(2)}</li>`;
     const category = `<li>${categoryIcon} ${trip.category}</li>`;
     const about = `<p>${trip.about}</p>`;
-    $('#trips').html(`${name}<ul>${idNum}${location}${time}${category}${cost}</ul>${about}`);
+    $('#trips').html(`<section class ="tripSale">${name}<ul>${idNum}${location}${time}${category}${cost}</ul>${about}</section>`);
     $('form').attr('action', `${tripUrl}/${trip.id}/reservations`);
   }).fail(() => {
     $('#trips').html('<p>Oops.. looks like that trip left without you!</p>');
