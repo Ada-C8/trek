@@ -187,3 +187,18 @@ label {
   background: blue;
   size: 5px;
 }*/
+
+/*********************************/
+/***********FILTERS************/
+/*********************************/
+
+#continent-ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.continent {
+  padding: 10px;
+}

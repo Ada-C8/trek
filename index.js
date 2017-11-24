@@ -39,6 +39,9 @@ $(document).ready(()=>{
       console.log('inside create filters');
       const continents = ['Africa','Asia','Australasia','Europe','South America','North America','Antarctica'];
 
+      let allContinentsHTML = `<li class='continent all-continents' class=${continents}>All Continents</li>`;
+      $('#trips #continent-ul').append(allContinentsHTML);
+
       continents.forEach(function(continent) {
         let continentHTML = `<li class='continent' class=${continent} continent-name=${continent} >${continent}</li>`;
         $('#trips #continent-ul').append(continentHTML);
@@ -125,6 +128,8 @@ const submitReservation = function submitReservation() {
   $('#trips #trips-ul').on('click', 'li', function(){
     let tripID = $(this).attr('trip-id');
     loadTrip(tripID);
+    //below is needed because: if you select a trip, then click but to Make a Reservation, then go select another trip, the reservation form remains there
+    $('#reservation-form').hide();
   });
 
   //show reservation form button
@@ -144,12 +149,22 @@ const submitReservation = function submitReservation() {
   });
 
 //FILTER EVENTS
+  //click event for continents
   $('#continent-ul').on('click', '.continent', function(){
     console.log('clicked continent button');
     let continentName = $(this).attr('continent-name');
     console.log(continentName);
     $(`.listed-trip`).hide();
+    // $(`#listed-trip`).has(`#f-${continentName}`);
+    //$('#listed-trip').filter('.' +continentName).hide();
     $('.listed-trip').filter(`.${continentName}`).show();
   });
 
+  //click event for "all continents" view filter
+  $('#continent-ul').on('click', '.all-continents', function(){
+    console.log('clicked All Continents button');
+    // let continentName = $(this).attr('continent-name');
+    // console.log(continentName);
+    $(`.listed-trip`).show();
+  });
 });
