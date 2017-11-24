@@ -5,7 +5,7 @@ $(document).ready(() => {
       'https://trektravel.herokuapp.com/trips',
       (response) => {
         response.forEach((trip) => {
-          const tripsInfo = `<li><p id="${trip.id}">${trip.name}</p></li>`;
+          const tripsInfo = `<li id="trip-${trip.id}"><p id="${trip.id}">${trip.name}</p></li>`;
           $('#trips ol').append(tripsInfo);
         });
       },
@@ -13,35 +13,35 @@ $(document).ready(() => {
       .fail(() => {
         $('#fail').html('<p>Request was unsuccessful</p>');
       }).always(() => {
-        console.log('always message here');
+        //console.log('always message here');
+        console.log('Function: loadTrips (plural)');
       });
   }; // end of loadTrips
 
   const loadTrip = function loadTrip(id) {
     $.get(`https://trektravel.herokuapp.com/trips/${id}`,
       (response) => {
-        console.log(response);
-        console.log(`trip retrieved ${response.id}`);
-        const tripInfo = `<p> Trip ID: ${response.id}</p>`;
+        const tripInfo =
+        `<div>
+          <p> Trip name: ${response.name}</p>
+          <p> Category: ${response.category}</p>
+          <p> Continent: ${response.continent}</p>
+          <p> Description: ${response.about}</p>
+          <p> Duration: ${response.weeks}</p>
+          <p> Cost: ${response.cost}</p>
+        </div>`;
 
-        $('#trip').append(tripInfo);
+        $(`#trips ol li > div`).hide();
+        $(`#trips ol li#trip-${id}`).append(tripInfo);
       },
     ).fail(() => {
       $('#fail').html('<p>Could not find</p>');
     }).always(() => {
-      console.log('always message here');
+      //console.log('always message here');
+      console.log('Function: loadTrip (single)');
     });
   }; // end of loadTrip
 
-
-// You know how to add an event handler to an element if you give it a selector.
-// How can you give a separate event handler to many similar things? (hint: look at our lecture on event delegation)
-// Within this event handler: you need a way to get the value of the trip id.
-// You can do this in two ways that I can think of right now:
-//   - You can somehow leverage passing information around + ordering of functions to make this
-//     available in JS
-//   - You can somehow make this trip id information available in the HTML.
-//     Then you would need to figure out how to get that information from the HTML.
   $('#trips ol').on('click', 'p', function() {
     const tripID = $(this).attr('id');
     loadTrip(tripID);
