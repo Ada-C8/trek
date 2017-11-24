@@ -23,22 +23,20 @@ $(document).ready(function () {
     }) // .get for trip details
 
     $(`#all-trips`).on('click', 'button:not(.details)', (event) => {
-        alert('in the click event for the form!')
         // stops the tripHTML click event from running
         event.stopPropagation();
-        // TODO: GET THE GETFORM FUNCTION TO RUN!
-        // let maybe = $(this);
-        let et = event.target.attributes.class.value;
-        debugger
-        getForm(event.target.attributes.class.value);
+        // have to access the class from the event with the following syntax:
+        let eventClass = event.target.attributes.class.value;
+        getForm(eventClass);
 
-        // hide the book trip button
-        $(`#trip${id}`).hide();
+        // hide the book trip button after the form appears
+        $(`#tripId`).hide();
     }) // .click to show form
+
+
   } // getTripData
 
   const getForm = function getForm(id) {
-
     console.log('in the getForm function');
     // replace the button with the form to book a trip when the button is clicked
     let idToBook = id;
@@ -46,7 +44,7 @@ $(document).ready(function () {
 
     let form = $(
       `<div id="book">
-       <form action="${action}" method="post" id="book${id}">
+       <form action="${action}" method="post" id="book${id}" class="${id}"=>
         <label for="name">Name:</label>
         <input type="text" name="name"></input>
 
@@ -63,7 +61,23 @@ $(document).ready(function () {
 
     $(`.${id}`).parent().append(form)
 
+    let test = `#book${id}`;
+    debugger
+    
   } // getForm
+
+  const bookTrip = function bookTrip(id) {
+
+    console.log('in the bookTrip function!');
+    let url = $(`#books${id}`).attr('action');
+    const formData = $(`#books${id}`).serialize();
+    console.log(url, formData);
+
+    $.post(url, formData, (response) => {
+      console.log('Successful post');
+    }) // post
+
+  } // bookTrip
 
   // click to see all the trips
   $('#get-trips').on('click', () => {
@@ -96,12 +110,26 @@ $(document).ready(function () {
             // stops the tripHTML click event from running
             console.log('inside the click event to get the form!');
             event.stopPropagation();
-            // TODO: GET THE GETFORM FUNCTION TO RUN!
 
             getForm(`$(event.target).attr('id')`);
             // hide the book trip button
             $(`#trip${id}`).hide();
         }) // .click to show form
+
+      console.log('right before submit');
+        // submit for form
+        $(`#all-trips`).on('submit', `#book${id}`, function(e) {
+          // QUESTION: why is the page still going to the api??
+          // stop the page from reloading
+          let fail = $('${nfbfbf}')
+          e.preventDefault();
+          e.stopImmediatePropagation();
+
+          // call the bookTrip functßion
+          debugger
+          bookTrip(`${id}`);
+          $(`#book${id}`).hide();
+        }) // submit
       } // for loop
     }) // .get to get all trips
   }); // .on to get all the trips
