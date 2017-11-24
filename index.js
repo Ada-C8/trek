@@ -87,7 +87,7 @@ let getTripBuilder = function(id) {
     } //end of successCallback
 
     const failureCallback = function(response) {
-      let generatedHTML = '<p>Something went wrong! Please try again!</p>';
+      let generatedHTML = '<p><strong>Something went wrong! Please try again!</strong></p>';
 
       $('.trip').html(generatedHTML);
     }; // end of failureCallback
@@ -104,7 +104,7 @@ let makeReservation = function makeReservation(id) {
     console.log('POST -> success!');
     console.log(response);
 
-    let generatedHTML = '<p>Everything went well! Thank you for your reservation!</p>';
+    let generatedHTML = '<p><strong>Everything went well! Thank you for your reservation!</strong></p>';
 
     $('#reservation').html(generatedHTML);
 
@@ -121,6 +121,10 @@ let makeReservation = function makeReservation(id) {
   $.post(reservationURL, reservationData, successCallback).fail(failureCallback);
 
 } // end of makeReservation
+
+// const closeTrip = function closeTrip {
+//
+// }
 
 
 
@@ -145,6 +149,11 @@ $(document).ready( function() {
     let tripID = $(this).attr('data-id');
     makeReservation(tripID);
   });
+
+  //close trip info
+  $('.wrapper').on('click', '#close', function() {
+    $('.wrapper').hide();
+  })
 
 
 

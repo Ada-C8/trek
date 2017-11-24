@@ -166,6 +166,15 @@ h1 {
   display: none;
 }
 
+#close {
+  position: relative;
+  height: 2rem;
+  width: 2rem;
+  padding: .3rem;
+  margin: 0;
+  float: right;
+}
+
 /*FOOTER*/
 footer {
   position: absolute;
