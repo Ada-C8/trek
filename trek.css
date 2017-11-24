@@ -1,39 +1,54 @@
 body {
-  font-family: 'Open Sans', sans-serif;
-  color: #393945;
   background: #f6f6f6;
+  color: #393945;
+  font-family: 'Open Sans', sans-serif;
+}
+
+ul {
+  margin: 0;
 }
 
 li {
   background: #fff;
   border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
   list-style: none;
   margin: 0 auto 20px;
   max-width: 400px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+  padding-bottom: 20px;
 }
 
-ul {
-  margin: 0 20px;
+h3, h5, .trip-details p:first-child, .flag {
+  font-weight: bold;
+
 }
 
 h3 {
   font-size: 1.4em;
-  font-weight: bold;
   padding: 0 20px;
 }
 
 h5 {
-  font-size: 0.7em;
-  letter-spacing: 0.1em;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 0 20px 20px;
+  margin: 0;
 }
 
-.landscape img{
-  border-radius: 5px 5px 0 0;
+h5, .flag, .trip-details p:first-child {
+  font-size: 0.7em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.featured-image {
+  height: 480px;
   overflow: hidden;
+}
+
+.featured-image img{
+  border-radius: 5px 5px 0 0;
+}
+
+article h3, .trip-details, .continent img{
+  background: white;
 }
 
 .continent {
@@ -42,26 +57,46 @@ h5 {
 }
 
 .continent img{
-  width: 44px;
-  height: auto;
-  background: white;
-  padding: 8px 4px;
   border-radius: 50%;
+  height: auto;
+  padding: 8px 4px;
+  width: 44px;
 }
 
 .trip-info, .trip-details {
-  padding: 10px 20px 20px;
+  padding: 10px 20px 0;
 }
 
 .trip-info p, .trip-details p{
-  color: #999;
+  color: #a3a3a3;
 }
 
-.landscape {
-  overflow: hidden;
-  /*transition: height 1s ease-in-out;*/
+.trip-details p:first-child {
+  color: #393945;
+  text-align: right;
 }
 
-article h3, .trip-details{
-  background: white;
+.flag {
+  background: gold;
+  color: white;
+  margin-top: -4px;
+  padding: 4px 5px;
+  position: relative;
+}
+
+.flag:after {
+  border-bottom: 7px solid transparent;
+  border-left: 11px solid gold;
+  border-right: 11px solid gold;
+  content: '';
+  height: 14px;
+  position: absolute;
+  transform: rotate(-90deg);
+  width: 0;
+}
+
+.trip-details p:last-child {
+  font-size: 1.3em;
+  text-align: right;
+  font-weight: bold;
 }

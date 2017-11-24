@@ -4,14 +4,15 @@
 const tripAppend = (trip) => {
   $('#trips').append(`
   <li id='${trip.id}'>
-    <div class='landscape'><img src="assets/${trip.continent}land.jpg"/></div>
+    <div class='featured-image'><img src="assets/${trip.continent}land.jpg"/></div>
     <article>
       <div class='continent'><img src="assets/${trip.continent}.png"/></div>
       <h3>${trip.name}</h3>
       <section class='trip-info'>
-        <p>Modern expedition excursion traveling food culture like a local AirBnb. Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
-      </section>
+        <p>Modern expedition excursion traveling food culture like a local AirBnb.
+        Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
       <h5>Explore ➤<span class='float-right'>${trip.weeks} weeks</span></h5>
+      </section>
     </article>
   </li>`);
 };
@@ -49,14 +50,15 @@ const singleTrip = (id) => {
       const { about } = response;
       const { cost } = response;
       const { category } = response;
+      const { weeks } = response;
 
       $(`#${id} .trip-info`).hide();
-      $(`#${id} .landscape`).animate({ height: 200 }, 600);
+      $(`#${id} .featured-image`).animate({ height: 200 }, 600);
       $(`#${id} article`).append(`
         <section class='trip-details'>
-        <h1>$ ${cost}</h1>
-        <p>${category}</p>
+        <p><span class='flag float-left'>${category}</span>${weeks} weeks</p>
         <p>${about}</p>
+        <p>$ ${parseInt(cost)}</p>
         </section>
         `);
     },
@@ -78,7 +80,7 @@ $(document).ready(() => {
 
     if ($(tripDetail).length) {
       $(`#${tripId} .trip-info`).show();
-      $(`#${tripId} .landscape`).animate({ height: 480 }, 600);
+      $(`#${tripId} .featured-image`).animate({ height: 480 }, 600);
       $(tripDetail).remove();
     } else {
       singleTrip(tripId);
