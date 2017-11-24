@@ -37,8 +37,9 @@ $(document).ready(()=>{
   //create html elements to create a button for each continent
     let createFilters = function createFilters() {
       console.log('inside create filters');
-      const continents = ['Africa','Asia','Australasia','Europe','South America','North America','Antarctica'];
 
+      //continent filters
+      const continents = ['Africa','Asia','Australasia','Europe','South America','North America','Antarctica'];
       let allContinentsHTML = `<li class='continent all-continents' class=${continents}>All Continents</li>`;
       $('#trips #continent-ul').append(allContinentsHTML);
 
@@ -47,6 +48,9 @@ $(document).ready(()=>{
         $('#trips #continent-ul').append(continentHTML);
         console.log('printed continents!');
       });
+
+      //trip duration filters
+      const tripWeeks = [1,2,3,4,5,6]
     };
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC TRIP
