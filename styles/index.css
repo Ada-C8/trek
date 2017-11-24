@@ -2,15 +2,14 @@
 /*light-blue: #D4F3FD*/
 /*dark-blue: #147C9D*/
 
-/*CLASSES*/
-.white-text {
-  color: #fff;
-  text-shadow: 0 0 .8rem #075B69;
-}
 
 /*GENERAL*/
-body {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Berkshire Swash';
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
   font-size: 16px;
 
   position: relative;
@@ -81,6 +80,13 @@ h1 {
   margin: 1.5rem auto;
 }
 
+/*CLASSES*/
+.white-text {
+  font-family: 'Berkshire Swash';
+  color: #fff;
+  text-shadow: 0 0 .8rem #075B69;
+}
+
 /*TRIPS TABLE*/
 .trips table {
   /*margin-bottom: 5rem; */
@@ -121,6 +127,26 @@ h1 {
   padding: 1rem;
   overflow: scroll;
   box-shadow: 0 0 1rem #075B69;
+}
+
+.trip ul {
+  padding: .5rem;
+}
+
+.input-form {
+  width: 27%;
+  display: inline-block;
+}
+
+#submit {
+  margin-top: .7rem;
+}
+
+.trip li {
+  /*font-weight: lighter;*/
+  text-align: justify;
+  list-style-type: none;
+  margin: .5rem 0;
 }
 
 .wrapper {

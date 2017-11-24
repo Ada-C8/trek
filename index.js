@@ -42,33 +42,44 @@ let getTripBuilder = function(id) {
     const successCallback = function(response) {
       console.log('success!');
 
+      // let listItem = '';
+      // for (let attr in response) {
+      //   listItem += '<li>' + attr + ': ' + response[attr] + '</li>';
+      // }
       let listItem = '';
-      for (let attr in response) {
-        listItem += '<li>' + attr + ': ' + response[attr] + '</li>';
-      }
+      listItem += '<li><h3>' + response.name + '</h3></li>';
+      listItem += '<li><strong>Continent: </strong>' + response.continent + '</li>';
+      listItem += '<li><strong>About: </strong>' + response.about + '</li>';
+      listItem += '<li><strong>Category: </strong>' + response.category + '</li>';
+      listItem += '<li><strong>Duration in weeks: </strong>' + response.weeks + '</li>';
+      listItem += '<li><strong>Cost: </strong>$' + response.cost + '</li>';
+
+
       // make reservation
       let reservationForm =
       `<form data-id=${id}>
 
-        <label for="name">Name: </label>
-        <input type="text" name="name"></input>
+        <div class="input-form">
+          <label for="name"><strong>Name: </strong></label>
+          <input type="text" name="name"></input>
+        </div>
 
-        <label for="age">Age: </label>
-        <input type="number" name="age"></input>
+        <div class="input-form">
+          <label for="age"><strong>Age: </strong></label>
+          <input type="number" name="age"></input>
+        </div>
 
-        <label for="email">Email: </label>
-        <input type="text" name="email"></input>
+        <div class="input-form">
+          <label for="email"><strong>Email: </strong></label>
+          <input type="text" name="email"></input>
+        </div>
 
-        <input type="submit" value="Reserve a trip"></input>
+        <input id="submit" class="button blue white-text" type="submit" value="Reserve a trip"></input>
 
       </form>`
 
       // what would be displayed
-      // $('.trip').toggle();
       $('.wrapper').toggle();
-
-
-
       $('#trip').html(listItem);
       $('#reservation').html(reservationForm);
 
