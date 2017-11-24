@@ -1,10 +1,8 @@
 $(document).ready(function () {
   // method to call in the click event to see trip details
   const getTripDetails = function getTripDetails(tripId) {
-    console.log('Do i get here?')
     let url = 'https://trektravel.herokuapp.com/trips/' + tripId;
-    debugger
-    $.get(url, function(data) {
+    $.get(url, (data) => {
       let continent = data["continent"];
       let weeks = data["weeks"];
       let about = data["about"];
@@ -20,12 +18,50 @@ $(document).ready(function () {
       '<li>' + 'Cost: $' + cost + '</li>' +
       '</ul>' +
       '<p>' + 'Trip details: ' + about + '</p>' +
-      `<button class="${tripId}">Book this trip</button>`);
+      `<button class="${tripId} book">Book this trip</button>`);
       $(`#${tripId}`).parent().append(tripDetails);
     }) // .get for trip details
+
+    console.log('right before the .on for the book trip');
+    $(`#all-trips`).on('click', 'button:not(.details)', (event) => {
+        alert('in the click event for the form!')
+        // stops the tripHTML click event from running
+        console.log('inside the click event to get the form!');
+        event.stopPropagation();
+        // TODO: GET THE GETFORM FUNCTION TO RUN!
+
+        getForm(`$(event.target).attr('id')`);
+        debugger
+        // hide the book trip button
+        $(`#trip${id}`).hide();
+    }) // .click to show form
   } // getTripData
 
   const getForm = function getForm(id) {
+
+    console.log('in the getForm function');
+    // replace the button with the form to book a trip when the button is clicked
+    let idToBook = id;
+    let action = 'https://trektravel.herokuapp.com/trips/' + `${idToBook}` +  '/reservations';
+
+    let form = $(
+      `<div id="book">
+       <form action="${action}" method="post" id="book${id}">
+        <label for="name">Name:</label>
+        <input type="text" name="name"></input>
+
+        <label name="age">Age:</label>
+        <input type="text" name="age"></input>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email"></input>
+
+        <input type="hidden" id="trip_id" name="trip_id" value="${id}">
+
+        <input type="submit" value="Book this trip!" class="button"></input>`
+    );
+
+    $(`.${id}`).parent().append(form)
 
   } // getForm
 
@@ -47,20 +83,26 @@ $(document).ready(function () {
         $('#all-trips').append(tripHTML);
 
         // create click event for each trip name
-        tripHTML.on('click', 'button', (event) => {
+        tripHTML.on('click', '.details', (event) => {
           let tripId = $(event.target).attr('id');
-          console.log(tripId);
           getTripDetails(tripId);
-        }) // .on to get trip details
+          // I never get out of this... maybe I need to move the click function for the form in here? I'm confused!
+        }); // .on to get trip details
 
         // click event to get form to show up
-        $(`#trip${id}`).click((event) => {
-            getForm(`${id}`);
+        console.log('right before the .on for the book trip');
+        $(`.book`).on('click', (event) => {
+            alert('in the click event for the form!')
+            // stops the tripHTML click event from running
+            console.log('inside the click event to get the form!');
+            event.stopPropagation();
+            // TODO: GET THE GETFORM FUNCTION TO RUN!
+
+            getForm(`$(event.target).attr('id')`);
+            // hide the book trip button
+            $(`#trip${id}`).hide();
         }) // .click to show form
       } // for loop
     }) // .get to get all trips
   }); // .on to get all the trips
-
-
-
 }); // .ready
