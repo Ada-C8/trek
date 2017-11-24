@@ -4,7 +4,7 @@
   background-attachment: fixed;
 }*/
 
-.bottom-banner {
+/*.bottom-banner {
   background-image: url("https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1784&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D");
   background-position: top center;
   background-repeat: no-repeat;
@@ -14,8 +14,69 @@
   margin-bottom: 20px;
 }
 
+.bottom-banner:hover {
+  background-image:url("https://d4rlx3nshlrhf.cloudfront.net/images/post_images/tuni1472919292484_aspR_2.000_w1600_h800_e.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  padding-top: 200px;
+  padding-bottom: 200px;
+  background-size: 900px;
+  margin-bottom: 20px;
+}*/
 
+header {
+  margin-bottom: 50px;
+}
 
 #trips table {
   display: none;
 }
+
+
+#slideshow {
+    position:relative;
+    height:450px;
+}
+
+#slideshow IMG {
+  position:absolute;
+    top:0;
+    left:0;
+    z-index:8;
+    opacity:0.0;
+    width: 100%;
+    height: 100%;
+}
+
+#slideshow IMG.active {
+    z-index:10;
+    opacity:1.0;
+}
+
+#slideshow IMG.last-active {
+    z-index:9;
+}
+
+
+/*slide-viewer {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+
+.slide-group {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+}
+
+.slide:first-child {
+  display: block;
+}*/
