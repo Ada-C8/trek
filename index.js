@@ -16,7 +16,9 @@ let buildAllTrips = function buildAllTrips() {
   };
 
   const failResponse = function failResponse() {
-    $(".failure").html("Failed to make reservation").show().delay(1000).fadeOut();
+    $(".failure").html("Failed to load trips")
+    // .show().delay(1000).fadeOut();
+    console.log('FAILURE');
   };
 
   $.get(ALL_TRIPS_URL,
