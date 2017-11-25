@@ -35,7 +35,7 @@ const loadTrips = function loadTrips(...args) {
         const time = `<li>${clockIcon} ${trip.weeks} ${week}</li>`;
         // const num = Math.floor(Math.random() * 6);
         $('#trips').append(`<div id="${trip.id}" class="trip">
-        <div class="small-11 large-5 columns title">
+        <div class="small-11 small-offset-1 large-5 large-offset-1 columns title">
         ${name}<ul>${location}${time}</ul></div></div>`);
       }
     });

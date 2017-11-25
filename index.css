@@ -80,7 +80,7 @@ li {
   text-align: left;
   background-color: #f1f0eb;
   padding: 1em;
-  margin: 0.5em;
+  margin: 0.5em 4em 2em 0.5em;
   height: 200px;
 }
 
@@ -201,8 +201,12 @@ label {
   font-style: italic;
 }
 
-@media only screen and (min-width: 100px) {
+@media only screen and (max-width: 720px) {
   .row {
     max-width: 90%;
+  }
+
+  [type='text'] {
+    width: 60%;
   }
 }
