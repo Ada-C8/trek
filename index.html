@@ -2,35 +2,61 @@
 <html>
 <head>
   <title>TRAVEL WORLD WIDE!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="trek.js"></script>
   <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css">
+  href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
-  <main>
+  <header>
     <div id="bg-image">
       <div id="logo-wrapper">
         <div id="logo">
-          <h1>Make your traveling dreams come true!</h1>
-          <button type="button">Click here to see all trips available</button>
+          <h1>FIND YOUR ADVENTURE</h1>
+          <br>
+          <button class="button">It all starts here</button>
         </div>
       </div>
     </div>
+  </header>
 
+  <main>
     <div id="trips">
-      <ul id="all-trips">
+      <header>
+        <h3 id="trip-header">Compare Trips</h3>
+      </header>
 
-      </ul>
+      <table class="hover" id="trips-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th width="300">Continent</th>
+          </tr>
+        </thead>
+
+        <tbody id="table-body">
+          <!-- Content added here -->
+          <!--TODO: How to reload the foundation stylesheet after DOM manipulation? -->
+        </tbody>
+      </table>
     </div>
 
     <div id="single-trip">
-      <ul id="trip-info">
+      <header>
+        <h3 id="trip-name"></h3>
+        <h4 id="trip-country" class="subheader"></h4>
+      </header>
+      <section id="about">
 
-      </ul>
+      </section>
+      <!-- <ul id="trip-info">
+
+      </ul> -->
     </div>
 
     <div id="reserve-trip">
@@ -56,6 +82,9 @@
       COPYRIGHT &copy; ID 2017
     </p>
   </footer>
+
+  <script src="jquery.js"></script>
+  <script src="foundation.js"></script>
 
 </body>
 </html>

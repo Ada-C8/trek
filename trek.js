@@ -1,12 +1,14 @@
 $(document).ready(function() {
+  $(document).foundation();
+
   $('form').hide();
+  $('#trips').hide();
+
   const baseURL = 'https://trektravel.herokuapp.com/trips/';
 
   /////// GET REQUEST FOR ALL TRIPS
   const displayTrips = function displayTrips() {
     $.get(baseURL, successCallback)
-
-    // If there is a failure in retrieving the data!
     .fail(function(){
       console.log('failure!');
     });
@@ -15,11 +17,19 @@ $(document).ready(function() {
   /////// CALL BACK FOR ALL TRIPS
   const successCallback = (response) => {
     for(let trip of response) {
-      // console.log(response[0]);
-      $('#all-trips').append('<li id=trip' + trip.id + '>'+ trip.name +'</li>');
+      $('#trips').show();
+      $('#table-body').append('<tr>' + trip.id);
+      $('#table-body').append('<td>' + trip.id + '</td>');
+      $('#table-body').append('<td id=trip' + trip.id + '>' + trip.name + '</td>');
+      $('#table-body').append('<td>' + trip.continent + '</td>');
+      $('#table-body').append('</tr>');
       $('#trip' + trip.id).click(function(event) {
         displaySingleTrip(trip.id);
       });
+      // $('#all-trips').append('<li id=trip' + trip.id + '>'+ trip.name +'</li>');
+      // $('#trip' + trip.id).click(function(event) {
+      //   displaySingleTrip(trip.id);
+      // });
     }
   };
 
@@ -28,14 +38,17 @@ $(document).ready(function() {
 
   /////// CALL BACK FOR A SINGLE TRIP
   const singleTripSuccessCallback = (response) => {
-    console.log(response);
-    $('#all-trips').remove();
-    $('#all-trips').append('<ul> id="trip-info" </ul>');
-    $('#trip-info').append('<li>' + response.name + '</li>');
-    $('#trip-info').append('<li>' + response.continent + '</li>');
-    $('#trip-info').append('<li>' + response.about + '</li>');
-    $('#trip-info').append('<li>' + response.category + '</li>');
-    $('#trip-info').append('<li id=reserve-id' + response.id + '><button> Reserve! </button></li>');
+    // console.log(response);
+    $('#trips').hide();
+    $('#trip-name').append(response.name.toUpperCase());
+    $('#trip-country').append(response.continent.toUpperCase());
+    $('#about').append(response.about);
+    // $('#all-trips').append('<ul> id="trip-info" </ul>');
+    // $('#trip-info').append('<li>' + response.name + '</li>');
+    // $('#trip-info').append('<li>' + response.continent + '</li>');
+    // $('#trip-info').append('<li>' + response.about + '</li>');
+    // $('#trip-info').append('<li>' + response.category + '</li>');
+    // $('#trip-info').append('<li id=reserve-id' + response.id + '><button> Reserve! </button></li>');
     $('#reserve-id' + response.id).click(function(event) {
       displayForm(response.id);
     });
@@ -73,6 +86,9 @@ $(document).ready(function() {
   };
 
 });
+
+
+
 
 // When all trips is clicked - Append to all TRIPS
 // When a trip is clicked - Remove all trips and add ul and append li

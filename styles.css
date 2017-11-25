@@ -1,37 +1,67 @@
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
+@import url('https://fonts.googleapis.com/css?family=Cardo');
 
-body, h1 {
+body, h1, h2, h3 {
   font-family: 'Varela Round', sans-serif;
-  color: white;
 }
 
 #bg-image {
   background: linear-gradient(
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
     ),url('dubai-skyline.jpg') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100vh;
-}
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+  }
 
 #logo-wrapper {
-  /*border: 2px solid white;*/
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
   height: 100%;
   position: relative;
+  text-align: center;
 }
 
 #logo {
-  text-align: center;
   min-height: 10em;
   position: absolute;
-  top: 45%;
+  top: 35%;
+  width: 100%;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.button {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 5%;
 }
 
 footer {
   color: black;
   text-align: center;
   height: 1vh;
+  font-size: 8px;
+}
+
+/* Small Devices */
+@media only screen and (max-width: 40em) {
+  h1 {
+    font-size: 2em;
+    letter-spacing: 2px;
+  }
+}
+
+/********* SINGLE TRIP *********/
+
+#trip-header, #trip-name, #trip-country {
+  text-align: center;
+  padding: 1em;
+  color: black;
+  letter-spacing: 2px;
+}
+
+#about {
+  font-family: 'Cardo', serif;
 }
