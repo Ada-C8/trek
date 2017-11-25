@@ -20,7 +20,7 @@ const tripAppend = (trip) => {
 // ------------ Booking Form HTML --------------
 
 const bookTrip = (id) => {
-  $(`#${id}`).after(`<article class='fullscreen row'>
+  $(`#${id}`).after(`<article class='fullscreen'>
   <form action='https://trektravel.herokuapp.com/trips/${id}/reservations' method='post'
   class='small-12 medium-7 large-5 small-centered columns form'>
   <section>
@@ -63,10 +63,10 @@ $(document).ready(() => {
     const formData = $(this).serialize();
 
     $.post(url, formData, (response) => {
-      $('#message').html('<h3>Booking Complete</h3>');
+      $('.form').html('<h3>Booking Complete</h3>');
       console.log(response);
     }).fail(() => {
-      $('#message').html('<h3>Booking failed</h3>');
+      $('.form').html('<h3>Booking failed</h3>');
     }).always(() => {
       console.log('Making code');
     });
