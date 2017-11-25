@@ -24,6 +24,8 @@ $(document).ready(() => {
     ).fail(() => {
       const message = `<h3>Unable to generate all trips.</h3>`;
       $('#message').html(message);
+      $('#message').css('padding', '30px');
+      $('#message').show().delay(2000).fadeOut('slow');
     });
   });
 
@@ -57,6 +59,8 @@ $(document).ready(() => {
       ).fail(() => {
         const message = `<h3>Unable to get details for trip ID ${tripID}</h3>`;
         $('#message').html(message);
+        $('#message').css('padding', '30px');
+        $('#message').show().delay(2000).fadeOut('slow');
       });
     }
   });
@@ -65,7 +69,6 @@ $(document).ready(() => {
   $('#results').on('click', '.make-reservation-btn', function callback() {
     // data to input then send: name, age, email
     const formContainer = $(this).parent().find('.reservation-form-container');
-    console.log(formContainer);
     const tripID = $(this).parent().parent().data('trip-id');
     const postURL = `https://trektravel.herokuapp.com/trips/${tripID}/reservations`;
     const formHTML = `<form action="${postURL}" method="post" class="reservation-form">
@@ -93,12 +96,10 @@ $(document).ready(() => {
     e.preventDefault();
     const url = $(this).attr('action');
     const formData = $(this).serialize();
-    console.log($(this));
     const tripName = $(this).parent().parent().parent()
       .find('h2')
       .text(); // didn't want to do another GET request to just get title
     $.post(url, formData, (response) => {
-      console.log(tripName);
       const message = `<h3>Successfully created a reservation for ${tripName}.</h3>
                        <h4>Reservation Summary:</h4>
                        <p>Name: ${response.name}</p>
@@ -107,6 +108,8 @@ $(document).ready(() => {
     }).fail(() => {
       const message = `<h3>Reservation for ${tripName} was unsuccessful.</h3>`;
       $('#message').html(message);
+      $('#message').css('padding', '30px');
+      $('#message').show().delay(2000).fadeOut('slow');
     });
   });
 

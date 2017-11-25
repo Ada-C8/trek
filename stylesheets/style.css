@@ -4,12 +4,21 @@
   font-family: 'Bitter', serif;
 }
 
-.button, .trip-container, .reservation-form-container{
+.button, .trip-container, .reservation-form-container, #message{
   border-radius: 10px;
 }
 
 body {
   background-color: steelblue;
+}
+
+#message{
+  position: fixed;
+  float: left;
+  width: 80vw;
+  margin-left: 10vw;
+  top: 100px;
+  background-color: pink;
 }
 
 header {
