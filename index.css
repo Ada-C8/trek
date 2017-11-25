@@ -1,0 +1,40 @@
+h1 {
+  font-family: 'Poiret One', cursive;
+  text-align: center;
+  font-size: 4rem;
+  border-bottom: solid black 1px;
+}
+
+#load {
+  font-family: 'Poiret One', cursive;
+  margin: 1% 44% 1.5% 44%;
+  font-size: 1.5rem;
+
+}
+
+#load:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+}
+
+#trips {
+  font-family: 'Poiret One', cursive;
+  border-bottom: solid black 1px;
+}
+
+
+.article-block {
+  display: inline-block;
+  border: solid black 1px;
+  overflow: auto;
+  width:300px;
+  height:300px;
+}
+
+.details {
+  list-style: none;
+}
+
+
+/**/

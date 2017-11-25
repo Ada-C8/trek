@@ -4,22 +4,23 @@ $(document).ready(() => {
       console.log('success!');
 
       response.forEach((trip) => {
-        const tripInfo = $(`<article data-id=${trip.id} data-name=${trip.name}>
-          <ul class="details">
-            <li>${trip.name}</li>
-            <button class="trip-details">View Trip Details</button>
-          </ul>
+        const tripInfo = $(`<article class="article-block" data-id=${trip.id} data-name=${trip.name}>
+        <p>${trip.name}</p>
+        <ul class="details">
+          <li>${trip.name}</li>
+          <button class="trip-details">View Trip Details</button>
+        </ul>
         </article>`);
 
         $('#trips').append(tripInfo);
 
-        // moving this inside of the first each loop so that we have access to the ID so we can pass it to the loadDetails function.
+        // moving this inside of the first each loop so that we have access to the ID so we can pass it to the loadTripDetails function.
         tripInfo.find('.trip-details').on('click', () => {
           console.log('WORKING?????');
-          loadDetails(trip.id);
+          loadTripDetails(trip.id);
         });
 
-        const loadDetails = function loadDetails(id) {
+        const loadTripDetails = function loadTripDetails(id) {
           $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
           // console.log('IT WORKED');
           // console.log(response);
@@ -38,6 +39,11 @@ $(document).ready(() => {
                 <section>
                   <label>Email</label>
                   <input type="text" id="email" name="email"></input>
+                </section>
+
+                <section>
+                  <label>Age</label>
+                  <input type="text" id="Age" name="age"></input>
                 </section>
 
                 <section class="button">
