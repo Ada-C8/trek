@@ -57,14 +57,14 @@ $(document).ready(()=> {
     let tripId = $(this).attr('data-id');
     loadTrip(tripId);
     $('html,body').animate({
-      scrollTop: $("#show-trips").offset().top},
+      scrollTop: $("#anchor").offset().top},
       'slow');
   });
 
   $('#load').on('click', function(){
     loadTrips();
     $('html,body').animate({
-      scrollTop: $("#show-trips").offset().top},
+      scrollTop: $("#show-trips").offset().top -30},
       'slow');
 
   });
