@@ -1,8 +1,9 @@
 $(document).ready(function() {
   $(document).foundation();
 
-  $('form').hide();
   $('#trips').hide();
+  $('#single-trip').hide();
+  $('#reserve-trip').hide();
 
   const baseURL = 'https://trektravel.herokuapp.com/trips/';
 
@@ -18,18 +19,15 @@ $(document).ready(function() {
   const successCallback = (response) => {
     for(let trip of response) {
       $('#trips').show();
-      $('#table-body').append('<tr>' + trip.id);
-      $('#table-body').append('<td>' + trip.id + '</td>');
-      $('#table-body').append('<td id=trip' + trip.id + '>' + trip.name + '</td>');
-      $('#table-body').append('<td>' + trip.continent + '</td>');
-      $('#table-body').append('</tr>');
+      $('#table-body').append(
+        '<tr>' +
+          '<td>' + trip.id + '</td>' +
+          '<td id=trip' + trip.id + '>' + trip.name + '</td>' +
+          '<td>' + trip.continent + '</td>' +
+        '</tr>');
       $('#trip' + trip.id).click(function(event) {
         displaySingleTrip(trip.id);
       });
-      // $('#all-trips').append('<li id=trip' + trip.id + '>'+ trip.name +'</li>');
-      // $('#trip' + trip.id).click(function(event) {
-      //   displaySingleTrip(trip.id);
-      // });
     }
   };
 
@@ -39,9 +37,10 @@ $(document).ready(function() {
   /////// CALL BACK FOR A SINGLE TRIP
   const singleTripSuccessCallback = (response) => {
     // console.log(response);
-    $('#trips').hide();
+    $('#trips').remove();
+    $('#single-trip').show();
     $('#trip-name').append(response.name.toUpperCase());
-    $('#trip-country').append(response.continent.toUpperCase());
+    // $('#trip-country').append(response.continent.toUpperCase());
     $('#about').append(response.about);
     // $('#all-trips').append('<ul> id="trip-info" </ul>');
     // $('#trip-info').append('<li>' + response.name + '</li>');

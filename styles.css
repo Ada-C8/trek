@@ -53,7 +53,7 @@ footer {
   }
 }
 
-/********* SINGLE TRIP *********/
+/********* ALL TRIPS *********/
 
 #trip-header, #trip-name, #trip-country {
   text-align: center;
@@ -64,4 +64,6 @@ footer {
 
 #about {
   font-family: 'Cardo', serif;
+  margin: 3em;
+  /*border: 2px solid yellow;*/
 }
