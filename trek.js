@@ -15,7 +15,18 @@ $(document).ready(() => {
     $.get(`${baseURL}/${id}`, (response) => {
       console.log('Single trip worked');
       console.log(response);
-      
+
+      const tripDetails = `
+      <ul>
+      <li>ID:${response.id} </li>
+      <li>Destination: </li>
+      <li>Continent: </li>
+      <li>About: </li>
+      <li>Category: </li>
+      <li>Weeks: </li>
+      <li>Cost: </li>
+      </ul>`;
+      $(`li#${id}`).append(tripDetails);
     });
   };
 
