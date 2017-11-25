@@ -4,12 +4,10 @@ $(document).ready(() => {
       console.log('success!');
 
       response.forEach((trip) => {
-        const tripInfo = $(`<article class="article-block" data-id=${trip.id} data-name=${trip.name}>
+        const tripInfo = $(`<article class="article-block" data-id=${trip.id} data-name=${trip.name} data-continent=${trip.continent}>
         <p>${trip.name}</p>
-        <ul class="details">
-          <li>${trip.name}</li>
-          <button class="trip-details">View Trip Details</button>
-        </ul>
+        <ul class="details"></ul>
+        <button class="trip-details">View Trip Details</button>
         </article>`);
 
         $('#trips').append(tripInfo);
@@ -24,35 +22,43 @@ $(document).ready(() => {
           $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
           // console.log('IT WORKED');
           // console.log(response);
-            let addInfo = `<li>${response.continent}</li>
-              <li>${response.about}</li>
-              <li>${response.weeks}</li>
-              <li>${response.category}</li>
-              <li>${response.cost}</li>
+            let addInfo = `<li>Trip ID: ${response.id}</li>
+              <li>Continent: ${response.continent}</li>
+              <li>About: ${response.about}</li>
+              <li>Category: ${response.category}</li>
+              <li>Weeks: ${response.weeks}</li>
+              <li>Price: $${response.cost}</li>
+              <li><button id="reserve">RESERVE SPOT</button></li>`;
 
-              <form action="https://trektravel.herokuapp.com/trips/${id}/reservations" method="post">
-                <section>
-                  <label>Name</label>
-                  <input type="text" id="name" name="name"></input>
-                </section>
+            let reserveForm = `<form action="https://trektravel.herokuapp.com/trips/${id}/reservations" method="post">
+              <section>
+                <label>Name</label>
+                <input type="text" id="name" name="name"></input>
+              </section>
 
-                <section>
-                  <label>Email</label>
-                  <input type="text" id="email" name="email"></input>
-                </section>
+              <section>
+                <label>Email</label>
+                <input type="text" id="email" name="email"></input>
+              </section>
 
-                <section>
-                  <label>Age</label>
-                  <input type="text" id="Age" name="age"></input>
-                </section>
+              <section>
+                <label>Age</label>
+                <input type="text" id="Age" name="age"></input>
+              </section>
 
-                <section class="button">
-                  <button type="submit">Reserve Spot</button>
-                </section>
-              </form>`;
+              <section class="submit">
+                <button type="submit">Confirm</button>
+              </section>
+            </form>`;
 
             $(`[data-id="${id}"] .details`).append(addInfo);
             $(`[data-id="${id}"] .trip-details`).remove();
+
+            $('#reserve').on('click', () => {
+              $(reserveForm).remove();
+              $(`[data-id="${id}"] .details`).append(reserveForm);
+            });
+
           });
         };
       });
@@ -65,7 +71,12 @@ $(document).ready(() => {
     $('#trips').empty();
     loadTrips();
   });
-
+// -----------------------------------------
+  // $('#load').on('click', () => {
+  //   $('#trips').empty();
+  //   loadTrips();
+  // });
+// ------------------------------------------
   $('body').on('submit', 'form', function(e) {
     e.preventDefault();
 
