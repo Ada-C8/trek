@@ -4,7 +4,7 @@ const successCallback = function(response){
   console.log("POST request to reserve a spot on a trip was successful");
   console.log(response);
   let name = $('#trip-form').data('name');
-  console.log(`Trip name: ${name}`);
+  // console.log(`Trip name: ${name}`);
   $('#message').html(`You successfully reserved a spot on the following trip. \n ${name} `);
 };
 
@@ -80,6 +80,7 @@ $(document).ready(()=> {
     console.log(formData);
     $.post(url, formData,successCallback).fail((response) => {
       console.log("Didn't go so hot");
+      $('#message').html(`There was an error in your reservation for  ${tripName}, please try again`);
     });
     modal.style.display = "block";
   });
