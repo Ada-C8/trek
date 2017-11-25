@@ -155,7 +155,7 @@ $(document).ready( function() {
   })
 
   //go back from trips table
-  $('.trips').on('click', '.back', function() {
+  $('body').on('click', '.back, #title', function() {
     $('.trips table').html('');
     $('.back').html('');
     $('#trips').toggle();
