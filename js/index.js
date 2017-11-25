@@ -9,10 +9,14 @@ const formatCost = function formatCost(num) {
   });
 };
 
+const pluralizeWeek = function pluralizeWeek(num) {
+  return num === 1 ? 'week' : 'weeks';
+};
+
 $(document).ready(() => {
   $(document).foundation();
-  // callbacks;
 
+  // callbacks;
   const clearTrips = function clearTrips() {
     $('.trips > ul').empty();
     $('section.trips').removeClass('loaded');
@@ -21,71 +25,76 @@ $(document).ready(() => {
   const getTrips = function getTrips(url) {
     $.get(url, (response) => {
       response.forEach((trip) => {
-        const tripInfo = `<li class="small-6 medium-4 large-3 cell data-equalizer-watch"><section class="trip"><a class="trip-name" data-id=${trip.id}>${trip.name}</a></section>`;
+        const tripInfo = `
+        <li class="trip small-6 medium-4 large-3 cell grid-x align-center" data-equalizer-watch>
+        <a><h3 class="trip-name" data-id=${trip.id}>${trip.name}</h3></a>
+        <div class="align-self-bottom grid-x"><p class="small-6 cell continent">${trip.continent}</p>
+        <p class="small-6 cell weeks">${trip.weeks} ${pluralizeWeek(trip.weeks)}</p>
+        <div><img src="./styles/images/mt-detail.jpeg" alt="desert mountain"/></div></div>`;
 
         $('.trips > ul').append(tripInfo);
-        $('section.trips').addClass('loaded');
       });
     });
   };
 
   const loadTrips = function loadTrips() {
     clearTrips();
+    $('.trips').addClass('all');
     getTrips(baseUrl);
-    // $.get(baseUrl, (response) => {
-    //   response.forEach((trip) => {
-    //     const tripInfo = `<li class="small-6 medium-4 large-3 cell data-equalizer-watch"><section class="trip"><a class="trip-name" data-id=${trip.id}>${trip.name}</a></section>`;
-    //
-    //     $('.trips > ul').append(tripInfo);
-    //   });
-    // });
   };
 
   const loadTripsByContinent = function loadTripsByContinent(continent) {
     const url = `${baseUrl}/continent?query=${continent}`;
     clearTrips();
+    $('.trips').removeClass('all');
+    getTrips(url);
+  };
+
+  const loadTripsByCost = function loadTripsByCost(cost) {
+    const url = `${baseUrl}/budget?&query=${cost}`;
+    clearTrips();
+    $('.trips').removeClass('all');
+    getTrips(url);
+  };
+
+  const loadTripsByWeeks = function loadTripsByWeeks(weeks) {
+    const url = `${baseUrl}/weeks?&query=${weeks}`;
+    clearTrips();
+    $('.trips').removeClass('all');
     getTrips(url);
   };
 
   const loadTrip = function loadTrip(tripId) {
-    // check if already displayed
-    // if (!$(`a[data-id=${tripId}]`).hasClass('loaded')) {
     const url = `${baseUrl}/${tripId}`;
 
     $.get(url, (response) => {
-      // let tripInfo = '<div class="trip-wrapper"><section class="details loaded">';
-      let tripInfo = `<section class="details" data-id="${tripId}">`;
-      const headings = Object.keys(response);
+      const tripInfo = `
+      <section class="details grid-x align-center" data-id="${tripId}">
+      <a class="small-12 cell"><h3>${response.name}</h3></a>
+      <div class="small-12 medium-7 large-5 cell">
+      <img src="./styles/images/mt-detail.jpeg"
+      alt="desert mountain"/>
+      </div>
+      <p class="small-12 cell about">${response.about}</p>
+      <p class="small-4 medium-3 large-2 cell">${response.weeks} ${pluralizeWeek(response.weeks)}</p>
+      <p class="small-4 medium-3 large-2 cell">${response.continent}</p>
+      <p class="small-4 medium-3 large-2 cell">${formatCost(response.cost)}</p>
+      <p class="small-4 medium-3 large-2 cell">${response.category}</p>
+      <div class="small-12 grid-x align-center">
+      <button id="show-form" data-id="${tripId}" class="small-12 medium-6 large-3 cell button">Interested?</button>
+      </div>
+      <section class="reservation small-10 medium-9 large-8 cell"></section>
+      </section>`;
 
-      for (let i = 0; i < headings.length; i += 1) {
-        // skip name bc already displayed
-        if (headings[i] !== 'name') {
-          if (headings[i] === 'cost') {
-            tripInfo += `<p>${headings[i]}: ${formatCost(response[headings[i]])}</p>`;
-          } else {
-            tripInfo += `<p>${headings[i]}: ${response[headings[i]]}</p>`;
-          }
-        }
-      }
-      tripInfo += `<button id="show-form" data-id=${tripId}>Interested?</button>`;
-      // tripInfo += '</section>';
-      tripInfo += '<section class="reservation">';
-      // tripInfo += `<button class="button" id="show-form" data-id=${tripId}>Book Trip</button>`;
-      // tripInfo += '</section></div>';
-      tripInfo += '</section></section>';
-
-      $(`a[data-id=${tripId}]`).addClass('details-loaded');
-      // $(`a[data-id=${tripId}]`).after(tripInfo);
+      $(`h3[data-id=${tripId}]`).addClass('details-loaded');
       $('.trip-details').append(tripInfo);
       $('.trips').hide();
-      $('.details').hide();
       $(`section[data-id=${tripId}]`).show();
     });
-    // }
   };
 
   const loadResForm = function loadResForm(tripId) {
-    if (!$(`a[data-id=${tripId}]`).hasClass('form-loaded')) {
+    if (!$(`h3[data-id=${tripId}]`).hasClass('form-loaded')) {
       const url = `${baseUrl}/${tripId}/reservations`;
       let formInfo = `<form action=${url} method="post">`;
 
@@ -99,10 +108,7 @@ $(document).ready(() => {
       formInfo += '<button type="submit" class="button" id="reserve">Save a Spot!</button>';
       console.log(formInfo);
 
-      $(`a[data-id=${tripId}]`).addClass('form-loaded');
-      // console.log($(this));
-      // $(`button[data-id]=${tripId}`).after(formInfo);
-      // btn.after(formInfo);
+      $(`h3[data-id=${tripId}]`).addClass('form-loaded');
       $('.reservation').append(formInfo);
     }
   };
@@ -111,90 +117,89 @@ $(document).ready(() => {
     const url = form.attr('action');
     const formData = form.serialize();
 
-    console.log(url);
-    console.log(formData);
-
     $.post(url, formData, (response) => {
-      console.log(response);
       $('form').trigger('reset');
       $('#reserve').after(`<p>trip reserved for ${response.name}</p>`);
     }).fail(() => {
-      console.log('Failed to reserve trip');
+      $('#reserve').after('<p>Failed to reserve trip</p>');
     });
   };
 
-  // const addTrip = function addTrip() {
-  //   const url = `${baseUrl}/new`;
-  //
-  // };
-
   // events
-  $('.load').on('click', () => {
-    // fix styling
+  $('.start').on('click', () => {
     $('body').removeClass('init');
-    // $('div.init').removeClass('init');
     $('div.init').hide();
+    $('header').addClass('grid-x');
     $('header').show();
     $('main').show();
 
+    loadTrips();
+  });
+
+  $('.load').on('click', () => {
     // check if already loaded
-    if ($('.trips').hasClass('loaded')) {
+    if ($('.trips').hasClass('all')) {
+      $('.details').hide();
       $('.trips').show();
     } else {
-      // $('div.main').hidden = false;
-      // $('div.main').toggle();
-      console.log('loading trips');
       loadTrips();
     }
   });
 
-  $('.trips').on('click', 'a', function load() {
+  // when click on a trip in list of trips, show details
+  $('.trips').on('click', 'h3', function load() {
     const tripId = $(this).data('id');
 
     // check if loaded
-    if ($(this).hasClass('details-loaded')) {
-      // $(this).next().toggle();
-      $('.details').hide();
+    if ($(`section[data-id=${tripId}]`).length) {
+      // hide trips, show details for that trip
+      $('.trips').hide();
       $(`section[data-id=${tripId}]`).show();
-      // const details = $(this).next();
-      // const reservation = details.next();
-      // // $(this).next().toggle();
-      // details.toggle();
-      // reservation.toggle();
+      // load trips if not already loaded
     } else {
       loadTrip(tripId);
     }
   });
 
+  // when click on trip name in details, hide details, show list
+  $('.trip-details').on('click', 'h3', function showAll() {
+    $(this).parent().parent().hide();
+    $('.trips').show();
+  });
+
   // display form when button is clicked
   $('.trip-details').on('click', '#show-form', function show() {
     const tripId = $(this).data('id');
-    console.log(tripId);
 
     // check if loaded
-    if ($(`a[data-id=${tripId}]`).hasClass('form-loaded')) {
+    if ($(`h3[data-id=${tripId}]`).hasClass('form-loaded')) {
       const res = $(this).parent().next();
-      console.log(res);
 
       res.toggle();
     } else {
-      // const btn = $(this);
-      console.log(tripId);
       loadResForm(tripId);
     }
   });
 
   $('.trips').on('submit', 'form', function book(event) {
     event.preventDefault();
-
     reserveTrip($(this));
   });
 
   // dropdown menus
   $('.menu .continents').on('click', 'a', function filterTrips() {
     const query = $(this).text();
-    console.log(query);
-
     loadTripsByContinent(query);
+  });
+
+  $('.menu .cost').on('click', 'a', function filterTrips() {
+    // deformat cost
+    const query = $(this).text().slice(1).split(',').join('');
+    loadTripsByCost(query);
+  });
+
+  $('.menu .duration').on('click', 'a', function filterTrips() {
+    const query = $(this).text().split(' ')[0];
+    loadTripsByWeeks(query);
   });
 });
