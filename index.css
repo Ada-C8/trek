@@ -1,18 +1,78 @@
-section.panel {
-  /*display: none;*/
-  background: red;
-}
+/*white #C4C7DC  */
+/*black #1A2026  */
 
-/*section.panel2 {*/
-  /*display: none;*/
-/*}*/
-
-.active {
-  display:block;
+* {
+  box-sizing: border-box;
 }
-.info {
+body {
+  font-family: 'Lato', sans-serif;
+  background: #1A2026;
+}
+/*first slide*/
+header {
+  background-image: url('images/adventure.jpg');
+  height: 75vh;
+  background-position: center;
+}
+h1 {
+  padding: 60px 0;
+  font-family: 'Amatic SC', cursive;
+  color: white;
+  font-size: 12em;
+  text-shadow: 3px 3px 8px black;
+  text-align: center;
+}
+p {
+  text-align: center;
+}
+/*second slide*/
+.click {
+  font-size: 1.5em;
+}
+section.trips, section.row {
+  margin-top: 30px;
+}
+button {
+  color: #C4C7DC;
+  font-size: 1.25em;
+  padding: 20px;
+  width: 100%;
+  border: 1px solid white;
+  background: none;
+}
+button:hover {
+  background: #7F8486;
+  color: #1A2026;
+}
+button:focus {
+  outline-color: #519682;
+}
+section.main-info.columns {
+  color: white;
+}
+p.about {
+  text-align: justify;
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(196, 199, 220, .5);
+}
+label {
+  color: white;
+  padding: 5px;
+  text-align: center;
+}
+section.button {
+  background: #376658;
+  width: 100%;
+}
+section.button:hover {
+  background: #C4C7DC;
+}
+.full-width {
   display: block;
-}
-.button {
-  content: "";
+  /*width: 175%;*/
+  position: relative;
+  background: #7F8486;
+
 }

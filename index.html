@@ -2,19 +2,31 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/css/foundation.css">
     <link rel="stylesheet" href="index.css">
     <title>Trek</title>
   </head>
   <body>
-    <header>
-      <h1>Trek</h1>
-    </header>
-    <section class='fail'></section>
-    <button class='accordion allTrips'>View/Hide Adventures</button>
+    <main>
+      <header>
+        <h1>Adventure Awaits </h1>
+      </header>
 
-    <section class='trip'></section>
-    <section class='panel'></section>
 
+      <section class='row trips'>
+        <section class='medium-6 columns click'>
+          <button class='allTrips'>View Our Destinations</button>
+        </section>
+        <section class='medium-6 columns click'>
+          <button>Filter By</button>
+        </section>
+      </section>
+
+      <!-- <section class='trip'></section> -->
+      <section class='fail'></section>
+      <section class='panel row'></section>
+    </main>
 
 <script
 src ="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -23,3 +35,15 @@ crossorigin="anonymous"></script>
 <script src="index.js"></script>
   </body>
 </html>
+
+<!--
+section panel
+  appends to panel: //from tripsLoad
+    section main-info
+      h2 name, continent, duration,
+    section panel${id}
+      html to panel${id}: //from tripLoad
+        section panel-info
+          id, about, category, cost, form
+
+ -->

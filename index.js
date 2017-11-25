@@ -20,22 +20,34 @@ $(document).ready(() => {
   let loadTrips = function loadTrips() {
     $.get('https://trektravel.herokuapp.com/trips',
       (response) => {
+      let basicInfo = '';
+      for (let trip = 0; trip < response.length; trip++) {
+        let name = response[trip].name;
+        if (name == null || name == "" || name.length === 1) {
+          continue;
+        }
+        let continent = response[trip].continent;
+        let weeks = response[trip].weeks;
+        if (weeks === 1) {
+          weeks = '1 week'
+        } else {
+          weeks = `${weeks} weeks`;
+        }
+        let id = response[trip].id;
+        basicInfo += `
+            <section class='main-info columns medium-6'>
+              <button data-id=${id}>${name}</button>
+              <section class='row'>
+                <p class='columns medium-6'>Continent: ${continent}</p>
+                <p class='columns medium-6'>Duration: ${weeks}</p>
+              </section>
+              <section class='panel${id}'></section>
+            </section>`;
 
-        response.forEach(function(trip) {
-          let name = trip.name;
-          let continent = trip.continent;
-          let weeks = trip.weeks;
-          let id = trip.id;
-          let basicInfo = `
-            <section class='main-info'>
-              <h2 data-id=${id} class='accordion2'>${name}</h2>
-              <p>Continent: ${continent}</p>
-              <p>Duration: ${weeks} week(s)</p>
-            </section>
-            <section class='panel${id}'></section>`;
-            $('.panel').append(basicInfo);
-        }); //loop ends here
-      })
+      }
+      $('.panel').html(basicInfo);
+      console.log(basicInfo);
+    })
       .fail(function(response) {
         console.log(response);
         $('.fail').html('<p>Request was unsuccessful</p>');
@@ -52,11 +64,12 @@ $(document).ready(() => {
         let tripDeets = `
 
           <section class='panel-info'>
-
-            <p>ID: ${response.id}</p>
-            <p>About: ${response.about}</p>
-            <p>Category: ${response.category}</p>
-            <p>Cost: $${response.cost.toFixed(2)}</p>
+            <p class= 'about'>About: ${response.about}</p>
+            <section class='row one-line'>
+              <p class='columns medium-4'>Category: ${response.category}</p>
+              <p class='columns medium-4'>Cost: $${response.cost.toFixed(2)}</p>
+              <p class='columns medium-4'>ID: ${response.id}</p>
+            </section>
             <section id='message'></section>
             <form action='https://trektravel.herokuapp.com/trips/${id}/reservations' method='post'>
               <section>
@@ -92,12 +105,15 @@ $(document).ready(() => {
   }; //end of loadTrip
 
 // *****************EVENTS
+$('button').on('click', function() {
+  $('.panel').toggle();
+  loadTrips();
+});
 
-
-  $('.panel').on('click', 'h2', function() {
+  $('.panel').on('click', 'button', function() {
     let tripId = $(this).attr('data-id');
-loadTrip(tripId);
-    $(`.panel${tripId}`).addClass('info').toggle();
+    loadTrip(tripId);
+    $(`.panel${tripId}`).addClass('full-width').toggle();
 
   });
   // $('.allTrips').on('click', function(){
@@ -112,57 +128,4 @@ loadTrip(tripId);
     // $('.tripsButton').html(linkText);
   // });
 
-  $('.allTrips').on('click', function() {
-    $('.panel').addClass('active').toggle();
-    // let linkText = $('.panel')[0].childElementCount == 0 ? 'Hide' : 'All Trips' ;
-    // $('.allTrips').html(linkText);
-    loadTrips();
-
-
-
-
-    // if ($('.panel').style.display === 'block') {
-    //     $('.panel').style.display = 'none';
-    // } else {
-    //     $('.panel').style.display = 'block';
-    // }
-  });
-
 });
-
-// let accordion = function accordion(){
-//   let effect = $('.accordion');
-//   let i;
-//
-//   for (i = 0; i < acc.length; i++) {
-//     acc[i].onclick = function(){
-//       this.classList.toggle('active');
-//       let panel = this.nextElementSibling;
-//       if (panel.style.display === 'block') {
-//           panel.style.display = 'none';
-//       } else {
-//           panel.style.display = 'block';
-//       }
-//     }
-//   }
-// }
-
-// let accordion2 = function accordion2(){
-//   let acc = $(".accordion2");
-//   console.log(acc);
-//   let i;
-//
-//   for (i = 0; i < acc.length; i++) {
-//
-//     acc[i].onclick = function(){
-//       this.classList.toggle("active");
-//       let panel = this.nextElementSibling;
-//
-//       if (panel.style.display === "block") {
-//           panel.style.display = "none";
-//       } else {
-//           panel.style.display = "block";
-//       }
-//     }
-//   }
-// }
