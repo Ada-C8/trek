@@ -87,11 +87,20 @@ $(document).ready(() => {
     e.preventDefault();
     const url = $(this).attr('action');
     const formData = $(this).serialize();
-    const tripName = $(this).parent().parent().find('h2');
+    console.log($(this));
+    const tripName = $(this).parent().parent().parent()
+      .find('h2')
+      .text(); // didn't want to do another GET request to just get title
     $.post(url, formData, (response) => {
-      $('#message').html(`success! ${response.name} | ${response.email} | for ${tripName}`);
+      console.log(tripName);
+      const message = `<h3>Successfully created a reservation for ${tripName}.</h3>
+                       <h4>Reservation Summary:</h4>
+                       <p>Name: ${response.name}</p>
+                       <p>Email: ${response.email}</p>`;
+      $('#message').html(message);
     }).fail(() => {
-      $('#message').html('failed!');
+      const message = `<h3>Reservation for ${tripName} was unsuccessful.</h3>`;
+      $('#message').html(message);
     });
   });
 
