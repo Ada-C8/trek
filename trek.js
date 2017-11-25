@@ -15,9 +15,11 @@ $(document).ready(() => {
     $.get(`${baseURL}/${id}`, (response) => {
       console.log('Single trip worked');
       console.log(response);
-
-      const tripDetails = `
-      <ul>
+      if ($('#details').length > 0) {
+        $('#details').remove();
+      }
+      const details = `
+      <ul id='details'>
       <li>ID: ${response.id} </li>
       <li>Destination: ${response.name} </li>
       <li>Continent: ${response.continent} </li>
@@ -26,7 +28,7 @@ $(document).ready(() => {
       <li>Weeks: ${response.weeks} </li>
       <li>Cost: ${response.cost} </li>
       </ul>`;
-      $(`li#${id}`).append(tripDetails);
+      $(`li#${id}`).append(details);
     });
   };
 
