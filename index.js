@@ -20,26 +20,40 @@ const tripAppend = (trip) => {
 // ------------ Booking Form HTML --------------
 
 const bookTrip = (id) => {
-  $(`#${id}`).after(`<form action='https://trektravel.herokuapp.com/trips/${id}/reservations' method='post'>
-    <section>
-      <label>Name</label>
-      <input type='text' id='name' name='name' />
-    </section>
+  $(`#${id}`).after(`<article class='fullscreen row'>
+  <form action='https://trektravel.herokuapp.com/trips/${id}/reservations' method='post'
+  class='small-12 medium-7 large-5 small-centered columns form'>
+  <section>
+  <input type='text' id='name' name='name' placeholder='Name' />
+  </section>
 
-    <section>
-      <label>Age</label>
-      <input type='text' id='age' name='age' />
-    </section>
+  <section>
+  <input type='text' id='age' name='age' placeholder='Age' />
+  </section>
 
-    <section>
-      <label>Email</label>
-      <input type='text' id='email' name='email' />
-    </section>
+  <section>
+  <input type='text' id='email' name='email' placeholder='Email' />
+  </section>
 
-    <section>
-      <button type='submit'>Reserve</button>
-    </section>
-  </form>`);
+  <section>
+  <button type='submit button'>Complete Booking</button>
+  </section>
+  </form>
+  </article>`);
+  $('.fullscreen').hide().fadeIn(250);
+
+  function popup() {
+    $(document).click(function() {
+      $(document).off('click');
+      $('.fullscreen').remove();
+    })
+
+    $('.form').click(function(event) {
+      event.stopPropagation();
+    });
+  }
+
+  setTimeout(popup, 250);
 };
 
 $(document).ready(() => {
@@ -49,10 +63,10 @@ $(document).ready(() => {
     const formData = $(this).serialize();
 
     $.post(url, formData, (response) => {
-      $('#message').html('<h3>Pet added!</h3>');
+      $('#message').html('<h3>Booking Complete</h3>');
       console.log(response);
     }).fail(() => {
-      $('#message').html('<h3>Adding pet failed.</h3>');
+      $('#message').html('<h3>Booking failed</h3>');
     }).always(() => {
       console.log('Making code');
     });
@@ -134,9 +148,6 @@ $(document).ready(() => {
   $('body').on('click', '#booking-btn', (event) => {
     const tripId = event.currentTarget.previousElementSibling.id;
     bookTrip(tripId);
-
-    // on click, full screen white 0.5 opacity background
-    // form overlay section fill
   });
 });
 

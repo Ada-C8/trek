@@ -137,9 +137,24 @@ small {
   font-weight: bold;
   letter-spacing: 0.15em;
   line-height: 2.5em;
-  margin-top: -80px;
   margin-bottom: 50px;
+  margin-top: -80px;
   padding-bottom: 0;
   text-align: center;
   text-transform: uppercase;
+}
+
+.fullscreen {
+  background: white;
+  background: rgba(255,255,255,0.7);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999;
+}
+
+form {
+  background: pink;
 }
