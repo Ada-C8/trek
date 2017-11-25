@@ -7,6 +7,8 @@ let getTrips = function getTrips() {
     console.log(response);
     console.log(response[0]);
 
+    let back = '<button class="button white-text float-right">Go back</button>';
+
     let tableHead = '<tr>';
     for (let attr in response[0]) {
       tableHead += '<th>' + attr.toUpperCase() + '</th>';
@@ -21,6 +23,7 @@ let getTrips = function getTrips() {
       }
       tableRow += '</tr>';
     }
+    $('.back').append(back);
     $('.trips table').append(tableHead);
     $('.trips table').append(tableRow);
 
@@ -34,6 +37,7 @@ let getTrips = function getTrips() {
   }; // end of failureCallback
 
 $.get(tripsURL, successCallback);
+
 
 } // end of getTrips
 
@@ -122,11 +126,6 @@ let makeReservation = function makeReservation(id) {
 
 } // end of makeReservation
 
-// const closeTrip = function closeTrip {
-//
-// }
-
-
 
 $(document).ready( function() {
 
@@ -135,12 +134,12 @@ $(document).ready( function() {
     getTrips();
   });
 
+
   //get info for specific trip
   $('.trips').on('click', 'table tr', function() {
     let tripID = $(this).attr('data-id');
     getTripBuilder(tripID);
     console.log(tripID);
-
   });
 
   //make reservation
@@ -155,8 +154,15 @@ $(document).ready( function() {
     $('.wrapper').hide();
   })
 
+  //go back from trips table
+  $('.trips').on('click', '.back', function() {
+    $('.trips table').html('');
+    $('.back').html('');
+    $('#trips').toggle();
+  })
 
-
+  //footer
+  // $('body').append('<footer class="text-center white-text"><p>COPYRIGHT &copy; Iuliia Chikulaeva</p></footer>');
 
 
 

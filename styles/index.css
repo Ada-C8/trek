@@ -110,6 +110,7 @@ h1 {
 .trips table tr:hover {
   text-shadow: 0 0 1rem #075B69;
   box-shadow: 0 0 1rem #075B69;
+  cursor: pointer;
 }
 
 /*TRIP BLOCK*/
