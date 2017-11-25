@@ -16,18 +16,26 @@
   <body>
 
 
-    <div id='top-show'>
-      <nav class="top-bar" data-topbar role="navigation">
+    <div id='top-show' class='flexbox-container'>
+
+      <div class='row'>
+        <div class="small-3 small-centered columns text-center">
+          <button id="load" value="testsss" class='centered button large'>
+            View Trips!
+          </button>
+        </div>
+      </div>
+      <!-- <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
           <li class="name">
             <h1><a href="#">TREK</a></h1>
           </li>
-          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+          Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
           <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
         </ul>
 
         <section class="top-bar-section">
-          <!-- Right Nav Section -->
+          Right Nav Section
           <ul class="right">
             <li class="has-dropdown">
               <a href="#">Explore</a>
@@ -39,16 +47,18 @@
             </li>
           </ul>
         </section>
-      </nav>
+      </nav> -->
     </div>
-    <button id="load" value="testsss">View Trips!</button>
-    <div>
+
+    <div class="row small-up-1 medium-up-2 large-up-4">
       <div id="show-trip">
 
         <ul></ul>
       </div>
+      <div class="column">
+        <div id="show-trips"><ul></ul></div>
+      </div>
     </div>
-
 
     <div id="reserve-form">
       <form id='trip-form'>
@@ -61,7 +71,7 @@
         <input type="submit" value="Register Pet"></input>
       </form>
     </div>
-    <div id="show-trips"><ul></ul></div>
+
     <div id="fail"></div>
     <div id='foot'>
       <footer>
