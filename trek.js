@@ -18,13 +18,13 @@ $(document).ready(() => {
 
       const tripDetails = `
       <ul>
-      <li>ID:${response.id} </li>
-      <li>Destination: </li>
-      <li>Continent: </li>
-      <li>About: </li>
-      <li>Category: </li>
-      <li>Weeks: </li>
-      <li>Cost: </li>
+      <li>ID: ${response.id} </li>
+      <li>Destination: ${response.name} </li>
+      <li>Continent: ${response.continent} </li>
+      <li>About: ${response.about} </li>
+      <li>Category: ${response.category} </li>
+      <li>Weeks: ${response.weeks} </li>
+      <li>Cost: ${response.cost} </li>
       </ul>`;
       $(`li#${id}`).append(tripDetails);
     });
