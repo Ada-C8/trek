@@ -83,8 +83,8 @@ $(document).ready(() => {
   });
 
   // submit reservation form to API and display success message that eventually disappears
-  $('#results').on('submit', '.reservation-form', (e) => {
-    e.preventDefault(); // not working
+  $(document).on('submit', '.reservation-form', function callback(e) {
+    e.preventDefault();
     const url = $(this).attr('action');
     const formData = $(this).serialize();
     const tripName = $(this).parent().parent().find('h2');
