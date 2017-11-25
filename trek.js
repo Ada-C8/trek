@@ -1,9 +1,9 @@
 const baseURL = 'https://trektravel.herokuapp.com/trips';
 
 $(document).ready(() => {
-  const loadAllTrips = function () {
+  const loadAllTrips = () => {
     $.get(baseURL, (response) => {
-      console.log('worked');
+      console.log('all trips worked');
       response.forEach((trip) => {
         const thisTrip = `<li id='${trip.id}'> ${trip.name} </li>`;
         $('#tripSection').append(thisTrip);
@@ -12,17 +12,20 @@ $(document).ready(() => {
   };
 
   const tripDetails = (id) => {
-    $.get(baseURL+ `/${id}`, (response) => {
-
+    $.get(`${baseURL}/${id}`, (response) => {
+      console.log('Single trip worked');
+      console.log(response);
+      
     });
-  }
+  };
 
   $('#trips').on('click', () => {
     loadAllTrips();
   });
 
-  $('#tripSection ul').on('click', () => {
-    let tripID = $(this).attr('id');
-    tripDetails(tripID);
+  $('#tripSection').on('click', 'li', (e) => {
+    const id = e.target.id;
+    console.log(id);
+    tripDetails(id);
   });
 });
