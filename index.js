@@ -28,7 +28,7 @@ $(document).ready(() => {
               <li>Category: ${response.category}</li>
               <li>Weeks: ${response.weeks}</li>
               <li>Price: $${response.cost}</li>
-              <li><button id="reserve">RESERVE SPOT</button></li>`;
+              <li><button class="reserve">RESERVE SPOT</button></li>`;
 
             let reserveForm = `<form action="https://trektravel.herokuapp.com/trips/${id}/reservations" method="post">
               <section>
@@ -54,8 +54,8 @@ $(document).ready(() => {
             $(`[data-id="${id}"] .details`).append(addInfo);
             $(`[data-id="${id}"] .trip-details`).remove();
 
-            $('#reserve').on('click', () => {
-              $(reserveForm).remove();
+            $('.reserve').on('click', () => {
+              $(`[data-id="${id}"] .details form`).remove();
               $(`[data-id="${id}"] .details`).append(reserveForm);
             });
 
