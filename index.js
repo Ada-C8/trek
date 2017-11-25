@@ -85,5 +85,9 @@ $(document).ready(()=>{
         event.preventDefault();
         console.log("IN SUBMIT")
         let formData = $('.reserve').serialize();
-        $.post(url, formData, successCallback(name))
+        $.post(url, formData, successCallback(name)).fail((response) => {
+          console.log("Failure");
+          let generatedHTML = `<p> Something went wrong, we were not able to reserve a spot for you </p>`
+          $('.status').html(generatedHTML)
+        });
       })};
