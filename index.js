@@ -31,19 +31,9 @@ $( document ).ready(function() {
 
         let reserveButton = `<button type="button" name="button">Reserve Spot</button>`
 
-        let form = `
-          <form class="reserve" action="https://trektravel.herokuapp.com/trips/id/reservations" method="post">Reserve a spot!
-            <input type="text" name="name" value="your full name">
-            <input type="text" name="age" value="your age">
-            <input type="text" name="email" value="your email">
-            <input type="submit" value="Submit">
-          </form>`
-
         $('#trip').html(tripInfo);
         $('#reserve').html(reserveButton);
         $('#reserve').html(form);
-
-
       }) // end .get
       .fail(function(response){
           console.log(response);
@@ -54,6 +44,29 @@ $( document ).ready(function() {
         });
   }; // end of loadTrip()
 
+  let form = `
+    <form class="reserve" action="https://trektravel.herokuapp.com/trips/id/reservations" method="post">Reserve a spot!
+      <input type="text" name="name" value="your full name">
+      <input type="text" name="age" value="your age">
+      <input type="text" name="email" value="your email">
+      <input type="submit" value="Submit">
+    </form>`;
+
+//     // post
+//     $('form').submit( function(e) {
+//       e.preventDefault();
+//
+//       const url = $(this).attr('action'); // Retrieve the action from the form
+//       const formData = $(this).serialize();
+//
+//     $.post(url, formData, (response) => {
+//       $('#message').html('<p> added! </p>');
+//       // What do we get in the response?
+//       console.log(response);
+//     }).fail(() => {
+//       $('#message').html('<p>Adding Pet Failed</p>');
+//   });
+// });
 
   // EVENTS
   $('ul').on('click', 'h3', function(){
