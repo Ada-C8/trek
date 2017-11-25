@@ -11,7 +11,18 @@ $(document).ready(() => {
     });
   };
 
+  const tripDetails = (id) => {
+    $.get(baseURL+ `/${id}`, (response) => {
+
+    });
+  }
+
   $('#trips').on('click', () => {
     loadAllTrips();
+  });
+
+  $('#tripSection ul').on('click', () => {
+    let tripID = $(this).attr('id');
+    tripDetails(tripID);
   });
 });
