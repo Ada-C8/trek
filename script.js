@@ -57,8 +57,7 @@ $(document).ready(() => {
 
   // show form on click
   $('#results').on('click', '.make-reservation-btn', function callback() {
-    //data to input then send: name, age, email
-
+    // data to input then send: name, age, email
     const formContainer = $(this).parent().find('.reservation-form-container');
     console.log(formContainer);
     const tripID = $(this).parent().parent().data('trip-id');
@@ -84,13 +83,13 @@ $(document).ready(() => {
   });
 
   // submit reservation form to API and display success message that eventually disappears
-  $('.reservation-form').submit((e) => {
-    e.preventDefault(); //not working
+  $('#results').on('submit', '.reservation-form', (e) => {
+    e.preventDefault(); // not working
     const url = $(this).attr('action');
     const formData = $(this).serialize();
-    // const tripName = $(this).parent().parent().find('h2'); // didn't want to make another GET request
+    const tripName = $(this).parent().parent().find('h2');
     $.post(url, formData, (response) => {
-      $('#message').html('success!');
+      $('#message').html(`success! ${response.name} | ${response.email} | for ${tripName}`);
     }).fail(() => {
       $('#message').html('failed!');
     });
