@@ -9,9 +9,25 @@ let getTrips = function getTrips() {
 
     let back = '<button class="button white-text float-right">Go back</button>';
 
+    let continents = ['All'];
+    for (let trip of response) {
+      if (!continents.includes(trip.continent)) {
+        continents.push(trip.continent);
+      }
+    }
+
     let tableHead = '<tr>';
     for (let attr in response[0]) {
-      tableHead += '<th>' + attr.toUpperCase() + '</th>';
+      // tableHead += '<th>' + attr.toUpperCase() + '</th>';
+      if (attr === 'continent') {
+        tableHead += '<th><select>'
+        for (let continent of continents) {
+          tableHead += '<option>' + continent + '</option>';
+        }
+        tableHead += '</select></th>'
+      } else {
+        tableHead += '<th>' + attr.toUpperCase() + '</th>';
+      }
     }
     tableHead += '</tr>'
 
