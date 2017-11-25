@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  loadTrips = function loadTrips() {
+  const loadTrips = function loadTrips() {
     $.get('https://trektravel.herokuapp.com/trips',
       response => {
         response.forEach(function(trip) {
@@ -17,7 +17,7 @@ $( document ).ready(function() {
         });
   }; // end of loadTrips()
 
-  loadTrip = function loadTrip(id) {
+  const loadTrip = function loadTrip(id) {
     $.get(`https://trektravel.herokuapp.com/trips/${id}`,
       response => {
         let tripInfo = `
@@ -31,12 +31,13 @@ $( document ).ready(function() {
 
         let reserveButton = `<button type="button" name="button">Reserve Spot</button>`
 
-        let form = `<form class="reserve" action="https://trektravel.herokuapp.com/trips/id/reservations" method="post">Reserve a spot!
-          <input type="text" name="name" value="your full name">
-          <input type="text" name="age" value="your age">
-          <input type="text" name="email" value="your email">
-          <input type="submit" value="Submit">
-        </form>`
+        let form = `
+          <form class="reserve" action="https://trektravel.herokuapp.com/trips/id/reservations" method="post">Reserve a spot!
+            <input type="text" name="name" value="your full name">
+            <input type="text" name="age" value="your age">
+            <input type="text" name="email" value="your email">
+            <input type="submit" value="Submit">
+          </form>`
 
         $('#trip').html(tripInfo);
         $('#reserve').html(reserveButton);
@@ -63,4 +64,6 @@ $( document ).ready(function() {
   $('#load').on('click', function(){
     loadTrips();
   });
+
+
 }); //end of document.ready
