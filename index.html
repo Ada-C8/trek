@@ -3,15 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Trek!</title>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
-    <script src="js/foundation.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+
     <link rel="stylesheet" href="styles/foundation.css" />
     <link rel="stylesheet" href="styles/normalize.css" />
     <link href="styles/main.css" rel="stylesheet" />
+    <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
 
@@ -65,7 +61,7 @@
           <label for="email">Email:</label>
           <input type="text" name="email"></input>
 
-          <input type="submit" value="Register Pet"></input>
+          <input id='myBtn' type="submit" value="Register Pet"></input>
         </form>
       </div>
       <div class="column">
@@ -76,6 +72,20 @@
 
 
     <div id="fail"></div>
+
+
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id='message'></p>
+      </div>
+
+    </div>
     <div id='foot'>
       <footer>
         <p>
@@ -85,8 +95,16 @@
     </div>
 
 
-    <script>
-    $(document).foundation();
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/foundation/foundation.reveal.js"></script>
+
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript">
+        $(document).foundation();
     </script>
   </body>
 </html>

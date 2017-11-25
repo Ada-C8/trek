@@ -3,6 +3,9 @@ const baseUrl = 'https://trektravel.herokuapp.com/trips'
 const successCallback = function(response){
   console.log("POST request to reserve a spot on a trip was successful");
   console.log(response);
+  let name = $('#trip-form').data('name');
+  console.log(`Trip name: ${name}`);
+  $('#message').html(`You successfully reserved a spot on the following trip. \n ${name} `);
 };
 
 $(document).ready(()=> {
@@ -43,6 +46,7 @@ $(document).ready(()=> {
         console.log(`trip id:${response.id}`);
         $('#reserve-form').show();
         $('#trip-form').attr('data-id' , `${response.id}`);
+        $('#trip-form').attr('data-name' , `${response.name}`);
       });
       $('#show-trip').append(button);
     })
@@ -63,19 +67,46 @@ $(document).ready(()=> {
 
   $('#load').on('click', function(){
     loadTrips();
-    $('html,body').animate({
-      scrollTop: $("#show-trips").offset().top -30},
-      'slow');
-
+    $('html,body').animate({ scrollTop: $("#show-trips").offset().top -30},'slow');
   });
 
   $('#trip-form').on('submit', function(event){
     event.preventDefault();
     let url = baseUrl + `/${$(this).data('id')}/reservations`;
     let formData = $('#trip-form').serialize();
-    // console.log(formData);
+    let tripName = $(this).data('name')
+    console.log(`Trip Name: ${tripName}`);
+    console.log('formData');
+    console.log(formData);
     $.post(url, formData,successCallback).fail((response) => {
       console.log("Didn't go so hot");
     });
+    modal.style.display = "block";
   });
+
+  // Get the modal
+  var modal = document.getElementById('myModal');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  // btn.onclick = function() {
+    // modal.style.display = "block";
+  // };
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  };
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
 });
