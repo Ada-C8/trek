@@ -1,7 +1,5 @@
 // /* eslint-disable */
-
 $(document).ready(() => {
-
   // view all trips on click
   $('#all-trips-btn').on('click', () => {
     const url = 'https://trektravel.herokuapp.com/trips';
@@ -57,7 +55,7 @@ $(document).ready(() => {
     }
   });
 
-  // show form on click and send data to the API
+  // show form on click
   $('#results').on('click', '.make-reservation-btn', function callback() {
     //data to input then send: name, age, email
 
@@ -65,23 +63,16 @@ $(document).ready(() => {
     console.log(formContainer);
     const tripID = $(this).parent().parent().data('trip-id');
     const postURL = `https://trektravel.herokuapp.com/trips/${tripID}/reservations`;
-    const formHTML = `<hr>
-                      <form action="${postURL}" method="post">
+    const formHTML = `<form action="${postURL}" method="post" class="reservation-form">
                         <h4>Reservation Form:</h4>
                         <section class="row">
                           <section class="large-6 columns">
                             <label>
-                              <input type="text" id="name" placeholder="Name" />
+                              <input type="text" id="name" name="name" placeholder="Name" required />
                             </label>
                           </section>
                           <section class="large-6 columns">
-                            <label>
-                              <input type="number" id="age" placeholder="Age" />
-                            </label>
-                          </section>
-                          <section class="large-12 columns">
-                            <label>
-                              <input type="text" id="email" placeholder="Email" />
+                              <input type="text" id="email" name="email" placeholder="Email" pattern="\\S+@\\S+\\.\\S+" title="ex. name@example.com" required />
                             </label>
                           </section>
                           <section class="large-12 columns">
@@ -92,6 +83,18 @@ $(document).ready(() => {
     formContainer.html(formHTML);
   });
 
+  // submit reservation form to API and display success message that eventually disappears
+  $('.reservation-form').submit((e) => {
+    e.preventDefault(); //not working
+    const url = $(this).attr('action');
+    const formData = $(this).serialize();
+    // const tripName = $(this).parent().parent().find('h2'); // didn't want to make another GET request
+    $.post(url, formData, (response) => {
+      $('#message').html('success!');
+    }).fail(() => {
+      $('#message').html('failed!');
+    });
+  });
 
   // someBODY once told me memes were outdated
   $('#shrekify').on('click', () => {
