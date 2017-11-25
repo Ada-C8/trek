@@ -56,10 +56,17 @@ $(document).ready(()=> {
   $('#show-trips ul').on('click', 'h2', function(){
     let tripId = $(this).attr('data-id');
     loadTrip(tripId);
+    $('html,body').animate({
+      scrollTop: $("#show-trips").offset().top},
+      'slow');
   });
 
   $('#load').on('click', function(){
     loadTrips();
+    $('html,body').animate({
+      scrollTop: $("#show-trips").offset().top},
+      'slow');
+
   });
 
   $('#trip-form').on('submit', function(event){
