@@ -21,7 +21,10 @@ $(document).ready(() => {
         });
         resultsContainer.html(allTrips);
       },
-    );
+    ).fail(() => {
+      const message = `<h3>Unable to generate all trips.</h3>`;
+      $('#message').html(message);
+    });
   });
 
   // view trip details on click
@@ -51,7 +54,10 @@ $(document).ready(() => {
           tripDetailsContainer.html(detailsText);
           $(this).text('Hide Information');
         },
-      );
+      ).fail(() => {
+        const message = `<h3>Unable to get details for trip ID ${tripID}</h3>`;
+        $('#message').html(message);
+      });
     }
   });
 
