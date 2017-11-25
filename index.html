@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>TREK</title>
 
-    <link rel="stylesheet" href="foundation-6.4.2-essential/css/foundation.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="foundation-6.4.2-essential/css/foundation.css">
     <link rel="shortcut icon" href="favicon.png" type="favicon.png">
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -14,21 +14,25 @@
   <body>
     <header>
       <h1> Welcome to TREK </h1>
+      <button id="load-trips" class="button"> Find Trips </button>
     </header>
 
     <section>
-      <button id="load-trips" class="button"> Find Trips </button>
 
       <div id="fail">
 
       </div>
-      <div id="trips"><ul></ul></div>
+      <div id="trips">
+        Here are our Trips
+        <ul></ul>
+      </div>
     </section>
 
     <section>
-      <div id="trip" hidden=true>
+      <div >
         <div id="ajax-results"></div>
-        <div id="fail">
+        <div id="fail"></div>
+        <div id='trip' hidden=true>
 
         </div>
         <p id="name"></p>

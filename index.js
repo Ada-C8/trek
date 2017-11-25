@@ -10,7 +10,7 @@ const successCallback = function successCallback(response) {
 };
 
 $(document).ready(function() {
-  const getTrips = function getTrips() {
+  const getTrips = getTrips => {
     $.get(url,
       function (response) {
         $('#trips ul').html('')
@@ -28,13 +28,15 @@ $(document).ready(function() {
     });
   }; // end getTrips()
 
-  const tripId = ''
   const trip = function trip (id) {
 
     let url = 'https://trektravel.herokuapp.com/trips/' + `${id}`
 
 
     $.get(url, function(response) {
+      // TODO: clearing the trip is not working. work on it later.
+      $('#trip').html('')
+
       console.log('success');
       console.log(response['name']);
 
@@ -45,11 +47,11 @@ $(document).ready(function() {
       `;
 
 
-      $('#name').append(tripInfo)
-      $('#category').append(response.category)
-      $('#duration').append(response.duration)
-      $('#cost').append((response.cost).toFixed(2))
-      $('#about').append(response.about)
+      $('#name').html(tripInfo)
+      $('#category').html(response.category)
+      $('#duration').html(response.duration)
+      $('#cost').html((response.cost).toFixed(2))
+      $('#about').html(response.about)
 
       // I am not sure if putting the reservation code with in the scope of the $.get trip is best practice. It is here because this was the simplest way to access the trip's id. I tried using the .data()
 
@@ -80,8 +82,7 @@ $(document).ready(function() {
 
   $('#load-trips').on('click', getTrips)
 
-
-  $('#load-trips').on('click', function(event){
+  $('#load-trips').on('click', function (event){
     $('#trips').show();
     $('#trip').hide();
   });
@@ -89,7 +90,7 @@ $(document).ready(function() {
 
   // 'a' targets the anchor tag with the trip.id in it. this gives the id when console.logging
 
-  $('#trips ul').on('click', 'a', function(event){
+  $('#trips ul').on('click', 'a', function (event){
     event.preventDefault();
     let tripID = $(this).attr('data-id');
     console.log(tripID);
