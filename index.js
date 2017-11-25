@@ -26,13 +26,14 @@ $(document).ready(()=>{
 
   let loadTrip = function loadTrip(id) {
     $('#trip').html('');
+    $('#ajax-results').html('');
     $.get(`https://trektravel.herokuapp.com/trips/${id}`,
       (response) => {
         console.log(response);
         let tripInfo = `
         <div class="row"><h2> ${response.name} </h2>
         <p> <b> Continent: </b>${response.continent}</p>
-        <p> <b> About: </b> </p>${response.about}</p>
+        <p> <b> About: </b> ${response.about}</p>
         <p> <b> Category: </b> ${response.category}</p>
         <p> <b> Weeks: </b>${response.weeks}</p>
         <p> <b> Cost: </b>${response.cost}</p></div>
@@ -46,7 +47,6 @@ $(document).ready(()=>{
 
         <input type="submit" value="Reserve a spot" class="button"></input>
         </form>`;
-        // <p> <button>  Go back </button> </p>
         $('#trip').html(tripInfo);
       })
 
@@ -55,15 +55,13 @@ $(document).ready(()=>{
         $('#fail').html('<p> Request was unsuccessful </p>')
       });
     };
-    // $('#trips table').on('click', 'tr',  function(){
-    //   let tripID = $(this).attr('data-id');
-    //   console.log(tripID);
-    //   loadTrip(tripID);
-    //   // console.log(loadTrip);
-    // });
+    $('#trips table').on('click', 'tr', function(){
+      let tripID = $(this).attr('data-id');
+      $('#trip').show();
+      loadTrip(tripID);
+    });
 
     // Function to submit form to the DB
-
     const successCallback = function(response) {
       console.log("POST request was successful");
       console.log(response);
@@ -71,7 +69,7 @@ $(document).ready(()=>{
       let generatedHMTL = '<p>Everything went great,';
       generatedHMTL += `and your trip ${ response["name"] } has been added to the DB!</p>`;
       $('#ajax-results').html(generatedHMTL);
-      // $('#trip').html('');
+      $('#trip').html(''); // flash message is not disappearing
     }
 
     $('#trip').on('submit','#add-trip-form',function(event){
@@ -88,12 +86,6 @@ $(document).ready(()=>{
     });
 
     // Events
-
-    $('#trips table').on('click', 'tr', function(){
-      let tripID = $(this).attr('data-id');
-      $('#trip').show();
-      loadTrip(tripID);
-    });
 
     $('#load').on('click', function(){
       loadTrips();
