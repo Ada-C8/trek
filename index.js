@@ -62,7 +62,7 @@ $(document).ready(function(){
       $('.about-trip').remove();
       target = $('#' + id);
       if (target.hasClass('show')) {
-        target.addClass('show');
+        target.removeClass('show');
       } else {
         $('.trip').removeClass('show');
         target.addClass('show');
