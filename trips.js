@@ -17,8 +17,19 @@ $(document).ready( () => {
       $('#load').hide();
 
       response.forEach(function(trip)  {
-        let tripInfo = `<div class="column"> <h3 class="card" data-id=${trip.id}> ${trip.name} </a> </h3> </div>`
+
+        if (trip.id < 35) {
+        let tripInfo = `<div class="column">
+
+        <h3 class="card" data-id=${trip.id}>
+
+         ${trip.name}  </h3>
+
+         </div>`
+
+
         $('#trips .row').append(tripInfo);
+        }
       }); //for each
 
       //working version
@@ -105,12 +116,12 @@ $(document).ready( () => {
     let tripID = $(this).attr('data-id');
     console.log(`and now tripid is ${tripID}`);
     loadDetail(tripID);
+    window.scrollTo(0, 0);
   }) //
 
   // make reservations
   //show form
   $('.trip-details').on('click', 'h3', function() {
-    console.log("you clicked a button!");
     console.log(`this is ${this}`);
     let tripID = $(this).attr('data-id');
     console.log(`and now tripid is ${tripID}`)

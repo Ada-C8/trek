@@ -1,3 +1,9 @@
+h3 {
+  padding: 8%;
+  text-align: center;
+}
+
+
 .trip-details {
   border: 2px solid blue;
   margin: 10px;
