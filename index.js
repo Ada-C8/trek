@@ -19,6 +19,8 @@ const getTrips = function getTrips() {
 }; // end of getTrips function
 
 const viewTripsbyQuery = function viewTripsbyQuery(formInput) {
+  $('#tripList ol').empty();
+
   $.get(`https://trektravel.herokuapp.com/trips${formInput}`, (response) => {
     response.forEach((trip) => {
       const tripName = `<li data-id="${trip.id}">${trip.name}</li>`;
@@ -29,7 +31,7 @@ const viewTripsbyQuery = function viewTripsbyQuery(formInput) {
   .fail(() => {
     console.log('failure');
   });
-};
+}; // end of viewTripsbyQuery function
 
 const viewTripsbyContinent = function viewTripsbyContinent() {
   const continentDropdown = `<select id="continentSelector" class=" small-8 large-4 columns dropdown row align-center">
@@ -42,21 +44,10 @@ const viewTripsbyContinent = function viewTripsbyContinent() {
   <option value="SouthAmerica">South America</option>
   </select>`;
   $('#tripsByContinentSelector').append(continentDropdown);
-  $('#tripsByContinentSelector').change(function() {
-    $('#tripList ol').empty();
-    let e = document.getElementById('continentSelector');
-    let selectedContinent = `/continent?query=${e.options[e.selectedIndex].text}`;
+  $('#tripsByContinentSelector').change(() => {
+    const e = document.getElementById('continentSelector');
+    const selectedContinent = `/continent?query=${e.options[e.selectedIndex].text}`;
     viewTripsbyQuery(selectedContinent);
-    // $.get(`https://trektravel.herokuapp.com/trips/continent?query=${selectedContinent}`, (response) => {
-    //   response.forEach((trip) => {
-    //     const tripName = `<li data-id="${trip.id}">${trip.name}</li>`;
-    //     $('#tripList ol').append(tripName);
-    //     $('#tripList ol').show();
-    //   });
-    // })
-    // .fail(() => {
-    //   console.log('failure');
-    // })
   });
 }; // end of viewTripsbyContinent function
 
@@ -67,28 +58,15 @@ const viewTripsByNumberofWeeks = function viewTripsByNumberofWeeks() {
   <input type="radio" name="duration" value="3" id="3week"><label >3 Weeks </label>
   <input type="radio" name="duration" value="4" id="4week"><label >4 Weeks </label>
   </div>
-  <p><input type="button" id="lengthButton" value="Find Trips by Length"></p>
+  <p><input class="button" type="button" id="lengthButton" value="Find Trips by Length"></p>
   </fieldset>`;
-  $('#tripsByNumberofWeeks').append(weeksCheckBoxes);
   $('#tripList ol').empty();
-
-  $('#lengthButton').on('click', function () {
-    let radioValue = $("input[name='duration']:checked").val();
-    console.log(radioValue)
-    let radioValueQuery = `/weeks?query=${radioValue}`;
+  $('#tripsByNumberofWeeks').append(weeksCheckBoxes);
+  $('#lengthButton').on('click', () => {
+    const radioValue = $("input[name='duration']:checked").val();
+    const radioValueQuery = `/weeks?query=${radioValue}`;
     viewTripsbyQuery(radioValueQuery);
   });
-
-  // $("input[type='button']").click(function(){
-  //         	var radioValue = $("input[name='gender']:checked").val();
-  //             if(radioValue){
-  //                 alert("Your are a - " + radioValue);
-  //             }
-  //         });
-  // let e = document.getElementById('radioButtons');
-  // console.log(e)
-  // let selectedDuration = e.options[e.selectedIndex].label;
-  // console.log(selectedDuration);
 }; // end of viewTripsByNumberofWeeks function
 
 const viewTrip = function viewTrip(tripID) {
@@ -153,7 +131,7 @@ const finalizeReservation = function finalizeReservation() {
       $('#message').html('<p>Reserving Trip Failed</p>');
     });
   });
-};
+}; // end of finalizeReservation
 
 $(document).ready(() => {
   viewTripsbyContinent();
@@ -168,7 +146,6 @@ $(document).ready(() => {
     const tripID = $(this).attr('data-id');
     console.log($(this));
     $(this).hide();
-
     reserveForm(tripID);
   });
 
@@ -176,11 +153,6 @@ $(document).ready(() => {
     const tripID = $(this).attr('data-id');
     viewTrip(tripID);
   });
-
-  // $('#lengthButton').on('click', function () {
-  //   const radioValue = $("input[name='duration']:checked").val();
-  //   console.log(radioValue);
-  // });
 
   $('#tripInfo').on('click', 'div',  function() {
     const tripID = $(this).attr('data-id');
@@ -192,5 +164,4 @@ $(document).ready(() => {
     $('#message').empty();
     $('#tripList ol').show();
   });
-});
-// EVENTS
+}); // end of document.ready

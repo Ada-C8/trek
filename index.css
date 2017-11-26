@@ -27,12 +27,12 @@ padding-bottom: 1rem;
 #radioButtons {
   display: flex;
   padding: 2rem;
+  padding-top: 1rem;
   margin-left: 33%;
 }
 
 #lengthButton {
-  display: flex;
-  align-content: center;
+  margin-left: 43%;
 }
 
 ol li {
@@ -48,8 +48,4 @@ ol li {
 
 #tripInfoName {
   text-align: center;
-}
-
-#finalizeButton {
-
 }
