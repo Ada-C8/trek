@@ -75,3 +75,10 @@ $('#load').on('click', function() {
 //     // $('button').remove(); //will remove all buttons when a button is clicked
 //   });
 // });
+// Africa
+// Asia
+// Australasia
+// Europe
+// South America
+// North America
+// (trip 34 is last one)
