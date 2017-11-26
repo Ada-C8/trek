@@ -19,9 +19,44 @@
     </section>
     <nav class="row">
       <section id="nav-buttons" class="large-12 columns">
-        <a id="all-trips-btn">View All Trips</a>
-        <a id="shrekify">Highlighted Location</a>
+        <a id="all-trips-btn" class="button">View All Trips</a>
+        <a id="shrekify" class="button">Highlighted Location</a>
+        <a id="search-form-toggle" class="button">Search For A Trip</a>
       </section>
+
+      <section id="search-form-container">
+        <form>
+          <!-- criteria: name, about, continent, category, weeks, cost -->
+          <label for="trip-name" class="large-12 medium-12 columns">
+            Trip Name:
+            <input type="text" id="trip-name" name="trip-name" placeholder="Trip Name" />
+          </label>
+
+          <label for="continent" class="large-6 medium-6 columns">
+            Continent:
+            <input type="text" id="continent" name="continent" placeholder="Continent" />
+          </label>
+
+          <label for="category" class="large-6 medium-6 columns">
+            Category:
+            <input type="text" id="category" name="category" placeholder="Category" />
+          </label>
+
+          <label for="weeks" class="large-6 medium-6 columns">
+            # of Weeks:
+            <input type="number" id="weeks" name="weeks" placeholder="Number of Weeks" />
+          </label>
+
+          <label for="cost" class="large-6 medium-6 columns">
+            Cost:
+            <input type="number" id="cost" name="cost" placeholder="Cost" />
+          </label>
+          <section class="large-4 large-centered medium-4 medium-centered columns">
+            <button type="submit" class="button form-submit-btn">Search</button>
+          </section>
+        </form>
+      </section>
+
     </nav>
   </header>
   <section id="message"></section>

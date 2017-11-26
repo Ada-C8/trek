@@ -1,5 +1,6 @@
 // /* eslint-disable */
 $(document).ready(() => {
+  // AJAX REQUEST TO TRIP API HANDLERS
   // view all trips on click
   $('#all-trips-btn').on('click', () => {
     const url = 'https://trektravel.herokuapp.com/trips';
@@ -75,16 +76,19 @@ $(document).ready(() => {
                         <h4>Reservation Form:</h4>
                         <section class="row">
                           <section class="large-6 columns">
-                            <label>
+                            <label for="name">
+                              Name:
                               <input type="text" id="name" name="name" placeholder="Name" required />
                             </label>
                           </section>
                           <section class="large-6 columns">
+                            <label for="email">
+                              E-mail:
                               <input type="text" id="email" name="email" placeholder="Email" pattern="\\S+@\\S+\\.\\S+" title="ex. name@example.com" required />
                             </label>
                           </section>
-                          <section class="large-12 columns">
-                            <button type="submit" class="button">Submit</button>
+                          <section class="large-6 large-centered medium-6 medium-centered columns">
+                            <button type="submit" class="button form-submit-btn">Submit</button>
                           </section>
                         </section>
                       </form>`;
@@ -105,6 +109,8 @@ $(document).ready(() => {
                        <p>Name: ${response.name}</p>
                        <p>Email: ${response.email}</p>`;
       $('#message').html(message);
+      $('#message').css('padding', '30px');
+      $('#message').show().delay(2000).fadeOut('slow');
     }).fail(() => {
       const message = `<h3>Reservation for ${tripName} was unsuccessful.</h3>`;
       $('#message').html(message);
@@ -112,6 +118,13 @@ $(document).ready(() => {
       $('#message').show().delay(2000).fadeOut('slow');
     });
   });
+
+  // NAVIGATION HANDLERS
+  // Click to toggle search form
+  $('#search-form-toggle').on('click', () => {
+    $('#search-form-container').toggleClass('show');
+  });
+
 
   // someBODY once told me memes were outdated
   $('#shrekify').on('click', () => {
