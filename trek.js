@@ -2,15 +2,34 @@ $(document).ready(() => {
   $('#load').click(() => {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       response.forEach((place) => {
-        const locations = `
+        const location = `
         <h2> ${place.name} </h2>`;
-        console.log(locations);
-        $('#locations').append(locations);
+        console.log(location);
+        $('#location').append(location);
       });
     });
   });
 
   $('#load').on('click', () => {
-    $('#locations').empty();
+    $('#location').empty();
   });
-});
+
+  // Function for request and response for a specific trip.
+
+  const loadTrip = function loadTrip(id) {
+    $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
+    console.log(response);
+      const tripInfo = `
+        <p> Id: ${response.id} </p>
+        <p> Name: ${response.name} </p>
+        <p> Destination: ${response.destination} </p>
+        <p> Continent: ${response.continent} </p>
+        <p> About: ${response.about} </p>
+        <p> Category: ${response.category} </p>
+        <p> Weeks: ${response.weeks} </p>
+        <p> Cost: ${response.cost} </p>`;
+
+      $('#tripinfo').html(tripInfo);
+    },
+
+  
