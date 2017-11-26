@@ -53,33 +53,36 @@ $(document).ready(() => {
     $.get(singleTripURL, (response) => {
       console.log(response);
       const singleTripTable = `
-      <h3>Trip Details</h3>
-      <table id="atrip-table" class="responsive scroll">
-        <thead id="atrip-head">
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Continent</th>
-            <th>About</th>
-            <th>Category</th>
-            <th>Weeks</th>
-            <th>Cost</th>
-          </tr>
-        </thead>
-        <tbody id="atrip-body">
-          <tr class="atrip-row">
-            <td class="atrip-cell">${response.id}</td>
-            <td class="atrip-cell">${response.name}</td>
-            <td class="atrip-cell">${response.continent}</td>
-            <td class="atrip-cell">${response.about}</td>
-            <td class="atrip-cell">${response.category}</td>
-            <td class="atrip-cell">${response.weeks}</td>
-            <td class="atrip-cell">${response.cost}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <a id="reserve-trip" class="button expanded"><strong>Reserve Trip</strong></a>
+      <h3 class="trip-details-title">Trip Details</h3>
+      <div class="column small-12 small-centered row">
+        <table id="atrip-table" class="scroll">
+          <thead id="atrip-head">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Continent</th>
+              <th>About</th>
+              <th>Category</th>
+              <th>Weeks</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody id="atrip-body">
+            <tr class="atrip-row">
+              <td class="atrip-cell">${response.id}</td>
+              <td class="atrip-cell">${response.name}</td>
+              <td class="atrip-cell">${response.continent}</td>
+              <td class="atrip-cell">${response.about}</td>
+              <td class="atrip-cell">${response.category}</td>
+              <td class="atrip-cell">${response.weeks}</td>
+              <td class="atrip-cell">${response.cost}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="column small-9 small-centered row">
+        <button id="reserve-trip" class="button expanded"><strong>Reserve Trip</strong></button>
+      <div class="column small-9 small-centered row">
 
       <section id="reservation-modal">
         <form id="reservation" data-id="${response.id}">
