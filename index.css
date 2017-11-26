@@ -30,6 +30,11 @@ padding-bottom: 1rem;
   margin-left: 33%;
 }
 
+#lengthButton {
+  display: flex;
+  align-content: center;
+}
+
 ol li {
   text-align: center;
   list-style-position:inside;
