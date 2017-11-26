@@ -108,16 +108,16 @@ $(document).ready(() => {
   const loadResForm = function loadResForm(tripId) {
     if (!$(`h3[data-id=${tripId}]`).hasClass('form-loaded')) {
       const url = `${baseUrl}/${tripId}/reservations`;
-      let formInfo = `<form action=${url} method="post">`;
-
-      const params = ['name', 'age', 'email'];
-      params.forEach((param) => {
-        // capitalize label
-        formInfo += `<label>${capitalize(param)}</label>`;
-        formInfo += `<input type="text" id="${param}" name="${param}"/>`;
-      });
-
-      formInfo += '<button type="submit" class="button" id="reserve">Save a Spot!</button>';
+      const formInfo = `
+        <form action=${url} method="post">
+        <label>Name</label>
+        <input type="text" id="res-name" name="name"/>
+        <label>Age</label>
+        <input type="number" placeholder="Must be 18 or older" min="18" id="age" name="age"/>
+        <label>Email</label>
+        <input type="email" id="email" name="email"/>
+        <button type="submit" class="button" id="reserve">Book It</button>
+        </form>`;
       console.log(formInfo);
 
       $(`h3[data-id=${tripId}]`).addClass('form-loaded');
@@ -129,27 +129,30 @@ $(document).ready(() => {
     // if not already displayed
     if (!$('section.add-trip').hasClass('form-loaded')) {
       // const url = `${baseUrl}`;
-      const params = {
-        name: 'text',
-        continent: 'text',
-        about: 'text',
-        category: 'text',
-        weeks: 'number',
-        cost: 'number',
-      };
-
-      let formInfo = `<form action=${baseUrl} method="post">`;
-
-      Object.keys(params).forEach((param) => {
-        formInfo += `<label>${capitalize(param)}</label>`;
-
-        if (param === 'cost') {
-          formInfo += '<input type="number" step="0.01" id="cost" name="cost"/>';
-        } else {
-          formInfo += `<input type="${params[param]}" id="${param}" name="${param}"`;
-        }
-      });
-      formInfo += '<button class="button" type="submit" id="add">Confirm</button>';
+      const formInfo = `
+        <form action=${baseUrl} method="post">
+        <label>Name</label>
+        <input type="text" id="new-trip-name" name="name"/>
+        <label>Continent</label>
+        <select id="continent" name="continent">
+          <option value="Africa">Africa</option>
+          <option value="Antarctica">Antarctica</option>
+          <option value="Asia">Asia</option>
+          <option value="Australasia">Australasia</option>
+          <option value="Europe">Europe</option>
+          <option value="North America">North America</option>
+          <option value="South America">South America</option>
+        </select>
+        <label>About</label>
+        <textarea id="about" name="about" placeholder="Description" maxlength="500"/>
+        <label>Category</label>
+        <input type="text" id="category" name="category"/>
+        <label>Weeks</label>
+        <input type="number" id="weeks" name="weeks"/>
+        <label>Cost</label>
+        <input type="number" id="cost" name="cost" step="0.01"/>
+        <button class="button" type="submit" id="add">Confirm</button>
+        </form>`;
 
       console.log(formInfo);
       $('section.add-trip').addClass('form-loaded');
@@ -160,6 +163,7 @@ $(document).ready(() => {
   const reserveTrip = function reserveTrip(form) {
     const url = form.attr('action');
     const formData = form.serialize();
+    console.log(formData);
 
     $.post(url, formData, (response) => {
       $('form').trigger('reset');
@@ -173,14 +177,15 @@ $(document).ready(() => {
     const url = form.attr('action');
     const formData = form.serialize();
 
-    $.post(url, formData, (response) => {
-      $('form').trigger('reset');
-      console.log(response);
-      alert('trip added!');
-    }).fail((response) => {
-      console.log(response);
-      alert('failed to add trip');
-    });
+    console.log(formData);
+    // $.post(url, formData, (response) => {
+    //   $('form').trigger('reset');
+    //   console.log(response);
+    //   alert('trip added!');
+    // }).fail((response) => {
+    //   console.log(response);
+    //   alert('failed to add trip');
+    // });
   };
 
   // event handlers
@@ -247,7 +252,7 @@ $(document).ready(() => {
     }
   });
 
-  $('.trips').on('submit', 'form', function book(event) {
+  $('.trip-details').on('submit', 'form', function book(event) {
     event.preventDefault();
     reserveTrip($(this));
   });

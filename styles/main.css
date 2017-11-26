@@ -176,4 +176,5 @@ form label {
   background-color: transparent;
   border: 1.5px solid #075523;
   border-radius: 5px;
+  min-width: 8rem;
 }
