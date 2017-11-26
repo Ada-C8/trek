@@ -1,0 +1,51 @@
+/*= require foundation */
+
+@media only screen and (max-width: 320px) {
+   body { font-size: 3em; }
+
+}
+
+h1, h4, #clickToHide, #message {
+  font-family: 'Berkshire Swash', cursive;
+  text-align: center;
+}
+
+#allTripsButton {
+display: flex;
+justify-content: center;
+padding: 2rem;
+padding-bottom: 1rem;
+}
+
+#tripsByContinentSelector {
+  display: flex;
+  align-content: center;
+  padding: 1rem;
+  flex-direction: column;
+}
+
+#radioButtons {
+  display: flex;
+  padding: 2rem;
+  padding-top: 1rem;
+  margin-left: 33%;
+}
+
+#lengthButton {
+  margin-left: 43%;
+}
+
+ol li {
+  text-align: center;
+  list-style-position:inside;
+  font-size: 1.5rem;
+}
+
+#clickToHide, #message {
+  color: red;
+  font-size: 2rem;
+}
+
+#tripInfoName {
+  text-align: center;
+}
