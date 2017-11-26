@@ -38,6 +38,8 @@ $(document).ready(() => {
 
       $(`#singleTripDetails`).html(details);
       $('#reservationForm').show();
+      $('#nameField').val('');
+      $('#emailField').val('');
     }).fail(() => {
       console.log('Something went wrong with the trip details');
     });
