@@ -13,6 +13,10 @@ const pluralizeWeek = function pluralizeWeek(num) {
   return num === 1 ? 'week' : 'weeks';
 };
 
+const capitalize = function capitalize(string) {
+  return string.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
+};
+
 $(document).ready(() => {
   $(document).foundation();
 
@@ -27,10 +31,15 @@ $(document).ready(() => {
       response.forEach((trip) => {
         const tripInfo = `
         <li class="trip small-6 medium-4 large-3 cell grid-x align-center" data-equalizer-watch>
-        <a><h3 class="trip-name" data-id=${trip.id}>${trip.name}</h3></a>
+        <a>
+        <h3 class="trip-name" data-id=${trip.id}>${trip.name}</h3>
+        </a>
         <div class="align-self-bottom grid-x"><p class="small-6 cell continent">${trip.continent}</p>
         <p class="small-6 cell weeks">${trip.weeks} ${pluralizeWeek(trip.weeks)}</p>
-        <div><img src="./styles/images/mt-detail.jpeg" alt="desert mountain"/></div></div>`;
+        <div>
+        <img src="./styles/images/mt-detail.jpeg" alt="desert mountain"/>
+        </div>
+        </div>`;
 
         $('.trips > ul').append(tripInfo);
       });
@@ -70,7 +79,9 @@ $(document).ready(() => {
     $.get(url, (response) => {
       const tripInfo = `
       <section class="details grid-x align-center" data-id="${tripId}">
-      <a class="small-12 cell"><h3>${response.name}</h3></a>
+      <a class="small-12 cell">
+      <h3>${response.name}</h3>
+      </a>
       <div class="small-12 medium-7 large-5 cell">
       <img src="./styles/images/mt-detail.jpeg"
       alt="desert mountain"/>
@@ -89,6 +100,7 @@ $(document).ready(() => {
       $(`h3[data-id=${tripId}]`).addClass('details-loaded');
       $('.trip-details').append(tripInfo);
       $('.trips').hide();
+      $('.add-trip').hide();
       $(`section[data-id=${tripId}]`).show();
     });
   };
@@ -101,7 +113,7 @@ $(document).ready(() => {
       const params = ['name', 'age', 'email'];
       params.forEach((param) => {
         // capitalize label
-        formInfo += `<label>${param[0].toUpperCase() + param.slice(1)}</label>`;
+        formInfo += `<label>${capitalize(param)}</label>`;
         formInfo += `<input type="text" id="${param}" name="${param}"/>`;
       });
 
@@ -110,6 +122,38 @@ $(document).ready(() => {
 
       $(`h3[data-id=${tripId}]`).addClass('form-loaded');
       $('.reservation').append(formInfo);
+    }
+  };
+
+  const loadAddForm = function loadAddForm() {
+    // if not already displayed
+    if (!$('section.add-trip').hasClass('form-loaded')) {
+      // const url = `${baseUrl}`;
+      const params = {
+        name: 'text',
+        continent: 'text',
+        about: 'text',
+        category: 'text',
+        weeks: 'number',
+        cost: 'number',
+      };
+
+      let formInfo = `<form action=${baseUrl} method="post">`;
+
+      Object.keys(params).forEach((param) => {
+        formInfo += `<label>${capitalize(param)}</label>`;
+
+        if (param === 'cost') {
+          formInfo += '<input type="number" step="0.01" id="cost" name="cost"/>';
+        } else {
+          formInfo += `<input type="${params[param]}" id="${param}" name="${param}"`;
+        }
+      });
+      formInfo += '<button class="button" type="submit" id="add">Confirm</button>';
+
+      console.log(formInfo);
+      $('section.add-trip').addClass('form-loaded');
+      $('section.add-trip').append(formInfo);
     }
   };
 
@@ -125,15 +169,34 @@ $(document).ready(() => {
     });
   };
 
-  // events
+  const addTrip = function addTrip(form) {
+    const url = form.attr('action');
+    const formData = form.serialize();
+
+    $.post(url, formData, (response) => {
+      $('form').trigger('reset');
+      console.log(response);
+      alert('trip added!');
+    }).fail((response) => {
+      console.log(response);
+      alert('failed to add trip');
+    });
+  };
+
+  // event handlers
   $('.start').on('click', () => {
     $('body').removeClass('init');
     $('div.init').hide();
     $('header').addClass('grid-x');
     $('header').show();
     $('main').show();
+    $('section.add-trip').hide();
 
     loadTrips();
+
+    // display after loading to avoid showing at top then being pushed to bottom as trips load
+    // still flickers at top briefly
+    $('section.add-trip').fadeIn(1100);
   });
 
   $('.load').on('click', () => {
@@ -141,6 +204,7 @@ $(document).ready(() => {
     if ($('.trips').hasClass('all')) {
       $('.details').hide();
       $('.trips').show();
+      $('.add-trip').show();
     } else {
       loadTrips();
     }
@@ -154,6 +218,7 @@ $(document).ready(() => {
     if ($(`section[data-id=${tripId}]`).length) {
       // hide trips, show details for that trip
       $('.trips').hide();
+      $('.add-trip').hide();
       $(`section[data-id=${tripId}]`).show();
       // load trips if not already loaded
     } else {
@@ -165,6 +230,7 @@ $(document).ready(() => {
   $('.trip-details').on('click', 'h3', function showAll() {
     $(this).parent().parent().hide();
     $('.trips').show();
+    $('.add-trip').show();
   });
 
   // display form when button is clicked
@@ -186,6 +252,20 @@ $(document).ready(() => {
     reserveTrip($(this));
   });
 
+  $('.trips').on('click', 'button.add-trip', () => {
+    if ($('section.add-trip').hasClass('form-loaded')) {
+      const add = $('section.add-trip form');
+      add.toggle();
+    } else {
+      loadAddForm();
+    }
+  });
+
+  $('.add-trip').on('submit', 'form', function add(event) {
+    event.preventDefault();
+    addTrip($(this));
+  });
+
   // dropdown menus
   $('.menu .continents').on('click', 'a', function filterTrips() {
     const query = $(this).text();
@@ -193,12 +273,14 @@ $(document).ready(() => {
   });
 
   $('.menu .cost').on('click', 'a', function filterTrips() {
-    // deformat cost
-    const query = $(this).text().slice(1).split(',').join('');
+    // deformat cost (remove dollar sign and commas)
+    const query = $(this).text().slice(1).split(',')
+      .join('');
     loadTripsByCost(query);
   });
 
   $('.menu .duration').on('click', 'a', function filterTrips() {
+    // remove 'weeks' from query string
     const query = $(this).text().split(' ')[0];
     loadTripsByWeeks(query);
   });
