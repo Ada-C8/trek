@@ -13,13 +13,12 @@
    font-family: fantasy;
    font-style: italic;
  }
- #load, #back{
+ #load{
     text-align: center;
     border: 1px black solid;
     border-radius: .2em ;
     background-color: lightblue;
     color: black;
-    /*margin: auto;*/
     margin-top: 2%;
   }
 
@@ -28,25 +27,41 @@
   }
 
   /*********BODY************/
-/*html{
-  background-color: AZURE;
-}*/
-body{
-    background-color: ;
-}
+
 
 #trips{
   background-color: AZURE;
   color: navy;
   font-family: sans-serif;
   font-size: 10pt;
+  padding-left: 5%;
+  padding-top: 5%;
 }
+
+tr th{
+  padding-right: 22%;
+  padding-bottom: 2%;
+}
+
+tr td{
+  padding-bottom: 1%;
+}
+
+tr:hover.selected td,
+tr:hover td {
+  background-color: #FFEFC6;
+  cursor: pointer;
+}
+
 
 #trip{
   border-radius: .5em;
-  background-color: SEASHELL;
-  text-align: center;
+  background-color: AZURE;
   color: #FF5733;
+}
+
+.reserve, .tripname{
+  text-align: center;
 }
 
 .button a, input.button{
@@ -63,10 +78,6 @@ p{
 b{
   color: navy;
 }
-/*#ajax-results{
-  background-color: blue;
-}*/
-/*
-#add-trip-form{
-  margin: 80%;
-}*/
+strong{
+  color: green; /* Success message
+}

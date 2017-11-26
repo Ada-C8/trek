@@ -4,7 +4,7 @@ $(document).ready(()=>{
     $.get('https://trektravel.herokuapp.com/trips',
     (response) => {
       let tripInfo = '';
-        // let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name}, ${trip.continent}</a></li></h3><p> `
+      tripInfo+= "<tr><th>ID</th><th>Trip</th><th>Continent</th><th>Weeks</th></tr>";//table headings
       response.forEach(function(trip) {
         tripInfo += `<tr data-id=${trip.id}>`
         for (let attr in trip) {
@@ -14,6 +14,7 @@ $(document).ready(()=>{
       })// forEach
       $('#trips table').html(tripInfo);
     }) // .get, response
+
     .fail(function(response){
       console.log(response);
       $('#fail').html('<p>Request was unsuccessful</p>')
@@ -31,22 +32,26 @@ $(document).ready(()=>{
       (response) => {
         console.log(response);
         let tripInfo = `
-        <div class="row"><h2> ${response.name} </h2>
+        <div class="row"><h2 class="tripname"> ${response.name} </h2>
         <p> <b> Continent: </b>${response.continent}</p>
         <p> <b> About: </b> ${response.about}</p>
         <p> <b> Category: </b> ${response.category}</p>
         <p> <b> Weeks: </b>${response.weeks}</p>
         <p> <b> Cost: </b>${response.cost}</p></div>
 
-        <form id="add-trip-form" class="row" action = "https://trektravel.herokuapp.com/trips/${id}/reservations">
-        <label for="name">Name:</label>
-        <input type="text" name="name"></input>
+        <div  class="row">
+          <p class="reserve"><b> Make a reservation </b></p>
+          <form id="add-trip-form" action = "https://trektravel.herokuapp.com/trips/${id}/reservations">
+          <label for="name">Name:</label>
+          <input type="text" name="name"></input>
 
-        <label for="email">Email:</label>
-        <input type="text" name="email"></input>
+          <label for="email">Email:</label>
+          <input type="text" name="email"></input>
 
-        <input type="submit" value="Reserve a spot" class="button"></input>
-        </form>`;
+          <input type="submit" value="Reserve a spot" class="button"></input>
+          </form>
+        </div> `;
+
         $('#trip').html(tripInfo);
       })
 
@@ -66,10 +71,10 @@ $(document).ready(()=>{
       console.log("POST request was successful");
       console.log(response);
 
-      let generatedHMTL = '<p>Everything went great,';
-      generatedHMTL += `and your trip ${ response["name"] } has been added to the DB!</p>`;
+      let generatedHMTL = '<p><strong>Everything went great, ';
+      generatedHMTL += `and your trip ${ response["name"] } has been added to the DB!<strong></p>`;
       $('#ajax-results').html(generatedHMTL);
-      $('#trip').html(''); // flash message is not disappearing
+      $('#trip').html('');
     }
 
     $('#trip').on('submit','#add-trip-form',function(event){
