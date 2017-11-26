@@ -1,12 +1,14 @@
 
 const getTrips = function getTrips() {
   $('#tripList ol').empty();
+  $('#message').empty();
   $.get('https://trektravel.herokuapp.com/trips', (response) => {
     console.log(response);
     response.forEach((trip) => {
       const tripName = `<li data-id="${trip.id}">${trip.name}</li>`;
       $('#tripList ol').append(tripName);
     });
+    $('#tripList ol').show();
   })
   .fail(() => {
     console.log('failure');
@@ -30,15 +32,14 @@ const viewTripsbyContinent = function viewTripsbyContinent() {
   $('#tripsByContinentSelector').change(function() {
     $('#tripList ol').empty();
     let e = document.getElementById('continentSelector');
-    // console.log(e);
     let selectedContinent = e.options[e.selectedIndex].text;
     console.log(selectedContinent);
 
     $.get(`https://trektravel.herokuapp.com/trips/continent?query=${selectedContinent}`, (response) => {
-      // console.log(response);
       response.forEach((trip) => {
         const tripName = `<li data-id="${trip.id}">${trip.name}</li>`;
         $('#tripList ol').append(tripName);
+        $('#tripList ol').show();
       });
     })
     .fail(() => {
@@ -55,15 +56,14 @@ const viewTrip = function viewTrip(tripID) {
     const tripInfo =
     `<div data-id="${response.id}">
     <p id="clickToHide"> ~ Click Anywhere to Hide ~ </p>
-    <h2> ${response.name} </h2>
-    <p> Continent: ${response.continent} </p>
-    <p> Description: ${response.about} </p>
-    <p> Category: ${response.category} </p>
-    <p> Weeks: ${response.weeks} </p>
-    <p> Cost: ${response.cost} </p>
+    <h3 id="tripInfoName"> <strong> ${response.name} </strong></h3>
+    <p> <strong> Continent: </strong> ${response.continent} </p>
+    <p> <strong> Description: </strong> ${response.about} </p>
+    <p> <strong> Category: </strong> ${response.category} </p>
+    <p> <strong> Weeks: </strong> ${response.weeks} </p>
+    <p> <strong> Cost: </strong> ${response.cost} </p>
     </div>
-    <button id="reserveFormButton" data-id="${response.id}"> Reserve this Trip </button>`;
-    // console.log(tripInfo);
+    <button id="reserveFormButton" class="button" data-id="${response.id}"> Reserve this Trip </button>`;
     $('#tripInfo').append(tripInfo);
     $('#tripList ol').hide();
   })
@@ -80,15 +80,22 @@ const reserveForm = function reserveTripForm(tripID) {
   console.log(tripID);
   const reservationForm = `
   <div id="message"></div>
+  <div>
   <form action="https://trektravel.herokuapp.com/trips/${tripID}/reservations" method="post" data-id="${tripID}">
-  <section>
+  <section class="small-12 large-9 columns">
   <label>Name</label>
-  <input type="text" id="name" name="name"></input>
+  <input type="text" id="name" name="name" placeholder="Name"></input>
   </section>
-  <section class="button">
-  <button type="submit">Finalize Reservation</button>
+  <section class="small-12 large-9 columns">
+  <label>Email</label>
+  <input type="text" id="email" name="email" placeholder="Email"></input>
   </section>
-  </form>`;
+  </section>
+  <section class="small-12 large-12 columns" id="finalizeButton">
+  <button class="button medium" type="submit">Finalize Reservation</button>
+  </section>
+  </form>
+  </div>`;
   $('#reserveFormField').append(reservationForm);
   finalizeReservation();
 }; // end of reserveTrip function
@@ -98,13 +105,10 @@ const finalizeReservation = function finalizeReservation() {
 
     e.preventDefault();
     const url = $(this).attr('action'); // Retrieve the action from the form
-    console.log(url);
     const formData = $(this).serialize();
     $(this).hide();
     $.post(url, formData, (response) => {
       $('#message').html('<p> Trip Reserved! </p>');
-      // What do we get in the response?
-      console.log(response);
     }).fail(() => {
       $('#message').html('<p>Reserving Trip Failed</p>');
     });
@@ -119,7 +123,7 @@ $(document).ready(() => {
   });
 
   $('#tripInfo').on('click', '#reserveFormButton', function() {
-    console.log('SOMETHING IS HAPPENING');
+    console.log('Attempting to make reservation...');
     const tripID = $(this).attr('data-id');
     console.log($(this));
     $(this).hide();
@@ -134,12 +138,12 @@ $(document).ready(() => {
 
   $('#tripInfo').on('click', 'div',  function() {
     const tripID = $(this).attr('data-id');
-    console.log(tripID);
     $(this).hide();
     const buttonToHide = $( `[data-id="${tripID}"][id="reserveFormButton"]`)
     $(buttonToHide).hide();
     const formToHide = $(`[data-id="${tripID}"][action]`)
     $(formToHide).hide();
+    $('#message').empty();
     $('#tripList ol').show();
   });
 });

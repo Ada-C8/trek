@@ -5,7 +5,7 @@
 
 }
 
-h1, h4, #clickToHide {
+h1, h4, #clickToHide, #message {
   font-family: 'Berkshire Swash', cursive;
   text-align: center;
 }
@@ -28,9 +28,18 @@ padding-bottom: 1rem;
 ol li {
   text-align: center;
   list-style-position:inside;
+  font-size: 1.5rem;
 }
 
-#clickToHide {
+#clickToHide, #message {
   color: red;
-  font-size: 2.25rem;
+  font-size: 2rem;
+}
+
+#tripInfoName {
+  text-align: center;
+}
+
+#finalizeButton {
+  
 }
