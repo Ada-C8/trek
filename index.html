@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Trek</title>
+    <link href="https://fonts.googleapis.com/css?family=Kanit:300|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="styles/foundation.min.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css"> -->
+
+  </head>
+  <body class="init">
+
+    <div class="grid-x grid-margin-x align-center init">
+      <button class="button start">Take a Trek</button>
+    </div>
+
+      <header hidden="true">
+        <h1 class="home align-self-middle cell small-12">Trek</h1>
+        <ul class="dropdown menu align-self-bottom" data-dropdown-menu>
+          <li>
+            <a>Continents</a>
+            <ul class="menu continents">
+              <li><a>Africa</a></li>
+              <li><a>Antarctica</a></li>
+              <li><a>Asia</a></li>
+              <li><a>Australasia</a></li>
+              <li><a>Europe</a></li>
+              <li><a>North America</a></li>
+              <li><a>South America</a></li>
+            </ul>
+          </li>
+          <li><a>Total Cost</a>
+            <ul class="menu cost">
+              <li><a>$500</a></li>
+              <li><a>$1,000</a></li>
+              <li><a>$5,000</a></li>
+              <li><a>$10,000</a></li>
+            </ul>
+          </li>
+          <li><a>Duration</a>
+            <ul class="menu duration">
+              <li><a>1 week</a></li>
+              <li><a>2 weeks</a></li>
+              <li><a>3 weeks</a></li>
+              <li><a>4 weeks</a></li>
+              <li><a>5 weeks</a></li>
+            </ul>
+          </li>
+          <li><a class="load">All Trips</a></li>
+        </ul>
+      </header>
+
+      <main hidden="true">
+        <section class="trips" data-equalizer>
+          <ul class="grid-x grid-padding-x">
+
+          </ul>
+        </section>
+        <section class="add-trip grid-x grid-padding-x align-center">
+            <button class="button add-trip small-12 medium-8 large-6 cell">Add Trip</button>
+            <div class="add-trip-form small-12 cell grid-x align-center">
+
+            </div>
+        </section>
+        <section class="trip-details">
+
+        </section>
+      </main>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="js/foundation.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+  </body>
+</html>
