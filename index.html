@@ -14,38 +14,39 @@
   <body>
     <header>
       <h1> Welcome to TREK </h1>
-      <button id="load-trips" class="button"> Find Trips </button>
     </header>
 
     <section>
+      <button id="load-trips" class="button"> Find Trips </button>
 
       <div id="fail">
 
       </div>
-      <div id="trips">
+      <div id="trips" hidden=true>
         Here are our Trips
+
         <ul></ul>
       </div>
     </section>
 
     <section>
       <div >
-        <div id="ajax-results"></div>
-        <div id="fail"></div>
         <div id='trip' hidden=true>
 
-        </div>
-        <p id="name"></p>
-        <p> Category: <span id="category"></span></p>
-        <p> Duration: <span id="duration"></span></p>
-        <p> Cost: $<span id="cost"></span></p>
-        <p> About: <span id="about"></span></p>
-        <form id="add-res" id="">
-          <label for="name"> Name </label>
-          <input type="text" name="name"></input>
+          <div id="ajax-results"></div>
+          <div id="fail"></div>
+          <p id="name"></p>
+          <p> Category: <span id="category"></span></p>
+          <p> Duration: <span id="duration"></span></p>
+          <p> Cost: <span id="cost">$</span></p>
+          <p> About: <span id="about"></span></p>
+          <form id="add-res" id="">
+            <label for="name"> Name </label>
+            <input type="text" name="name"></input>
 
-          <input type="submit" value="Reserve Trip" class+"button"></input>
-        </form>
+            <input type="submit" value="Reserve Trip" class+"button"></input>
+          </form>
+        </div>
       </div>
     </section>
 

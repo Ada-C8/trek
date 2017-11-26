@@ -18,7 +18,7 @@ $(document).ready(function() {
           // let tripName = trip['name']
           // console.log(tripName);
 
-          $('#trips ul').append(`<li><a href="" data-id="${trip['id']}" >${trip.name}</a></li>`)
+          $('#trips ul').append(`<li><a href="" data-id="${trip.id}" >${trip.name}</a></li>`)
         })
       } // end function (response)
     ) // end $.get
@@ -34,7 +34,6 @@ $(document).ready(function() {
 
 
     $.get(url, function(response) {
-      // TODO: clearing the trip is not working. work on it later.
       $('#trip').html('')
 
       console.log('success');

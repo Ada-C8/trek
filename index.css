@@ -14,3 +14,7 @@ header h1, header .button, header #trips {
 #trips ul{
   list-style-type: none;
 }
+
+div p {
+  font-weight: bold;
+}
