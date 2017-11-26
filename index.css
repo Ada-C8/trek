@@ -1,0 +1,81 @@
+
+
+#wrapper {
+
+  max-width: 1000px;
+  height: 100vh;
+  top: 300px;
+  margin: 0 auto;
+  overflow-x: scroll;
+  /*overflow-y: scroll;*/
+
+}
+
+#bckgd-image{
+  /*height: 100vh;*/
+  background: url("http://www.weatherwizkids.com/wp-content/uploads/2015/04/fog6.jpg") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.fail {
+  color: red;
+  min-width: 333px;
+  background-color: white;
+  text-align: center;
+
+}
+.success {
+  color: green;
+  background-color: white;
+  text-align: center;
+  min-width: 333px;
+}
+
+#trips-table {
+  z-index: 1000;
+}
+
+.page-header {
+  max-width:  100%;
+  /*height: 200px;
+  background-color: #003366;*/
+}
+
+.page-header button, .query{
+  margin-top: 2%;
+}
+
+.page-header .row {
+  text-align: center;
+}
+
+.page-header .row h1{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+#reserve-trip-form {
+  position: relative;
+  padding-bottom: 5%;
+}
+
+#reserve-button {
+  display: flex;
+  justify-content: center;
+}
+
+#show-trip {
+  display: none;
+  background-color: white;
+  padding: 5%;
+  margin-bottom: 5%;
+  margin-top: 2%;
+
+  min-width: 333px;
+}
+
+#trips {
+  margin-top: 2%;
+  display: none;
+}
