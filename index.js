@@ -85,17 +85,30 @@ const viewTrip = function viewTrip(tripID) {
     $('#tripInfo').append(tripInfo);
     $('#tripList ol').hide();
   })
-  .fail((response) => {
-    console.log(response);
-    $('#fail').html('<p>Request was unsuccessful</p>')
-  })
-  .always(() => {
-    console.log('Looking for adventure...');
-  });
+    .fail((response) => {
+      console.log(response);
+      $('#fail').html('<p>Request was unsuccessful</p>');
+    })
+    .always(() => {
+      console.log('Looking for adventure...');
+    });
 }; // end of viewTrip function
 
+const finalizeReservation = function finalizeReservation() {
+  $('#reserveFormField').on('submit', 'form', (e) => {
+    e.preventDefault();
+    const url = $(this).attr('action'); // Retrieve the action from the form
+    const formData = $(this).serialize();
+    $(this).hide();
+    $.post(url, formData, (response) => {
+      $('#message').html('<p> Trip Reserved! </p>');
+    }).fail(() => {
+      $('#message').html('<p>Reserving Trip Failed</p>');
+    });
+  });
+}; // end of finalizeReservation
+
 const reserveForm = function reserveTripForm(tripID) {
-  console.log(tripID);
   const reservationForm = `
   <div id="message"></div>
   <div>
@@ -118,21 +131,6 @@ const reserveForm = function reserveTripForm(tripID) {
   finalizeReservation();
 }; // end of reserveTrip function
 
-const finalizeReservation = function finalizeReservation() {
-  $('#reserveFormField').on('submit', 'form', function(e) {
-
-    e.preventDefault();
-    const url = $(this).attr('action'); // Retrieve the action from the form
-    const formData = $(this).serialize();
-    $(this).hide();
-    $.post(url, formData, (response) => {
-      $('#message').html('<p> Trip Reserved! </p>');
-    }).fail(() => {
-      $('#message').html('<p>Reserving Trip Failed</p>');
-    });
-  });
-}; // end of finalizeReservation
-
 $(document).ready(() => {
   viewTripsbyContinent();
   viewTripsByNumberofWeeks();
@@ -141,25 +139,24 @@ $(document).ready(() => {
     getTrips();
   });
 
-  $('#tripInfo').on('click', '#reserveFormButton', function() {
+  $('#tripInfo').on('click', '#reserveFormButton', () => {
     console.log('Attempting to make reservation...');
     const tripID = $(this).attr('data-id');
-    console.log($(this));
     $(this).hide();
     reserveForm(tripID);
   });
 
-  $('#tripList ol').on('click', 'li', function() {
+  $('#tripList ol').on('click', 'li', () => {
     const tripID = $(this).attr('data-id');
     viewTrip(tripID);
   });
 
-  $('#tripInfo').on('click', 'div',  function() {
+  $('#tripInfo').on('click', 'div', () => {
     const tripID = $(this).attr('data-id');
     $(this).hide();
-    const buttonToHide = $( `[data-id="${tripID}"][id="reserveFormButton"]`)
+    const buttonToHide = $(`[data-id="${tripID}"][id="reserveFormButton"]`);
     $(buttonToHide).hide();
-    const formToHide = $(`[data-id="${tripID}"][action]`)
+    const formToHide = $(`[data-id="${tripID}"][action]`);
     $(formToHide).hide();
     $('#message').empty();
     $('#tripList ol').show();
