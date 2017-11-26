@@ -31,6 +31,7 @@ const displayList = function displayList() {
 // Display Details of Trip
 const displayDetails = function displayDetails(id) {
   $('#reservation-form').show();
+  $('#details').css('padding', '20px');
   $.get(`${apiUrl}/${id}`, (response) => {
     $('#details').html(`<h3>${response.name}</h3>
       <h4>${response.weeks} ${sPluralize('week', response.weeks)} | ${response.continent} | ${capitalize(response.category)}</h4>
@@ -47,10 +48,11 @@ const postReservation = function postReservation(response) {
   const url = `${apiUrl}/${response[0].id}/reservations`;
   const formData = response;
   $.post(url, formData.serialize(), (data) => {
-    $('#confirmation').addClass('success').html(`${data.name} is booked!`);
+    $('#form-submit').children('section').addClass('success');
+    $('#price').html(`${data.name} is booked!`);
   })
     .fail(() => {
-      $('#confirmation').addClass('failure').html('Uhh... Something happened. Please try again.');
+      $('#message').addClass('failure').html('Uhh... Something happened. Please try again.');
     });
 };
 
