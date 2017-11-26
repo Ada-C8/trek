@@ -34,7 +34,6 @@ $(document).ready(function() {
 
 
     $.get(url, function(response) {
-      $('#trip').html('')
 
       console.log('success');
       console.log(response['name']);
