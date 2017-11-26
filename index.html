@@ -11,7 +11,7 @@
 <body id="foundation-override">
   <nav class="row">
     <div class="column small-12 home">
-      <section id="get-list"><h1>Trek On!</h1></section>
+      <section id="get-list"><h1>TREK ON!</h1></section>
 
       <section id="message"></section>
     </div>
@@ -24,22 +24,26 @@
       <section id="trip-detail">
         <section id="confirmation"></section>
         <section id="details"></section>
-        <form class="reservation-form">
-          <section class="field row align-middle">
-            <label class="column small-2 text-right">Name</label>
-            <input class="column" placeholder="Jamie Doe" type="text" id="name" name="name" required></input>
+        <form class="reservation-form row align-middle">
+          <section class="fields column small-12 medium-9">
+            <section class="row align-middle">
+              <label class="column small-2 text-right">Name</label>
+              <input class="column small-9" placeholder="Jamie Doe" type="text" id="name" name="name" required></input>
+            </section>
+            <section class="row align-middle">
+              <label class="column small-2 text-right">Age</label>
+              <input class="column small-9" placeholder="18" type="text" id="age" name="age" required><span class="hide"> Enter a number</span></input>
+            </section>
+            <section class="row align-middle">
+              <label class="column small-2 text-right">Email</label>
+              <input class="column small-9" placeholder="jdoe@somewhere.com" type="email" id="email" name="email" required></input>
+            </section>
           </section>
-          <section class="field row align-middle">
-            <label class="column small-2 text-right">Age</label>
-            <input class="column" placeholder="18" type="text" id="age" name="age" required><span class="hide"> Enter a number</span></input>
-          </section>
-          <section class="field row align-middle">
-            <label class="column small-2 text-right">Email</label>
-            <input class="column" placeholder="jdoe@somewhere.com" type="email" id="email" name="email" required></input>
-          </section>
-
-          <section class="button">
-            <button type="submit">Reserve!</button>
+          <section class="column small-12 medium-3 small-text-center medium-text-left">
+            <section id="price"></section>
+            <section class="button">
+              <button type="submit">Reserve!</button>
+            </section>
           </section>
         </form>
       </section>

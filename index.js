@@ -34,9 +34,9 @@ const displayDetails = function displayDetails(id) {
   $.get(`${apiUrl}/${id}`, (response) => {
     $('#details').html(`<h3>${response.name}</h3>
       <h4>${response.weeks} ${sPluralize('week', response.weeks)} | ${response.continent} | ${capitalize(response.category)}</h4>
-      <div class="about">${response.about}</div>
-      <div class="cost">${response.cost}</div>`);
+      <div id="about">${response.about}</div>`);
     $('.reservation-form').attr('id', id);
+    $('#price').html(response.cost);
   }).fail(() => {
     $('#message').addClass('failure').html('Oops! Something went wrong!');
   });

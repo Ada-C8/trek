@@ -48,26 +48,34 @@ ul, li {
 
 .scrollbox {
   height: 80vh;
-  padding-bottom: 10vh;
+  padding-bottom: 5vh;
   background-color: lightblue;
   overflow: auto;
   overflow-x: hidden;
 }
 
-.about {
+#about {
   text-align: justify;
 }
 
 .reservation-form {
-  max-width: 400px;
-  margin: auto;
+  max-width: 90%;
+  margin: 20px auto;
+
 }
-.field label {
+
+.fields label {
   height:inherit;
   margin-bottom: 16px; /* To match Foundation input field */
 }
+
 .failure {
   background-color: red;
   color: white;
   font-size: 2rem;
+}
+
+#price {
+  font-size: 1.6rem;
+  /*text-align: center;*/
 }
