@@ -3,6 +3,7 @@ $(document).ready(() => {
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
   const loadTrips = function loadTrips() {
     $('#single-trip-info').hide();
+
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       // console.log(response);
 
@@ -63,7 +64,6 @@ $(document).ready(() => {
             <th>Category</th>
             <th>Weeks</th>
             <th>Cost</th>
-            <th>Reserve</th>
           </tr>
         </thead>
         <tbody id="atrip-body">
@@ -79,24 +79,28 @@ $(document).ready(() => {
         </tbody>
       </table>
 
-      <h3>Reserve Trip</h3>
+      <a id="reserve-trip" class="button expanded"><strong>Reserve Trip</strong></a>
 
-      <form id="reservation" data-id="${response.id}">
+      <section id="reservation-modal">
+        <form id="reservation" data-id="${response.id}">
 
-        <label for="name">Name:</label>
-        <input type="text" name="name"></input>
+          <label for="name">Name:</label>
+          <input type="text" name="name" required="required"></input>
 
-        <label for="age">Age:</label>
-        <input type="number" name="age"></input>
+          <label for="age">Age:</label>
+          <input type="number" name="age" required="required"></input>
 
-        <label for="email">Email:</label>
-        <input type="text" name="email"></input>
+          <label for="email">Email:</label>
+          <input type="text" name="email" required="required"></input>
 
-        <button class="button" type="submit">Reserve Trip</button>
-      </form>
+          <button class="button" type="submit">Reserve Trip</button>
+
+        </form>
+      </section>
       `;
 
       $('#single-trip-info').html(singleTripTable);
+      $('#reservation-modal').hide();
 
     }).fail(() => {
       console.log('Did not load successfully!');
@@ -115,11 +119,13 @@ $(document).ready(() => {
     const successCallback = function(response) {
       console.log('POST request was successful');
       console.log(response);
+      $('#reservation-modal').html('Your trips has successfully been reserved!');
     };
 
     const failCallback = function(response) {
       console.log('An error occurred: Post was unsuccessful');
       console.log(response);
+      $('#reservation-modal').html('Error: Your trip could not be reserved. Please refresh your browser and try again.');
     };
 
     let formData = $('#reservation').serialize();
@@ -128,6 +134,8 @@ $(document).ready(() => {
     $.post(tripReservationsURL, formData, successCallback).fail(failCallback);
   };
 
+  // FOUNDATION
+  $(document).foundation();
 
   // EVENTS
   $('#all-trips').on('click', function() {
@@ -140,10 +148,15 @@ $(document).ready(() => {
     getTripDetails(tripID);
   });
 
-  $('#single-trip-info').on('submit', '#reservation', function() {
+  $('#single-trip-info').on('submit', '#reservation', function(response) {
     console.log('Button reserve trip clicked');
+    event.preventDefault();
     let tripID = $(this).attr('data-id');
     makeTripReservation(tripID);
+  });
+
+  $('#single-trip-info').on('click', '#reserve-trip', function() {
+    $('#reservation-modal').show();
   });
 
 });
