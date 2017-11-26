@@ -27,13 +27,13 @@
   <main>
     <div id="trips">  <!-- HIDE HERE -->
       <header>
-        <h3 id="trip-header">Compare Trips</h3>
+        <h3 id="trip-header">Available Trips</h3>
       </header>
 
       <table class="hover" id="trips-table">
         <thead>
           <tr>
-            <th>Trip ID #</th>
+            <th>Trip ID</th>
             <th>Destination</th>
             <th>Continent</th>
             <th>Weeks</th>
@@ -49,14 +49,17 @@
       <header>
         <h3 id="trip-name"></h3>
         <h4 id="trip-country"></h4>
-        </header>
-
-        <div class="row">
-          <section id="about" class="small-11 small-centered columns">
-          <button class="button to-reserve">Reserve</button>
-          </section>
-        </div>
       </header>
+
+      <div class="row">
+        <section id="about-styling" class="small-11 small-centered columns">
+          <p id="about"></p>
+          <p id="category"></p>
+          <p id="weeks"></p>
+          <p id="cost"></p>
+          <button class="button to-reserve">Reserve</button>
+        </section>
+      </div>      
     </div>
 
     <div id="reserve-trip"> <!-- HIDE HERE -->
@@ -85,6 +88,7 @@
 
   <script src="jquery.js"></script>
   <script src="foundation.js"></script>
+  <script src="js/foundation/foundation.reveal.js"></script>
 
 </body>
 </html>

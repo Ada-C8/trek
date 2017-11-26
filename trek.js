@@ -17,7 +17,14 @@ $(document).ready(function() {
 
   /////// CALL BACK FOR ALL TRIPS
   const successCallback = (response) => {
+    if ($("#table-body tr").length > 0) {
+      return;
+    }
+
     for(let trip of response) {
+      // $('#table-body').empty();
+      $('#trip-name, #trip-country, #category, #weeks, #cost, #about').empty();
+      $('#single-trip').hide();
       $('#trips').show();
       $('#table-body').append(
         '<tr id=trip' + trip.id + '>' +
@@ -33,7 +40,7 @@ $(document).ready(function() {
   };
 
   /// EVENT FOR ONE BUTTON
-  $('button').click(displayTrips);
+  $('.main-button').click(displayTrips);
 
   /////// CALL BACK FOR A SINGLE TRIP
   const singleTripSuccessCallback = (response) => {
@@ -43,8 +50,11 @@ $(document).ready(function() {
     $('#single-trip').show();
     $('#trip-name').append(response.name.toUpperCase());
     $('#trip-country').append(response.continent.toUpperCase());
-    $('#about').prepend('<p>' + response.about + '</p>');
-    $('#reserve-id' + response.id).click(function(event) {
+    $('#about').append(response.about);
+    $('#category').append('Category: ' + response.category.charAt(0).toUpperCase() + response.category.slice(1));
+    $('#weeks').append('Weeks: ' + response.weeks);
+    $('#cost').append('$' + response.cost);
+    $('.to-reserve').click(function(event) {
       displayForm(response.id);
     });
   };
@@ -66,7 +76,9 @@ $(document).ready(function() {
 
   ///// DISPLAY FORM ON CLICK OF A BUTTON
   const displayForm = function displayForm(tripID) {
-    $('form').show();
+    // $('#trip-name, #trip-country, #category, #weeks, #cost, #about').empty();
+    // $('#to-reserve').hide();
+    $('#reserve-trip').show();
     $('#reserve-form').on('submit', function(event) {
       // Don't refresh the page (the default behavior)
       event.preventDefault();
@@ -81,3 +93,6 @@ $(document).ready(function() {
   };
 
 });
+
+
+// Fix responsive design for table
