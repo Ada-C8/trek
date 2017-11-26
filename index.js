@@ -71,12 +71,7 @@ $(document).ready(() => {
     $('#trips').empty();
     loadTrips();
   });
-// -----------------------------------------
-  // $('#load').on('click', () => {
-  //   $('#trips').empty();
-  //   loadTrips();
-  // });
-// ------------------------------------------
+
   $('body').on('submit', 'form', function(e) {
     e.preventDefault();
 
