@@ -1,0 +1,17 @@
+body {
+  background-image: url("map.jpeg");
+  width: 100% !important;
+
+  z-index: 0;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: palatino;
+}
+#all-trips {
+  background-color: rgba(230, 204, 218, 0.35);
+  width: 90%;
+  margin: 0 auto;
+  max-width: 900px;
+  padding-bottom: 100px;*/
+}
