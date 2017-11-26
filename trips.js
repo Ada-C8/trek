@@ -90,7 +90,18 @@ $(document).ready( () => {
       console.log('always even if we have success or failure');
     });
   };
-
+  // 1
+  // <img id="greatphoto" src="brush-seller.jpg" alt="brush seller">
+  // Setting a simple attribute
+  //
+  // To change the alt attribute, simply pass the name of the attribute and its new value to the .attr() method:
+  //
+  // 1
+  // $( "#greatphoto" ).attr( "alt", "Beijing Brush Seller" );
+  // Add an attribute the same way:
+  //
+  // 1
+  // $( "#greatphoto" ).attr( "title", "Photo by Kelly Clark" );
 
 
 // EVENTS
@@ -110,27 +121,31 @@ $(document).ready( () => {
   }) //
 
   // make reservations
+  //show form
   $('.trip-details').on('click', 'h3', function() {
     console.log("you clicked a button!");
     console.log(`this is ${this}`);
     let tripID = $(this).attr('data-id');
     console.log(`and now tripid is ${tripID}`)
-    $('#book-trip-form').show();
 
-    // $( "p" ).removeClass( "myClass noClass" ).addClass( "yourClass" );
-    // let resID = $(this).attr('data-id');
-    // console.log(resId);
-    // reserveForm();
+    $('#book-trip-info').text("Things I wrote in this paragraph");
+    $('#book-trip-form').show();
+    // $('#book-trip-form').text("hello!");
   })
+
+  //make post request
 
   $('#book-trip-form').on('submit', function(event) {
     event.preventDefault();
-    tripID = $('.indTrip').attr('id');
-
+    // tripID = $('.indTrip').attr('id');
+    console.log("in trip submit")
+    console.log(`this is ${this}`);
     let formData = $('#book-trip-form').serialize();
     console.log("Showing the form data!")
     console.log(formData);
-    reserveTrip(tripID, formData);
+    // console.log(tripID);
+
+    // reserveTrip(tripID, formData);
   }) //end book trip
 
   }); //end doc ready
