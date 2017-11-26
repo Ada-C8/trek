@@ -20,10 +20,11 @@ $(document).ready(function() {
     for(let trip of response) {
       $('#trips').show();
       $('#table-body').append(
-        '<tr id=trip' + trip.id + ' class="accordian" data-accordion data-allow-all-closed="true">' +
+        '<tr id=trip' + trip.id + '>' +
           '<td>' + trip.id + '</td>' +
           '<td>' + trip.name + '</td>' +
           '<td>' + trip.continent + '</td>' +
+          '<td>' + trip.weeks + '</td>' +
         '</tr>');
       $('#trip' + trip.id).click(function(event) {
         displaySingleTrip(trip.id);
@@ -42,7 +43,7 @@ $(document).ready(function() {
     $('#single-trip').show();
     $('#trip-name').append(response.name.toUpperCase());
     $('#trip-country').append(response.continent.toUpperCase());
-    $('#about').append('<p>' + response.about + '</p>');
+    $('#about').prepend('<p>' + response.about + '</p>');
     $('#reserve-id' + response.id).click(function(event) {
       displayForm(response.id);
     });

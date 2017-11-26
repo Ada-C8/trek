@@ -32,7 +32,7 @@ body, h1, h2, h3 {
   letter-spacing: 2px;
 }
 
-.button {
+button.main-button {
   background-color: transparent;
   border: 1px solid white;
   border-radius: 5%;
@@ -64,14 +64,15 @@ body, h1, h2, h3 {
 
 /********* SINGLE TRIP *********/
 
-#trip-name { /* TODO: Make this into a class */
+h3#trip-name { /* TODO: Make this into a class */
   text-align: center;
   padding: 1em;
   color: black;
   letter-spacing: 2px;
+  margin: 0;
 }
 
-#trip-country {
+h4#trip-country {
   text-align: center;
   color: black;
   letter-spacing: 2px;
@@ -82,8 +83,14 @@ body, h1, h2, h3 {
 #about {
   text-align: center;
   font-family: 'Cardo', serif;
-  width: 50%;
   /*border: 2px solid yellow;*/
+}
+
+button.to-reserve {
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5%;
+  color: black;
 }
 
 /********* FOOTER *********/
