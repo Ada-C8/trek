@@ -1,23 +1,4 @@
-/* eslint-disable */
-
-// --------------- All Trips HTML ---------------
-const tripAppend = (trip) => {
-  $('#trips').append(`
-  <li id='${trip.id}' class='small-12 medium-7 large-5 small-centered columns'>
-    <div class='featured-image'><img src="assets/${trip.continent}land.jpg"/></div>
-    <article>
-      <div class='continent'><img src="assets/${trip.continent}.png"/></div>
-      <h3>${trip.name}</h3>
-      <section class='trip-info'>
-        <p>Modern expedition excursion traveling food culture like a local AirBnb.
-        Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
-      <h5>Explore ➤<span class='float-right'>${trip.weeks} weeks</span></h5>
-      </section>
-    </article>
-  </li>`);
-};
-
-// ------------ Booking Form HTML --------------
+// ------------ Booking Form --------------
 
 const bookTrip = (id) => {
   $(`#${id}`).after(`<article class='fullscreen'>
@@ -43,35 +24,48 @@ const bookTrip = (id) => {
   $('.fullscreen').hide().fadeIn(250);
 
   function popup() {
-    $(document).click(function() {
+    $(document).click(() => {
       $(document).off('click');
       $('.fullscreen').remove();
     })
 
-    $('.form').click(function(event) {
+    $('.form').click((event) => {
       event.stopPropagation();
     });
   }
-
   setTimeout(popup, 250);
 };
 
 $(document).ready(() => {
-  $('body').on('submit', 'form', function(e) {
+  $('body').on('submit', 'form', function form(e) {
     e.preventDefault();
     const url = $(this).attr('action');
     const formData = $(this).serialize();
 
-    $.post(url, formData, (response) => {
+    $.post(url, formData, () => {
       $('.form').html('<h3>Booking Complete</h3>');
-      console.log(response);
     }).fail(() => {
       $('.form').html('<h3>Booking failed</h3>');
-    }).always(() => {
-      console.log('Making code');
     });
   });
 });
+
+// --------------- All Trips HTML ---------------
+const tripAppend = (trip) => {
+  $('#trips').append(`
+  <li id='${trip.id}' class='small-12 medium-7 large-5 small-centered columns'>
+    <div class='featured-image'><img src="assets/${trip.continent}land.jpg"/></div>
+    <article>
+      <div class='continent'><img src="assets/${trip.continent}.png"/></div>
+      <h3>${trip.name}</h3>
+      <section class='trip-info'>
+        <p>Modern expedition excursion traveling food culture like a local AirBnb.
+        Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
+      <h5>Explore ➤<span class='float-right'>${trip.weeks} weeks</span></h5>
+      </section>
+    </article>
+  </li>`);
+};
 
 // --------------- All Trips -------------------
 const tripArray = [];
@@ -95,7 +89,7 @@ $.get(
   },
 )
   .fail(() => {
-    $('#main').append('<h3>Request failed</h3>');
+    $('#all-trips').after('<h3>Trips Failed to load</h3>');
   });
 
 // -------------- Single Trip ------------------
@@ -117,7 +111,7 @@ const singleTrip = (id) => {
         <p>$ ${parseInt(cost, 10)} <small>+ TAX</small></p>
         </section>
         `);
-      $(`#${id}`).after(`<p id='booking-btn' class='small-12 medium-7 large-5 small-centered columns'>book now</p>`);
+      $(`#${id}`).after('<p id="booking-btn" class="small-12 medium-7 large-5 small-centered columns">book now</p>');
     },
   )
     .fail(() => {
@@ -125,7 +119,7 @@ const singleTrip = (id) => {
     });
 };
 
-// -------------- Document Ready ------------------
+// -------------- Click Events ------------------
 $(document).ready(() => {
   $('#all-trips').click(() => {
     $('#trips').toggle();

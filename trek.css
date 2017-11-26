@@ -1,20 +1,20 @@
+/* ------- General Styling ------- */
+
 body {
   background: #f6f6f6;
   color: #393945;
   font-family: 'Open Sans', sans-serif;
 }
 
-/*.row {
-  max-width: 100%;
-}*/
+ul, h5 {
+  margin: 0;
+}
 
 .small-12 {
   padding: 0 0 20px;
 }
 
-p,
-h3,
-h5 {
+p, h3, h5 {
   padding: 5px 20px;
 }
 
@@ -22,40 +22,35 @@ h3 {
   font-size: 1.4em;
 }
 
-h3,
-h5,
-.trip-details p:first-child,
-.flag {
+h3, h5, .flag, .trip-details p:first-child,
+.trip-details p:last-child, #booking-btn {
   font-weight: bold;
 }
 
-h5,
-.flag,
-.trip-details p:first-child {
+button {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.button, button {
+  border-radius: 2px;
+}
+
+h5, .flag, .trip-details p:first-child, .button, button {
   font-size: 0.7em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.button, button {
-  background: #8BD5F6;
-  border-radius: 2px;
-  font-size: 0.7em;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-.query {
+.query, .continent, #booking-btn {
   text-align: center;
 }
 
-ul,
-h5 {
-  margin: 0;
-}
+/* ------- All Trips ------- */
 
 li {
-  background: #fff;
   border-radius: 10px;
   box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
   list-style: none;
@@ -71,15 +66,18 @@ li {
   border-radius: 5px 5px 0 0;
 }
 
-article h3,
-.trip-details,
-.continent img{
+article h3, .trip-details, .continent img,
+li, .fullscreen, .form {
   background: white;
+}
+
+.button, button, .flag, #booking-btn {
+  background: #8BD5F6;
+  color: white;
 }
 
 .continent {
   margin-top: -24px;
-  text-align: center;
 }
 
 .continent img{
@@ -89,8 +87,9 @@ article h3,
   width: 44px;
 }
 
-.trip-info p,
-.trip-details p{
+/* ------- Trip Details ------- */
+
+.trip-info p, .trip-details p{
   color: #a3a3a3;
 }
 
@@ -100,8 +99,6 @@ article h3,
 }
 
 .flag {
-  background: #8BD5F6;
-  color: white;
   margin-top: -4px;
   padding: 4px 5px;
   position: relative;
@@ -121,7 +118,6 @@ article h3,
 .trip-details p:last-child {
   color: #8BD5F6;
   font-size: 1.8em;
-  font-weight: bold;
   padding: 0 20px;
   position: relative;
 }
@@ -134,22 +130,19 @@ small {
 }
 
 #booking-btn {
-  background: #8BD5F6;
   border-radius: 0 0 5px 5px;
-  color: white;
   cursor: pointer;
-  font-weight: bold;
   letter-spacing: 0.15em;
   line-height: 2.5em;
   margin-bottom: 50px;
   margin-top: -80px;
   padding-bottom: 0;
-  text-align: center;
   text-transform: uppercase;
 }
 
+/* ------- Pop Up Form ------- */
+
 .fullscreen {
-  background: white;
   background: rgba(0,0,0,0.2);
   bottom: 0;
   left: 0;
@@ -160,23 +153,11 @@ small {
 }
 
 .form {
-  background: white;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
   border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+  left: 50%;
   padding: 50px;
   position: fixed;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
-}
-
-/*[type=text] {
-}*/
-
-button {
-  display: block;
-  width: 200px;
-  margin: 0 auto;
-  padding: 8px;
-  color: white;
 }
