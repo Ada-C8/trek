@@ -52,19 +52,32 @@ $(document).ready(() => {
 
 // --------------- All Trips HTML ---------------
 const tripAppend = (trip) => {
-  $('#trips').append(`
-  <li id='${trip.id}' class='small-12 medium-7 large-5 small-centered columns'>
+  const lands = ['Africa', 'Antarctica', 'Asia', 'Australasia', 'Europe', 'South America', 'North America', 'Null'];
+
+  if (!lands.includes(trip.continent)) {
+    trip.continent = null;
+  }
+
+  const html = `
+    <li id='${trip.id}' class='small-12 medium-7 large-5 small-centered columns'>
     <div class='featured-image'><img src="assets/${trip.continent}land.jpg"/></div>
     <article>
-      <div class='continent'><img src="assets/${trip.continent}.png"/></div>
-      <h3>${trip.name}</h3>
-      <section class='trip-info'>
-        <p>Modern expedition excursion traveling food culture like a local AirBnb.
-        Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
-      <h5>Explore ➤<span class='float-right'>${trip.weeks} weeks</span></h5>
-      </section>
+    <div class='continent'><img src="assets/${trip.continent}.png"/></div>
+    <h3>${trip.name}</h3>
+    <section class='trip-info'>
+    <p>Modern expedition excursion traveling food culture like a local AirBnb.
+    Flight modern er excursion ticket trek explore, modern nature colorful excursion design.</p>
+    <h5>Explore ➤<span class='float-right'>${trip.weeks} weeks</span></h5>
+    </section>
     </article>
-  </li>`);
+    </li>`;
+
+  if ($('#trips')[0].childElementCount < 5) {
+    $('#trips').append(html);
+  } else {
+    $('#trips').append(html);
+    $('#trips li:last-child').hide().fadeIn(1000);
+  }
 };
 
 // --------------- All Trips -------------------
