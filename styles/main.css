@@ -152,7 +152,7 @@ section.details > p.about {
   height: auto;
 }
 
-#show-form {
+#show-form, button.add-trip {
   font-size: 1.6rem;
   font-weight: bold;
   color: #075523;
@@ -161,7 +161,7 @@ section.details > p.about {
   border-radius: 5px;
 }
 
-#show-form:hover, #reserve:hover {
+#show-form:hover, #show-form:focus, #reserve:hover, #reserve:focus, #add:hover, #add:focus, button.add-trip:hover, button.add-trip:focus {
   background-color: #075523;
   color: white;
 }
@@ -170,11 +170,20 @@ form label {
   font-size: 1.1rem;
 }
 
-#reserve {
+#reserve, #add {
   font-size: 1.1rem;
   color: #075523;
   background-color: transparent;
   border: 1.5px solid #075523;
   border-radius: 5px;
   min-width: 8rem;
+}
+
+button.add-trip {
+  font-size: 1.3rem;
+}
+
+section.add-trip > div.add-trip-form {
+  padding-left: 0;
+  padding-right: 0;
 }

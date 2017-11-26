@@ -13,10 +13,6 @@ const pluralizeWeek = function pluralizeWeek(num) {
   return num === 1 ? 'week' : 'weeks';
 };
 
-const capitalize = function capitalize(string) {
-  return string.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
-};
-
 $(document).ready(() => {
   $(document).foundation();
 
@@ -118,7 +114,6 @@ $(document).ready(() => {
         <input type="email" id="email" name="email"/>
         <button type="submit" class="button" id="reserve">Book It</button>
         </form>`;
-      console.log(formInfo);
 
       $(`h3[data-id=${tripId}]`).addClass('form-loaded');
       $('.reservation').append(formInfo);
@@ -130,7 +125,7 @@ $(document).ready(() => {
     if (!$('section.add-trip').hasClass('form-loaded')) {
       // const url = `${baseUrl}`;
       const formInfo = `
-        <form action=${baseUrl} method="post">
+        <form action=${baseUrl} method="post" class="small-12 medium-8 large-6 cell">
         <label>Name</label>
         <input type="text" id="new-trip-name" name="name"/>
         <label>Continent</label>
@@ -144,7 +139,7 @@ $(document).ready(() => {
           <option value="South America">South America</option>
         </select>
         <label>About</label>
-        <textarea id="about" name="about" placeholder="Description" maxlength="500"/>
+        <textarea id="about" name="about" placeholder="Description" maxlength="500" rows="5"/>
         <label>Category</label>
         <input type="text" id="category" name="category"/>
         <label>Weeks</label>
@@ -154,22 +149,20 @@ $(document).ready(() => {
         <button class="button" type="submit" id="add">Confirm</button>
         </form>`;
 
-      console.log(formInfo);
       $('section.add-trip').addClass('form-loaded');
-      $('section.add-trip').append(formInfo);
+      $('section.add-trip div').append(formInfo);
     }
   };
 
   const reserveTrip = function reserveTrip(form) {
     const url = form.attr('action');
     const formData = form.serialize();
-    console.log(formData);
 
     $.post(url, formData, (response) => {
       $('form').trigger('reset');
-      $('#reserve').after(`<p>trip reserved for ${response.name}</p>`);
+      alert(`Trip reserved for ${response.name}`);
     }).fail(() => {
-      $('#reserve').after('<p>Failed to reserve trip</p>');
+      alert('Failed to reserve trip');
     });
   };
 
@@ -177,15 +170,12 @@ $(document).ready(() => {
     const url = form.attr('action');
     const formData = form.serialize();
 
-    console.log(formData);
-    // $.post(url, formData, (response) => {
-    //   $('form').trigger('reset');
-    //   console.log(response);
-    //   alert('trip added!');
-    // }).fail((response) => {
-    //   console.log(response);
-    //   alert('failed to add trip');
-    // });
+    $.post(url, formData, () => {
+      $('form').trigger('reset');
+      alert('Trip added!');
+    }).fail(() => {
+      alert('Failed to add trip');
+    });
   };
 
   // event handlers
@@ -195,13 +185,8 @@ $(document).ready(() => {
     $('header').addClass('grid-x');
     $('header').show();
     $('main').show();
-    $('section.add-trip').hide();
 
     loadTrips();
-
-    // display after loading to avoid showing at top then being pushed to bottom as trips load
-    // still flickers at top briefly
-    $('section.add-trip').fadeIn(1100);
   });
 
   $('.load').on('click', () => {
@@ -247,8 +232,13 @@ $(document).ready(() => {
       const res = $(this).parent().next();
 
       res.toggle();
+      // set focus to name if form is vis
+      if (res.is(':visible')) {
+        $('#res-name').focus();
+      }
     } else {
       loadResForm(tripId);
+      $('#res-name').focus();
     }
   });
 
@@ -257,12 +247,17 @@ $(document).ready(() => {
     reserveTrip($(this));
   });
 
-  $('.trips').on('click', 'button.add-trip', () => {
+  $('.add-trip').on('click', 'button.add-trip', () => {
     if ($('section.add-trip').hasClass('form-loaded')) {
-      const add = $('section.add-trip form');
-      add.toggle();
+      $('.add-trip-form').toggle();
+
+      // move focus to name if form is visible
+      if ($('.add-trip-form').is(':visible')) {
+        $('#new-trip-name').focus();
+      }
     } else {
       loadAddForm();
+      $('#new-trip-name').focus();
     }
   });
 
