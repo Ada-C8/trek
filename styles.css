@@ -1,10 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
 body {
-  background-color: yellow;
+  margin: 0;
+  background: #000;
+  font-family: 'Quicksand', sans-serif;
 }
+
+video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+  transition: 1s opacity;
+}
+
 #tripDetail {
   display: none;
 }
 
 #reservationForm {
   display: none;
+}
+
+#message {
+  color: #00ff00;
+  font-family: 'Lobster', cursive;
+  font-size: 3em;
+  text-align: center;
+}
+
+#tripSearch button {
+  background: #2391db;
+  background-image: -webkit-linear-gradient(top, #2391db, #010d14);
+  background-image: -moz-linear-gradient(top, #2391db, #010d14);
+  background-image: -ms-linear-gradient(top, #2391db, #010d14);
+  background-image: -o-linear-gradient(top, #2391db, #010d14);
+  background-image: linear-gradient(to bottom, #2391db, #010d14);
+  -webkit-border-radius: 29;
+  -moz-border-radius: 29;
+  border-radius: 29px;
+  font-family: Courier New;
+  color: lemonchiffon;
+  font-size: 55px;
+  padding: 29px 29px 29px 29px;
+  text-decoration: none;
+  font-family: 'Lobster', cursive;
+  position: absolute;
+  top: 30%;
+  right: 40%;
+}
+
+  #tripSearch button:hover {
+  background: #f0e61f;
+  background-image: -webkit-linear-gradient(top, #f0e61f, #2681bd);
+  background-image: -moz-linear-gradient(top, #f0e61f, #2681bd);
+  background-image: -ms-linear-gradient(top, #f0e61f, #2681bd);
+  background-image: -o-linear-gradient(top, #f0e61f, #2681bd);
+  background-image: linear-gradient(to bottom, #f0e61f, #2681bd);
+  text-decoration: none;
+}
+
+#listOfTrips a {
+  text-decoration: none;
+  color: lemonchiffon;
+  text-shadow: 2px 2px 1px black;
+  display:inline-grid;
+  padding: 10px;
+}
+
+#listOfTrips {
+  text-align: center;
+  font-family: 'Lobster';
+  font-size: 2em;
+  padding: 40px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ h1{
+ font-family: 'Lobster';
+ color: lemonchiffon;
+ text-shadow: 2px 2px 1px black;
+ }
+
+#tripDetail {
+  text-align: center;
+  margin: 50px;
+  background: black;
+  opacity: 0.7;
+}
+
+#tripDetail p {
+font-size: 1.2em;
+font-weight: bold;
+color: lemonchiffon;
+text-shadow: 1px 1px 1px black;
+margin: 20px;
+position: relative;
+z-index:1;
+}
+
+#tripDetail button {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#tripDetail button:hover {
+  background: #2e779e;
+  background-image: -webkit-linear-gradient(top, #2e779e, #eff547);
+  background-image: -moz-linear-gradient(top, #2e779e, #eff547);
+  background-image: -ms-linear-gradient(top, #2e779e, #eff547);
+  background-image: -o-linear-gradient(top, #2e779e, #eff547);
+  background-image: linear-gradient(to bottom, #2e779e, #eff547);
+  text-decoration: none;
+}
+
+#reservationForm {
+  margin: 40px;
+  font-weight: bold;
+  color: lemonchiffon;
+  text-shadow: 1px 1px 1px black;
+  text-align: center;
+}
+
+#reservationForm input {
+  margin: 40px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: black;
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+}
+
+#btn {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#btn:hover {
+  background: #2e779e;
+  background-image: -webkit-linear-gradient(top, #2e779e, #eff547);
+  background-image: -moz-linear-gradient(top, #2e779e, #eff547);
+  background-image: -ms-linear-gradient(top, #2e779e, #eff547);
+  background-image: -o-linear-gradient(top, #2e779e, #eff547);
+  background-image: linear-gradient(to bottom, #2e779e, #eff547);
+  text-decoration: none;
 }

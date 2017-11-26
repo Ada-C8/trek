@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $('#allTrips').on('click', function() {
     let $allTrips = $(this);
-
+    $allTrips.hide();
     $allTrips.attr("disabled", true);
 
     $.ajax('https://trektravel.herokuapp.com/trips', {
@@ -17,7 +17,8 @@ $(document).ready(function() {
         $('#listOfTrips').html(html);
       },
       error: function(request, errorType, errorMessage) {
-        // TODO: handle errors here
+      $('#message').html('<p>Unable to complete request.</p>');
+      location.reload(true);
       }
     });
   });
@@ -46,7 +47,8 @@ $(document).ready(function() {
         $("#tripDetail").show();
       },
       error: function(request, errorType, errorMessage) {
-        // TODO: handle errors here
+      $('#message').html('<p>Unable to complete request.</p>');
+      location.reload(true);
       }
     });
   });
@@ -54,6 +56,8 @@ $(document).ready(function() {
   $('#reserveBtn').on('click', function() {
     $('#reservationForm').show();
     $('button').hide();
+    $('#tripDetail #about').hide();
+    $('#tripDetail p').hide();
   });
 
   $('#reservation').submit(function(event) {
@@ -72,10 +76,14 @@ $(document).ready(function() {
       data: formData,
       dataType: "json",
       success: function(trip) {
-        $('#message').html('<p>Reserved!</p>');
-      },
-      error: function(request, errorType, errorMessage) {
+        $('#message').html('<p>Reserved! Have fun!</p>');
+        $('#tripDetail').hide();
+        $('#tripSearch').show();
+        $('#reservationForm').hide();
+        setTimeout(location.reload.bind(location), 2500);},
+        error: function(request, errorType, errorMessage) {
         $('#message').html('<p>Unable to add trip.</p>');
+        location.reload(true);
       }
     });
   });
