@@ -41,10 +41,10 @@ $(document).ready(()=> {
       console.log('success!');
       response.forEach(function(trip) {
         let a = continentImgInfo(trip.continent);
-        let tripInfo = `<li><h2 data-id=${trip.id}>` + trip.name + ` | <span>${a}</span> | ${trip.weeks}<h2></li><hr>`;
+        let tripInfo = `<li><h2 data-id=${trip.id} data-name='${trip.name}'>` + trip.name + ` | <span>${a}</span> | ${trip.weeks}<h2></li><hr>`;
         $('#show-trips ul').append(tripInfo);
         // console.log(trip.continent);
-
+        // 'data-name' , `${response.name
         // console.log(a);
         // $('#show-trips ul').append(a);
       });
@@ -75,8 +75,8 @@ $(document).ready(()=> {
       button.click((event) => {
         console.log(`trip id:${response.id}`);
         $('#reserve-form').show();
-        $('#trip-form').attr('data-id' , `${response.id}`);
-        $('#trip-form').attr('data-name' , `${response.name}`);
+        // $('#trip-form').attr('data-id' , `${response.id}`);
+        // $('#trip-form').attr('data-name' , `${response.name}`);
       });
       $('#resButton').html(button);
     })
@@ -94,6 +94,8 @@ $(document).ready(()=> {
     $('html,body').animate({
       scrollTop: $("#anchor").offset().top},
       'slow');
+      $('#trip-form').attr('data-id' , `${$(this).attr('data-id')}`);
+      $('#trip-form').attr('data-name' , `${$(this).attr('data-name')}`);
   });
 
   $('#load').on('click', function(){
