@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TREK</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <video id="bgvid" playsinline autoplay muted loop>
+    <source src="http://thenewcode.com/assets/videos/lake.mp4" type="video/webm">
+    <source src="http://thenewcode.com/assets/videos/lake.webm" type="video/mp4">
+  </video>
+
+  <div id="message"></div>
+  <div id="tripSearch">
+    <button id="allTrips">Browse All Trips</button>
+    <div id="listOfTrips"></div>
+  </div>
+
+  <div id="tripDetail">
+    <h1><span id="name"></span></h1>
+    <p>Continent: <span id="continent"></span> </p>
+    <p>Details: <span id="about"></span> </p>
+    <p>Category: <span id="category"></span> </p>
+    <p>Weeks: <span id="weeks"></span> </p>
+    <p>Cost: <span id="cost"></span> </p>
+    <button id="reserveBtn">Reserve This Trip</button>
+  </div>
+
+  <div id="reservationForm">
+    <form id="reservation" method="post" action= "" >
+       <label>Name</label>
+       <input type="text" name="name">
+       <label>Age</label>
+       <input type="number" name="age">
+       <label>Email</label>
+       <input type="email" name="email">
+       <input id="btn" type="submit" value="Reserve Trip">
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
