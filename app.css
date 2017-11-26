@@ -5,7 +5,6 @@ td.atrip-cell {
   height: 2px;
 }
 
-
 #atrip-table {
   overflow-x: scroll;
 }
@@ -13,4 +12,9 @@ td.atrip-cell {
 .scrollable {
   overflow-x: scroll;
   overflow-y: hidden;
+}
+
+header {
+  margin-top: 20px;
+  text-align: center;
 }
