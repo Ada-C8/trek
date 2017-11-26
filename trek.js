@@ -1,12 +1,13 @@
 $(document).ready( function() {
 
   let loadTrips = function loadTrips(){
+    $('#load').hide();
     const urlTripName = 'https://trektravel.herokuapp.com/trips';
     $.get(urlTripName,
       (response) => {
         $('h1').append('List of Trips');
         for (trip of response) {
-          let tripName = `<li><h3 data-id=${trip.id}> ${trip.name}</h3>
+          let tripName = `<li><a data-id=${trip.id}> ${trip.name}</a>
           </li>`
 
           $('#trips ul').append(tripName);
@@ -22,17 +23,34 @@ $(document).ready( function() {
       $.get(urlTripDetails,
         function(response) {
           // tla vez no necesito el id this_trip
+          // <p id="this_trip" >Id: ${response.id}</p>
           let details = `
-          <p id="this_trip" >Id: ${response.id}</p>
-          <p>Name: ${response.name}</p>
-          <p>Destination: ${response.destination}</p>
-          <p>Continent: ${response.continent}</p>
-          <p> About: ${response.about}</p>
-          <p> Category: ${response.category}</p>
-          <p> Weeks: ${response.weeks}</p>
-          <p> Cost: ${response.cost}</p>
-          <button id="reserve" data-trip=${response.id}> Reserve this trip! </button>`;
+          <div class="large-8 columns">
+          <h2> ${response.name}</h2>
+          <table>
+          <tr>
+          <th>Weeks</th>
+          <th>Cost</th>
+          <th>Destination</th>
+          <th>Continent</th>
+          <th>Category</th>
+          </tr>
+          <tr>
+          <td>${response.weeks}</td>
+          <td>${response.cost}</td>
+          <td>${response.destination}</td>
+          <td>${response.continent}</td>
+          <td>${response.category}</td>
+          </tr>
+          </table>
+          <p> ${response.about}</p>
+          <button id="reserve" class="button" data-trip=${response.id}> Reserve this trip! </button>
+          </div>`;
+
+          // $('.grid-x').append(details);
           $('#tripDetail').html(details);
+          // $('.grid-x').html(details);
+
           $('#reserve').on('click', function(){
             let tripId = $(this).attr('data-trip');
             generateForm(tripId);
@@ -61,7 +79,7 @@ $(document).ready( function() {
                 <input type="text" name="name"></input>
                 <input type="hidden" name="trip_id" value="${id}" ></input>
                 <label for="email">Email:</label>
-                <input type="text" email="email"></input>
+                <input type="text" name="email"></input>
                 <input id="submitForm" type="submit" value="Reserve Trip"></input>
                 `
                 $('#reserveTrip').html(form);
@@ -88,7 +106,8 @@ $(document).ready( function() {
 
       //  Events
 
-      $('ul').on('click', 'h3', function(){
+      $('ul').on('click', 'a', function(){
+
         let tripId = $(this).attr('data-id');
         loadOneTrip(tripId);
       });

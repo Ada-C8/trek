@@ -1,0 +1,22 @@
+
+
+.hero-section {
+  background: url('https://i.pinimg.com/originals/df/d0/00/dfd0000f193a9aa0864277462c6b063e.jpg') 50% no-repeat;
+  background-size: cover;
+  height: 300px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  font-family: "times";
+  font-weight: bold;
+  font-size: 1.2em;
+  background-color: #1ccded;
+}
+
+main {
+  padding: 3% 1% 1% 2% ;
+}
