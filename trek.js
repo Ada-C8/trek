@@ -1,4 +1,10 @@
 const baseURL = 'https://trektravel.herokuapp.com/trips';
+
+const postSuccessful = (response) => {
+  console.log('POST worked');
+  console.log(response);
+}
+
 $(document).ready(() => {
   $('#reservationForm').hide();
 
@@ -24,7 +30,7 @@ $(document).ready(() => {
       }
       const details = `
       <ul id='details'>
-        <li'>ID: ${response.id} </li>
+        <li id='${response.id}'>ID: ${response.id} </li>
         <li>Destination: ${response.name} </li>
         <li>Continent: ${response.continent} </li>
         <li>About: ${response.about} </li>
@@ -47,18 +53,15 @@ $(document).ready(() => {
     tripDetails(id);
   });
 
-  const postSuccessful = (response) => {
-    console.log("POST worked");
-    console.log(response);
-  }
+
 
   $('#reservationForm').on('submit', (e) => {
     console.log('Submission started');
-    const postURL = `${baseURL}/${$('#details li')[0].id}/reservations`;
+    const url = `${baseURL}/${$('#details li')[0].id}/reservations`;
     const data = $('#reservationForm').serialize();
-    console.log(postURL);
-    $.post(postURL, data, postSuccessful).fail(() => {
-      console.log('something went wrong with the post');
+    $.post(url, data, postSuccessful).fail(() => {
+      console.log("Didn't go so hot");
     });
+    return false;
   });
 });
