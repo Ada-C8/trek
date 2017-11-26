@@ -17,6 +17,16 @@ li {
   margin: 0px auto;
 }
 
+#trip-details h4 {
+  -webkit-margin-before: 0.5em;
+  -webkit-margin-after: 0.5em;
+}
+
+#trip-details p {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
 .trip-details {
   font-weight: lighter;
   /*color: lightgreen;*/
@@ -67,4 +77,8 @@ label {
 
 label, input {
   display: inline-block;
+}
+
+#find-trip-btns {
+  -webkit-margin-before: 0.35em;
 }
