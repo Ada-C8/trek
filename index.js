@@ -81,12 +81,9 @@ $(document).ready(() => {
         </table>
       </div>
 
-      <div class="column small-9 small-centered row">
-        <button id="reserve-trip" class="button expanded"><strong>Reserve Trip</strong></button>
-      </div>
+      <div class="column small-8 small-centered row">
+        <button id="reserve-trip" class="button expanded"><strong>Make a Reservation</strong></button>
 
-
-      <div class="column small-9 small-centered row">
         <section id="reservation-modal">
           <form id="reservation" data-id="${response.id}">
 
@@ -99,8 +96,8 @@ $(document).ready(() => {
             <label for="email">Email:</label>
             <input type="text" name="email" required="required"></input>
 
-            <button class="button" type="submit">Reserve Trip</button>
 
+            <button class="button expanded" type="submit"><strong>Reserve Trip Now</strong></button>
           </form>
         </section>
       </div>
