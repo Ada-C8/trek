@@ -11,7 +11,7 @@ const SubmitTripReservation = function SubmitTripReservation() {
 
 const GetAllTrips = (response) => {
   let tripList = '';
-  tripList += '<section id="main-content"><h1>All Trips</h1><ul>';
+  tripList += '<section id="main-content"><ul>';
   response.forEach((trip) => {
     let name = trip['name'];
     let id = trip['id'];
@@ -24,7 +24,7 @@ const GetAllTrips = (response) => {
 };
 const GetOneTrip = (response) => {
   let tripInfo = ''
-  tripInfo += '<section id="main-content">'
+  tripInfo += '<section id="main-content" class="one-trip">'
   ;
   let tripTitle = `<h1>${response['name']}</h1>`;
   let tripId = `<p>ID: ${response['id']}</p>`;
@@ -52,6 +52,9 @@ const GetOneTrip = (response) => {
 };
 $(document).ready(() => {
   $('button').on('click', () => {
+    $.get('https://trektravel.herokuapp.com/trips', GetAllTrips);
+  });
+  $('.title').on('click', () => {
     $.get('https://trektravel.herokuapp.com/trips', GetAllTrips);
   });
   $('body').on('click', 'ul', (event) => {
