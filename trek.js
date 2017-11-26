@@ -47,9 +47,7 @@ $(document).ready( function() {
           <button id="reserve" class="button" data-trip=${response.id}> Reserve this trip! </button>
           </div>`;
 
-          // $('.grid-x').append(details);
           $('#tripDetail').html(details);
-          // $('.grid-x').html(details);
 
           $('#reserve').on('click', function(){
             let tripId = $(this).attr('data-trip');
@@ -62,9 +60,7 @@ $(document).ready( function() {
 
 
       const successCallback = function(response) {
-        console.log("POST request was successful");
-        console.log(response);
-        let generatedHMTL = `<p> this is the response ${ response } </p>`
+        let generatedHMTL = `<p class="good"> You reserve this trip successfully </p>`
         // let generatedHMTL = '<p>Everything went great,';
         // generatedHMTL += `and your trip ${ response["name"] } has been added to the DB!</p>`;
         $('#ajax-results').html(generatedHMTL);
@@ -72,21 +68,26 @@ $(document).ready( function() {
 
 
       let generateForm = function generateForm(id){
+        $('#reserve').hide();
 
                 event.preventDefault();
                 let form =
                 `<label for="name">Name:</label>
-                <input type="text" name="name"></input>
+                <input type="text" name="name" required></input>
                 <input type="hidden" name="trip_id" value="${id}" ></input>
                 <label for="email">Email:</label>
-                <input type="text" name="email"></input>
-                <input id="submitForm" type="submit" value="Reserve Trip"></input>
+                <input type="text" name="email" required></input>
+                <input id="submitForm" type="submit" class="button" value="Reserve Trip"></input>
                 `
                 $('#reserveTrip').html(form);
 
                 $('#submitForm').on('click', function(){
                   event.preventDefault();
+
                   reserveTrip(id);
+                  $('#tripDetail').hide();
+                  $('form').hide();
+
                 });
 
       };
@@ -100,6 +101,8 @@ $(document).ready( function() {
         let formData = $('#reserveTrip').serialize();
 
         $.post(urlReservation, formData, successCallback).fail((response) => {
+          let badRequest = `< class=bad p>Something went wrong making your reservation</p>`
+          $('#ajax-results').html(badRequest);
           console.log("Didn't go so hot");
         });
       };

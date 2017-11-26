@@ -20,3 +20,23 @@
 main {
   padding: 3% 1% 1% 2% ;
 }
+
+.good {
+  padding: 2%;
+  background-color: #ade9ff;
+  font-size: 1.2em;
+}
+
+.bad {
+  padding: 2%;
+  background-color: #fcc4d0;
+  font-size: 1.2em;
+}
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:focus:invalid {
+  outline: none;
+}
