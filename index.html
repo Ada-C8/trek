@@ -15,38 +15,13 @@
     <div id='top-show' class='flexbox-container'>
 
       <div class='row'>
-        <div class="small-3 small-centered columns text-center">
-          <button id="load" value="testsss" class='centered button large'>
-            View Trips!
-          </button>
+        <div id="head" class="small-3 small-centered columns text-center flexbox-container">
+          <a href=# id="load" class='text-center'>Explore<span class='off' id='highlight'>!</span></a>
         </div>
       </div>
-      <!-- <nav class="top-bar" data-topbar role="navigation">
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="#">TREK</a></h1>
-          </li>
-          Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
-          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
-
-        <section class="top-bar-section">
-          Right Nav Section
-          <ul class="right">
-            <li class="has-dropdown">
-              <a href="#">Explore</a>
-              <ul class="dropdown">
-                <li><a href="#">All Trips</a></li>
-                <li><a href="#">First link in dropdown</a></li>
-                <li class="active"><a href="#">Active link in dropdown</a></li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-      </nav> -->
     </div>
 
-    <div class="row small-up-1 medium-up-2 large-up-4">
+    <div id='content' class="row small-up-1 medium-up-2 large-up-4">
       <div id='anchor'>
       </div>
       <div id="show-trip">
@@ -61,12 +36,16 @@
           <label for="email">Email:</label>
           <input type="text" name="email"></input>
 
-          <input id='myBtn' type="submit" value="Register Pet"></input>
+          <input id='myBtn' type="submit" value="Reserve a spot!"></input>
         </form>
       </div>
-      <div class="column">
-        <div id="show-trips"><ul></ul></div>
-      </div>
+
+        <div id="show-trips">
+          <div class="small-6 small-centered columns">
+            <ul></ul>
+
+          </div>
+        </div>
     </div>
 
 
@@ -86,13 +65,13 @@
       </div>
 
     </div>
-    <div id='foot'>
+    <!-- <div id='foot'>
       <footer>
         <p>
           footer here
         </p>
       </footer>
-    </div>
+    </div> -->
 
 
     <script

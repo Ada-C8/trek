@@ -14,69 +14,69 @@ https://farm3.staticflickr.com/2821/11137802655_9caeff1fc4_b.jpg
 hiker antelop canyon
 http://www.traveltipsor.com/wp-content/uploads/2015/08/Antelope-Canyon-%E2%80%93-Page-1024x372.jpg
 */
+:root {
+  --lightred: #de6162;
+  --yellow1: #FFCC00;
+  --yellow2: #FFE066;
+  --yellow3: #FFEB99;
 
+}
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 body {
-  background-color: lightblue;
+  background-color: #ffce00;
   width: 100%;
   /*height: 100%;*/
   margin: 0;
 }
-/*
-.top-bar{
-  background: #33333300;
-}
 
-.has-dropdown{
-  background: #33333300;
-}
-
-.top-bar-section li:not(.has-form) a:not(.button) {
-    background: #33333300;
-}
-
-.top-bar-section li:not(.has-form) a:not(.button):hover {
-    background: #33333300;
-
-}
-
-.top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button) {
-    background: #33333300;
-    color: white;
-}
-.top-bar-section ul li>a {
-  background-color:#33333300;
-}
-.dropdown  a:hover{
-background: #33333300;
-}
-
-.top-bar-section ul li {
-  background: #33333300;
-}
-.no-padding .row {
-  padding-left: 0;
-  padding-right: 0;
-}*/
 #top-show {
   width:100%;
-  height:40vh;
-  background-image:url('https://farm3.staticflickr.com/2821/11137802655_9caeff1fc4_b.jpg');
+  height:100vh;
+  background-image:url('https://static1.squarespace.com/static/500f021de4b07e650ff4806a/54fe3bcde4b0c5b4761a1b9a/54fe3beee4b0a76e3a8d20b8/1425947632351/March-08%2C-2015--Monument-Valley---Antelope-Canyon-AZ-3818.jpg?format=1500w');
   background-size:cover;
   padding: 0;
 }
 
-#foot {
-  height: 10vh;
-  background-color: yellow;
-}
-
 .flexbox-container {
   padding: 20px;
-  background: #eee;
+  /*background: #eee;*/
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
+
+#head{
+  /*background-color: yellow;*/
+  height: 40vh;
+  width: 60vw;
+  border: solid #FFCC00 5px;
+}
+
+#load {
+  color: white;
+  font-size: 7em;
+  /*text-align: center;*/
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: Georgia,serif;
+  align-self: center;
+}
+
+.on{
+  color: #ffce00;
+}
+.off{
+  color: white;
+}
+
+#show-trips {
+  background-color: white;
+}
+
+
+/**************** MODAL ******************/
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -111,7 +111,7 @@ background: #33333300;
 
 .close:hover,
 .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
