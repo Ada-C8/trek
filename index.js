@@ -8,17 +8,37 @@ const successCallback = function(response){
   $('#message').html(`Congratulations! You successfully reserved a spot on ${name}!`);
 };
 
+const continents = {
+  'Africa': 'img/africa.png',
+  'North America': 'img/north_america.png'
+};
+
+const continentImg = function(trip){
+  console.log(continents[trip]);
+  if (continents[trip]){
+    // console.log(`this trip exists! ${continents[trip]}`);
+    // let a = ;
+    // console.log(a);
+    return `<img src="${continents[trip]}" alt="${trip} picture" class="continent"/>`;
+  }
+};
+
 $(document).ready(()=> {
   $('#reserve-form').hide();
   $('#content').hide();
 
+  continentImg('Africa');
   let loadTrips = function loadTrips() {
     $.get(baseUrl, (response) => {
       console.log(response);
       console.log('success!');
       response.forEach(function(trip) {
-        let tripInfo = `<li><h2 data-id=${trip.id}>` + trip.name + '<h2></li>';
-        $('#show-trips ul').append(tripInfo)
+        let tripInfo = `<li><h2 data-id=${trip.id}>` + trip.name + `<h2></li>`;
+        $('#show-trips ul').append(tripInfo);
+        // console.log(trip.continent);
+        let a = continentImg(trip.continent);
+        // console.log(a);
+        $('#show-trips ul').append(a);
       });
     })
     .fail(function(response){
