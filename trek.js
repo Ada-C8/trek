@@ -9,4 +9,8 @@ $(document).ready(() => {
       });
     });
   });
+
+  $('#load').on('click', () => {
+    $('#locations').empty();
+  });
 });
