@@ -15,6 +15,8 @@ $(document).ready(() => {
         const thisTrip = `<li id='${trip.id}'> ${trip.name} </li>`;
         $('#tripSection').append(thisTrip);
       });
+    }).fail(() => {
+      console.log('Something went wrong with the load trips call');
     });
   };
 
@@ -41,6 +43,8 @@ $(document).ready(() => {
 
       $(`#singleTripDetails`).html(details);
       $('#reservationForm').show();
+    }).fail(() => {
+      console.log('Something went wrong with the trip details');
     });
   };
 
@@ -53,14 +57,12 @@ $(document).ready(() => {
     tripDetails(id);
   });
 
-
-
   $('#reservationForm').on('submit', (e) => {
     console.log('Submission started');
     const url = `${baseURL}/${$('#details li')[0].id}/reservations`;
     const data = $('#reservationForm').serialize();
     $.post(url, data, postSuccessful).fail(() => {
-      console.log("Didn't go so hot");
+      console.log('The post call failed');
     });
     return false;
   });
