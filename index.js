@@ -32,6 +32,7 @@ const continentImgInfo = function(trip){
 $(document).ready(()=> {
   $('#reserve-form').hide();
   $('#content').hide();
+  $('#show-trip').hide();
 
 
   let loadTrips = function loadTrips() {
@@ -60,13 +61,13 @@ $(document).ready(()=> {
       console.log(response);
 
       let tripInfo = `
-      <p>ID: ${response.id}</p>
-      <p>Category: ${response.category}</p>
-      <p>Destination: ${response.continent}</p>
-      <p>Details: ${response.about}</p>
-      <p>Cost: $${response.cost}</p>
-      <p>Length: ${response.weeks} weeks</p>`;
-      $('#show-trip').html(tripInfo);
+      <p><span class='info'>ID:</span> ${response.id}<br>
+      <span>Category:</span> ${response.category}<br>
+      <span>Destination:</span> ${response.continent}<br>
+      <span>Details:</span> ${response.about}<br>
+      <span>Cost:</span> $${response.cost}<br>
+      <span>Length:</span> ${response.weeks} weeks</p>`;
+      $('#hook').html(tripInfo);
 
       let button = $(`<button id="reserve" value="${response.id}">Reserve A Spot!</button>
       `);
@@ -77,7 +78,7 @@ $(document).ready(()=> {
         $('#trip-form').attr('data-id' , `${response.id}`);
         $('#trip-form').attr('data-name' , `${response.name}`);
       });
-      $('#show-trip').append(button);
+      $('#resButton').html(button);
     })
     .fail(function(response){
       console.log(response);
@@ -89,7 +90,7 @@ $(document).ready(()=> {
   $('#show-trips ul').on('click', 'h2', function(){
     let tripId = $(this).attr('data-id');
     loadTrip(tripId);
-
+    $('#show-trip').show();
     $('html,body').animate({
       scrollTop: $("#anchor").offset().top},
       'slow');
