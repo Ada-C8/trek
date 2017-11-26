@@ -54,11 +54,6 @@ $(document).ready(() => {
     });
   };
 
-  // for post
-  // id: 3,
-  // trip_id: 1,
-  // name: "kimberley",
-  // email: ""
   let reserveTrip = function reserveTrip(id, formData) {
     reserveURL = (baseURL+'/'+ id + '/reservations');
     console.log(reserveURL);
