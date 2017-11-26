@@ -1,136 +1,134 @@
 
-const url = 'https://trektravel.herokuapp.com/trips';
+const baseURL = 'https://trektravel.herokuapp.com/trips';
 // https://trektravel.herokuapp.com/trips/1/reservations
 
 const successCallback = (response) => {
-  console.log('success');
-}
-// const successCallback = function(response) {
-//   console.log("Request was successful");
-//   console.log(response);
-//   //
-//   // let generatedHMTL = '<p>Everything went great,';
-//   // generatedHMTL += `enjoy your trip!</p>`;
-//   // $('#ajax-results').html(generatedHMTL);
-// };
+  console.log('success!!!!!');
+};
 
 
 
+$(document).ready( () => {
 
+  $('.reservation-button').hide();
+  $('#book-trip-form').hide();
 
-$(document).ready(() => {
+  let loadTrips = function loadTrips() {
+    // $.get('https://trektravel.herokuapp.com/trips', (response) => {
+    $.get(baseURL, (response) => {
+      $('#load').hide();
+      response.forEach(function(trip)  {
+        let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name} </a> </h3> </li>`
+        $('#trips ul').append(tripInfo);
+      }); //for each
+    })// get success response
+    .fail(function(response) {
+      console.log(response);
+      $('#fail').html('<p>Your Request was Unsuccessful</p>')
+    })
+    .always(function(){
+      console.log("always and forever");
+    });
+  }; //loadtrips function
 
-let loadTrips = function loadTrips() {
-  console.log("start detail function");
-  console.log($(".trip-details"));
-  console.log("end details");
-  $.get('https://trektravel.herokuapp.com/trips', (response) => {
-    response.forEach(function(trip)  {
-      let tripInfo = `<li> <button class="button"> <h3 data-id=${trip.id}> ${trip.name} </a> </h3> </button> </li>`
+  let loadDetail = function loadDetail(id) {
+    $('.trip-details').children().hide();
+    console.log("start detail function");
+    console.log($(".trip-details"));
+    console.log("end details");
 
-      $('#trips ul').append(tripInfo);
-    }); //for each
-  });// get success response
-} //loadtrips function
-
-let loadDetail = function loadDetail(id) {
-  $('.trip-details').children().hide();
-  console.log("start detail function");
-  console.log($(".trip-details"));
-  console.log("end details");
-  $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
-    let tripDetail = `
+    $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
+      let tripDetail = `
       <h2> ${response.name} </h2>
       <p> ${response.continent} </p>
       <p> ${response.about} </p>
-      <p> ${response.weeks} </p>
-      <p> ${response.cost} </p> `;
-console.log(id);
-console.log(typeof(id));
-console.log("this is" + $(this));
-//recognizes
-//how to tell it to use th eid?
+      <p> ${response.weeks} weeks </p>
+      <p> $ ${response.cost} </p>
+      <p> ID: ${response.id} <p>
+      <h3 data-id=${response.id}> Make a Reservation!</a> </h3>
+      `;
+
+
+
+
+
+      console.log(id);
+      console.log(typeof(id));
+      console.log("here in the trip detail function this is " + $(this));
+
+      // let reservationButton = `<button class="reservation button"  tripID=${response.id}>Make A Reservation!</button>`;
+      let tripId = response.id;
+      console.log(`the trip id is ${tripId}`);
+      //recognizes
+      //how to tell it to use th eid?
       $('.trip-details').append(tripDetail);
-    // $('h3').after(tripDetail); //works
-  }); //get trip function
+      // $('.trip-details').append(reservationButton);
+      // $('.reservation-button').show();
 
-} //trip detail function
 
-// let reserveTrip = function reserveTrip(id) {
-//   // $('.show-trip-form').addClass();
-//
-//   $.post(`https://trektravel.herokuapp.com/trips/${id}/reservations`, (response) => {
-//     let tripDetail = ` `;
-// console.log(id);
-// console.log(typeof(id));
-// console.log("this is" + $(this));
-// //recognizes
-// //how to tell it to use th eid?
-//       $('.trip-details').prepend(tripDetail);
-//     // $('h3').after(tripDetail); //works
-//   }); //get trip function
-//
-// } //trip detail function
+    }) //get trip function
+    .fail(function(response) {
+      console.log(response);
+      $('#fail').html('<p>Request was unsuccessful</p>')
+    })
+    .always(function() {
+      console.log('always on my mind');
+    });
+  }; //trip detail function
 
-$('#book-trip-form').on('submit', function(event) {
-  event.preventDefault();
-  let formData = $('#book-trip-form').serialize();
-  console.log("Showing the form data!")
-  console.log(formData);
-  let tripID = $(this).attr('data-id');
-  console.log("showing the trip id")
-  console.log(tripID);
-  // console.log(`https://trektravel.herokuapp.com/trips/${id}/reservations`);
-  // $.post(`https://trektravel.herokuapp.com/trips/${id}/reservations`, formData, successCallback).fail((response) => {
-  //   console.log("Didn't go so hot");
-  // });
-});
+  let reserveTrip = function reserveTrip(id, formData) {
+    reserveURL = (baseURL+'/'+ id + '/reservations');
+    console.log(reserveURL);
+    $.post(reserveURL, formData, (response) => {
+      $('#makeReservation').html('<p> Reservation added! </p>');
+      console.log(response);
+    })
+    .fail(function(response){
+      $('#fail').html('<p>Request was unsuccessful</p>')
+    })
+    .always(function(){
+      console.log('always even if we have success or failure');
+    });
+  };
 
 
 
+// EVENTS
 
 
+  //load all trips
+  $('#load').on('click', function() {
+    loadTrips();
+  });
 
-$('#trips ul').on('click', 'h3', function () {
-  console.log('ready to hide');
+  //load trip detail
+  $('#trips ul').on('click', 'h3', function () {
+    console.log(`here in the load trip function this is ${this}`);
+    let tripID = $(this).attr('data-id');
+    console.log(`and now tripid is ${tripID}`);
+    loadDetail(tripID);
+  }) //
 
-}) //
+  // make reservations
+  $('.trip-details').on('click', 'h3', function() {
+    console.log("you clicked a button!");
+    console.log(`this is ${this}`);
+    let tripID = $(this).attr('data-id');
+    console.log(`and now tripid is ${tripID}`)
 
+    // let resID = $(this).attr('data-id');
+    // console.log(resId);
+    // reserveForm();
+  })
 
-$('#trips ul').on('click', 'h3', function () {
-  let tripID = $(this).attr('data-id');
-  console.log("in the event handler!");
-  loadDetail(tripID);
-}) //
+  $('#book-trip-form').on('submit', function(event) {
+    event.preventDefault();
+    tripID = $('.indTrip').attr('id');
 
+    let formData = $('#book-trip-form').serialize();
+    console.log("Showing the form data!")
+    console.log(formData);
+    reserveTrip(tripID, formData);
+  }) //end book trip
 
-$('#load').on('click', function() {
-  loadTrips();
-});
-
-
-}); //end doc ready
-
-
-
-
-
-
-
-
-// $(document).ready(function() {
-//   $('button').on('click', function() {
-//     var message = $('<span>Call 1-555-jquery-air to book this tour</span>');
-//     $(this).after(message); //puts it after whatever button is clicked.
-//     // $('.usa').append(message); //appends it only on this one trip
-//     $(this).remove(); //will only remove 'this' button, the one clicked on.
-//     // $('button').remove(); //will remove all buttons when a button is clicked
-//   });
-// });
-// Africa
-// Asia
-// Australasia
-// Europe
-// South America
-// North America
-// (trip 34 is last one)
+  }); //end doc ready
