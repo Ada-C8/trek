@@ -1,6 +1,6 @@
 const baseURL = 'https://trektravel.herokuapp.com/trips';
-
 $(document).ready(() => {
+  $('#reservationForm').hide();
   const loadAllTrips = () => {
     $.get(baseURL, (response) => {
       console.log('all trips worked');
@@ -14,19 +14,19 @@ $(document).ready(() => {
   const tripDetails = (id) => {
     $.get(`${baseURL}/${id}`, (response) => {
       console.log('Single trip worked');
-      console.log(response);
       if ($('#details').length > 0) {
         $('#details').remove();
       }
+
       const details = `
       <ul id='details'>
-      <li>ID: ${response.id} </li>
-      <li>Destination: ${response.name} </li>
-      <li>Continent: ${response.continent} </li>
-      <li>About: ${response.about} </li>
-      <li>Category: ${response.category} </li>
-      <li>Weeks: ${response.weeks} </li>
-      <li>Cost: ${response.cost} </li>
+        <li>ID: ${response.id} </li>
+        <li>Destination: ${response.name} </li>
+        <li>Continent: ${response.continent} </li>
+        <li>About: ${response.about} </li>
+        <li>Category: ${response.category} </li>
+        <li>Weeks: ${response.weeks} </li>
+        <li>Cost: ${response.cost} </li>
       </ul>`;
       $(`li#${id}`).append(details);
     });
@@ -38,7 +38,10 @@ $(document).ready(() => {
 
   $('#tripSection').on('click', 'li', (e) => {
     const id = e.target.id;
-    console.log(id);
     tripDetails(id);
+  });
+
+  button.click((e) => {
+    console.log('reserve button was clicked');
   });
 });
