@@ -1,7 +1,37 @@
-nav {
+#foundation-override body {
+  font-family: 'Rubik', sans-serif;
+}
+
+body {
   text-align: center;
+}
+nav {
   height: 15vh;
   padding-top: 5vh;
+}
+
+ul, li {
+  list-style: none;
+  font-weight: 500;
+  font-size: 1.6rem;
+}
+
+#foundation-override h1 {
+  font-family: 'Trirong', serif;
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+#foundation-override h3 {
+  font-family: 'Trirong', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 2.5rem;
+}
+
+#foundation-override h4 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.6rem;
 }
 
 .hide {
@@ -17,13 +47,25 @@ nav {
 }
 
 .scrollbox {
-  height: 85vh;
+  height: 80vh;
   padding-bottom: 10vh;
   background-color: lightblue;
   overflow: auto;
   overflow-x: hidden;
 }
 
+.about {
+  text-align: justify;
+}
+
+.reservation-form {
+  max-width: 400px;
+  margin: auto;
+}
+.field label {
+  height:inherit;
+  margin-bottom: 16px; /* To match Foundation input field */
+}
 .failure {
   background-color: red;
   color: white;

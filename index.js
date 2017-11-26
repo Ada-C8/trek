@@ -1,6 +1,16 @@
-/* Wave 3: While viewing a single trip, you can reserve a spot
-Use a form to submit your name to reserve a spot on the trip you are viewing. */
 const apiUrl = 'https://trektravel.herokuapp.com/trips';
+// Utilities
+
+const sPluralize = function sPluralize(word, qty) {
+  if (qty === 1) {
+    return word;
+  }
+  return `${word}s`;
+};
+
+const capitalize = function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+};
 
 // Display List of Trips
 const displayList = function displayList() {
@@ -20,13 +30,13 @@ const displayList = function displayList() {
 
 // Display Details of Trip
 const displayDetails = function displayDetails(id) {
-  $('#reservation-form').show();
+  $('.reservation-form').show();
   $.get(`${apiUrl}/${id}`, (response) => {
     $('#details').html(`<h3>${response.name}</h3>
-      <h4>${response.weeks} weeks | ${response.continent} | ${response.category}</h4>
+      <h4>${response.weeks} ${sPluralize('week', response.weeks)} | ${response.continent} | ${capitalize(response.category)}</h4>
       <div class="about">${response.about}</div>
       <div class="cost">${response.cost}</div>`);
-    $('#reservation-form').attr('id', id);
+    $('.reservation-form').attr('id', id);
   }).fail(() => {
     $('#message').addClass('failure').html('Oops! Something went wrong!');
   });
@@ -47,11 +57,12 @@ const postReservation = function postReservation(response) {
 // Perform
 $(document).ready(() => {
   // PREP
-  $('#reservation-form').hide();
+  $('.reservation-form').hide();
 
   // BASICS
   $('#get-list').click(displayList);
   $('#list').on('click', 'li', function fx() {
+    $('#list-wrapper').addClass('large-5');
     displayDetails($(this)[0].id);
   });
 
