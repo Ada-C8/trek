@@ -54,5 +54,9 @@ h3 {
 }
 
 .trip-button {
-  margin-top: 40%;
+  margin-top: 20%;
+}
+
+.res_button {
+  align-items: center;
 }

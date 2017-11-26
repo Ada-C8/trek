@@ -11,56 +11,57 @@
 
   <script src="js/vendor/modernizr.js"></script>
 
-<!-- <script src="/js/vendor/modernizr.js"></script> -->
+  <!-- <script src="/js/vendor/modernizr.js"></script> -->
 </head>
 
 <body>
 
-<header>
-  <h1 class="row">Come Fly Away...</h1>
-  <h2 class="text-center">Let's fly...let's fly away!!!</h2>
-</header>
+  <header>
+    <h1 class="row">Come Fly Away...</h1>
+    <h2 class="text-center">Let's fly...let's fly away!!!</h2>
+  </header>
 
-<main>
+  <main>
 
+    <section class="row">
+      <button class="trip-button small-12 small-centered large-12 large-centered text-center columns">Check out these amazing Trips!</button>
+    </section>
 
-<section class="row">
-
-  <button class="trip-button small-12 small-centered large-12 large-centered text-center columns">Check out these amazing Trips!</button>
-</section>
-
-  <section class="triplist">
-    <ul class="row">
-    </ul>
-  </section>
+    <section class="triplist">
+      <ul class="row">
+      </ul>
+    </section>
 
 
-  <section class="tripView">
+    <div class="reveal" id="reservation" data-reveal>
+      <form method="post" id="makeReservation">
+        <label for="name">Name</label>
+        <input type="text" name="name"></input>
 
-    <!-- make reservation form -->
-    <form method="post" id="makeReservation">
-      <label for="name">Name</label>
-      <input type="text" name="name"></input>
+        <label>Email</label>
+        <input type="text" name="email"></input>
 
-      <label>Email</label>
-      <input type="text" name="email"></input>
-
-      <input type="submit" value="Make Reservation"></input>
-    </form>
-  </section>
-
-
-  <div id="fail">
+        <input type="submit" value="Make Reservation"></input>
+      </form>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+      </button>
+    </div>
 
   </div>
 
 
-<script src="js/foundation.util.motion.js"></script>
+  <div id="fail">
+  </div>
+
+
+  <script src="js/foundation.util.motion.js"></script>
   <script src="js/vendor/jquery.js"></script>
   <script src="js/foundation.min.js"></script>
+
   <script>
-    $(document).foundation();
+  $(document).foundation();
   </script>
+
 </main>
 </body>
 </html>
