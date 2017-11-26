@@ -121,9 +121,11 @@ $(document).ready(() => {
       buttonText.innerHTML = 'Visit The Swamp';
       $('body').css('background-image', 'none');
     } else {
-      $('#site-title h2').html('S H R E K');
+      const shrekImage = '<a href="https://fontmeme.com/shrek-font/"><img src="https://fontmeme.com/permalink/171126/41e088cfebc3f66ae1927574b97b2ff1.png" alt="shrek-font" border="0"></a>';
+      // $('#site-title h2').html('S H R E K');
+      $('#site-title h2').html(shrekImage);
       buttonText.innerHTML = 'Exit The Swamp';
-      $('body').css('background-image', "url('http://eskipaper.com/images/shrek-4.jpg')");
+      $('body').css('background-image', "url('https://images.moviepilot.com/images/c_limit,q_auto:good,w_600/clr44ylwoniaf3plvgas/fall-in-love-with-shrek-again-with-these-9-fascinating-movie-facts-you-probably-didn-t-know.jpg')");
     }
   });
 });
