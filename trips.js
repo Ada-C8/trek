@@ -48,10 +48,6 @@ $(document).ready( () => {
       <h3 data-id=${response.id}> Make a Reservation!</a> </h3>
       `;
 
-
-
-
-
       console.log(id);
       console.log(typeof(id));
       console.log("here in the trip detail function this is " + $(this));
@@ -82,6 +78,7 @@ $(document).ready( () => {
     $.post(reserveURL, formData, (response) => {
       $('#makeReservation').html('<p> Reservation added! </p>');
       console.log(response);
+      alert("Your Trip is Reserved!");
     })
     .fail(function(response){
       $('#fail').html('<p>Request was unsuccessful</p>')
@@ -90,19 +87,6 @@ $(document).ready( () => {
       console.log('always even if we have success or failure');
     });
   };
-  // 1
-  // <img id="greatphoto" src="brush-seller.jpg" alt="brush seller">
-  // Setting a simple attribute
-  //
-  // To change the alt attribute, simply pass the name of the attribute and its new value to the .attr() method:
-  //
-  // 1
-  // $( "#greatphoto" ).attr( "alt", "Beijing Brush Seller" );
-  // Add an attribute the same way:
-  //
-  // 1
-  // $( "#greatphoto" ).attr( "title", "Photo by Kelly Clark" );
-
 
 // EVENTS
 
@@ -129,23 +113,28 @@ $(document).ready( () => {
     console.log(`and now tripid is ${tripID}`)
 
     $('#book-trip-info').text("Things I wrote in this paragraph");
+    $('#book-trip-form').attr("data-id", tripID);
     $('#book-trip-form').show();
-    // $('#book-trip-form').text("hello!");
+    //  // $( "#greatphoto" ).attr( "title", "Photo by Kelly Clark" ); $('#book-trip-form').text("hello!");
   })
 
   //make post request
 
   $('#book-trip-form').on('submit', function(event) {
     event.preventDefault();
-    // tripID = $('.indTrip').attr('id');
-    console.log("in trip submit")
     console.log(`this is ${this}`);
+    let tripID = $(this).attr('data-id');
+
+
+    console.log(`this is ${tripID}`);
+
+
     let formData = $('#book-trip-form').serialize();
     console.log("Showing the form data!")
     console.log(formData);
     // console.log(tripID);
 
-    // reserveTrip(tripID, formData);
+    reserveTrip(tripID, formData);
   }) //end book trip
 
   }); //end doc ready
