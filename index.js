@@ -80,26 +80,30 @@ $(document).ready(() => {
           </tbody>
         </table>
       </div>
+
       <div class="column small-9 small-centered row">
         <button id="reserve-trip" class="button expanded"><strong>Reserve Trip</strong></button>
+      </div>
+
+
       <div class="column small-9 small-centered row">
+        <section id="reservation-modal">
+          <form id="reservation" data-id="${response.id}">
 
-      <section id="reservation-modal">
-        <form id="reservation" data-id="${response.id}">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required="required"></input>
 
-          <label for="name">Name:</label>
-          <input type="text" name="name" required="required"></input>
+            <label for="age">Age:</label>
+            <input type="number" name="age" required="required"></input>
 
-          <label for="age">Age:</label>
-          <input type="number" name="age" required="required"></input>
+            <label for="email">Email:</label>
+            <input type="text" name="email" required="required"></input>
 
-          <label for="email">Email:</label>
-          <input type="text" name="email" required="required"></input>
+            <button class="button" type="submit">Reserve Trip</button>
 
-          <button class="button" type="submit">Reserve Trip</button>
-
-        </form>
-      </section>
+          </form>
+        </section>
+      </div>
       `;
 
       $('#single-trip-info').html(singleTripTable);
