@@ -81,7 +81,8 @@ $(document).ready(() => {
 
       <h3>Reserve Trip</h3>
 
-      <form id="reserve">
+      <form id="reservation" data-id="${response.id}">
+
         <label for="name">Name:</label>
         <input type="text" name="name"></input>
 
@@ -91,7 +92,7 @@ $(document).ready(() => {
         <label for="email">Email:</label>
         <input type="text" name="email"></input>
 
-        <button id="reserve-trip" class="button" type="submit">Reserve Trip</button>
+        <button class="button" type="submit">Reserve Trip</button>
       </form>
       `;
 
@@ -106,22 +107,25 @@ $(document).ready(() => {
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE TO RESERVE TRIP
   const makeTripReservation = function makeTripReservation(id) {
-    const tripID = id;
-    // Clear existing table
-    // $('#trips-head').html('');
 
-    // const singleTripURL = `https://trektravel.herokuapp.com/trips/${id}`;
-    //
-    // $.get(singleTripURL, (response) => {
-    //   console.log(response);
-    //
-    //
-    //   $('#single-trip-info').html(singleTripTable);
-    //
-    // }).fail(() => {
-    //   console.log('Did not load successfully!');
-    //   $('#featured-content').html('<p><em>An error has occurred. The trip details could not be loaded.</em></p>');
-    // });
+    const tripID = id;
+    const tripReservationsURL = `https://trektravel.herokuapp.com/trips/${tripID}/reservations`
+    console.log(tripReservationsURL);
+
+    const successCallback = function(response) {
+      console.log('POST request was successful');
+      console.log(response);
+    };
+
+    const failCallback = function(response) {
+      console.log('An error occurred: Post was unsuccessful');
+      console.log(response);
+    };
+
+    let formData = $('#reservation').serialize();
+    console.log(formData);
+
+    $.post(tripReservationsURL, formData, successCallback).fail(failCallback);
   };
 
 
@@ -136,9 +140,10 @@ $(document).ready(() => {
     getTripDetails(tripID);
   });
 
-  // $('#single-trip-info').on('click', '#reserve-trip', function() {
-  //   console.log('Button reserve trip clicked');
-  //   let tripID = $(this).attr('data-id');
-  //   makeTripReservation(tripID);
-  // });
+  $('#single-trip-info').on('submit', '#reservation', function() {
+    console.log('Button reserve trip clicked');
+    let tripID = $(this).attr('data-id');
+    makeTripReservation(tripID);
+  });
+
 });
