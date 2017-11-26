@@ -20,9 +20,9 @@ $(document).ready(function() {
     for(let trip of response) {
       $('#trips').show();
       $('#table-body').append(
-        '<tr>' +
+        '<tr id=trip' + trip.id + ' class="accordian" data-accordion data-allow-all-closed="true">' +
           '<td>' + trip.id + '</td>' +
-          '<td id=trip' + trip.id + '>' + trip.name + '</td>' +
+          '<td>' + trip.name + '</td>' +
           '<td>' + trip.continent + '</td>' +
         '</tr>');
       $('#trip' + trip.id).click(function(event) {
@@ -37,17 +37,12 @@ $(document).ready(function() {
   /////// CALL BACK FOR A SINGLE TRIP
   const singleTripSuccessCallback = (response) => {
     // console.log(response);
-    $('#trips').remove();
+    $('#trips').hide();
+    $('#table-body').empty();
     $('#single-trip').show();
     $('#trip-name').append(response.name.toUpperCase());
-    // $('#trip-country').append(response.continent.toUpperCase());
-    $('#about').append(response.about);
-    // $('#all-trips').append('<ul> id="trip-info" </ul>');
-    // $('#trip-info').append('<li>' + response.name + '</li>');
-    // $('#trip-info').append('<li>' + response.continent + '</li>');
-    // $('#trip-info').append('<li>' + response.about + '</li>');
-    // $('#trip-info').append('<li>' + response.category + '</li>');
-    // $('#trip-info').append('<li id=reserve-id' + response.id + '><button> Reserve! </button></li>');
+    $('#trip-country').append(response.continent.toUpperCase());
+    $('#about').append('<p>' + response.about + '</p>');
     $('#reserve-id' + response.id).click(function(event) {
       displayForm(response.id);
     });
@@ -85,10 +80,3 @@ $(document).ready(function() {
   };
 
 });
-
-
-
-
-// When all trips is clicked - Append to all TRIPS
-// When a trip is clicked - Remove all trips and add ul and append li
-// When a reserve button is pressed, ul li is removed and a form is appended

@@ -38,13 +38,6 @@ body, h1, h2, h3 {
   border-radius: 5%;
 }
 
-footer {
-  color: black;
-  text-align: center;
-  height: 1vh;
-  font-size: 8px;
-}
-
 /* Small Devices */
 @media only screen and (max-width: 40em) {
   h1 {
@@ -55,15 +48,53 @@ footer {
 
 /********* ALL TRIPS *********/
 
-#trip-header, #trip-name, #trip-country {
+#trip-header { /* TODO: Make this into a class */
   text-align: center;
   padding: 1em;
   color: black;
   letter-spacing: 2px;
 }
 
-#about {
+#trips-table {
   font-family: 'Cardo', serif;
-  margin: 3em;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+/********* SINGLE TRIP *********/
+
+#trip-name { /* TODO: Make this into a class */
+  text-align: center;
+  padding: 1em;
+  color: black;
+  letter-spacing: 2px;
+}
+
+#trip-country {
+  text-align: center;
+  color: black;
+  letter-spacing: 2px;
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+
+#about {
+  text-align: center;
+  font-family: 'Cardo', serif;
+  width: 50%;
   /*border: 2px solid yellow;*/
+}
+
+/********* FOOTER *********/
+
+footer {
+  color: black;
+  text-align: center;
+  font-size: 8px;
+  padding: 1em;
+}
+
+footer p {
+  margin: 0;
 }
