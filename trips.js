@@ -1,9 +1,22 @@
 
 const url = 'https://trektravel.herokuapp.com/trips';
+// https://trektravel.herokuapp.com/trips/1/reservations
 
-// const successCallback = (response) => {
-//   console.log('success');
-// }
+const successCallback = (response) => {
+  console.log('success');
+}
+// const successCallback = function(response) {
+//   console.log("Request was successful");
+//   console.log(response);
+//   //
+//   // let generatedHMTL = '<p>Everything went great,';
+//   // generatedHMTL += `enjoy your trip!</p>`;
+//   // $('#ajax-results').html(generatedHMTL);
+// };
+
+
+
+
 
 $(document).ready(() => {
 
@@ -17,9 +30,7 @@ let loadTrips = function loadTrips() {
 
       $('#trips ul').append(tripInfo);
     }); //for each
-
   });// get success response
-
 } //loadtrips function
 
 let loadDetail = function loadDetail(id) {
@@ -44,6 +55,42 @@ console.log("this is" + $(this));
   }); //get trip function
 
 } //trip detail function
+
+// let reserveTrip = function reserveTrip(id) {
+//   // $('.show-trip-form').addClass();
+//
+//   $.post(`https://trektravel.herokuapp.com/trips/${id}/reservations`, (response) => {
+//     let tripDetail = ` `;
+// console.log(id);
+// console.log(typeof(id));
+// console.log("this is" + $(this));
+// //recognizes
+// //how to tell it to use th eid?
+//       $('.trip-details').prepend(tripDetail);
+//     // $('h3').after(tripDetail); //works
+//   }); //get trip function
+//
+// } //trip detail function
+
+$('#book-trip-form').on('submit', function(event) {
+  event.preventDefault();
+  let formData = $('#book-trip-form').serialize();
+  console.log("Showing the form data!")
+  console.log(formData);
+  let tripID = $(this).attr('data-id');
+  console.log("showing the trip id")
+  console.log(tripID);
+  // console.log(`https://trektravel.herokuapp.com/trips/${id}/reservations`);
+  // $.post(`https://trektravel.herokuapp.com/trips/${id}/reservations`, formData, successCallback).fail((response) => {
+  //   console.log("Didn't go so hot");
+  // });
+});
+
+
+
+
+
+
 $('#trips ul').on('click', 'h3', function () {
   console.log('ready to hide');
 
@@ -57,14 +104,19 @@ $('#trips ul').on('click', 'h3', function () {
 }) //
 
 
-
-
 $('#load').on('click', function() {
   loadTrips();
 });
 
 
 }); //end doc ready
+
+
+
+
+
+
+
 
 // $(document).ready(function() {
 //   $('button').on('click', function() {

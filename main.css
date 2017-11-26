@@ -1,0 +1,21 @@
+.trip-details {
+  border: 2px solid blue;
+  margin: 10px;
+}
+
+#trips {
+  border: 2px solid red;
+  margin: 10px;
+}
+
+#book-trip-form {
+  border: 2px solid green;
+  display: hidden;
+  margin: 10px;
+}
+
+.show-trip-form {
+  border: 2px solid black;
+  display: block;
+  margin: 10px;
+}
