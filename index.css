@@ -1,5 +1,36 @@
 /*= require foundation */
-h1 {
+
+@media only screen and (max-width: 320px) {
+   body { font-size: 3em; }
+
+}
+
+h1, h4, #clickToHide {
   font-family: 'Berkshire Swash', cursive;
   text-align: center;
+}
+
+#allTripsButton {
+display: flex;
+justify-content: center;
+padding: 2rem;
+padding-bottom: 1rem;
+}
+
+#tripsByContinentSelector {
+  display: flex;
+  align-content: center;
+  padding: 2rem;
+  padding-top: 1rem;
+  flex-direction: column;
+}
+
+ol li {
+  text-align: center;
+  list-style-position:inside;
+}
+
+#clickToHide {
+  color: red;
+  font-size: 2.25rem;
 }

@@ -17,7 +17,7 @@ const getTrips = function getTrips() {
 }; // end of getTrips function
 
 const viewTripsbyContinent = function viewTripsbyContinent() {
-  const continentDropdown = `<select id="continentSelector" class=" small-8 large-4 columns button dropdown ">
+  const continentDropdown = `<select id="continentSelector" class=" small-8 large-4 columns dropdown row align-center">
   <option value="null">Continents</option>
   <option value="Africa">Africa</option>
   <option value="Asia">Asia</option>
@@ -35,7 +35,7 @@ const viewTripsbyContinent = function viewTripsbyContinent() {
     console.log(selectedContinent);
 
     $.get(`https://trektravel.herokuapp.com/trips/continent?query=${selectedContinent}`, (response) => {
-      console.log(response);
+      // console.log(response);
       response.forEach((trip) => {
         const tripName = `<li data-id="${trip.id}">${trip.name}</li>`;
         $('#tripList ol').append(tripName);
@@ -54,7 +54,7 @@ const viewTrip = function viewTrip(tripID) {
   $.get(`https://trektravel.herokuapp.com/trips/${tripID}`, (response) => {
     const tripInfo =
     `<div data-id="${response.id}">
-    <p> ~ Click Anywhere to Hide ~ </p>
+    <p id="clickToHide"> ~ Click Anywhere to Hide ~ </p>
     <h2> ${response.name} </h2>
     <p> Continent: ${response.continent} </p>
     <p> Description: ${response.about} </p>
@@ -63,7 +63,7 @@ const viewTrip = function viewTrip(tripID) {
     <p> Cost: ${response.cost} </p>
     </div>
     <button id="reserveFormButton" data-id="${response.id}"> Reserve this Trip </button>`;
-    console.log(tripInfo);
+    // console.log(tripInfo);
     $('#tripInfo').append(tripInfo);
     $('#tripList ol').hide();
   })
