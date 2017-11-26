@@ -1,9 +1,33 @@
 body {
   margin: 0 auto;
   text-align: center;
+  font-family: "Heletica";
+}
+
+header {
+  background-color: palegreen;
+  padding: 0;
+}
+
+.container {
   width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.button {
+  background-color: black;
+}
+
+h1,h3 {
+  font-family: "Heletica";
 }
 
 li {
   list-style: none;
+}
+
+#fail {
+  color: red;
+  font-style: italic;
 }
