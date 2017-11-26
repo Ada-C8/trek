@@ -4,35 +4,41 @@
     <meta charset="utf-8">
     <title>TREK</title>
 
-    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="foundation-6.4.2-essential/css/foundation.css">
+    <link rel="stylesheet" href="index.css">
+
     <link rel="shortcut icon" href="favicon.png" type="favicon.png">
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </head>
   <body>
-    <header>
+    <header class="row">
       <h1> Welcome to TREK </h1>
     </header>
 
-    <section>
-      <button id="load-trips" class="button"> Find Trips </button>
+    <div class="row">
+      <section class="columns small-12">
+        <button id="load-trips" class="button">
+          ▶
+          &nbsp;&nbsp;
+          Search Trips
 
-      <div id="fail"></div>
-      <div id="trips" hidden=true>
-        Here are our Trips
+        </button>
 
-        <ul></ul>
-      </div>
-    </section>
+        <div id="trips">
+          <div id="fail"></div>
+          <ul></ul>
+        </div>
+      </section>
+    </div>
 
     <section>
       <div >
         <div id='trip' hidden=true>
 
           <div id="ajax-results"></div>
-          <div id="fail"></div>
+          <div id="fail-trip"></div>
 
           <p id="name"></p>
           <p> Category: <span id="category"></span></p>
@@ -40,11 +46,13 @@
           <p> Cost: <span id="cost">$</span></p>
           <p> About: <span id="about"></span></p>
 
+          <hr>
+          <h3>Make Your Reservation</h3>
           <form id="add-res" id="">
             <label for="name"> Name </label>
             <input type="text" name="name"></input>
 
-            <input type="submit" value="Reserve Trip" class+"button"></input>
+            <input type="submit" value="Reserve Trip" class=""></input>
           </form>
         </div>
       </div>

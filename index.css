@@ -1,20 +1,113 @@
+* * {
+  transition: 3s all;
+}
+* *:hover {
+  background-color: rgba(255, 0, 0, 0.15);
+  transform: rotate(10deg);
+  transition: 3s all;
+}
+
 body {
-  color: white;
 }
 
 header {
   background-color: #4285f4;
   color: white;
+  padding: 40px;
 }
 
-header h1, header .button, header #trips {
+header h1, section .button {
+  margin-left: 20px;
+}
+
+a {
+  color: #ff8008;
+}
+
+#load-trips {
+  margin-top: 20px;
+  background-color: white;
+  color: #1a0dab;
+  font-size: 20px;
+}
+
+
+#load-trips:hover {
+  background-color: white;
+  color: #1a0dab;
+  text-decoration: underline;
+}
+
+
+
+#fail, #fail-trip {
+  color: rgba(255, 0, 0, 0.5);
+}
+
+#ajax-results {
+  color: rgba(0, 138, 0, 0.5);
+}
+
+#trips {
   margin-left: 20px;
 }
 
 #trips ul{
   list-style-type: none;
+  font-size: 18px;
+}
+
+div #trip {
+  margin: 20px;
 }
 
 div p {
   font-weight: bold;
 }
+
+span {
+  font-weight: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+span

@@ -48,7 +48,7 @@ $(document).ready(function() {
       $('#name').html(tripInfo)
       $('#category').html(response.category)
       $('#duration').html(response.duration)
-      $('#cost').html((response.cost).toFixed(2))
+      $('#cost').html('$' + (response.cost).toFixed(2))
       $('#about').html(response.about)
 
       // I am not sure if putting the reservation code with in the scope of the $.get trip is best practice. It is here because this was the simplest way to access the trip's id. I tried using the .data()
@@ -74,7 +74,7 @@ $(document).ready(function() {
     }) // end $.get
     .fail(function(response){
       console.log(response);
-      $('#fail').html('<p>Request was unsuccessful</p>');
+      $('#fail-trip').html('<p>Request was unsuccessful</p>');
     });
   } // end trip(id)
 
