@@ -52,10 +52,11 @@ $(document).ready(() => {
     console.log(response);
   }
 
-  $('#completeReservation').on('submit', (e) => {
+  $('#reservationForm').on('submit', (e) => {
+    console.log('Submission started');
     const postURL = `${baseURL}/${$(this).data('id')}/reservations`;
     const data = $('#reservationForm').serialize();
-    $.post(postURL, data, postSuccessful).fail((response) => {
+    $.post(postURL, data, postSuccessful).fail(() => {
       console.log('something went wrong with the post');
     });
   });
