@@ -18,7 +18,6 @@ let buildAllTrips = function buildAllTrips() {
   const failResponse = function failResponse() {
     $(".failure").html("Failed to load trips")
     // .show().delay(1000).fadeOut();
-    console.log('FAILURE');
   };
 
   $.get(ALL_TRIPS_URL,
@@ -29,6 +28,7 @@ let buildAllTrips = function buildAllTrips() {
 };
 
 // submit reservation
+// BUG: can't reserve a trip properly if other trips details/forms are open
 let createReservation = function createReservation(event) {
   event.preventDefault();
 
@@ -48,7 +48,6 @@ let createReservation = function createReservation(event) {
   };
 
   $.post(resUrl, formData, successResponse()).fail(failResponse)
-  // });
 }; //submit res
 
 // build individual trip details
