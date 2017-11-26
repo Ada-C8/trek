@@ -1,6 +1,7 @@
 const baseURL = 'https://trektravel.herokuapp.com/trips';
 $(document).ready(() => {
   $('#reservationForm').hide();
+
   const loadAllTrips = () => {
     $.get(baseURL, (response) => {
       console.log('all trips worked');
@@ -18,6 +19,9 @@ $(document).ready(() => {
         $('#details').remove();
       }
 
+      if ($('#showForm').length > 0) {
+        $('#showForm').remove();
+      }
       const details = `
       <ul id='details'>
         <li>ID: ${response.id} </li>
@@ -28,7 +32,9 @@ $(document).ready(() => {
         <li>Weeks: ${response.weeks} </li>
         <li>Cost: ${response.cost} </li>
       </ul>`;
-      $(`li#${id}`).append(details);
+
+      $(`#singleTripDetails`).html(details);
+      $('#reservationForm').show();
     });
   };
 
@@ -41,7 +47,16 @@ $(document).ready(() => {
     tripDetails(id);
   });
 
-  button.click((e) => {
-    console.log('reserve button was clicked');
+  const postSuccessful = (response) => {
+    console.log("POST worked");
+    console.log(response);
+  }
+
+  $('#completeReservation').on('submit', (e) => {
+    const postURL = `${baseURL}/${$(this).data('id')}/reservations`;
+    const data = $('#reservationForm').serialize();
+    $.post(postURL, data, postSuccessful).fail((response) => {
+      console.log('something went wrong with the post');
+    });
   });
 });
