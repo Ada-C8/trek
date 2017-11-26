@@ -3,13 +3,17 @@
 
 $(document).ready(() => {
 
+  $('.tripView').hide();
+
   baseURL = 'https://trektravel.herokuapp.com/trips'
 
   let loadTrips = function loadTrips() {
-    $.get(baseURL, (response) => {
 
+
+    $.get(baseURL, (response) => {
+      $('.trip-button').hide();
       response.forEach(function(trip) {
-        let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name}</li>`;
+        let tripInfo = `<li class="small-4 large-6 columns"><h3 data-id=${trip.id}> ${trip.name}</li>`;
 
         $('.triplist ul').append(tripInfo);
       });
@@ -27,18 +31,19 @@ $(document).ready(() => {
   let loadTrip = function loadTrip(id) {
     $.get((baseURL + '/' + id),
     (response) => {
-      let tripInfo = `<section class= "indTrip" id="${response.id}">
-      <h2> ${response.name} </h2>
-      <p> id: ${response.id} </p>
-      <p> Continent: ${response.continent} </p>
-      <p> About: ${response.about} </p>
-      <p> Category: ${response.category} </p>
-      <p> Weeks: ${response.weeks} </p>
-      <p> Cost: ${response.cost} </p>
+      let tripInfo = `<section class="indTrip rows" id="${response.id}">
+      <h2 class="large-8 text-center large-centered columns"> ${response.name} </h2>
+      <p class="large-8 large-centered text-center columns"><strong> About:</strong> ${response.about} </p>
+      <p class="large-6 text-center columns"> Continent: ${response.continent} </p>
+      <p class="large-6 text-center columns"> Category: ${response.category} </p>
+      <p class="large-6 text-center columns"> Week(s): ${response.weeks} </p>
+      <p class="large-6 text-center columns"> Cost: $${response.cost} </p>
       </section>`;
 
       $('.triplist ul').html("");
-      $('.tripView').append(tripInfo);
+      $('.triplist').append(tripInfo);
+      $('.tripView').show();
+
     })
     .fail(function(response){
       console.log(response);
@@ -71,13 +76,14 @@ $(document).ready(() => {
 
   // EVENTS
 
-  $('.triplist button').on('click', function() {
+  $('.trip-button').on('click', function() {
     loadTrips();
   });
 
 
   $('.triplist ul').on('click', 'h3', function() {
     let tripID = $(this).attr('data-id');
+    console.log(tripID);
     loadTrip(tripID);
   });
 
@@ -85,10 +91,6 @@ $(document).ready(() => {
     // this helps not to refresh the page
     event.preventDefault();
     tripID = $(`.indTrip`).attr('id');
-    // console.log(`this is the value ${value}`);
-    // tripID = 3
-    // let tripID = $(event).prop('id');
-    // console.log(`this is the ${tripID}`);
 
     // this is a jQuery function that will take our form and turn it into query params
     let formData = $('#makeReservation').serialize();

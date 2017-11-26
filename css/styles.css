@@ -1,0 +1,58 @@
+
+
+html {
+
+}
+
+
+body {
+  background: rgba(255,255,255,0.2); /* applies a 50% transparent white background */
+}
+
+header {
+  /*background: gray;*/
+  /*color: white;*/
+  background-image: url("travel_image.jpg");
+  /*background-repeat: no-repeat;*/
+  /*background-position: center center;*/
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 50px;
+  /*background: rgba(255,255,255,0.5);*/
+
+}
+
+main {
+  background-image: url("topography.png");
+
+}
+h2 {
+  padding-top: 80px;
+}
+
+.indTrip {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.indTrip p{
+
+}
+
+.triplist ul {
+  list-style: none;
+  background-color: rgba(255,255,255, 0.6);
+
+}
+
+input {
+
+}
+
+h3 {
+  margin: 10px;
+}
+
+.trip-button {
+  margin-top: 40%;
+}

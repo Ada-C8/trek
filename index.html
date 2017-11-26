@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Find your Adventure!</title>
+<head>
+  <meta charset="utf-8">
+  <title>Find your Adventure!</title>
+  <link href="http://cdn.foundation5.zurb.com/foundation.css"/>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="js/trek.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="css/foundation.css" />
+  <link rel="stylesheet" href="css/styles.css">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="trek.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="styles.css">
-  </head>
+  <script src="js/vendor/modernizr.js"></script>
 
-  <body>
+<!-- <script src="/js/vendor/modernizr.js"></script> -->
+</head>
 
-    <section class="triplist">
-      <button>List all Trips</button>
-        <ul>
-        </ul>
-    </section>
+<body>
+
+<header>
+  <h1 class="row">Come Fly Away...</h1>
+  <h2 class="text-center">Let's fly...let's fly away!!!</h2>
+</header>
+
+<main>
 
 
-    <section class="tripView">
+<section class="row">
 
-      <!-- make reservation form -->
+  <button class="trip-button small-12 small-centered large-12 large-centered text-center columns">Check out these amazing Trips!</button>
+</section>
+
+  <section class="triplist">
+    <ul class="row">
+    </ul>
+  </section>
+
+
+  <section class="tripView">
+
+    <!-- make reservation form -->
     <form method="post" id="makeReservation">
       <label for="name">Name</label>
       <input type="text" name="name"></input>
@@ -30,14 +47,20 @@
 
       <input type="submit" value="Make Reservation"></input>
     </form>
+  </section>
 
 
-<div id="fail">
+  <div id="fail">
 
-</div>
+  </div>
 
 
-<!-- JS script needed to run JS file  -->
-
-  </body>
+<script src="js/foundation.util.motion.js"></script>
+  <script src="js/vendor/jquery.js"></script>
+  <script src="js/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+</main>
+</body>
 </html>
