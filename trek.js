@@ -24,7 +24,7 @@ $(document).ready(() => {
       }
       const details = `
       <ul id='details'>
-        <li>ID: ${response.id} </li>
+        <li'>ID: ${response.id} </li>
         <li>Destination: ${response.name} </li>
         <li>Continent: ${response.continent} </li>
         <li>About: ${response.about} </li>
@@ -54,8 +54,9 @@ $(document).ready(() => {
 
   $('#reservationForm').on('submit', (e) => {
     console.log('Submission started');
-    const postURL = `${baseURL}/${$(this).data('id')}/reservations`;
+    const postURL = `${baseURL}/${$('#details li')[0].id}/reservations`;
     const data = $('#reservationForm').serialize();
+    console.log(postURL);
     $.post(postURL, data, postSuccessful).fail(() => {
       console.log('something went wrong with the post');
     });
