@@ -1,4 +1,5 @@
 $(document).ready(() => {
+  // Function for Ajax request and response for all trips.
   $('#load').click(() => {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       response.forEach((place) => {
@@ -7,18 +8,20 @@ $(document).ready(() => {
         console.log(location);
         $('#location').append(location);
       });
-    });
-  });
-
-  $('#load').on('click', () => {
-    $('#location').empty();
+    })
+      .fail((response) => {
+        console.log(response);
+        $('#fail').html('<p>Request was unsuccessful</p>');
+      })
+      .always(() => {
+        console.log('always even if we have success or failure');
+      });
   });
 
   // Function for request and response for a specific trip.
 
   const loadTrip = function loadTrip(id) {
     $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
-    console.log(response);
       const tripInfo = `
         <p> Id: ${response.id} </p>
         <p> Name: ${response.name} </p>
@@ -30,6 +33,23 @@ $(document).ready(() => {
         <p> Cost: ${response.cost} </p>`;
 
       $('#tripinfo').html(tripInfo);
-    },
+    })
+      .fail((response) => {
+        console.log(response);
+        $('#fail').html('<p>Request was unsuccessful</p>');
+      })
+      .always(() => {
+        console.log('always even if we have success or failure');
+      });
+  };
 
-  
+    // EVENTS
+  $('#tripinfo ul').on('click', 'h3', () => {
+    const tripID = $(this).attr('data-id');
+    loadTrip(tripID);
+  });
+
+  $('#load').on('click', () => {
+    $('#location').empty();
+  });
+});
