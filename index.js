@@ -69,7 +69,7 @@ $(document).ready(()=> {
       <span>Length:</span> ${response.weeks} weeks</p>`;
       $('#hook').html(tripInfo);
 
-      let button = $(`<button id="reserve" value="${response.id}">Reserve A Spot!</button>
+      let button = $(`<button id="reserve" class="natGeoButton" value="${response.id}">Reserve A Spot!</button>
       `);
 
       button.click((event) => {
