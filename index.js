@@ -45,11 +45,25 @@ const viewTripsbyContinent = function viewTripsbyContinent() {
     .fail(() => {
       console.log('failure');
     })
-    .always(() => {
-      console.log('always even if we have success or failure');
-    });
   });
-};
+}; // end of viewTripsbyContinent function
+
+const viewTripsByNumberofWeeks = function viewTripsByNumberofWeeks() {
+const weeksCheckBoxes = `<fieldset> <div class="large-6 columns" id="radioButtons">
+      <input type="radio" name="duration" value="1week" id="1week"><label >1 Week </label>
+      <input type="radio" name="duration" value="2week" id="2week"><label >2 Weeks </label>
+      <input type="radio" name="duration" value="3week" id="3week"><label >3 Weeks </label>
+      <input type="radio" name="duration" value="4week" id="4week"><label >4 Weeks </label>
+    </div>
+    <p><input type="button" id="lengthButton" value="Find Trips by Length"></p>
+    </fieldset>`;
+$('#tripsByNumberofWeeks').append(weeksCheckBoxes);
+$('#tripList ol').empty();
+let e = document.getElementById('radioButtons');
+console.log(e)
+let selectedDuration = e.options[e.selectedIndex].label;
+console.log(selectedDuration);
+}; // end of viewTripsByNumberofWeeks function
 
 const viewTrip = function viewTrip(tripID) {
   $.get(`https://trektravel.herokuapp.com/trips/${tripID}`, (response) => {
@@ -117,6 +131,7 @@ const finalizeReservation = function finalizeReservation() {
 
 $(document).ready(() => {
   viewTripsbyContinent();
+  viewTripsByNumberofWeeks();
 
   $('#button').on('click', () => {
     getTrips();

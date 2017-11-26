@@ -20,9 +20,14 @@ padding-bottom: 1rem;
 #tripsByContinentSelector {
   display: flex;
   align-content: center;
-  padding: 2rem;
-  padding-top: 1rem;
+  padding: 1rem;
   flex-direction: column;
+}
+
+#radioButtons {
+  display: flex;
+  padding: 2rem;
+  margin-left: 33%;
 }
 
 ol li {
@@ -41,5 +46,5 @@ ol li {
 }
 
 #finalizeButton {
-  
+
 }
