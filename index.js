@@ -41,11 +41,6 @@ $(document).ready(() => {
                 <input type="text" id="email" name="email"></input>
               </section>
 
-              <section>
-                <label>Age</label>
-                <input type="text" id="Age" name="age"></input>
-              </section>
-
               <section class="submit">
                 <button type="submit">Confirm</button>
               </section>
