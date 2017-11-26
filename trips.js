@@ -7,20 +7,26 @@ const successCallback = (response) => {
 };
 
 
-
 $(document).ready( () => {
 
-  // $('.reservation-button').hide();
   $('#book-trip-form').hide();
 
   let loadTrips = function loadTrips() {
     // $.get('https://trektravel.herokuapp.com/trips', (response) => {
     $.get(baseURL, (response) => {
       $('#load').hide();
+
       response.forEach(function(trip)  {
-        let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name} </a> </h3> </li>`
-        $('#trips ul').append(tripInfo);
+        let tripInfo = `<div class="column"> <h3 class="card" data-id=${trip.id}> ${trip.name} </a> </h3> </div>`
+        $('#trips .row').append(tripInfo);
       }); //for each
+
+      //working version
+      // response.forEach(function(trip)  {
+      //   let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name} </a> </h3> </li>`
+      //   $('#trips ul').append(tripInfo);
+      // }); //for each
+
     })// get success response
     .fail(function(response) {
       console.log(response);
@@ -48,19 +54,13 @@ $(document).ready( () => {
       <h3 data-id=${response.id}> Make a Reservation!</a> </h3>
       `;
 
-      console.log(id);
-      console.log(typeof(id));
       console.log("here in the trip detail function this is " + $(this));
 
-      // let reservationButton = `<button class="reservation button"  tripID=${response.id}>Make A Reservation!</button>`;
       let tripId = response.id;
       console.log(`the trip id is ${tripId}`);
       //recognizes
       //how to tell it to use th eid?
       $('.trip-details').prepend(tripDetail);
-      // $('.trip-details').append(reservationButton);
-      // $('.reservation-button').show();
-
 
     }) //get trip function
     .fail(function(response) {
@@ -79,6 +79,8 @@ $(document).ready( () => {
       $('#makeReservation').html('<p> Reservation added! </p>');
       console.log(response);
       alert("Your Trip is Reserved!");
+      $('#book-trip-form').hide();
+
     })
     .fail(function(response){
       $('#fail').html('<p>Request was unsuccessful</p>')
@@ -87,6 +89,7 @@ $(document).ready( () => {
       console.log('always even if we have success or failure');
     });
   };
+
 
 // EVENTS
 
@@ -97,7 +100,7 @@ $(document).ready( () => {
   });
 
   //load trip detail
-  $('#trips ul').on('click', 'h3', function () {
+  $('#trips .row').on('click', 'h3', function () {
     console.log(`here in the load trip function this is ${this}`);
     let tripID = $(this).attr('data-id');
     console.log(`and now tripid is ${tripID}`);
