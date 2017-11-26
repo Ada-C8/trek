@@ -1,6 +1,5 @@
 
 const baseURL = 'https://trektravel.herokuapp.com/trips';
-// https://trektravel.herokuapp.com/trips/1/reservations
 
 const successCallback = (response) => {
   console.log('success!!!!!');
@@ -12,31 +11,18 @@ $(document).ready( () => {
   $('#book-trip-form').hide();
 
   let loadTrips = function loadTrips() {
-    // $.get('https://trektravel.herokuapp.com/trips', (response) => {
     $.get(baseURL, (response) => {
-      $('#load').hide();
-
+      // $('#load').hide();
       response.forEach(function(trip)  {
-
         if (trip.id < 35) {
-        let tripInfo = `<div class="column">
+          let tripInfo = `<div class="column">
+          <h3 class="card" data-id=${trip.id}>
+          ${trip.name}</h3>
+          </div>`
 
-        <h3 class="card" data-id=${trip.id}>
-
-         ${trip.name}  </h3>
-
-         </div>`
-
-
-        $('#trips .row').append(tripInfo);
+          $('#trips .row').append(tripInfo);
         }
       }); //for each
-
-      //working version
-      // response.forEach(function(trip)  {
-      //   let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name} </a> </h3> </li>`
-      //   $('#trips ul').append(tripInfo);
-      // }); //for each
 
     })// get success response
     .fail(function(response) {
@@ -50,18 +36,12 @@ $(document).ready( () => {
 
   let loadDetail = function loadDetail(id) {
     $('.trip-details').children().hide();
-    console.log("start detail function");
-    console.log($(".trip-details"));
-    console.log("end details");
 
     $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
       let tripDetail = `
       <h2> ${response.name} </h2>
-      <p> ${response.continent} </p>
+      <p> ${response.weeks} weeks in ${response.continent} for $${response.cost} </p>
       <p> ${response.about} </p>
-      <p> ${response.weeks} weeks </p>
-      <p> $ ${response.cost} </p>
-      <p> ID: ${response.id} <p>
       <h3 data-id=${response.id}> Make a Reservation!</a> </h3>
       `;
 
@@ -69,8 +49,6 @@ $(document).ready( () => {
 
       let tripId = response.id;
       console.log(`the trip id is ${tripId}`);
-      //recognizes
-      //how to tell it to use th eid?
       $('.trip-details').prepend(tripDetail);
 
     }) //get trip function
@@ -91,6 +69,8 @@ $(document).ready( () => {
       console.log(response);
       alert("Your Trip is Reserved!");
       $('#book-trip-form').hide();
+      $('.trip-details').children().hide();
+
 
     })
     .fail(function(response){
@@ -102,13 +82,18 @@ $(document).ready( () => {
   };
 
 
-// EVENTS
+  // EVENTS
 
 
   //load all trips
   $('#load').on('click', function() {
     loadTrips();
   });
+
+  // $('#trips .row').on('mouseover', 'h3' function() {
+  //   console.log("mouseenter!")
+  //   // $('h3').addClass('highlighted');
+  // });
 
   //load trip detail
   $('#trips .row').on('click', 'h3', function () {
@@ -126,10 +111,8 @@ $(document).ready( () => {
     let tripID = $(this).attr('data-id');
     console.log(`and now tripid is ${tripID}`)
 
-    $('#book-trip-info').text("Things I wrote in this paragraph");
     $('#book-trip-form').attr("data-id", tripID);
     $('#book-trip-form').show();
-    //  // $( "#greatphoto" ).attr( "title", "Photo by Kelly Clark" ); $('#book-trip-form').text("hello!");
   })
 
   //make post request
@@ -138,17 +121,24 @@ $(document).ready( () => {
     event.preventDefault();
     console.log(`this is ${this}`);
     let tripID = $(this).attr('data-id');
-
-
     console.log(`this is ${tripID}`);
 
 
     let formData = $('#book-trip-form').serialize();
     console.log("Showing the form data!")
     console.log(formData);
-    // console.log(tripID);
-
     reserveTrip(tripID, formData);
   }) //end book trip
 
-  }); //end doc ready
+}); //end doc ready
+
+
+
+
+
+
+//working version
+// response.forEach(function(trip)  {
+//   let tripInfo = `<li><h3 data-id=${trip.id}> ${trip.name} </a> </h3> </li>`
+//   $('#trips ul').append(tripInfo);
+// }); //for each
