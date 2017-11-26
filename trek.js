@@ -57,7 +57,7 @@ $(document).ready(() => {
     tripDetails(id);
   });
 
-  $('#reservationForm').on('submit', (e) => {
+  $('#reservationForm').on('submit', () => {
     console.log('Submission started');
     const url = `${baseURL}/${$('#details li')[0].id}/reservations`;
     const data = $('#reservationForm').serialize();
