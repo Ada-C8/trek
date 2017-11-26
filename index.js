@@ -95,12 +95,12 @@ const viewTrip = function viewTrip(tripID) {
 }; // end of viewTrip function
 
 const finalizeReservation = function finalizeReservation() {
-  $('#reserveFormField').on('submit', 'form', (e) => {
+  $('#reserveFormField').on('submit', 'form', function(e) {
     e.preventDefault();
     const url = $(this).attr('action'); // Retrieve the action from the form
     const formData = $(this).serialize();
     $(this).hide();
-    $.post(url, formData, (response) => {
+    $.post(url, formData, function(response) {
       $('#message').html('<p> Trip Reserved! </p>');
     }).fail(() => {
       $('#message').html('<p>Reserving Trip Failed</p>');
@@ -139,19 +139,19 @@ $(document).ready(() => {
     getTrips();
   });
 
-  $('#tripInfo').on('click', '#reserveFormButton', () => {
+  $('#tripInfo').on('click', '#reserveFormButton', function() {
     console.log('Attempting to make reservation...');
     const tripID = $(this).attr('data-id');
     $(this).hide();
     reserveForm(tripID);
   });
 
-  $('#tripList ol').on('click', 'li', () => {
+  $('#tripList ol').on('click', 'li', function() {
     const tripID = $(this).attr('data-id');
     viewTrip(tripID);
   });
 
-  $('#tripInfo').on('click', 'div', () => {
+  $('#tripInfo').on('click', 'div', function() {
     const tripID = $(this).attr('data-id');
     $(this).hide();
     const buttonToHide = $(`[data-id="${tripID}"][id="reserveFormButton"]`);
