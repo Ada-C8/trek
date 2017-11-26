@@ -4,18 +4,19 @@
 $(document).ready(() => {
 
   $('.tripView').hide();
+  $('.reveal').hide();
+
 
   baseURL = 'https://trektravel.herokuapp.com/trips'
 
   let loadTrips = function loadTrips() {
-
-
     $.get(baseURL, (response) => {
       $('.trip-button').hide();
       response.forEach(function(trip) {
         let tripInfo = `<li class="small-4 large-6 columns"><h3 data-id=${trip.id}> ${trip.name}</li>`;
 
         $('.triplist ul').append(tripInfo);
+        $('.reveal').hide();
       });
     })
     .fail(function(response){
@@ -48,6 +49,8 @@ $(document).ready(() => {
       $('.triplist').append(resButton);
 
       $('.tripView').show();
+      $('.reveal').show();
+
 
     })
     .fail(function(response){
