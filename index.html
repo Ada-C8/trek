@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500|Trirong:400,500i,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bungee|Zilla+Slab+Highlight|Trirong:400,500i,900" rel="stylesheet">
   <meta charset="utf-8">
   <title>Trek On</title>
   <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
@@ -24,31 +24,33 @@
       <section id="trip-detail">
         <section id="confirmation"></section>
         <section id="details"></section>
-        <form class="reservation-form row align-middle">
-          <section class="fields column small-12 medium-9">
-            <section class="row align-middle">
-              <label class="column small-2 text-right">Name</label>
-              <input class="column small-9" placeholder="Jamie Doe" type="text" id="name" name="name" required></input>
+        <section id="reservation-form">
+          <form class="row align-bottom">
+            <section class="fields column small-12 medium-9">
+              <section class="row align-middle">
+                <label class="column small-2 text-left">Name</label>
+                <input class="column small-10" placeholder="Jamie Doe" type="text" id="name" name="name" required></input>
+              </section>
+              <section class="row align-middle">
+                <label class="column small-2 text-left">Age</label>
+                <input class="column small-10" placeholder="18" type="number" id="age" name="age" required></input>
+              </section>
+              <section class="row align-middle">
+                <label class="column small-2 text-left">Email</label>
+                <input class="column small-10" placeholder="jdoe@somewhere.com" type="email" id="email" name="email" required></input>
+              </section>
             </section>
-            <section class="row align-middle">
-              <label class="column small-2 text-right">Age</label>
-              <input class="column small-9" placeholder="18" type="text" id="age" name="age" required><span class="hide"> Enter a number</span></input>
+            <section id="form-submit" class="column small-12 medium-3 text-center">
+              <button class="button" id="price" type="submit"></button>
             </section>
-            <section class="row align-middle">
-              <label class="column small-2 text-right">Email</label>
-              <input class="column small-9" placeholder="jdoe@somewhere.com" type="email" id="email" name="email" required></input>
-            </section>
-          </section>
-          <section class="column small-12 medium-3 small-text-center medium-text-left">
-            <section id="price"></section>
-            <section class="button">
-              <button type="submit">Reserve!</button>
-            </section>
-          </section>
-        </form>
+          </form>
+        </section>
       </section>
     </div>
   </main>
+  <footer class="row">
+    <a href="https://icons8.com">Icon pack by Icons8</a>
+  </footer>
 </body>
 
 <script
