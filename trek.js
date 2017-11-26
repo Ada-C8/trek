@@ -17,12 +17,12 @@ const querySuccessCallback = function(response) {
   console.log(response);
   if(response) {
     response.forEach(function(trip) {
-      let tripInfo = `<tr><td  data-id=${trip.id} class= 'id'>${trip.id}</td><td>
-      ${trip.name}</td><td>${trip.continent}</td><td> ${trip.weeks}</td></tr>`
+      let tripInfo = `<tr><td data-id=${trip.id} class= 'id'>${trip.id}</td><td data-id=${trip.id} class= 'id'> ${trip.name}</td><td>${trip.continent}</td><td> ${trip.weeks}</td></tr>`
       body += tripInfo;
-  });
-} else {
-    console.log('test');
+    })
+    $('.success').html(`<p>Results for the following search: ${response[0].continent}.</p>`).show().delay(1000).fadeOut();
+    $("html, #wrapper").animate({ scrollTop: 0 }, 500);
+  } else {
     $('.fail').html(`<p>Could not find trips for this search.</p>`).show().delay(1000).fadeOut();
     $("html, #wrapper").animate({ scrollTop: 0 }, 500);
   }
@@ -30,23 +30,8 @@ const querySuccessCallback = function(response) {
   $('#trips').show();
 };
 
-// let tripId;
-
-//For more practice working with data, filter trips by search queries (like by continent, budget, etc.). You'll need to explore the API to see what functionality exists.
-
-//
-// Retrieve list of all trips by continent: https://trektravel.herokuapp.com/trips/continent?query=Asia
-//
-// Retrieve list of all trips by max amount of weeks: https://trektravel.herokuapp.com/trips/weeks?query=3
-//
-// Retrieve list of all trips by max budget: https://trektravel.herokuapp.com/trips/budget?query=5000
-//
-// budget is in dollar amount, above represents $5,000
 
 $(document).ready(()=>{
-  //background color
-  $('#trips').hide();
-  $('#reserve-trip-form').hide();
 
   let loadTrips = function loadTrips() {
     $.get(url,
@@ -55,10 +40,11 @@ $(document).ready(()=>{
         let body = ''
         console.log(response);
         response.forEach(function(trip) {
-          let tripInfo = `<tr><td  data-id=${trip.id} class= 'id'>${trip.id}</td><td>
+          let tripInfo = `<tr><td  data-id=${trip.id} class= 'id'>${trip.id}</td><td data-id=${trip.id} class= 'id'>
           ${trip.name}</td><td>${trip.continent}</td><td> ${trip.weeks}</td></tr>`
           body += tripInfo;
         });
+        $('.success').html(`<p>Succesfully loaded all trips.</p>`).show().delay(1000).fadeOut();
         $('#trips tbody').html(body);
         $('#trips').show();
       }).fail(function(response){
@@ -66,7 +52,6 @@ $(document).ready(()=>{
         $('.fail').html('<p>Could not load trips.</p>').show().delay(1000).fadeOut();
       })
     }
-
 
     // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC TRIP
     let loadTrip = function loadTrip(id){
@@ -122,51 +107,91 @@ $(document).ready(()=>{
         });
       });
 
-      let queryByContinent = function queryByContinent(query){
-        $.get(`${url}/continent?query=${query}`,
+      let query = function query(search, type){
+        $.get(`${url}/${type}?query=${search}`,
           querySuccessCallback).fail(function(response){
             console.log(response);
             $('.fail').html('<p>Could not load trips.</p>').show().delay(1000).fadeOut();
           })
         }
 
-        $('#continent').on('keypress', function(e){
+        $('#continent, #weeks, #budget').on('keypress', function(e){
           if(e.which === 13) {
-            let continent = $(this).val();
-              console.log(`this is the continent ${$(this).val()}`);
-              queryByContinent(continent);
+            console.log(this)
+            let search = $(this).val();
+            console.log(`this is the search ${this.id} for ${$(this).val()}`);
+            query(search, `${this.id}`);
           }
         });
 
-        let queryByWeeks = function queryByWeeks(query){
-          $.get(`${url}/weeks?query=${query}`,
-            querySuccessCallback).fail(function(response){
-              console.log(response);
-              $('.fail').html('<p>Could not load trips.</p>').show().delay(1000).fadeOut();
-            })
-          }
+        // $('#continent').on('keypress', function(e){
+        //   if(e.which === 13) {
+        //     let continent = $(this).val();
+        //     console.log(`this is the continent ${$(this).val()}`);
+        //     query(continent, "continent");
+        //   }
+        // // });
+        //
+        // $('#max-weeks').on('keypress', function(e){
+        //   if(e.which === 13) {
+        //     let maxWeeks = $(this).val();
+        //     query(maxWeeks, "weeks");
+        //   }
+        // });
+        //
+        // $('#max-budget').on('keypress', function(e){
+        //   if(e.which === 13) {
+        //     let maxBudget = $(this).val();
+        //     console.log(`this is the budget ${$(this).val()}`);
+        //     query(maxBudget, "budget");
+        //   }
+        // });
 
-          $('#max-weeks').on('keypress', function(e){
-            if(e.which === 13) {
-              let maxWeeks = $(this).val();
-                queryByWeeks(maxWeeks);
-            }
-          });
+        // let queryByContinent = function queryByContinent(query){
+        //   $.get(`${url}/continent?query=${query}`,
+        //     querySuccessCallback).fail(function(response){
+        //       console.log(response);
+        //       $('.fail').html('<p>Could not load trips.</p>').show().delay(1000).fadeOut();
+        //     })
+        //   }
 
-          let queryByBudget = function queryByBudget(query){
-            $.get(`${url}/budget?query=${query}`,
-              querySuccessCallback).fail(function(response){
-                console.log(response);
-                $('.fail').html('<p>Could not load trips.</p>').show().delay(1000).fadeOut();
-              })
-            }
+        // $('#continent').on('keypress', function(e){
+        //   if(e.which === 13) {
+        //     let continent = $(this).val();
+        //       console.log(`this is the continent ${$(this).val()}`);
+        //       queryByContinent(continent);
+        //   }
+        // });
 
-            $('#max-budget').on('keypress', function(e){
-              if(e.which === 13) {
-                let maxBudget = $(this).val();
-                  console.log(`this is the budget ${$(this).val()}`);
-                  queryByBudget(maxBudget);
-              }
-            });
+        // let queryByWeeks = function queryByWeeks(query){
+        //   $.get(`${url}/weeks?query=${query}`,
+        //     querySuccessCallback).fail(function(response){
+        //       console.log(response);
+        //       $('.fail').html('<p>Could not load trips.</p>').show().delay(1000).fadeOut();
+        //     })
+        //   }
+        //
+        //   $('#max-weeks').on('keypress', function(e){
+        //     if(e.which === 13) {
+        //       let maxWeeks = $(this).val();
+        //         queryByWeeks(maxWeeks);
+        //     }
+        //   });
+
+        // let queryByBudget = function queryByBudget(query){
+        //   $.get(`${url}/budget?query=${query}`,
+        //     querySuccessCallback).fail(function(response){
+        //       console.log(response);
+        //       $('.fail').html('<p>Could not load trips.</p>').show().delay(1000).fadeOut();
+        //     })
+        //   }
+        //
+        //   $('#max-budget').on('keypress', function(e){
+        //     if(e.which === 13) {
+        //       let maxBudget = $(this).val();
+        //         console.log(`this is the budget ${$(this).val()}`);
+        //         queryByBudget(maxBudget);
+        //     }
+        //   });
 
       });

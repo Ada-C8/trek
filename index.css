@@ -42,7 +42,7 @@
   background-color: #003366;*/
 }
 
-.page-header button, .page-header div:not(:first-child){
+.page-header button, .query{
   margin-top: 2%;
 }
 
