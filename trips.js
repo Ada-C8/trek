@@ -10,7 +10,7 @@ const successCallback = (response) => {
 
 $(document).ready( () => {
 
-  $('.reservation-button').hide();
+  // $('.reservation-button').hide();
   $('#book-trip-form').hide();
 
   let loadTrips = function loadTrips() {
@@ -61,7 +61,7 @@ $(document).ready( () => {
       console.log(`the trip id is ${tripId}`);
       //recognizes
       //how to tell it to use th eid?
-      $('.trip-details').append(tripDetail);
+      $('.trip-details').prepend(tripDetail);
       // $('.trip-details').append(reservationButton);
       // $('.reservation-button').show();
 
@@ -115,7 +115,9 @@ $(document).ready( () => {
     console.log(`this is ${this}`);
     let tripID = $(this).attr('data-id');
     console.log(`and now tripid is ${tripID}`)
+    $('#book-trip-form').show();
 
+    // $( "p" ).removeClass( "myClass noClass" ).addClass( "yourClass" );
     // let resID = $(this).attr('data-id');
     // console.log(resId);
     // reserveForm();

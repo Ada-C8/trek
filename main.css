@@ -10,12 +10,12 @@
 
 #book-trip-form {
   border: 2px solid green;
-  display: hidden;
+  /*display: hidden;*/
   margin: 10px;
 }
 
-.show-trip-form {
+/*.show-trip-form {
   border: 2px solid black;
   display: block;
   margin: 10px;
-}
+}*/
