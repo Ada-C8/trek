@@ -9,17 +9,23 @@ const successCallback = function(response){
 };
 
 const continents = {
-  'Africa': 'img/africa.png',
-  'North America': 'img/north_america.png'
+  'Africa': 'africa.png',
+  'Antarctica': 'antarctica.png',
+  'Asia': 'asia.png',
+  'Australasia': 'australia.png',
+  'Europe': 'europe.png',
+  'North America': 'north_america.png',
+  'South America': 'south_america.png'
 };
 
-const continentImg = function(trip){
-  console.log(continents[trip]);
+const continentImgInfo = function(trip){
+  // console.log(continents[trip]);
   if (continents[trip]){
     // console.log(`this trip exists! ${continents[trip]}`);
     // let a = ;
     // console.log(a);
-    return `<img src="${continents[trip]}" alt="${trip} picture" class="continent"/>`;
+    console.log(trip.weeks);
+    return `<img src="img/${continents[trip]}" alt="${trip} picture" class="continent"/>`;
   }
 };
 
@@ -27,18 +33,19 @@ $(document).ready(()=> {
   $('#reserve-form').hide();
   $('#content').hide();
 
-  continentImg('Africa');
+
   let loadTrips = function loadTrips() {
     $.get(baseUrl, (response) => {
       console.log(response);
       console.log('success!');
       response.forEach(function(trip) {
-        let tripInfo = `<li><h2 data-id=${trip.id}>` + trip.name + `<h2></li>`;
+        let a = continentImgInfo(trip.continent);
+        let tripInfo = `<li><h2 data-id=${trip.id}>` + trip.name + ` | <span>${a}</span> | ${trip.weeks}<h2></li><hr>`;
         $('#show-trips ul').append(tripInfo);
         // console.log(trip.continent);
-        let a = continentImg(trip.continent);
+
         // console.log(a);
-        $('#show-trips ul').append(a);
+        // $('#show-trips ul').append(a);
       });
     })
     .fail(function(response){

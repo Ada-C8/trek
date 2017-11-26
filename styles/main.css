@@ -82,6 +82,10 @@ body {
   max-height: 50px;
 }
 
+#show-trips hr {
+  border: solid var(--yellow1) 1px;
+}
+
 /**************** MODAL ******************/
 /* The Modal (background) */
 .modal {
