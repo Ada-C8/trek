@@ -96,7 +96,7 @@ $(document).ready(() => {
       $(`h3[data-id=${tripId}]`).addClass('details-loaded');
       $('.trip-details').append(tripInfo);
       $('.trips').hide();
-      $('.add-trip').hide();
+      $('section.add-trip').hide();
       $(`section[data-id=${tripId}]`).show();
     });
   };
@@ -185,8 +185,11 @@ $(document).ready(() => {
     $('header').addClass('grid-x');
     $('header').show();
     $('main').show();
+    $('section.add-trip').hide();
 
     loadTrips();
+
+    $('section.add-trip').fadeIn(1500);
   });
 
   $('.load').on('click', () => {
@@ -194,9 +197,11 @@ $(document).ready(() => {
     if ($('.trips').hasClass('all')) {
       $('.details').hide();
       $('.trips').show();
-      $('.add-trip').show();
+      $('section.add-trip').show();
     } else {
+      $('section.add-trip').hide();
       loadTrips();
+      $('section.add-trip').fadeIn(1500);
     }
   });
 
@@ -208,7 +213,7 @@ $(document).ready(() => {
     if ($(`section[data-id=${tripId}]`).length) {
       // hide trips, show details for that trip
       $('.trips').hide();
-      $('.add-trip').hide();
+      $('section.add-trip').hide();
       $(`section[data-id=${tripId}]`).show();
       // load trips if not already loaded
     } else {
@@ -268,20 +273,38 @@ $(document).ready(() => {
 
   // dropdown menus
   $('.menu .continents').on('click', 'a', function filterTrips() {
+    $('section.add-trip').hide();
+    $('.details').hide();
+    $('.trips').show();
+
     const query = $(this).text();
     loadTripsByContinent(query);
+
+    $('section.add-trip').fadeIn(1500);
   });
 
   $('.menu .cost').on('click', 'a', function filterTrips() {
+    $('section.add-trip').hide();
+    $('.details').hide();
+    $('.trips').show();
+
     // deformat cost (remove dollar sign and commas)
     const query = $(this).text().slice(1).split(',')
       .join('');
     loadTripsByCost(query);
+
+    $('section.add-trip').fadeIn(1500);
   });
 
   $('.menu .duration').on('click', 'a', function filterTrips() {
+    $('section.add-trip').hide();
+    $('.details').hide();
+    $('.trips').show();
+
     // remove 'weeks' from query string
     const query = $(this).text().split(' ')[0];
     loadTripsByWeeks(query);
+
+    $('section.add-trip').fadeIn(1500);
   });
 });
