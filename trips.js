@@ -89,6 +89,10 @@ $(document).ready(()=>{
     })
   });
 
+  $('#countryMenu').hover(function(){
+    $('#countryMenu').show();
+  });
+
   $('#countryMenu').on('click', 'li', function(){
     $('#trips').empty();
     $.get(url, response=> {
