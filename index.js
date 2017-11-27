@@ -13,7 +13,6 @@ $(document).ready(() => {
       .fail(() => {
         $('#fail').html('<p>Request was unsuccessful</p>');
       }).always(() => {
-        //console.log('always message here');
         console.log('Function: loadTrips (plural)');
       });
   }; // end of loadTrips
@@ -31,13 +30,29 @@ $(document).ready(() => {
           <p> Cost: ${response.cost}</p>
         </div>`;
 
+        const reservation = `<form action="https://trektravel.herokuapp.com/trips/${id}/reservations" method="post">
+            <section>
+              <label>Name</label>
+              <input type="text" id="name" name="name"></input>
+            </section>
+
+            <section>
+              <label>Email</label>
+              <input type="text" id="email" name="email"></input>
+            </section>
+
+            <section class="button">
+              <button type="submit">Reserve Trip</button>
+            </section>
+          </form>`
+
         $(`#trips ol li > div`).hide();
         $(`#trips ol li#trip-${id}`).append(tripInfo);
+        $(`#trips ol li#trip-${id}`).append(reservation);
       },
     ).fail(() => {
       $('#fail').html('<p>Could not find</p>');
     }).always(() => {
-      //console.log('always message here');
       console.log('Function: loadTrip (single)');
     });
   }; // end of loadTrip
@@ -50,6 +65,7 @@ $(document).ready(() => {
   $('#load').click(() => {
     loadTrips();
     $('h3').text('Select a Trip');
+    $('#reserve').hide();
     $('#trips ol').empty();
   });
 }); // end of doc ready
