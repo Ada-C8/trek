@@ -1,15 +1,22 @@
-const imageUrls = ['backpack.jpg', 'belize.jpg', 'camino.jpg', 'farm.jpg', 'greenlake.jpg', 'london.jpg', 'rowhouses.jpg', 'seattle.jpg', 'snow.jpg', 'tent.jpg']
 
 $(document).ready(()=>{
+  const imageUrls = ['backpack.jpg', 'belize.jpg', 'camino.jpg', 'farm.jpg', 'greenlake.jpg', 'london.jpg', 'rowhouses.jpg', 'seattle.jpg', 'snow.jpg', 'tent.jpg']
+  // let randImg = imageUrls[Math.floor(Math.random() * imageUrls.length)];
 
   let allTrips = function allTrips() {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       // console.log(response);
+      let i = 0;
       response.forEach(function(trip) {
-        let tripInfo = `<li id=${trip.id}><h3 data-id='${trip.id}'> ${trip.name} </h3><p> ${trip.continent}, ${trip.weeks} weeks</p></li>`
+        let tripInfo = `<li id=${trip.id} class='row'><img class='column small-12 medium-6' src="adventuregram/${imageUrls[i]}" alt="${trip.name}"><div class='column small-12 medium-6'><h3 data-id='${trip.id}'> ${trip.name} </h3><dl><dt>Continent</dt><dd>${trip.continent}</dd><dt>Weeks</dt><dd>${trip.weeks} weeks</dd><div class='trip-details'></div></dl></div></li>`
 
+        // console.log(imageUrls[randNum]);
         $('#trips').append(tripInfo);
         $('.centerbutton').addClass('disappear');
+
+        i < imageUrls.length - 1 ? i++ : i = 0
+
+
       });
     }); //get
   };
@@ -18,12 +25,12 @@ $(document).ready(()=>{
     $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) =>{
       // console.log(response);
 
-      let tripDetails = `<h3 data-id='${response.id}'> ${response.name} </h3><p> ${response.continent}, ${response.weeks} weeks</p>`;
-      tripDetails += `<p class='cost'>${response.category}, $${response.cost}</p>`;
+      let tripDetails = '';
+      tripDetails += `<dt>Category</dt><dd>${response.category}</dd> <dt>Cost</dt><dd>$${response.cost}</dd>`;
       tripDetails += `<p>${response.about}</p>`;
       tripDetails += `<button class='signup' data-id=${id}>Sign me up!</button>`;
       tripDetails += '<div class="formspace"></div>'
-      $(`#${id}`).html(tripDetails);
+      $(`#${id} .trip-details`).html(tripDetails);
     }); //get, add .failure here
   };
 

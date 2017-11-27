@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Catamaran:900|Days+One');
+
 body {
   background-image: url("adventuregram/road.png");
   background-size: cover;
+}
+
+h1, h2, h3, .button {
+  font-family: 'Catamaran', sans-serif;
+
 }
 
 
@@ -13,12 +20,17 @@ h1{
   text-align: right;
   color: #263D28;
   padding-right: .5em;
+  border-right: 4px solid #263D28;
 }
 h2 {
   text-align: left;
   padding-left: .5em;
   color: #345b37;
   font-size: 20px;
+}
+
+h3:hover {
+  text-decoration: underline;
 }
 
 .centerbutton {
@@ -40,6 +52,17 @@ h2 {
   background-color: rgba(245, 245, 245, 0.9);
   margin: 0;
 }
+
+#trips img {
+  max-width: 80%
+}
+
+/*dl {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}*/
 
 
 .disappear{
