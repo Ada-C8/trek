@@ -108,7 +108,8 @@ const reserveTrip = (tripID) => {
     $.post(url, formData, (response) => {
       $('#message').html(`<h3 id= "status-message"> Successfully reserved this trip for ${response.name}</h3>`);
       console.log(`Success! You're on the list.`);
-      // $('#trip-details').empty();
+      $('#trip-info').toggle();
+      $('#trip-details form:last-child').empty();
     }).fail(() => {
       $('#message').html('<h3 id= "status-message"> Sorry, there are no spots left for this trip.</h3>');
       console.log(`Sorry, no spots left.`);
@@ -119,7 +120,7 @@ const findTrip = (tripID) => {
   $.get(`https://trektravel.herokuapp.com/trips/${tripID}`, (response) => {
     console.log(response);
     const tripInfo = `
-    <section>
+    <section id= "trip-info">
       <h3>${response.name.toUpperCase()}</h3>
       <p>Trip ID: ${response.id}
       </p>
@@ -135,25 +136,29 @@ const findTrip = (tripID) => {
       </div>
     </section>
     `;
-    // console.log(tripInfo);
-    // $(`#trip-${tripID}`).append(tripInfo);
     $('#trip-details').append(tripInfo);
-    // $('#trip-details').toggle();
     $('#hide-details').on('click', () => {
-      // $('#trip-details').toggle();
       hideDetails();
     });
     $('#reserve-trip').on('click', () => {
       reserveTrip(response.id);
+      $('#trip-info').toggle();
     });
   });
 };
+// const preloadImages = () => {
+//   for (var i = 0; i < arguments.length; i++) {
+//     $("<img />").attr("src", arguments[i]);
+//   }
+// };
 $(document).ready(() => {
 // events
+  // preloadImages();
   $('#all-trips').on('click', () => {
     $('#trip-details').empty();
     $('#message').empty();
     $('#trip-list form').empty();
+    $('#welcome-img').toggle();
     getTrips(BASE_URL);
   });
   $('#trip-list ul').on('click', 'li', function() {
@@ -171,9 +176,6 @@ $(document).ready(() => {
   $('#filter-query').on('change', function() {
     let selectedVal = this.value;
     let jquerySelected = $(this).find(':selected').val();
-    // // let url = BASE_URL + `/${selectedVal}`;
-    // console.log(selectedVal);
-    // console.log(jquerySelected);
     if (selectedVal == 'continent') {
       console.log('checking continent validation');
       // dropdown selector of available continents

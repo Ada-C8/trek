@@ -10,12 +10,18 @@ ul {
   list-style: none;
 }
 
+body {
+  background-color: #ffcf32;
+  width: 100%;
+}
+
 li {
   padding: 20px;
   border: green dotted .5px;
   width: 80%;
   margin: 0px auto;
 }
+
 
 #trip-details h4 {
   -webkit-margin-before: 0.5em;
@@ -31,6 +37,11 @@ li {
   font-weight: lighter;
   /*color: lightgreen;*/
 }
+
+#trip-details, #trip-list {
+  background-color: snow;
+}
+
 
 #message h3 {
   color: red;
@@ -48,6 +59,8 @@ button {
 #new-trip-form {
   width: 80%;
   margin: 0px auto;
+  padding-bottom: 10px;
+  border-radius: 15px;
   /*text-align: center;*/
 }
 
@@ -81,4 +94,15 @@ label, input {
 
 #find-trip-btns {
   -webkit-margin-before: 0.35em;
+}
+
+#welcome-img {
+  width: 100%;
+  text-align: center;
+}
+
+#welcome-img img {
+  margin: 15px auto;
+  height: 60%;
+  width: 60%;
 }
