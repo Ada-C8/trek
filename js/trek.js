@@ -6,7 +6,7 @@ $(document).ready(function() {
   const baseURL = 'https://trektravel.herokuapp.com/trips/';
 
   /////// GET REQUEST FOR ALL TRIPS
-  const displayTrips = function displayTrips() {
+  const displayTrips = () => {
     $.get(baseURL, successCallback)
     .fail(function(){
       $('.error').show();
@@ -32,7 +32,7 @@ $(document).ready(function() {
           '<td>' + trip.continent + '</td>' +
           '<td>' + trip.weeks + '</td>' +
         '</tr>');
-      $('#trip' + trip.id).click(function(event) {
+      $('#trip' + trip.id).click((event) => {
         displaySingleTrip(trip.id);
       });
     }
@@ -60,7 +60,7 @@ $(document).ready(function() {
 
   // Event handler for the click event of the links
   /////// GET REQUEST FOR SINGLE TRIP
-  const displaySingleTrip = function displaySingleTrip(tripID) {
+  const displaySingleTrip = (tripID) => {
     // console.log(baseURL + `${tripID}`);
     $.get(baseURL + `${tripID}`, singleTripSuccessCallback)
     .fail(function() {
@@ -69,18 +69,18 @@ $(document).ready(function() {
   };
 
   /////// FORM CALLBACK FUNCTION
-  const formCallBack = function(response) {
+  const formCallBack = (response) => {
     $('#reserve-trip').hide();
     $('#confirmation').show();
   };
 
   ///// DISPLAY FORM ON CLICK OF A BUTTON
-  const displayForm = function displayForm(tripID) {
+  const displayForm = (tripID) => {
     $('#trip-name, #trip-country, #category, #weeks, #cost, #about').empty();
     $('#single-trip, small').hide();
     $('#reserve-trip').show();
 
-    $('#reserve-form').on('submit', function(event) {
+    $('#reserve-form').on('submit', (event) => {
       event.preventDefault();
 
       let name = $('[name=name]').val();
