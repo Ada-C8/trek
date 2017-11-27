@@ -3,32 +3,32 @@ $(document).ready(() => {
   // AJAX REQUEST TO TRIP API HANDLERS
   // view all trips on click
   const BASE_URL = 'https://trektravel.herokuapp.com/trips/';
+  const showMessage = function showMessage(message) {
+    $('#message').html(message);
+    $('#message').css('padding', '30px');
+    $('#message').show().delay(4000).fadeOut('slow');
+  };
 
   $('#all-trips-btn').on('click', () => {
     const url = BASE_URL;
-    $.get(
-      url,
-      (response) => {
-        const resultsContainer = $('#results');
-        let allTrips = '';
-        response.forEach((trip) => {
-          // id, name, continent, weeks
-          const tripText = `<article data-trip-id="${trip.id}" class="trip-container large-8 medium-8 small-10 small-centered medium-centered large-centered columns">
-                              <h2>${trip.name}</h2>
-                              <p>Continent: ${trip.continent}</p>
-                              <p>Weeks: ${trip.weeks}</p>
-                              <button class="button view-trip-details-btn">More Information</button>
-                              <section data-toggled="false" class="trip-details"></section>
-                            </article>`;
-          allTrips += tripText;
-        });
-        resultsContainer.html(allTrips);
-      },
-    ).fail(() => {
-      const message = `<h3>Unable to generate all trips.</h3>`;
-      $('#message').html(message);
-      $('#message').css('padding', '30px');
-      $('#message').show().delay(2000).fadeOut('slow');
+    $.get(url, (response) => {
+      const resultsContainer = $('#results');
+      let allTrips = '';
+      response.forEach((trip) => {
+        // id, name, continent, weeks
+        const tripText = `<article data-trip-id="${trip.id}" class="trip-container large-8 medium-8 small-10 small-centered medium-centered large-centered columns">
+                            <h2>${trip.name}</h2>
+                            <p>Continent: ${trip.continent}</p>
+                            <p>Weeks: ${trip.weeks}</p>
+                            <button class="button view-trip-details-btn">More Information</button>
+                            <section data-toggled="false" class="trip-details"></section>
+                          </article>`;
+        allTrips += tripText;
+      });
+      resultsContainer.html(allTrips);
+    }).fail(() => {
+      const message = '<h3>Unable to generate all trips.</h3>';
+      showMessage(message);
     });
   });
 
@@ -46,9 +46,8 @@ $(document).ready(() => {
       const tripID = $(this).parent().data('trip-id');
       const url = `${BASE_URL}${tripID}`;
       // show details
-      $.get(
-        url,
-        (response) => {
+      $.get(url, (response) => {
+        if (response) {
           tripDetailsContainer.data('toggled', 'true');
           const detailsText = `<h3>Details:</h3>
                                <p>Category: ${response.category}</p>
@@ -58,12 +57,10 @@ $(document).ready(() => {
                                <section class="reservation-form-container">`;
           tripDetailsContainer.html(detailsText);
           $(this).text('Hide Information');
-        },
-      ).fail(() => {
+        }
+      }).fail(() => {
         const message = `<h3>Unable to get details for trip ID ${tripID}</h3>`;
-        $('#message').html(message);
-        $('#message').css('padding', '30px');
-        $('#message').show().delay(2000).fadeOut('slow');
+        showMessage(message);
       });
     }
   });
@@ -110,21 +107,16 @@ $(document).ready(() => {
                        <h4>Reservation Summary:</h4>
                        <p>Name: ${response.name}</p>
                        <p>Email: ${response.email}</p>`;
-      $('#message').html(message);
-      $('#message').css('padding', '30px');
-      $('#message').show().delay(2000).fadeOut('slow');
+      showMessage(message);
     }).fail(() => {
       const message = `<h3>Reservation for ${tripName} was unsuccessful.</h3>`;
-      $('#message').html(message);
-      $('#message').css('padding', '30px');
-      $('#message').show().delay(2000).fadeOut('slow');
+      showMessage(message);
     });
   });
 
   // submit search form to API and filter out results
   // valid search request https://trektravel.herokuapp.com/trips/budget?query=5000&weeks?query=3&continent?query=Asia
   // no search request format available for: (trip)name, category
-
   $(document).on('submit', '#search-form', function callback(e) {
     e.preventDefault();
     const formData = $(this).serialize();
@@ -144,39 +136,29 @@ $(document).ready(() => {
       }
     });
     url += parameters.join('&');
-    console.log(url);
-    $.get(
-      url,
-      (response) => {
-        const resultsContainer = $('#results');
-        let allTrips = '';
-        console.log(response);
-        console.log(typeof response);
-        if (response) {
-          response.forEach((trip) => {
-            // id, name, continent, weeks, cost
-            console.log(`trip.name: ${trip.name} | formData trip-name: ${formDataKeysAndValues['trip-name']}`);
-            if (trip.name !== null && trip.name.toLowerCase().includes(formDataKeysAndValues['trip-name'].toLowerCase())) {
-              const tripText = `<article data-trip-id="${trip.id}" class="trip-container large-8 medium-8 small-10 small-centered medium-centered large-centered columns">
-              <h2>${trip.name}</h2>
-              <p>Continent: ${trip.continent}</p>
-              <p>Weeks: ${trip.weeks}</p>
-              <button class="button view-trip-details-btn">More Information</button>
-              <section data-toggled="false" class="trip-details"></section>
-              </article>`;
-              allTrips += tripText;
-            }
-          });
-        }
-        resultsContainer.html(allTrips);
-      },
-    ).fail(() => {
-      const message = `<h3>Unable to generate all trips.</h3>`;
-      $('#message').html(message);
-      $('#message').css('padding', '30px');
-      $('#message').show().delay(2000).fadeOut('slow');
+    $.get(url, (response) => {
+      const resultsContainer = $('#results');
+      let allTrips = '';
+      if (response) {
+        response.forEach((trip) => {
+          // id, name, continent, weeks, cost
+          if (trip.name && trip.name.toLowerCase().includes(formDataKeysAndValues['trip-name'].toLowerCase())) {
+            const tripText = `<article data-trip-id="${trip.id}" class="trip-container large-8 medium-8 small-10 small-centered medium-centered large-centered columns">
+                                <h2>${trip.name}</h2>
+                                <p>Continent: ${trip.continent}</p>
+                                <p>Weeks: ${trip.weeks}</p>
+                                <button class="button view-trip-details-btn">More Information</button>
+                                <section data-toggled="false" class="trip-details"></section>
+                              </article>`;
+            allTrips += tripText;
+          }
+        });
+      }
+      resultsContainer.html(allTrips);
+    }).fail(() => {
+      const message = '<h3>Unable to generate all trips.</h3>';
+      showMessage(message);
     });
-    //...and filter through results based on (trip) name and category
   });
 
 
