@@ -35,7 +35,7 @@ $(document).ready(() => {
         }
         let id = response[trip].id;
         basicInfo += `
-            <section class='main-info columns medium-6'>
+            <section class='main-info'>
               <button data-id=${id}>${name}</button>
               <section class='row'>
                 <p class='columns medium-6'>Continent: ${continent}</p>
@@ -62,7 +62,6 @@ $(document).ready(() => {
     $.get(`https://trektravel.herokuapp.com/trips/${id}`,
       (response) => {
         let tripDeets = `
-
           <section class='panel-info'>
             <p class= 'about'>About: ${response.about}</p>
             <section class='row one-line'>
@@ -106,26 +105,17 @@ $(document).ready(() => {
 
 // *****************EVENTS
 $('button').on('click', function() {
-  $('.panel').toggle();
-  loadTrips();
+  $('.panel').toggle(loadTrips());
 });
 
-  $('.panel').on('click', 'button', function() {
+  $('.panel').on('click', 'button', function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
     let tripId = $(this).attr('data-id');
-    loadTrip(tripId);
-    $(`.panel${tripId}`).addClass('full-width').toggle();
 
+    loadTrip(tripId);
+
+    return $(`.panel${tripId}`).toggle('open');
   });
-  // $('.allTrips').on('click', function(){
-  //   loadTrips();
-    // let val;
-    // if ($(this).text() == 'All Trips') {
-    //   return 'Hide';
-    // } else {
-    //   return 'All Trips';
-    // }
-    // // let linkText = $(this).text() == 'All Trips' ? 'Hide' : 'All Trips';
-    // $('.tripsButton').html(linkText);
-  // });
 
 });
