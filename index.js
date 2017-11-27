@@ -35,7 +35,7 @@ $(document).ready(()=> {
       console.log('success!');
       response.forEach(function(trip) {
         let a = continentImgInfo(trip.continent);
-        let tripInfo = `<li><h2 data-id=${trip.id} data-name='${trip.name}'>` + trip.name + ` | <span>${a}</span> | ${trip.weeks}<h2></li><hr>`;
+        let tripInfo = `<li><h3 data-id=${trip.id} data-name='${trip.name}'>` + trip.name + ` | <span>${a}</span> | ${trip.weeks}<h3></li><hr>`;
         $('#show-trips ul').append(tripInfo);
       });
     })
@@ -63,6 +63,7 @@ $(document).ready(()=> {
       `);
 
       button.click((event) => {
+
         $('#reserve-form').show();
       });
       $('#resButton').html(button);
@@ -77,7 +78,7 @@ $(document).ready(()=> {
 
   // show trip details when a user clicks on a ul
   // also updates the trip from with attr data
-  $('#show-trips ul').on('click', 'h2', function(){
+  $('#show-trips ul').on('click', 'h3', function(){
     let tripId = $(this).attr('data-id');
     loadTrip(tripId);
     $('#show-trip').show();
