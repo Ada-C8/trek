@@ -1,3 +1,4 @@
+// NOTE: This was my first attempt at the project. After this I tried to refactor my code in index_2.js, which works up to the point where I make a post request to the api (I can't find a way to stop it from going to the api url).
 
 $(document).ready(function () {
   // click to see all the trips
@@ -78,7 +79,7 @@ $(document).ready(function () {
 
                 let url = $(this).attr('action');
                 const formData = $(this).serialize();
-                console.log(url, formData);
+
 
                 $.post(url, formData, (response) => {
                   let tripName = $(`.${id}`).html();

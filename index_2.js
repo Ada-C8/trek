@@ -63,7 +63,7 @@ $(document).ready(function () {
 
     let test = `#book${id}`;
     debugger
-    
+
   } // getForm
 
   const bookTrip = function bookTrip(id) {
@@ -120,8 +120,6 @@ $(document).ready(function () {
         // submit for form
         $(`#all-trips`).on('submit', `#book${id}`, function(e) {
           // QUESTION: why is the page still going to the api??
-          // stop the page from reloading
-          let fail = $('${nfbfbf}')
           e.preventDefault();
           e.stopImmediatePropagation();
 
