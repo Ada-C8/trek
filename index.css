@@ -1,0 +1,75 @@
+/*general*/
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.row {
+  margin-left: 2.5%;
+  max-width: 95%;
+}
+
+a {
+  color: rgb(24, 51, 31);
+}
+
+a:hover {
+  color: rgb(75, 109, 84);
+}
+
+.button {
+  background-color: rgb(75, 109, 84);
+}
+
+.button:focus {
+  background-color: rgb(75, 109, 84);
+}
+
+.button:hover {
+  background-color: rgba(75, 109, 84, 0.7);
+}
+
+#title {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+/*homepage*/
+.homepage {
+  background-image: url('homepage.jpeg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Abril Fatface', cursive;
+  min-height: 100vh;
+}
+
+.homepage .row {
+  margin-top: 40vh;
+  text-align: center;
+}
+
+.homepage #load-trips {
+  background: none;
+  color: rgb(24, 51, 31);
+  font-size: 4rem;
+}
+
+.homepage #load-trips:hover {
+  color: rgb(75, 109, 84);
+}
+
+
+/*all trips*/
+
+
+/*show trip*/
+
+
+/*reserve trip*/
+form {
+  margin-left: 15%;
+  max-width: 70%;
+}
