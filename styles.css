@@ -1,0 +1,43 @@
+* {
+  border: 1px black solid;
+}
+
+body {
+  text-align: center;
+}
+
+div {
+  background-color: #8dcdfb;
+  border-radius: 6px;
+  margin: 0 auto;
+  text-align: center;
+  width: 85%;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  background-color: white;
+  margin: 1em auto;
+  width: 80%;
+}
+
+.details {
+  background-color: white;
+  display: inline-block;
+  margin: 1em;
+  text-align: left;
+  width: 45%;
+}
+
+#trip img {
+  background-color: white;
+  border: 1px black solid;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 4px;
+  margin: 1em;
+  width: 45%;
+}
