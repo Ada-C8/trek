@@ -1,9 +1,22 @@
 const baseUrl = 'https://trektravel.herokuapp.com/trips'
 
+// Get the modal
+const modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+const btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
+
+
 const successCallback = function(response){
   console.log("POST request to reserve a spot on a trip was successful");
   console.log(response);
   let name = $('#trip-form').data('name');
+  $('#message').html(`Congratulations! You successfully reserved a spot on ${name}!`);
+
+  // When the user clicks the button, open the modal
   modal.style.display = "block";
 };
 
@@ -27,7 +40,6 @@ $(document).ready(()=> {
   $('#reserve-form').hide();
   $('#content').hide();
   $('#show-trip').hide();
-
 
   let loadTrips = function loadTrips() {
     $.get(baseUrl, (response) => {
@@ -97,27 +109,15 @@ $(document).ready(()=> {
   // on submit it sends post message and opens a modal
   $('#trip-form').on('submit', function(event){
     event.preventDefault();
-    let url = baseUrl + `v/${$(this).data('id')}/reservations`;
+    let url = baseUrl + `/${$(this).data('id')}/reservations`;
     let formData = $('#trip-form').serialize();
     let tripName = $(this).data('name');
     // console.log(formData);
     $.post(url, formData,successCallback).fail((response) => {
       console.log("Didn't go so hot");
-      // $('#message').html(`There was an error in your reservation for  ${tripName}, please try again`);
-      alert('Request was unsuccessful');
+      alert(`There was an error in your reservation for  ${tripName}, please try again`);
     });
-    // When the user clicks the button, open the modal
-
   });
-
-  // Get the modal
-  var modal = document.getElementById('myModal');
-
-  // Get the button that opens the modal
-  var btn = document.getElementById("myBtn");
-
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
 
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
