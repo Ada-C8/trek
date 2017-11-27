@@ -1,5 +1,6 @@
 $(document).ready(()=>{
   $('#reservation-form').hide();
+  $('.select-by-continent').hide();
   console.log('we are inside');
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
@@ -7,9 +8,9 @@ $(document).ready(()=>{
      $('.globe-large').hide();
      $('#trips').before('<div class="adventure-container"><h2 class="adventure">Pick Your Adventure:</h2></div>');
 
-     //stores array of continents:
-     let continentArray = []
-     let continentSet = [];
+     //stores array of continents. I played with doing this, in case we want to show filters by continents provided in the API (rather than using a hard-coded list) in case future filter categories are added in the future.
+     // let continentArray = []
+     // let continentSet = [];
 
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       console.log('success!');
@@ -17,8 +18,11 @@ $(document).ready(()=>{
         let tripInfo =
         `<li class='listed-trip ${trip.continent}' trip-id=${trip.id}>${trip.name}</li>`;
         //console.log(trip);
-        $('#trips #trips-ul').append(tripInfo);
-        continentArray.push(trip.continent);
+        //if statement to remove those trips that are not fully fleshed out:
+        if (trip.name.length > 5) {
+          $('#trips #trips-ul').append(tripInfo);
+        // continentArray.push(trip.continent);
+        }
       });
       $('#load').hide();
       //console.log(`continentArray: ${continentArray}`);
@@ -37,6 +41,7 @@ $(document).ready(()=>{
   //create html elements to create a button for each continent
     let createFilters = function createFilters() {
       console.log('inside create filters');
+      $('.select-by-continent').show();
 
       //continent filters
       const continents = ['Africa','Asia','Australasia','Europe','South America','North America','Antarctica'];

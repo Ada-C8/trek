@@ -92,8 +92,13 @@ header {
 
 }
 
-#listed-trip {
+.listed-trip {
   font-size:1.3em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-width: 100px;
+  justify-content: center;
   /*list-style: none;*/
 }
 
@@ -212,6 +217,7 @@ label {
   flex-direction: row;
   padding: 0;
   margin: 0;
+  flex-wrap:wrap;
   align-items: baseline;
   justify-content: center;
   /*border: 2px solid black;*/
