@@ -4,11 +4,12 @@ $(document).ready(() => {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       response.forEach((place) => {
         const location = `
-        <h2> ${place.name} </h2>`;
-        console.log(location);
+        <li><a><h3 data-id=${place.id}> ${place.name} </h3></a></li>`;
+        // console.log(response);
+        // console.log(location);
         $('#location').append(location);
       });
-    })
+    });
       .fail((response) => {
         console.log(response);
         $('#fail').html('<p>Request was unsuccessful</p>');
@@ -33,7 +34,7 @@ $(document).ready(() => {
         <p> Cost: ${response.cost} </p>`;
 
       $('#tripinfo').html(tripInfo);
-    })
+    });
       .fail((response) => {
         console.log(response);
         $('#fail').html('<p>Request was unsuccessful</p>');
@@ -45,6 +46,7 @@ $(document).ready(() => {
 
     // EVENTS
   $('#tripinfo ul').on('click', 'h3', () => {
+    console.log($(this));
     const tripID = $(this).attr('data-id');
     loadTrip(tripID);
   });
