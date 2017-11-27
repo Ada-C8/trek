@@ -3,8 +3,7 @@ $(document).ready(() => {
   $('#load').click(() => {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       response.forEach((place) => {
-        const location = `
-        <li><a><h3 data-id="${place.id}"> ${place.name} </h3></a></li>`;
+        const location = `<li><a><h3 data-id="${place.id}"> ${place.name} </h3></a></li>`;
         // console.log(response);
         // console.log(location);
         $('#location').append(location);
@@ -21,8 +20,8 @@ $(document).ready(() => {
 
   // Function for request and response for a specific trip.
 
-  const loadSingleTrip = function loadSingleTrip(id) {
-    $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
+  const loadSingleTrip = (id) => {
+    $.get(`https:trektravel.herokuapp.com/trips/${id}`, (response) => {
       const tripInfo = `
       <p> Id: ${response.id} </p>
       <p> Name: ${response.name} </p>
@@ -45,9 +44,8 @@ $(document).ready(() => {
   };
 
   // EVENTS
-  $('#location').on('click', () => {
-    console.log($(this));
-    const tripID = $(this).attr('data-id');
+  $('#location').on('click', 'h3', (event) => {
+    const tripID = $(event.currentTarget).attr('data-id');
     loadSingleTrip(tripID);
   });
 
