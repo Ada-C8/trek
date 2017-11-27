@@ -34,7 +34,7 @@ $(document).ready(function() {
         + '<td class="about-text" colspan="2">' + data.about + '</td>'
         + '</tr>'
         + '<tr>'
-        + '<td class="about-text" colspan="2"><button type="button" id="reservation' + id + '" class="btn btn-warning reserve-go">Reserve Trip</button>' + '</td>'
+        + '<td class="about-text" colspan="2"><button type="button" class="btn btn-warning reserve-go">Reserve Trip</button>' + '</td>'
         + '</tr>'
         + '</table>'
         + '</td>'
@@ -63,7 +63,6 @@ $(document).ready(function() {
       $(`tr#trip${tripID}`).css('background', '#777');
       details_exist = true;
       current_trip_id = tripID;
-
     } else {
       $('tr[id^=trip]').css('background', 'none');
       $('table.table').find('tr.trip-deets').each(function() {
@@ -129,5 +128,4 @@ $(document).ready(function() {
       $('div#failure').show();
     });
   });
-
 });
