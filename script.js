@@ -131,7 +131,7 @@ $(document).ready(() => {
     let url = BASE_URL;
     const parameters = [];
     Object.keys(formDataKeysAndValues).forEach((key) => {
-      if (key !== 'trip-name' && key !== 'category' && formDataKeysAndValues[key] !== '') {
+      if (key !== 'trip-name' && formDataKeysAndValues[key] !== '') {
         parameters.push(`${key}?query=${formDataKeysAndValues[key]}`);
       }
     });
