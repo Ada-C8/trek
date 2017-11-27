@@ -50,7 +50,6 @@ $( document ).ready(function() {
           console.log('always even if we have success or failure');
         });
 
-
       // post
       $('body').on('submit', 'form', function(e) {
         e.preventDefault();
