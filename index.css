@@ -1,0 +1,70 @@
+#landing {
+  background-image: url('alfred-aloushy-256267.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  padding: 3em;
+}
+
+.index-button {
+  font-size: 2em;
+}
+
+.index-button:hover {
+  color: #af0e33;
+}
+
+#landing .site-name {
+  margin-right: 2em;
+  font-family: 'Bungee Shade';
+  font-size: 3em;
+}
+
+.site-name, .index-button {
+  display: inline-block;
+}
+
+
+.trip-container {
+  background-color: white;
+  padding: 2em 2em 0em 2em;
+  border-color: black;
+}
+
+.show-trip h3 {
+  text-align: center;
+}
+
+.show-trip .about {
+  text-align: center;
+}
+
+.message h3 {
+  background-color: white;
+  padding: 0em 0em 1em 0em;
+  color: #af0e33;
+  text-align: center;
+}
+
+form .button {
+  background-color: #af0e33;
+  color: white;
+}
+
+form .button:hover {
+  background-color: red;
+}
+
+[type='submit'] {
+  color: white;
+  font-weight: bold;
+}
+
+footer {
+  color: white;
+  position: fixed;
+  margin-bottom: 1em;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
