@@ -47,3 +47,15 @@ header {
 .reservation-form-container form{
   padding: 20px;
 }
+
+#search-form-container{
+  display: none;
+}
+
+.show{
+  display: block !important;
+}
+
+.form-submit-btn{
+  width: 100%;
+}
