@@ -69,12 +69,6 @@ $(document).ready(() => {
   });
 
   // FORM
-  // $('input:valid').on('input', function fx() {
-  //   $(this).next('div').removeClass('hide');
-  // });
-  // $('input').focusout(function fx() {
-  //   $(this).next('span').addClass('hide');
-  // });
   $('form').submit(function fx(e) {
     e.preventDefault();
     postReservation($(this));
