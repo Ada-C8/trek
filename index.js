@@ -1,15 +1,16 @@
 const URL = 'https://trektravel.herokuapp.com/trips/';
 
 $(document).ready(function(){
+
   let numTrips = 10;
 
   let tripTitle = function tripTitle(response, id){
     let name = response.name || 'untitled';
     let weeks = response.weeks || '0';
-    return `<li class="trip" id="${response.id}">
+    return `<li class="trip no-show" id="${response.id}">
       <div class="row">
-        <h3>${response.name}</h3>
-        <h5 class="trip-weeks">${response.weeks} weeks</h5>
+        <h3 class="small-8 medium-9 columns">${name}</h3>
+        <h5 class="trip-weeks">${weeks} weeks</h5>
       </div>
     </li>`;
   };
