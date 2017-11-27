@@ -4,7 +4,7 @@ const successCallback = function(response){
   console.log("POST request to reserve a spot on a trip was successful");
   console.log(response);
   let name = $('#trip-form').data('name');
-  $('#message').html(`Congratulations! You successfully reserved a spot on ${name}!`);
+  modal.style.display = "block";
 };
 
 const continents = {
@@ -41,7 +41,7 @@ $(document).ready(()=> {
     })
     .fail(function(response){
       console.log(response);
-      $('#fail').html('<p>Request was unsuccessful</p>');
+      alert('Request was unsuccessful');
     });
   };
 
@@ -70,7 +70,7 @@ $(document).ready(()=> {
     })
     .fail(function(response){
       console.log(response);
-      $('#fail').html('<p>Request was unsuccessful</p>')
+      alert('Request was unsuccessful');
     });
   };
 
@@ -97,16 +97,17 @@ $(document).ready(()=> {
   // on submit it sends post message and opens a modal
   $('#trip-form').on('submit', function(event){
     event.preventDefault();
-    let url = baseUrl + `/${$(this).data('id')}/reservations`;
+    let url = baseUrl + `v/${$(this).data('id')}/reservations`;
     let formData = $('#trip-form').serialize();
     let tripName = $(this).data('name');
-    console.log(formData);
+    // console.log(formData);
     $.post(url, formData,successCallback).fail((response) => {
       console.log("Didn't go so hot");
-      $('#message').html(`There was an error in your reservation for  ${tripName}, please try again`);
+      // $('#message').html(`There was an error in your reservation for  ${tripName}, please try again`);
+      alert('Request was unsuccessful');
     });
     // When the user clicks the button, open the modal
-    modal.style.display = "block";
+
   });
 
   // Get the modal
