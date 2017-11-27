@@ -1,8 +1,23 @@
 $(document).ready( function() {
   $('#reserve').hide('form');
+  $('#filters').hide();
 
   const loadTrips = function loadTrips() {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
+      console.log('success!');
+      response.forEach(function(trip) {
+        let tripInfo = `<li><h3 data-id=${trip.id}>${trip.name}</h3><p>Continent: ${trip.continent}</p><p>Trip Length: ${trip.weeks} Weeks</p></li>`;
+        $('#trips ul').append(tripInfo);
+      });
+    })
+    .fail(function(response){
+      console.log(response);
+      $('#fail').html('<p>Request was unsuccessful</p>');
+    });
+  };
+
+  const continentFilter = function continentFilter(query) {
+    $.get(`https://trektravel.herokuapp.com/trips/continent?query=${query}`, (response) => {
       console.log('success!');
       response.forEach(function(trip) {
         let tripInfo = `<li><h3 data-id=${trip.id}>${trip.name}</h3><p>Continent: ${trip.continent}</p><p>Trip Length: ${trip.weeks} Weeks</p></li>`;
@@ -48,6 +63,12 @@ $(document).ready( function() {
     $('button#search').html('Find Trips');
   });
 
+  $('button.continent').click(function() {
+    let query = $(this).html();
+    $('#trips li').remove();
+    continentFilter(query);
+  });
+
   $('#trips ul').on('click', 'h3', function() {
     let tripID = $(this).attr('data-id');
     loadTrip(tripID);
@@ -58,5 +79,9 @@ $(document).ready( function() {
   $('#trip').on('click', 'button', function() {
     $('#reserve').slideToggle();
     $('button#reserve').html('Cancel');
+  });
+
+  $('header').on('click', 'h4', function() {
+    $('#filters').slideToggle();
   });
 });

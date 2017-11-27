@@ -14,6 +14,12 @@ div {
   width: 85%;
 }
 
+header {
+  background-image: url("header.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 ul {
   list-style: none;
 }
