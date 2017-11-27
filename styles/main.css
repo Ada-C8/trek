@@ -1,0 +1,163 @@
+/****************/
+/*   Whole doc  */
+/****************/
+:root {
+  --yellow1: #FFCC00;
+  --yellow2: #FFE066;
+  --yellow3: #FFEB99;
+  --grey1: #333333;
+  --grey2: #808080;
+  --grey3: #B3B3B3;
+  --grey4: #E6E6E6;
+}
+
+body {
+  background-color: var(--grey1);
+  width: 100%;
+  margin: 0;
+}
+
+body, div, ul, li, p, h1, h2, h3, h4, button, a, input {
+  font-family: Georgia,serif;
+}
+
+.natGeoButton, .natGeoButton:visited, .natGeoButton:active,.natGeoButton:focus {
+  background-color: var(--yellow1);
+  color: black;
+}
+.natGeoButton:hover {
+  background-color: var(--yellow3);
+  color: black;
+}
+
+.nat-geo {
+  border: solid var(--yellow1) 5px;
+  background-color: white;
+}
+
+.flexbox-container {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/************************************/
+/*   Inital home page and topshow   */
+/************************************/
+
+#top-show {
+  width:100%;
+  height:100vh;
+  background-image:url('https://static1.squarespace.com/static/500f021de4b07e650ff4806a/54fe3bcde4b0c5b4761a1b9a/54fe3beee4b0a76e3a8d20b8/1425947632351/March-08%2C-2015--Monument-Valley---Antelope-Canyon-AZ-3818.jpg?format=1500w');
+  background-size:cover;
+  padding: 0;
+}
+
+#head{
+  height: 40vh;
+  width: 60vw;
+  border: solid var(--yellow1) 5px;
+}
+
+#load {
+  color: white;
+  font-size: 7em;
+  align-self: center;
+}
+
+.on{
+  color: var(--yellow1);
+}
+.off{
+  color: white;
+}
+
+/**************/
+/* show-trips */
+/**************/
+
+#show-trips {
+  margin: 30px 0px;
+}
+
+#show-trips hr {
+  border: solid var(--yellow1) 1px;
+}
+
+#show-trips ul {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  list-style-type: none;
+}
+
+.continent {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+/**************/
+/* show-trip */
+/**************/
+
+#show-trip{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin: 30px 0px;
+}
+
+#show-trip span {
+  font-weight: bold;
+}
+
+/**************/
+/* trip reservation form */
+/**************/
+
+#trip-form {
+  margin-top: 20px;
+}
+
+/*************/
+/*   Modal   */
+/*************/
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80vw;
+  border: solid var(--yellow1) 5px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
