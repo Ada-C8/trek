@@ -2,17 +2,17 @@ $(document).ready(()=>{
   $('.view-all-trips').on('click', function(){
     showAllTrips();
   });
-
   $('.reservation-form').hide();
-
 });
 
 let showAllTrips = function showAllTrips(){
   $.get('https://trektravel.herokuapp.com/trips',
   (response) => {
     $('.trips').empty();
+    $('.message').empty();
     $('.trip-info').hide();
     $('.reservation-form').hide();
+    $('.message').empty();
 
     response.forEach(function (trip){
       let tripName = trip.name;
@@ -22,6 +22,7 @@ let showAllTrips = function showAllTrips(){
 
       $('.trips').append(`<tr> <td class='trip-title'><a href=javascript:void(0) onclick=showSingleTrip(${tripId})> ${tripName}</a></td><td> ${continent} </td><td> ${weeks} </td> <tr>`);
     });
+
     $('.trips').show();
   })
   .fail(function(response){
@@ -30,12 +31,10 @@ let showAllTrips = function showAllTrips(){
   .always(function(){
     console.log('always even if we have success or failure');
   });
-
 };
 
 
 let showSingleTrip = function showSingleTrip(id){
-
   $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
     let tripName = response.name;
     let tripId = response.id;
@@ -50,12 +49,10 @@ let showSingleTrip = function showSingleTrip(id){
 
     $('.trip-info').append(`<h1> ${tripName} </h1><h3> Taking Place in ${continent} /// ${weeks} Weeks /// At a cost of ${cost} </h3><p> ${about} </p>`);
 
-
     $('form').submit( function(e) {
-
       e.preventDefault();
 
-      const url = `https://trektravel.herokuapp.com/trips/${tripId}/reservations`; // Retrieve the action from the form
+      const url = `https://trektravel.herokuapp.com/trips/${tripId}/reservations`;
       const formData = $(this).serialize();
 
       $.post(url, formData, (response) => {
@@ -66,9 +63,7 @@ let showSingleTrip = function showSingleTrip(id){
       });
     });
     $('.trip-info').show();
-
   })
-
   .fail(function(response){
     console.log(response);
   })
@@ -76,33 +71,30 @@ let showSingleTrip = function showSingleTrip(id){
     console.log('always even if we have success or failure');
   });
 };
-
-
 
 let showTripByQuery = function showTripByQuery(){
   let param = 'continent'
   let query = document.getElementById('continent-filter');
   $.get(`https://trektravel.herokuapp.com/trips/${param}?query=${query}`,
-  (response) => {
-    $('.trips').empty();
-    $('.trip-info').hide();
-    $('.reservation-form').hide();
+    (response) => {
+      $('.trips').empty();
+      $('.trip-info').hide();
+      $('.reservation-form').hide();
 
-    response.forEach(function (trip){
-      let tripName = trip.name;
-      let tripId = trip.id;
-      let continent = trip.continent;
-      let weeks = trip.weeks;
+      response.forEach(function (trip){
+        let tripName = trip.name;
+        let tripId = trip.id;
+        let continent = trip.continent;
+        let weeks = trip.weeks;
 
-      $('.trips').append(`<tr> <td class='trip-title'><a href=javascript:void(0) onclick=showSingleTrip(${tripId})> ${tripName}</a></td><td> ${continent} </td><td> ${weeks} </td> <tr>`);
+        $('.trips').append(`<tr> <td class='trip-title'><a href=javascript:void(0) onclick=showSingleTrip(${tripId})> ${tripName}</a></td><td> ${continent} </td><td> ${weeks} </td> <tr>`);
+      });
+      $('.trips').show();
+    })
+    .fail(function(response){
+      console.log(response);
+    })
+    .always(function(){
+      console.log('always even if we have success or failure');
     });
-    $('.trips').show();
-  })
-  .fail(function(response){
-    console.log(response);
-  })
-  .always(function(){
-    console.log('always even if we have success or failure');
-  });
-
-};
+  };
