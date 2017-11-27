@@ -1,11 +1,11 @@
-* * {
+/** * {
   transition: 3s all;
 }
 * *:hover {
   background-color: rgba(255, 0, 0, 0.15);
   transform: rotate(10deg);
   transition: 3s all;
-}
+}*/
 
 
 header {
