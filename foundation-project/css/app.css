@@ -27,7 +27,16 @@ li {
   list-style: none;
 }
 
-#fail {
+#fail, #message {
   color: red;
   font-style: italic;
+}
+
+#trip  {
+  /*background-color: palegreen;*/
+}
+
+form {
+  margin: 0 auto;
+  width: 75%;
 }
