@@ -24,6 +24,15 @@
     </div>
   </header>
 
+
+  <!-- Display errors -->
+  <div class="alert callout error" data-closable>
+    <p>Something went wrong with your request!</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
   <main>
     <div id="trips">  <!-- HIDE HERE -->
       <header>
@@ -59,11 +68,16 @@
           <p id="cost"></p>
           <button class="button to-reserve">Reserve</button>
         </section>
-      </div>      
+      </div>
     </div>
 
     <div id="reserve-trip"> <!-- HIDE HERE -->
-      <form id="reserve-form">
+      <form id="reserve-form" class="small-11 small-centered columns" name="form-go">
+        <header>
+          <h4 id="info-header">Please enter your information below</h4>
+        </header>
+        <small class="error">ENTRY CANNOT BE BLANK</small>
+
         <label>Name:</label>
         <input type="text" id="name" name="name"></input>
 
@@ -73,11 +87,18 @@
         <label>Email:</label>
         <input type="text" id="email" name="email"></input>
 
-        <section class="button">
-          <button type="submit">Reserve</button>
-        </section>
+        <button class="button to-reserve" type="submit">Reserve</button>
+
       </form>
     </div>
+
+    <!-- Popup reservation confirmation -->
+
+    <div id="confirmation">
+      <p>Your reservation has been sent.</p>
+      <p>Thank you for booking with us!</p>
+    </div>
+
   </main>
 
   <footer>
@@ -88,7 +109,7 @@
 
   <script src="jquery.js"></script>
   <script src="foundation.js"></script>
-  <script src="js/foundation/foundation.reveal.js"></script>
+  <script src="foundation.min.js"></script>
 
 </body>
 </html>

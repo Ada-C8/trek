@@ -10,6 +10,8 @@ body, h1, h2, h3 {
   max-width: 100%;
 }
 
+/********* BG IMAGE/HEADER *********/
+
 #bg-image {
   background: linear-gradient(
     rgba(0, 0, 0, 0.3),
@@ -52,9 +54,21 @@ button.main-button {
   }
 }
 
+/********* ERRORS *********/
+
+.error p {
+  text-align: center;
+  margin: 0;
+  font-family: 'Cardo', serif;
+}
+
+small {
+  color: red;
+}
+
 /********* ALL TRIPS *********/
 
-#trip-header { /* TODO: Make this into a class */
+h3#trip-header { /* TODO: Make this into a class */
   text-align: center;
   padding: 1em;
   color: black;
@@ -68,9 +82,9 @@ button.main-button {
 
 @media only screen and (min-width: 40em) {
   #trips-table {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
   }
 }
 
@@ -105,6 +119,40 @@ button.to-reserve {
   border: 1px solid black;
   border-radius: 5%;
   color: black;
+}
+
+/********* RESERVE TRIP *********/
+
+#reserve-form {
+  width: 70%;
+  padding: 2em;
+}
+
+@media only screen and (max-width: 40em) {
+  #reserve-form {
+    width: 90%;
+    padding: 2em;
+  }
+}
+
+form {
+  font-family: 'Cardo', serif;
+}
+
+h4#info-header{ /* TODO: Make this into a class */
+  text-align: center;
+  padding: 1em;
+  color: black;
+  letter-spacing: 2px;
+  margin: 0;
+  font-family: 'Cardo', serif;
+}
+/********* POPUP CONFIRMATION *********/
+
+#confirmation {
+  font-family: 'Cardo', serif;
+  text-align: center;
+  padding: 2em;
 }
 
 /********* FOOTER *********/

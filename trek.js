@@ -4,6 +4,8 @@ $(document).ready(function() {
   $('#trips').hide();
   $('#single-trip').hide();
   $('#reserve-trip').hide();
+  $('.error').hide();
+  $('#confirmation').hide();
 
   const baseURL = 'https://trektravel.herokuapp.com/trips/';
 
@@ -11,7 +13,7 @@ $(document).ready(function() {
   const displayTrips = function displayTrips() {
     $.get(baseURL, successCallback)
     .fail(function(){
-      console.log('failure!');
+        $('.error').show();
     });
   };
 
@@ -21,11 +23,14 @@ $(document).ready(function() {
       return;
     }
 
+    $('#trip-name, #trip-country, #category, #weeks, #cost, #about').empty();
+    $('#single-trip').hide();
+    $('#reserve-trip').hide();
+    $('#trips').show();
+    $('#confirmation').hide();
+
     for(let trip of response) {
-      // $('#table-body').empty();
-      $('#trip-name, #trip-country, #category, #weeks, #cost, #about').empty();
-      $('#single-trip').hide();
-      $('#trips').show();
+      if (trip.name === null || trip.name === " " || trip.continent === null || trip.weeks === null) {  continue; }
       $('#table-body').append(
         '<tr id=trip' + trip.id + '>' +
           '<td>' + trip.id + '</td>' +
@@ -48,6 +53,8 @@ $(document).ready(function() {
     $('#trips').hide();
     $('#table-body').empty();
     $('#single-trip').show();
+    $('#confirmation').hide();
+
     $('#trip-name').append(response.name.toUpperCase());
     $('#trip-country').append(response.continent.toUpperCase());
     $('#about').append(response.about);
@@ -65,29 +72,41 @@ $(document).ready(function() {
     // console.log(baseURL + `${tripID}`);
     $.get(baseURL + `${tripID}`, singleTripSuccessCallback)
     .fail(function() {
-      console.log('failure!');
+      $('.error').show();
     });
   };
 
   /////// FORM CALLBACK FUNCTION
   const formCallBack = function(response) {
-    console.log(response);
+    $('#reserve-trip').hide();
+    $('#confirmation').show();
   };
 
   ///// DISPLAY FORM ON CLICK OF A BUTTON
   const displayForm = function displayForm(tripID) {
-    // $('#trip-name, #trip-country, #category, #weeks, #cost, #about').empty();
-    // $('#to-reserve').hide();
+    $('#trip-name, #trip-country, #category, #weeks, #cost, #about').empty();
+    $('#single-trip').hide();
+    $('small').hide();
     $('#reserve-trip').show();
+
     $('#reserve-form').on('submit', function(event) {
       // Don't refresh the page (the default behavior)
       event.preventDefault();
+
+      let name = $('[name=name]').val();
+      let age = $('[name=age]').val();
+      let email = $('[name=email]').val();
+
+      if (name === "" || age === "" || email === "") {
+        $('small').show();
+        return;
+      }
 
       let formData = $('#reserve-form').serialize();
 
       $.post(baseURL + `${tripID}/reservations`, formData, formCallBack)
         .fail((response) => {
-          console.log("Didn't go so hot");
+          $('.error').show();
       });
     });
   };
@@ -95,4 +114,5 @@ $(document).ready(function() {
 });
 
 
-// Fix responsive design for table
+// TODO: Fix responsive design for table
+// TODO: Direct to specific location on page
