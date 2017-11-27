@@ -46,7 +46,8 @@ $('#load-trips').click(function(event) {
               const formData = $(this).serialize();
 
               $.post(url, formData, (response) => {
-                $('#message').text('Reservation saved').show().fadeOut(9000);
+                // $('#message').text('Reservation saved').show().fadeOut(9000);
+                $('#message').html('Reservation Saved<br><img src="assets/greenglobe.gif"/>').show().fadeOut(10000);
               }).fail(() => {
                 $('#message').html('<p>reserving your spot failed aaarrroooo0o</p>');
               }).always(() => {
