@@ -59,12 +59,12 @@ $(document).ready(()=> {
       <span>Length:</span> ${response.weeks} weeks</p>`;
       $('#hook').html(tripInfo);
 
-      let button = $(`<button id="reserve" class="natGeoButton" value="${response.id}">Reserve A Spot!</button>
+      let button = $(`<button id="reserve" class="natGeoButton" value="${response.id}">Sign up today!</button>
       `);
 
       button.click((event) => {
-
         $('#reserve-form').show();
+        $('html,body').animate({scrollTop: $("#reserve-form").offset().top -100},'slow');
       });
       $('#resButton').html(button);
     })
@@ -82,11 +82,9 @@ $(document).ready(()=> {
     let tripId = $(this).attr('data-id');
     loadTrip(tripId);
     $('#show-trip').show();
-    $('html,body').animate({
-      scrollTop: $("#anchor").offset().top},
-      'slow');
-      $('#trip-form').attr('data-id' , `${$(this).attr('data-id')}`);
-      $('#trip-form').attr('data-name' , `${$(this).attr('data-name')}`);
+    $('html,body').animate({scrollTop: $("#anchor").offset().top},'slow');
+    $('#trip-form').attr('data-id' , `${$(this).attr('data-id')}`);
+    $('#trip-form').attr('data-name' , `${$(this).attr('data-name')}`);
   });
 
   // when the main page button gets clicked it populates trips and scrolls to correct spot on page
