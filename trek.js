@@ -6,14 +6,12 @@ $(document).ready( function() {
     const urlTripName = 'https://trektravel.herokuapp.com/trips';
     $.get(urlTripName,
       (response) => {
-        // $('h1').append('List of Trips');
         $('h1').html('List of Trips');
         for (trip of response) {
           let tripName = `<li><a data-id=${trip.id}> ${trip.name}</a>
           </li>`
 
           $('#trips ul').append(tripName);
-          // $('#trips ul').html(tripName);
         }
       }).fail((response) => {
         let badRequest = `<p class=bad >Something went wrong loading trip options</p>`
@@ -70,11 +68,7 @@ $(document).ready( function() {
 
       const successCallback = function(response) {
         let generatedHMTL = `<p class="good"> You reserve this trip successfully </p>`
-        // let generatedHMTL = '<p>Everything went great,';
-        // generatedHMTL += `and your trip ${ response["name"] } has been added to the DB!</p>`;
         $('#ajax-results').html(generatedHMTL);
-        // $('#trips').hide();
-        // $('#load').show();
       };
 
 
@@ -82,7 +76,7 @@ $(document).ready( function() {
         $('#reserve').hide();
         $('form').show();
 
-        // TODO puedo quitar el required
+
         event.preventDefault();
         let form =
         `<label for="name">Name:</label>
@@ -92,7 +86,6 @@ $(document).ready( function() {
         <input type="email" name="email" required></input>
         <input id="submitForm" type="submit" class="button" value="Reserve Trip"></input>
         `
-
         // $('#reserveTrip').validate();
         $('#reserveTrip').html(form);
 
@@ -122,8 +115,6 @@ $(document).ready( function() {
         });
       };
 
-
-
       //  Events
 
       $('ul').on('click', 'a', function(){
@@ -136,8 +127,5 @@ $(document).ready( function() {
         $('.good').hide();
         loadTrips();
       });
-
-
-
 
     });

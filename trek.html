@@ -1,57 +1,52 @@
 <!DOCTYPE html>
 <html>
- <head>
+<head>
 
-    <title>TravelNow</title>
-    <meta charset="utf-8">
-    <!-- Compressed CSS -->
+  <title>TravelNow</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css" >
+  <link href="trek.css" media="screen" rel="stylesheet" type="text/css">
 
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+  <script type="text/javascript" src="trek.js"></script>
+  <!-- <script src="js/jquery.validate.js"></script> -->
+</head>
+<body>
 
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css" >
-    <link href="trek.css" media="screen" rel="stylesheet" type="text/css">
+  <div class="hero-section">
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-      <!-- <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script> -->
-    <script type="text/javascript" src="trek.js"></script>
-    <!-- <script src="js/jquery.validate.js"></script> -->
- </head>
- <body>
+    <button type="button" class="button" id="load"> See trip options! </button>
 
-   <div class="hero-section">
+  </div>
 
-       <button type="button" class="button" id="load"> See trip options! </button>
+  <main>
+    <div id="fail"></div>
 
-   </div>
-
-<main>
-   <div id="fail"></div>
-
-   <section id="ajax-results">
+    <section id="ajax-results">
     </section>
 
 
 
 
 
-   <div class="row" ><div id="trips">
-     <div class="large-4 columns">
-    <h1></h1>
-     <ul></ul></div></div>
+    <div class="row" ><div id="trips">
+      <div class="large-4 columns">
+        <h1></h1>
+        <ul></ul></div></div>
 
-     <div id="tripDetail"></div>
+        <div id="tripDetail"></div>
 
-<form name="myForm" class="large-8 columns small-12 columns" id="reserveTrip" onsubmit="return validateForm()"></form>
-
-
-   </div>
+        <form name="myForm" class="large-8 columns small-12 columns" id="reserveTrip" onsubmit="return validateForm()"></form>
 
 
+      </div>
 
-</main>
- </body>
-</html>
+
+
+    </main>
+  </body>
+  </html>
