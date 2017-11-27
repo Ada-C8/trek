@@ -1,0 +1,163 @@
+:root {
+  /* https://coolors.co/42767e-91b0cc-b3cadb-233b3c-dce5ea */
+  --white: #EFF3F4;
+  --offwhite: #DCE5EA;
+  --taupe: #EADBD9;
+  --ltblue: #B3CADB;
+  --medblue: #91B0CC;
+  --medgreen: #42767E;
+  --dkgreen: #233B3C;
+}
+
+* {
+  /*border: 1px solid green;*/
+}
+
+p, a {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Website title */
+h1 {
+  font-family: 'Nixie One', sans-serif;
+  font-size: 9rem;
+  text-shadow: 2px 3px 10px var(--medblue);
+  text-align: center;
+}
+
+/* Trip names */
+h3 {
+  font-family: 'Antic', sans-serif;
+  margin-bottom: 0;
+}
+
+/* Form confirmation */
+h4 {
+  text-align: center;
+}
+h4 small {
+  color: var(--medblue);
+  font-style: italic;
+}
+
+/* Trip lengths */
+h5 {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.frozen {
+  max-height: 5rem !important;
+}
+
+.hidden {
+  display: none;
+}
+
+/*****************/
+/* HEADER / HERO */
+/*****************/
+
+body {
+  background-attachment: fixed;
+  background-color: var(--green);
+  background-image: url('images/daniel-roe.jpg');
+  background-position: 50% 90%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--white);
+}
+
+header {
+  margin: 5rem auto;
+}
+
+.button {
+  background-color: var(--dkgreen);
+  border-radius: 1rem;
+  color: var(--ltblue);
+}
+
+#hero > .button {
+  display: block;
+  font-family: 'Antic', sans-serif;
+  font-size: 2rem;
+  height: 8rem;
+  padding-top: 3rem;
+  margin: auto;
+  width: 50%;
+}
+
+/**************/
+/* TRIP INDEX */
+/**************/
+
+.trip {
+  background-color: var(--offwhite);
+  border-top: 5px solid var(--ltblue);
+  color: var(--medgreen);
+  display: block;
+  margin: 0;
+  max-height: 5rem;
+  padding: 1rem;
+  width: 100%;
+  transition: max-height 1s ease-in;
+}
+
+.trip:nth-of-type(even) {
+  background-color: var(--medgreen);
+  color: var(--offwhite);
+}
+
+.trip h3 {
+  display: inline-block;
+  max-height: 3rem;
+  /*padding-left: 5%;*/
+}
+
+.trip-weeks {
+  float: right;
+  padding: .5rem 10% 0 0;
+  text-align: left;
+}
+
+/*************/
+/* TRIP SHOW */
+/*************/
+
+.trip.show {
+  height: auto;
+  max-height: 100rem;
+  overflow: auto;
+  transition: max-height 1s ease-out;
+}
+
+.trip-info {
+  padding: 1rem 3rem;
+}
+
+.trip-about {
+  display: inline;
+}
+
+.book-btn {
+  display: block;
+  float: none !important;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+/*************/
+/* BOOK FORM */
+/*************/
+
+.book-form [type="text"] {
+  border-radius: .5rem;
+  line-height: 2;
+}
