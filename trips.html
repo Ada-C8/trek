@@ -8,15 +8,22 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Mono|Shadows+Into+Light" rel="stylesheet">
 </head>
 <body>
-  <nav class="row cenetered">
+  <nav class="row center">
     <h1>Don't Trip. Trek.</h1>
     <button id="all" class="button column small-12 large-3">Show All Treks</button>
-    <nav>
-      <ul id="countryMenu" class="menu">
-      </ul>
-    </nav>
   </nav>
+  <section id="dropdown" class="row">
 
+    <ul class="dropdown menu" data-dropdown-menu data-click-open="true" data-close-on-click="true" data-close-on-click-inside="false">
+      <li class="is-dropdown-submenu-parent">
+        <a href="#" id="parent-cont">Continents</a>
+        <ul id="countryMenu">
+        </ul>
+      </li>
+
+    </ul>
+
+  </section>
 
 
 
@@ -49,10 +56,9 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <!-- <script src="js/jquery.min.js"></script> -->
-  <!-- <script src="js/foundation.min.js"></script> -->
-
+  <script src="js/foundation.min.js"></script>
   <script type="text/javascript" src="trips.js"></script>
-  <!-- <script> $(document).foundation(); </script> -->
+  <script> $(document).foundation(); </script>
 
 </body>
 </html>
