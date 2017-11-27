@@ -54,10 +54,10 @@ $(document).ready(() => {
       console.log(response);
       const singleTripTable = `
       <section id="single-trip-wrapper">
-        <h3 class="trip-details-title">
+        <h3 id="trip-details-title">
           Trip Details
         </h3>
-        <p class="trip-details-title">
+        <p id="trip-details-note">
           <em>(Scroll left or right to view trip details table)</em>
         <p>
 
@@ -86,8 +86,9 @@ $(document).ready(() => {
           </table>
         </article>
 
+        <h4 id="trip-descriptor">Description</h4>
         <article class="trip-details-about column small-8 small-centered row">
-          <h4>Description</h4><p class="trip-about-text">${response.about}</p>
+          <p class="trip-about-text">${response.about}</p>
         </article>
 
         <div class="column small-8 small-centered row">

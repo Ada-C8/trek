@@ -53,9 +53,29 @@ table {
   margin-bottom: 20px;
 }
 
-.trip-details-title, .trip-details-about {
-  padding-top: 20px;
+#trip-details-title {
+  font-family: 'Bahiana', cursive;
+  font-size: 3em;
+  letter-spacing: .2em;
+  padding-top: 50px;
   text-align: center;
+  font-weight: bold;
+  color: #474448;
+}
+
+#trip-details-note {
+  text-align: center;
+  font-weight: bold;
+  color: #474448;
+}
+
+#trip-descriptor {
+  font-family: 'Bahiana', cursive;
+  font-size: 2.6em;
+  letter-spacing: .2em;
+  color: #474448;
+  text-align: center;
+  font-weight: bold;
 }
 
 .trip-about-text {
@@ -85,9 +105,11 @@ body {
 footer, h6{
   font-family: 'Reenie Beanie', cursive;
   font-size: 1.5em;
+  color: #534B52;
   right: 0;
   bottom: 0;
   left: 0;
   text-align: center;
   margin-top: -25px;
+
 }
