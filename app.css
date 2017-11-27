@@ -1,5 +1,5 @@
 header {
-  margin-top: 40px;
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -82,6 +82,9 @@ table {
   text-align: justify;
 }
 
+#featured-content, #single-trip-info {
+  margin-bottom: 30px;
+}
 /* Background */
 body {
   font-family: 'Jura', sans-serif;
