@@ -8,9 +8,8 @@ $(document).ready(()=>{
     console.log(response);
 
     let generatedHTML = '<p>Everything went great: ';
-    generatedHTML += `${response.name} is reserved for trip ID: ${ response.id } has been added to the DB!</p>`;
-    // $('#reservation-results').html(generatedHMTL);
-    // $('#reservation-results').live('submit', function() {
+    generatedHTML += `${response.name} is reserved for trip ID: ${ response.trip_id }.</p>`;
+
       $('#reservation-results').hide().show('slow').html(generatedHTML);
       setTimeout(function(){ $('#reservation-results').hide(); }, 10000);
 
@@ -64,6 +63,10 @@ $(document).ready(()=>{
 
           let formData = $('#reservation-form').serialize();
           console.log(formData);
+
+          if (formData[name] === ""){
+            console.log("Name required")
+          }else{
           // console.log("Successfully reserved your spot!");
 
           $.post(`https://trektravel.herokuapp.com/trips/${response.id}/reservations`, formData, successCallback).fail((response) => {
@@ -74,20 +77,13 @@ $(document).ready(()=>{
           $('#reservation-form').trigger('reset');
           // $('#reservation-form').hide().show('slow');
           // setTimeout(function(){ $('#reservation-form').show(); }, 11000);
+        }
         });
 
       })
 
 
   };
-
-
-
-  //EXAMPLE:
-  // $('#pets ul').on('click', 'h3', function(){
-  //   let petID = $(this).attr('data-id');
-  //   loadPet(petID);
-  // });
 
 
 // EVENTS
@@ -116,8 +112,4 @@ $(document).ready(()=>{
     $('#reservation-form').show();
   });
 
-
-
 });
-
-// single trip info: id, name, destination, continent, about, category, weeks and cost
