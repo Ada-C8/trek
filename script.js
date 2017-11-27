@@ -127,15 +127,26 @@ $(document).ready(() => {
     e.preventDefault();
     const formData = $(this).serialize();
     // parse formData and build url parameters for budget, weeks, and continent...
-    const formDataKeysAndValues = formData.split('&').map((resultString) => {
+    let formDataKeysAndValues = formData.split('&').map((resultString) => {
       return resultString.split('=');
-    }); // [[k,v][k,v][k,v]]
+    });
     console.log(formDataKeysAndValues);
-    formDataKeysAndValues.reduce((objKeyValuePair, subArray) => {
+    formDataKeysAndValues = formDataKeysAndValues.reduce((objKeyValuePair, subArray) => {
       objKeyValuePair[subArray[0]] = subArray[1];
       return objKeyValuePair;
     }, {});
-    const url = `https://trektravel.herokuapp.com/trips/budget?query=5000&weeks?query=3&continent?query=Asia`;
+    console.log(formDataKeysAndValues);
+    let url = 'https://trektravel.herokuapp.com/trips/';
+    const parameters = [];
+    Object.keys(formDataKeysAndValues).forEach((key) => {
+      console.log(`${key} | ${formDataKeysAndValues[key]} | ${typeof formDataKeysAndValues[key]}`);
+      console.log(`Current Key: ${key}`);
+      if (key !== 'trip-name' && key !== 'category' && formDataKeysAndValues[key] !== '') {
+        parameters.push(`${key}?query=${formDataKeysAndValues[key]}`);
+      }
+    });
+    url += parameters.join('&');
+    console.log(url);
 
     //...and filter through results based on (trip) name and category
   });
