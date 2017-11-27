@@ -72,12 +72,7 @@ const tripAppend = (trip) => {
     </article>
     </li>`;
 
-  if ($('#trips')[0].childElementCount < 5) {
-    $('#trips').append(html);
-  } else {
-    $('#trips').append(html);
-    $('#trips li:last-child').hide().fadeIn(1000);
-  }
+  $('#trips').append(html);
 };
 
 // --------------- All Trips -------------------
