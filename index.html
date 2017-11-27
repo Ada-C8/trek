@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Your Adventure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/trek.js"></script>
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+  <header>
+    <div id="bg-image">
+      <div id="logo-wrapper" class="align-center">
+        <div id="logo">
+          <h1>FIND YOUR ADVENTURE</h1>
+          <br>
+          <button class="button main-button">It all starts here</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Display error -->
+
+  <div class="alert callout error" data-closable>
+    <p class="cardo-font align-center">Something went wrong with your request!</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <main>
+    <div id="trips">
+      <header>
+        <h3 id="trip-header" class="header-styling">Available Trips</h3>
+      </header>
+
+      <table class="hover cardo-font" id="trips-table">
+        <thead>
+          <tr>
+            <th>Trip ID</th>
+            <th>Destination</th>
+            <th>Continent</th>
+            <th>Weeks</th>
+          </tr>
+        </thead>
+
+        <tbody id="table-body">
+        </tbody>
+      </table>
+    </div>
+
+    <div id="single-trip">
+      <header>
+        <h3 id="trip-name" class="header-styling"></h3>
+        <h4 id="trip-country" class="align-center"></h4>
+      </header>
+
+      <div class="row">
+        <section id="about-styling" class="small-11 small-centered columns cardo-font align-center">
+          <p id="about"></p>
+          <p id="category"></p>
+          <p id="weeks"></p>
+          <p id="cost"></p>
+          <button class="button to-reserve">Reserve</button>
+        </section>
+      </div>
+    </div>
+
+    <div id="reserve-trip">
+      <form id="reserve-form" class="small-11 small-centered columns cardo-font padding" name="form-go">
+        <header>
+          <h4 id="info-header" class="header-styling cardo-font">Please enter your information below</h4>
+        </header>
+        <small class="error">FIELDS CANNOT BE BLANK</small>
+
+        <label>Name:</label>
+        <input type="text" id="name" name="name"></input>
+
+        <label>Age:</label>
+        <input type="number" id="age" name="age"></input>
+
+        <label>Email:</label>
+        <input type="text" id="email" name="email"></input>
+
+        <button class="button to-reserve" type="submit">Reserve</button>
+
+      </form>
+    </div>
+
+    <!-- Reservation confirmation -->
+
+    <div id="confirmation" class="cardo-font padding align-center">
+      <p>Your reservation has been sent.</p>
+      <p>Thank you for booking with us!</p>
+    </div>
+
+  </main>
+
+  <footer class="padding align-center">
+    <p>
+      COPYRIGHT &copy; ID 2017
+    </p>
+  </footer>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/foundation.js"></script>
+  <script src="js/foundation.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+@import url('https://fonts.googleapis.com/css?family=Cardo');
+
+html {
+  max-width: 100%;
+}
+
+body, h1, h2, h3 {
+  font-family: 'Varela Round', sans-serif;
+  max-width: 100%;
+}
+
+.cardo-font {
+  font-family: 'Cardo', serif;
+}
+
+.header-styling {
+  text-align: center;
+  padding: 1em;
+  color: black;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.padding {
+  padding: 2em;
+}
+
+.align-center {
+  text-align: center;
+}
+/********* BG IMAGE/HEADER *********/
+
+#bg-image {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
+    ),url('../images/dubai-skyline.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    max-width: 100%;
+  }
+
+#logo-wrapper {
+  width: 70%;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+}
+
+#logo {
+  min-height: 10em;
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  color: white;
+  letter-spacing: 2px;
+}
+
+button.main-button {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 5%;
+}
+
+/* Small Devices */
+@media only screen and (max-width: 40em) {
+  h1 {
+    font-size: 2em;
+    letter-spacing: 2px;
+  }
+}
+
+/********* ERRORS *********/
+
+.error p {
+  margin: 0;
+}
+
+small {
+  color: red;
+}
+
+/********* ALL TRIPS *********/
+
+#trips-table {
+  width: 100%;
+}
+
+@media only screen and (min-width: 40em) {
+  #trips-table {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+/********* SINGLE TRIP *********/
+
+h4#trip-country {
+  color: black;
+  letter-spacing: 2px;
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+
+#about-styling {
+  margin-top: 1em;
+  margin-bottom: 3em;
+}
+
+button.to-reserve {
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5%;
+  color: black;
+}
+
+/********* RESERVE TRIP *********/
+
+#reserve-form {
+  width: 70%;
+}
+
+@media only screen and (max-width: 40em) {
+  #reserve-form {
+    width: 90%;
+  }
+}
+
+/********* FOOTER *********/
+
+footer {
+  color: black;
+  font-size: 8px;
+}
+
+footer p {
+  margin: 0;
+}
