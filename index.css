@@ -1,0 +1,49 @@
+#title {
+  text-align: center;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 3em;
+}
+
+#load {
+  display: inline-block;
+  margin: 2em auto;
+}
+.centerme {
+  text-align: center;
+  width: 100%;
+  background-color: pink;
+}
+
+#trips ul {
+margin: 1em auto;
+list-style-type: none;
+}
+
+#trips ul li article {
+  display: inline;
+  border: 1em solid white;
+  height: 15em;
+  top: 1em;
+  bottom: 1em;
+  right: 1em;
+  left: 1em;
+  background-color: snow;
+}
+
+#trips ul li article h3 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#trip {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+body {
+  width: 100%;
+}
+  .hide {
+    position:absolute;
+    top:-1px; left:-1px;
+    width:1px; height:1px;
+  }
