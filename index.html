@@ -10,14 +10,22 @@
         crossorigin="anonymous">
       </script>
        <script type="text/javascript" src="trek.js"></script>
+       <link href="styles/foundation.css" media="screen" rel="stylesheet" type="text/css"/>
+       <link href="styles/normalize.css" media="screen" rel="stylesheet" type="text/css"/>
+       <link href="styles/trek.css" media="screen" rel="stylesheet" type="text/css"/>
 
   </head>
 
   <body>
-    <section id='singleTripDetails'>
+    <section id='header' class='row'>
+      <h2 id = "trips"><button>View All Trips</button></h2>
     </section>
-    <section>
-      <form id='reservationForm'>
+
+    <section class='row' id='singleTripDetails'>
+    </section>
+
+    <section class='row' id='reservationForm'>
+      <form>
         <label for='name'>Name:</label>
         <input id='nameField' type='text' name='name'></input>
         <br/>
@@ -27,9 +35,8 @@
         <input id='completeReservation' type='submit' value='Confirm booking'></input>
       </form>
     </section>
-    <br/>
-    <section>
-      <button id = "trips">View All Trips</button>
+
+    <section class='row' id='displayArea'>
       <ul id=tripSection></ul>
     </section>
   </body>

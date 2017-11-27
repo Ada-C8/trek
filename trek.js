@@ -2,12 +2,14 @@ const baseURL = 'https://trektravel.herokuapp.com/trips';
 
 $(document).ready(() => {
   $('#reservationForm').hide();
+  $('#singleTripDetails').hide();
 
   const loadAllTrips = () => {
     $.get(baseURL, (response) => {
       console.log('all trips worked');
+      console.log(response);
       response.forEach((trip) => {
-        const thisTrip = `<li id='${trip.id}'> ${trip.name} </li>`;
+        const thisTrip = `<li id='${trip.id}'>${trip.name} </li>`;
         $('#tripSection').append(thisTrip);
       });
     }).fail(() => {
@@ -15,9 +17,10 @@ $(document).ready(() => {
     });
   };
 
-  const tripDetails = (id) => {
-    $.get(`${baseURL}/${id}`, (response) => {
+  const tripDetails = (tripId) => {
+    $.get(`${baseURL}/${tripId}`, (response) => {
       console.log('Single trip worked');
+      console.log(response);
       if ($('#details').length > 0) {
         $('#details').remove();
       }
@@ -27,19 +30,21 @@ $(document).ready(() => {
       }
       const details = `
       <ul id='details'>
-        <li id='${response.id}'>ID: ${response.id} </li>
-        <li>Destination: ${response.name} </li>
-        <li>Continent: ${response.continent} </li>
-        <li>About: ${response.about} </li>
-        <li>Category: ${response.category} </li>
-        <li>Weeks: ${response.weeks} </li>
-        <li>Cost: ${response.cost} </li>
+        <li id='${response.id}'><strong>ID:</strong> ${response.id} </li>
+        <li><strong>Destination:</strong> ${response.name} </li>
+        <li><strong>Continent:</strong> ${response.continent} </li>
+        <li><strong>About:</strong> ${response.about} </li>
+        <li><strong>Category:</strong> ${response.category} </li>
+        <li><strong>Weeks:</strong> ${response.weeks} </li>
+        <li><strong>Cost:</strong> ${response.cost} </li>
       </ul>`;
 
-      $(`#singleTripDetails`).html(details);
+      $('#singleTripDetails').html(details);
+      $('#singleTripDetails').show();
       $('#reservationForm').show();
       $('#nameField').val('');
       $('#emailField').val('');
+
     }).fail(() => {
       console.log('Something went wrong with the trip details');
     });
@@ -47,9 +52,11 @@ $(document).ready(() => {
 
   $('#trips').on('click', () => {
     loadAllTrips();
+    $('#trips').hide();
   });
 
   $('#tripSection').on('click', 'li', (e) => {
+    // I don't know how to make linter like this line.
     const id = e.target.id;
     tripDetails(id);
   });
@@ -61,6 +68,8 @@ $(document).ready(() => {
     $.post(url, data, (response) => {
       console.log('POST worked');
       console.log(response);
+      $('#reservationForm').hide();
+      $('#singleTripDetails').hide();
     }).fail(() => {
       console.log('The post call failed');
     });

@@ -1,0 +1,61 @@
+body{
+  background-color: lightgray;
+}
+#header{
+  width: 100%;
+  height: 800px;
+  background-image: url('https://static.pexels.com/photos/346885/pexels-photo-346885.jpeg');
+  background-size: cover;
+}
+
+li {
+  list-style-type: none;
+}
+
+#singleTripDetails{
+  padding: 15px;
+  background-color: lightblue;
+}
+
+#singleTripDetails li {
+  padding: 5px;
+}
+
+#reservationForm{
+  padding-left: 40px;
+  padding-bottom: 10px;
+  background-color: lightblue;
+}
+
+#emailField, #nameField{
+  width: 350px;
+}
+
+#completeReservation {
+  width: 150px;
+}
+
+#displayArea{
+  background-color: lightgray;
+}
+
+#trips{
+
+    color: black;
+    position: relative;
+    left: 38%;
+    top: 30%;
+    font-weight: bold;
+}
+
+#trips button{
+  background-color: transparent;
+}
+
+ul{
+  margin-bottom:0;
+}
+
+#tripSection{
+  font-weight: bold;
+}
