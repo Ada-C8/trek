@@ -101,6 +101,7 @@ $(document).ready(()=>{
         }
       }
     })
+    $('#countryMenu').hide();
   });
 
 
