@@ -36,7 +36,6 @@ $( document ).ready(function() {
             Email:<input type="text" name="email" placeholder="your email"><br>
             <input type="submit" value="Submit">
           </form>`;
-          console.log(form);
 
         $('#trip').html(tripInfo);
         $('#reserve').html(form);
@@ -59,7 +58,6 @@ $( document ).ready(function() {
       $.post(url, formData, (response) => {
         $('#message').html('<p> Your reservation has been saved! </p>');
         // What do we get in the response?
-        console.log(response);
       }).fail(() => {
         $('#message').html('<p>Oh no, something went wrong</p>');
         console.log(response);
