@@ -179,12 +179,30 @@ $(document).ready(() => {
       $('#site-title h2').text('T R E K');
       buttonText.text('Visit The Swamp');
       buttonText.data('toggled', false);
+      $('aside').remove();
+      $('body').toggleClass('shrek');
     } else {
-      const shrekImage = '<a href="https://fontmeme.com/shrek-font/"><img src="assets/title.png" alt="shrek-font" border="0"></a>';
-      $('#site-title h2').html(shrekImage);
-      buttonText.text('Exit The Swamp');
-      buttonText.data('toggled', true);
+      const message = `<h3>You are about to enter the swamp...</h3>
+      <p>Please lower your computer volume. The swamp can be a loud place.</p>`;
+      showMessage(message);
+      setTimeout(() => {
+        $('body').toggleClass('shrek'); // stops the asynchronicity from toggling CSS earlier
+        const shrekImage = '<a href="https://fontmeme.com/shrek-font/"><img src="assets/title.png" alt="shrek-font" border="0"></a>';
+        $('#site-title h2').html(shrekImage);
+        buttonText.text('Exit The Swamp');
+        buttonText.data('toggled', true);
+        // add audio assets to HTML and play it
+        const audio = `<aside>
+                         <audio class="player">
+                           <source src="assets/donkey.mp3" type="audio/mpeg"></source>
+                           <source src="assets/donkey.ogg" type="audio/ogg"></source>
+                         </audio>
+                       </aside>`;
+        $('body').append(audio);
+        const player = $('.player')[0];
+        player.load();
+        player.play();
+      }, 4200);
     }
-    $('body').toggleClass('shrek');
   });
 });
