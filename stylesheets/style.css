@@ -23,6 +23,12 @@ body {
 
 header {
   background: #68edb8;
+  position: fixed;
+  width: 100%;
+}
+
+#results{
+  padding-top: 120px;
 }
 
 #nav-buttons, #site-title{
