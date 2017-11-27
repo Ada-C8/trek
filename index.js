@@ -9,11 +9,12 @@ $('#load-trips').click(function(event) {
       $('#trips').append(`<article id='trip-${response[i].id}'><h3>trip #${response[i].id}</h3></article>`);
 
       $(`#trip-${response[i].id} > h3`).click(function(event) {
-        if ($(`#info-${response[i].id}[0]`).length == 1) {
-          console.log($(`#info-${response[i].id}[0]`));
-          $(`#info-${response[i].id}`).toggle();
+        console.log('you clicked');
+        if (window.$(`#info-${response[i].id}`)[0])  {
+          console.log($(`#info-${response[i].id}`));
+          console.log('found context');
+          $(`#info-${response[i].id}`).remove();
         } else {
-
         $.get(`https://trektravel.herokuapp.com/trips/${response[i].id}`,
         trip => {
           console.log($(`#info-${trip.id}`));
@@ -27,7 +28,15 @@ $('#load-trips').click(function(event) {
             <tr><td>ABOUT: ${trip.about}</td></tr></table>
             <form action='https://trektravel.herokuapp.com/trips/${trip.id}/reservations' method='post' id='form-${trip.id}'>
             <section>
-            <button type="submit">Reserve a Spot for ${trip.name}</button>
+              <label>Name</label>
+              <input type="text" id="name" value="name"/>
+            </section>
+            <section>
+              <label>Email</label>
+              <input type="text" id="email" value="email"/>
+            </section>
+            <section>
+              <button type="submit">Reserve a Spot for ${trip.name}</button>
             </section>
             </form>
             </section>`);
