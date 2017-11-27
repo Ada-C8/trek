@@ -3,11 +3,12 @@ const baseURL = 'https://trektravel.herokuapp.com/trips';
 $(document).ready(() => {
   $('#reservationForm').hide();
   $('#singleTripDetails').hide();
-
+  $('#displayArea').hide();
   const loadAllTrips = () => {
     $.get(baseURL, (response) => {
       console.log('all trips worked');
       console.log(response);
+      $('#displayArea').show();
       response.forEach((trip) => {
         const thisTrip = `<li id='${trip.id}'>${trip.name} </li>`;
         $('#tripSection').append(thisTrip);

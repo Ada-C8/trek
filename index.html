@@ -17,26 +17,27 @@
   </head>
 
   <body>
-    <section id='header' class='row'>
+    <section id='header' class='row small-12 large-12'>
       <h2 id = "trips"><button>View All Trips</button></h2>
     </section>
 
-    <section class='row' id='singleTripDetails'>
+    <section class='row small-12 large-12' id='singleTripDetails'>
     </section>
 
-    <section class='row' id='reservationForm'>
+    <section class='row small-12 large-12' id='reservationForm'>
       <form>
         <label for='name'>Name:</label>
         <input id='nameField' type='text' name='name'></input>
-        <br/>
+
         <label for='email'>Email:</label>
         <input id='emailField' type='text' name='email'></input>
-        <br/>
+
         <input id='completeReservation' type='submit' value='Confirm booking'></input>
       </form>
     </section>
 
-    <section class='row' id='displayArea'>
+    <section class='row small-12 large-12' id='displayArea'>
+      <h3> Available Trips </h3>
       <ul id=tripSection></ul>
     </section>
   </body>
