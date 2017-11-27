@@ -5,7 +5,7 @@ const successCallback = function successCallback(response) {
   // console.log(response);
 
   let generatedHMTL = '<p>Everything went great,';
-  generatedHMTL += ` and your reservation ${response.name} has been added to the DB!</p>`;
+  generatedHMTL += ` and your reservation <span id="res-name">${response.name}</span> has been added to the DB!</p>`;
   $('#ajax-results').html(generatedHMTL);
 };
 
