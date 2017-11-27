@@ -16,7 +16,7 @@
 
   <script id="trip-list-template" type="text/template">
     <article id="trip-list">
-      <% for (var i = 0; i < trips.length; i++) { %>
+      <% for (let i = 0; i < trips.length; i++) { %>
         <h3><a href="#" id=<%- trips[i].id %>><%- trips[i].name %></a></h3>
         <% } %>
       </article>
