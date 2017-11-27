@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Trekkert</title>
+    <!-- <link href="foundation.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css" />
+    <link href="index.css" rel="stylesheet">
+  </head>
+  <body>
+    <header class="row">
+      <button class="button border columns small-10 small-centered" id="allTripsBtn"><h1>Get a list of Trips!</h1></button>
+      <div class="message columns small-10 small-centered" ><h2 id="message" class="text-center"></h2></div>
+      <div class="fail columns small-10 small-centered"><h2 class="text-center" id="fail"></h2></div>
+    </header>
+    <main class="main">
+      <form class="form" id="reservation-form" method="post">
+        <section>
+          <label>Name</label>
+          <input type="text" id="name" name="name"/>
+        </section>
+        <section>
+          <label>Age</label>
+          <input type="text" id="age" name="age"/>
+        </section>
+        <section>
+          <label>Email</label>
+          <input type="text" id="email" name="email"/>
+        </section>
+        <section>
+          <button class="button border" type="submit">Make Reservation!</button>
+        </section>
+      </form>
+      <section class="trips row" id="trips">
+      </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
