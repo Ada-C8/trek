@@ -30,7 +30,7 @@ $(document).ready(() => {
           <p> Cost: ${response.cost}</p>
         </div>`;
 
-        const reservation = `<form action="https://trektravel.herokuapp.com/trips/${id}/reservations" method="post">
+        const reservation = `<form id="form" action="https://trektravel.herokuapp.com/trips/${id}/reservations" method="post">
             <section>
               <label>Name</label>
               <input type="text" id="name" name="name"></input>
@@ -44,9 +44,9 @@ $(document).ready(() => {
             <section class="button">
               <button type="submit">Reserve Trip</button>
             </section>
-          </form>`
+          </form>`;
 
-        $(`#trips ol li > div`).hide();
+        $('#trips ol li > div').hide();
         $(`#trips ol li#trip-${id}`).append(tripInfo);
         $(`#trips ol li#trip-${id}`).append(reservation);
       },
@@ -65,7 +65,23 @@ $(document).ready(() => {
   $('#load').click(() => {
     loadTrips();
     $('h3').text('Select a Trip');
-    $('#reserve').hide();
     $('#trips ol').empty();
+  });
+
+  $('body').on('submit', 'form', function (e) {
+    e.preventDefault();
+
+    const url = $(this).attr('action'); // this refers to the jquery object selected on it -- the specific form doing the submit
+    const formData = $(this).serialize();
+
+    console.log(formData);
+
+    $.post(url, formData, () => { // on submit the js is doing this post request
+      $('#form').html('<p> Reservation added </p>');
+    }).fail(() => {
+      $('#form').html('<p>Reservation failed</p>');
+    }).always(() => {
+      console.log("you're doing alright");
+    });
   });
 }); // end of doc ready
