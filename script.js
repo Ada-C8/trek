@@ -129,9 +129,12 @@ $(document).ready(() => {
     // parse formData and build url parameters for budget, weeks, and continent...
     const formDataKeysAndValues = formData.split('&').map((resultString) => {
       return resultString.split('=');
-    });
-    const formDataMap = new Map(formDataKeysAndValues);
-    console.log(formDataMap);
+    }); // [[k,v][k,v][k,v]]
+    console.log(formDataKeysAndValues);
+    formDataKeysAndValues.reduce((objKeyValuePair, subArray) => {
+      objKeyValuePair[subArray[0]] = subArray[1];
+      return objKeyValuePair;
+    }, {});
     const url = `https://trektravel.herokuapp.com/trips/budget?query=5000&weeks?query=3&continent?query=Asia`;
 
     //...and filter through results based on (trip) name and category
