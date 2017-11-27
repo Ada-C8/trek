@@ -5,20 +5,49 @@ td.atrip-cell {
   height: 2px;
 }
 
-#atrip-table {
-  overflow-x: scroll;
-}
-
-.scrollable {
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-
 header {
-  margin-top: 20px;
+  margin-top: 80px;
+  text-align: center;
+
+}
+
+.featured-content {
+  margin-bottom: 20px;
+}
+
+.trip-details-title, .trip-details-about {
   text-align: center;
 }
 
-.trip-details-title {
+.trip-about-text {
+  text-align: justify;
+}
+
+/* Background */
+body {
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+
+  position: relative;
+  background: -webkit-linear-gradient(left top, #CCF5FC, #398694); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #CCF5FC, #398694); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #CCF5FC, #398694); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #CCF5FC, #398694); /* Standard syntax */
+
+  background: url(sunset.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  min-height: 100%;
+}
+
+/* FOOTER */
+footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: .04rem;
   text-align: center;
 }

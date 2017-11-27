@@ -16,16 +16,16 @@
 
   <body>
     <header>
-      <div class="column small-8 small-centered row">
+      <section class="column small-8 small-centered row">
         <a href="index.html"><h1>Trek</h1></a>
         <p>Where Your Destination Awaits</p>
         <nav>
           <button id="all-trips" class="button expanded"><strong>Find Your Next Trip Here</strong></button>
         </nav>
-      </div>
+      </section>
     </header>
 
-    <div id="featured-content">
+    <section id="featured-content">
       <div class="column small-12 small-centered row">
         <table id="trips-table" class="hover">
           <thead id="trips-head">
@@ -37,7 +37,12 @@
 
       <section id="single-trip-info">
       </section>
-    </div>
+    </section>
+
+    <footer>
+      <h6>	&copy; 2017
+      </h6>
+    </footer>
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.js"
@@ -46,6 +51,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>
 
+    <script src="/js/vendor/modernizr.js"></script>
+    <script src="js/foundation/foundation.tooltip.js"></script>
     <script type="text/javascript" src="index.js"></script>
 
   </body>

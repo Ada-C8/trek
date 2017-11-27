@@ -54,32 +54,37 @@ $(document).ready(() => {
       console.log(response);
       const singleTripTable = `
       <h3 class="trip-details-title">Trip Details</h3>
-      <div class="column small-12 small-centered row">
-        <table id="atrip-table" class="scroll">
-          <thead id="atrip-head">
+      <p class="trip-details-title"><em>(Scroll left or right to view trip details table)</em><p>
+
+      <article class="trip-details-info column small-4 small-centered row">
+
+        <table data-tooltip data-options="hover_delay: 50;" title="Scroll left or right!" class="trip-info-table scroll centered has-tip">
+          <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
               <th>Continent</th>
-              <th>About</th>
               <th>Category</th>
               <th>Weeks</th>
               <th>Cost</th>
             </tr>
           </thead>
-          <tbody id="atrip-body">
-            <tr class="atrip-row">
-              <td class="atrip-cell">${response.id}</td>
-              <td class="atrip-cell">${response.name}</td>
-              <td class="atrip-cell">${response.continent}</td>
-              <td class="atrip-cell">${response.about}</td>
-              <td class="atrip-cell">${response.category}</td>
-              <td class="atrip-cell">${response.weeks}</td>
-              <td class="atrip-cell">${response.cost}</td>
+          <tbody>
+            <tr>
+              <td>${response.id}</td>
+              <td>${response.name}</td>
+              <td>${response.continent}</td>
+              <td>${response.category}</td>
+              <td>${response.weeks}</td>
+              <td>${response.cost}</td>
             </tr>
           </tbody>
         </table>
-      </div>
+
+      </article>
+      <article class="trip-details-about column small-8 small-centered row">
+        <h4>Description</h4><p class="trip-about-text">${response.about}</p>
+      </article>
 
       <div class="column small-8 small-centered row">
         <button id="reserve-trip" class="button expanded"><strong>Make a Reservation</strong></button>
@@ -88,14 +93,13 @@ $(document).ready(() => {
           <form id="reservation" data-id="${response.id}">
 
             <label for="name">Name:</label>
-            <input type="text" name="name" required="required"></input>
+            <input type="text" name="name" placeholder="Firstname Lastname" required="required"></input>
 
             <label for="age">Age:</label>
             <input type="number" name="age" required="required"></input>
 
             <label for="email">Email:</label>
             <input type="text" name="email" required="required"></input>
-
 
             <button class="button expanded" type="submit"><strong>Reserve Trip Now</strong></button>
           </form>
@@ -111,7 +115,6 @@ $(document).ready(() => {
       $('#featured-content').html('<p><em>An error has occurred. The trip details could not be loaded.</em></p>');
     });
   };
-
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE TO RESERVE TRIP
   const makeTripReservation = function makeTripReservation(id) {
@@ -142,16 +145,19 @@ $(document).ready(() => {
   $(document).foundation();
 
   // EVENTS
+  // To view All Trips
   $('#all-trips').on('click', function() {
     loadTrips();
   });
 
+  // To View Trip Details
   $('#featured-content').on('click', '#trip-details', function() {
     //console.log('Button trip details clicked');
     let tripID = $(this).attr('data-id');
     getTripDetails(tripID);
   });
 
+  // To Reserve Trip
   $('#single-trip-info').on('submit', '#reservation', function(response) {
     console.log('Button reserve trip clicked');
     event.preventDefault();
@@ -159,8 +165,30 @@ $(document).ready(() => {
     makeTripReservation(tripID);
   });
 
+  // To Show Trip Reservation Form
   $('#single-trip-info').on('click', '#reserve-trip', function() {
     $('#reservation-modal').show();
   });
+
+  $(document).foundation('tooltip', 'reflow');
+
+  // Media Queries
+  // $(window).resize(function(){
+  // 	if ($(window).width() <= 700){
+  //     // To View Trip Details
+  //     const tripDetailsList = `
+  //     <h3 class="trip-details-title">Trip Details</h3>
+  //     <article class="trip-details-info column small-8 small-centered row">
+  //       <h5>ID: ${response.id}</h5>
+  //       <h5>Name: ${response.name}</h5>
+  //       <h5>Continent: ${response.continent}</h5>
+  //       <h5>Category: ${response.category}</h5>
+  //       <h5>Weeks: ${response.weeks}</th>
+  //       <h5>Cost: ${response.cost}</th>
+  //     </article>
+  //     `
+  //     $('#trip-details-info').html(tripDetailsList);
+  // 	}
+  // });
 
 });
