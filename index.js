@@ -1,7 +1,4 @@
 /* eslint-disable */
-
-// look up event delegation to access and update dynamically added elements
-
 const BASE_URL = 'https://trektravel.herokuapp.com/trips';
 const continents = [];
 const getTrips = (url) => {
@@ -146,14 +143,9 @@ const findTrip = (tripID) => {
     });
   });
 };
-// const preloadImages = () => {
-//   for (var i = 0; i < arguments.length; i++) {
-//     $("<img />").attr("src", arguments[i]);
-//   }
-// };
+
 $(document).ready(() => {
 // events
-  // preloadImages();
   $('#all-trips').on('click', () => {
     $('#trip-details').empty();
     $('#message').empty();
@@ -211,19 +203,3 @@ $(document).ready(() => {
 //     var selectedText = $(this).find(':selected').text();
 // }​​​​);​
 });
-
-
-// !!!!Foundation notes below!!!!
-// If you add new content after the page has been loaded, you will need to reinitialize the Foundation JavaScript by running the following:
-//
-// $(document).foundation();
-// Reflow will make Foundation check the DOM for any elements and re-apply any listeners to them.
-//
-// $(document).foundation('reflow');
-// To be efficient, target the actual Foundation plugin you need to reflow:
-//
-// $(document).foundation('orbit', 'reflow');
-// or
-// $(document).foundation('tab', 'reflow');
-// or
-// $(document).foundation('interchange', 'reflow');
