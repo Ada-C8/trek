@@ -1,14 +1,11 @@
 
 const baseURL = 'https://trektravel.herokuapp.com/trips';
 
-const successCallback = (response) => {
-  console.log('success!!!!!');
-};
-
 
 $(document).ready( () => {
 
   $('#book-trip-form').hide();
+
 
   let loadTrips = function loadTrips() {
     $.get(baseURL, (response) => {
@@ -38,7 +35,7 @@ $(document).ready( () => {
       <h2> ${response.name} </h2>
       <p id="weeks"> ${response.weeks} weeks in ${response.continent} for $${response.cost} </p>
       <p> ${response.about} </p>
-      <h3 data-id=${response.id}> Make a Reservation!</a> </h3>
+      <h4 class="reservation button" data-id=${response.id}> Make a Reservation!</h4>
       `;
 
       let tripId = response.id;
@@ -91,7 +88,7 @@ $(document).ready( () => {
 
   // make reservations
   //show form
-  $('.trip-details').on('click', 'h3', function() {
+  $('.trip-details').on('click', 'h4', function() {
     let tripID = $(this).attr('data-id');
     $('#book-trip-form').attr("data-id", tripID);
     $('#book-trip-form').show();

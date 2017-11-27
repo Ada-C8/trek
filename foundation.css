@@ -1595,6 +1595,7 @@ textarea {
   height: 2.4375rem;
   margin: 0 0 1rem;
   padding: 0.5rem;
+
   border: 1px solid #cacaca;
   border-radius: 0;
   background-color: #fefefe;
@@ -2269,11 +2270,11 @@ select {
     padding-left: 3rem; }
 
 .card {
-  min-height: 14rem;
+  min-height: 18rem;
   margin-bottom: 1rem;
-  border: 2px solid red;
+  border: 2px solid DarkBlue;
   border-radius: 10%;
-  background: #fefefe;
+  background: LightBlue;
   -webkit-box-shadow: none;
           box-shadow: none;
   overflow: hidden;
