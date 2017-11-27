@@ -15,7 +15,6 @@ $(document).ready(() => {
       const resultsContainer = $('#results');
       let allTrips = '';
       response.forEach((trip) => {
-        // id, name, continent, weeks
         const tripText = `<article data-trip-id="${trip.id}" class="trip-container large-8 medium-8 small-10 small-centered medium-centered large-centered columns">
                             <h2>${trip.name}</h2>
                             <p>Continent: ${trip.continent}</p>
@@ -34,18 +33,14 @@ $(document).ready(() => {
 
   // view trip details on click
   $('#results').on('click', 'button.view-trip-details-btn', function callback() {
-    // id, name, about, continent, category, weeks, cost
     const tripDetailsContainer = $(this).next();
-    // if toggled is true
     if (tripDetailsContainer.data('toggled') === 'true') {
-      // hide details
       tripDetailsContainer.data('toggled', 'false');
       tripDetailsContainer.html('');
       $(this).text('More Information');
-    } else { // if toggled is false
+    } else {
       const tripID = $(this).parent().data('trip-id');
       const url = `${BASE_URL}${tripID}`;
-      // show details
       $.get(url, (response) => {
         if (response) {
           tripDetailsContainer.data('toggled', 'true');
@@ -120,7 +115,7 @@ $(document).ready(() => {
   $(document).on('submit', '#search-form', function callback(e) {
     e.preventDefault();
     const formData = $(this).serialize();
-    // parse formData and build url parameters for budget, weeks, and continent...
+    // parse serialized formData and build url parameters for budget, weeks, and continent...
     let formDataKeysAndValues = formData.split('&').map((resultString) => {
       return resultString.split('=');
     });
@@ -130,6 +125,8 @@ $(document).ready(() => {
     }, {});
     let url = BASE_URL;
     const parameters = [];
+    // since API can only take budget, weeks, and continent as query, leave (trip)name out for now
+    // ignore queries unfilled by user
     Object.keys(formDataKeysAndValues).forEach((key) => {
       if (key !== 'trip-name' && formDataKeysAndValues[key] !== '') {
         parameters.push(`${key}?query=${formDataKeysAndValues[key]}`);
@@ -141,7 +138,7 @@ $(document).ready(() => {
       let allTrips = '';
       if (response) {
         response.forEach((trip) => {
-          // id, name, continent, weeks, cost
+          // check if the user's (trip)name query is a part of the trip's name
           if (trip.name && trip.name.toLowerCase().includes(formDataKeysAndValues['trip-name'].toLowerCase())) {
             const tripText = `<article data-trip-id="${trip.id}" class="trip-container large-8 medium-8 small-10 small-centered medium-centered large-centered columns">
                                 <h2>${trip.name}</h2>
@@ -161,13 +158,11 @@ $(document).ready(() => {
     });
   });
 
-
   // NAVIGATION HANDLERS
   // Click to toggle search form
   $('#search-form-toggle').on('click', () => {
     $('#search-form-container').toggleClass('show');
   });
-
 
   // someBODY once told me memes were outdated
   $('#shrekify').on('click', () => {
