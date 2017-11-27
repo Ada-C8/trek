@@ -30,8 +30,8 @@ $( document ).ready(function() {
 
         let form = `
           <form class="reserve" action="https://trektravel.herokuapp.com/trips/${response.id}/reservations" method="post">Reserve a spot!
-            <input type="text" name="name" value="your full name">
-            <input type="text" name="email" value="your email">
+            <input type="text" name="name" value="your full name">Name
+            <input type="text" name="email" value="your email">Email
             <input type="submit" value="Submit">
           </form>`;
           console.log(form);
@@ -58,11 +58,11 @@ $( document ).ready(function() {
         const formData = $(this).serialize();
 
       $.post(url, formData, (response) => {
-        $('#message').html('<p> it worked! </p>');
+        $('#message').html('<p> Your reservation has been saved! </p>');
         // What do we get in the response?
         console.log(response);
       }).fail(() => {
-        $('#message').html('<p>Failed</p>');
+        $('#message').html('<p>Oh no, something went wrong</p>');
         console.log(response);
     })
     .always(function(){
