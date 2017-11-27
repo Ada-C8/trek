@@ -7,6 +7,7 @@
 --ddgray: #7590a5;
 }
 
+/* main styles */
 html { box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
 html, body { height: 100%; }
@@ -18,20 +19,18 @@ body.container-fluid {
   font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
 }
-a:hover, button:hover { cursor: pointer; }
+a:hover,
+button:hover,
+i.fa-sort:hover,
+i.modal-close:hover {
+  cursor: pointer;
+}
+i.fa { margin-right: 1%; }
 .row { margin: 0; }
 h1, h2, h3, h4, h5, h6 { font-family: 'Kreon', serif;}
 
-div.screen-wrap {
-  display: none;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  background: rgba(0,0,0.5);
-}
-
+/* hero image section */
 div.hero-wrapper { padding: 0; }
-
 section.hero-image {
   width: 100%;
   height: 780px;
@@ -41,7 +40,6 @@ section.hero-image {
   background-position: center center;
   text-align: center;
 }
-
 div.image-wrapper {
   width: 100%;
   height: inherit;
@@ -49,51 +47,39 @@ div.image-wrapper {
   background: rgba(0,0,0,0.5);
   transition: .4s ease-in-out;
 }
-
-div.wtf-row {
+div.title-row {
   height: 50%;
   width: 100%;
 }
-
 h1.title {
   text-align: center;
   color: var(--white);
-  font-size: 2.5em;
 }
-i.fa { margin-right: 1%; }
 i.fa-sort { margin: 0 0 0 2%; }
-
-i.fa-sort:hover,
-i.modal-close:hover {
-  cursor: pointer;
-}
 button#all-trips {
   background: rgba(255, 255, 255, 0.2);
   border: 2px solid var(--white);
-  width: 20%;
-  padding: 1% 2%;
+  width: 100%;
+  padding: 2% 4%;
   color: var(--owhite);
 }
 
+/* trips section */
 section.trips { padding: 0; }
 .trip-table { display: none; }
 .trip-table tr { transition: .1s ease-in-out; }
 .trip-table tr.headings { background: var(--ddgray); }
-
 .trip-table tr[id^=trip]:hover { background: #4284a3; }
-
 .trip-table tr.headings:hover { background: var(--ddgray); }
 a.trip-title {
   color: var(--owhite) !important;
   font-weight: bold;
 }
-
 tr.trip-deets { background: #999; }
 tr.trip-deets:hover,
 tr.trip-deets:hover tr:hover {
   background: #999;
 }
-
 tr.trip-deets td {
   padding: 1% 6% 2%;
   border: none;
@@ -101,18 +87,24 @@ tr.trip-deets td {
 td.about-text { font-size: 12px; }
 table.deet-table { width: 100%; }
 
+/* modal styles */
+div#success,
+div#failure,
 div#reserve-modal {
   display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70%;
-  height: 60%;
   padding: 2% 4% 4%;
+  background: var(--white);
+}
+div#reserve-modal {
+  width: 70%;
   background: rgba(0, 0, 0, 0.9);
   overflow: auto;
 }
+.modal-title { color: var(--owhite); }
 i.modal-close {
   position: absolute;
   top: 2%;
@@ -123,4 +115,7 @@ div.submit-wrapper {
   margin-top: 5%;
   text-align: center;
 }
-div.form-group label { color: var(--owhite); display: block; }
+div.form-group label {
+  color: var(--owhite);
+  display: block;
+}

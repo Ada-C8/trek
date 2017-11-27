@@ -34,17 +34,15 @@ $(document).ready(function() {
         + '<td class="about-text" colspan="2">' + data.about + '</td>'
         + '</tr>'
         + '<tr>'
-        + '<td class="about-text" colspan="2"><button id="reserve-go" class="btn btn-warning">Reserve Trip</button>' + '</td>'
+        + '<td class="about-text" colspan="2"><button type="button" id="reservation' + id + '" class="btn btn-warning reserve-go">Reserve Trip</button>' + '</td>'
         + '</tr>'
         + '</table>'
         + '</td>'
         + '</tr>'
       );
-      tripInfo.fadeIn('slow', function() {
-        $(`tr#trip${data.id}`).after(tripInfo);
-      })
 
-      // $(`tr#trip${data.id}`).after(tripInfo);
+      $(`tr#trip${data.id}`).after(tripInfo);
+      $('div#reserve-modal').removeClass().addClass(`reserve-${data.id}`);
     });
   };
 
@@ -54,8 +52,6 @@ $(document).ready(function() {
   $('tbody#trip-list').on('click', 'a', function() {
     let tripID = $(this).attr('data-id');
 
-    console.log(current_trip_id);
-
     if (current_trip_id != tripID) {
       $('tr[id^=trip]').css('background', 'none');
       $('table.table').find('tr.trip-deets').each(function() {
@@ -63,13 +59,11 @@ $(document).ready(function() {
       });
       details_exist = false;
       current_trip_id = null;
-
       loadTrip(tripID);
       $(`tr#trip${tripID}`).css('background', '#777');
       details_exist = true;
       current_trip_id = tripID;
 
-      console.log(current_trip_id);
     } else {
       $('tr[id^=trip]').css('background', 'none');
       $('table.table').find('tr.trip-deets').each(function() {
@@ -80,92 +74,60 @@ $(document).ready(function() {
     }
   });
 
-  console.log(current_trip_id);
-
   $('#all-trips').on('click', function() {
     let imageHeight = $('section.hero-image').css('height');
     if (imageHeight == '780px') {
       $('section.hero-image').css('height', '100px');
       $('div.image-wrapper').css('padding', '0');
-      $('div.wtf-row').css('height', '100%');
-      $(this).css('width', '30%');
+      $('div.title-row').css('height', '100%');
+      $(this).css('width', '50%');
 
       $('h1.title').removeClass('col-12').addClass('col');
-      $('div.button-wrapper').removeClass('col-12').addClass('col');
+      $('div.button-wrapper').removeClass().addClass('col align-self-center button-wrapper');
     }
     else {
       $('section.hero-image').css('height', '780px');
       $('div.image-wrapper').css('padding', '15%');
-      $('div.wtf-row').css('height', '50%');
-      $(this).css('width', '20%');
+      $('div.title-row').css('height', '50%');
+      $(this).css('width', '100%');
 
       $('h1.title').removeClass('col').addClass('col-12');
-      $('div.button-wrapper').removeClass('col').addClass('col-12');
+      $('div.button-wrapper').removeClass().addClass('col-sm-12 col-md-6 col-lg-3 align-self-center button-wrapper');
     }
     $('.table').toggle('slow');
     loadTrips();
   });
 
-  $('#trip-list').on('click', '#reserve-go', function() {
+  $('#trip-list').on('click', '.reserve-go', function() {
     $('div#reserve-modal').show('slow');
   });
   $('i.modal-close').on('click', function() {
     $('div#reserve-modal').hide('slow');
+    $('div#success').hide('slow');
+    $('div#failure').hide('slow');
   })
 
-  // $('#name-sort').on('click', function() {
-  //   if ($('tbody#trip-list tr:first-of-type').text()[0] != 'A') {
-  //     sortTable('asc');
-  //   } else {
-  //     sortTable('desc');
-  //   }
-  // });
-  //
-  // let sortTable = function sortTable(direction) {
-  //   let rows = $('tbody#trip-list tr').get();
-  //
-  //   rows.sort(function(a, b) {
-  //     let A = $(a).children('td').eq(0).text().toUpperCase();
-  //     let B = $(b).children('td').eq(0).text().toUpperCase();
-  //
-  //     if(direction == 'asc') {
-  //       return (A > B) ? 1 : 0;
-  //     } else {
-  //       return (A > B) ? 0 : 1;
-  //     }
-  //   });
-  //
-  //   $.each(rows, function(index, row) {
-  //     $('.trip-table').children('tbody').append(row);
-  //   });
-  // };
-
-
-    let reserve_url = `https://trektravel.herokuapp.com/trips/${current_trip_id}/reservations`;
-
-    let successCallback = function(response) {
-    console.log("POST request was successful");
+  let successCallback = function(response) {
+    console.log("Successfully posted reservation");
     console.log(response);
-
-    // let generatedHMTL = '<p>Everything went great,';
-    // generatedHMTL += `and your pet ${ response["name"] } has been added to the DB!</p>`;
-    // $('#ajax-results').html(generatedHMTL);
+    $('div#reserve-modal').hide();
+    $('div#success').show();
   };
 
   $('#reserve-form').on('submit', function(event) {
-    console.log(reserve_url);
     event.preventDefault();
 
     let formData = $('#reserve-form').serialize();
-    console.log(formData);
-
-    console.log(reserve_url);
+    let id = $('#reserve-modal').attr("class");
+    id = id.slice(8);
+    id = parseInt(id);
+    let reserve_url = `https://trektravel.herokuapp.com/trips/${id}/reservations`;
 
     $.post(reserve_url, formData, successCallback).fail((response) => {
-      console.log("Didn't go so hot");
+      console.log("Failed to submit reservation");
+      $('div#reserve-modal').hide();
+      $('div#failure').show();
     });
   });
-
-
 
 });

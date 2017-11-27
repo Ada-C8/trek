@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
   <title>BOO</title>
   <!--[if lt IE 9]>
   <script src = "http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -20,12 +18,12 @@
   <main class="row main">
     <div class="col-12 hero-wrapper">
       <section class="row hero-image">
-        <div class="col image-wrapper">
-          <div class="row align-items-center wtf-row">
+        <div class="col-12 image-wrapper">
+          <div class="row align-items-center justify-content-center align-self-center title-row">
             <h1 class="col-12 align-self-center title">
               <i class="fa fa-ship"></i> Bonnie Over the Ocean
             </h1>
-            <div class="col-12 align-self-center button-wrapper">
+            <div class="col-sm-12 col-md-6 col-lg-3 align-self-center button-wrapper">
               <button id="all-trips">
                 <i class="fa fa-eye"></i> View All Trips
               </button>
@@ -36,28 +34,46 @@
     </div>
 
     <section class="col-12 trips">
+      <div id="success">
+        <div class="modal-header">
+          <h5>Woohoo!</h5>
+          <p><i class="fa fa-times fa-2x modal-close"></i></p>
+        </div>
+        <div class="modal-body">
+          <p>Successfully made reservation!</p>
+        </div>
+      </div>
+
+      <div id="failure">
+        <div class="modal-header">
+          <h5>Oh no!</h5>
+          <p><i class="fa fa-times fa-2x modal-close"></i></p>
+        </div>
+        <div class="modal-body">
+          <p>Failed to make reservation!</p>
+        </div>
+      </div>
 
       <div id="reserve-modal">
-        <p>
-          <i class="fa fa-times fa-2x modal-close"></i>
-        </p>
-        <form id="reserve-form">
-          <div class="form-group">
-            <label for="res-name"><i class="fa fa-user"></i> Name</label>
-            <input type="text" class="form-control" id="res-name" placeholder="Enter name">
-          </div>
-          <div class="form-group">
-            <label for="res-age"><i class="fa fa-birthday-cake"></i> Age</label>
-            <input type="number" class="form-control" id="res-age" placeholder="Enter age">
-          </div>
-          <div class="form-group">
-            <label for="res-email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="email" class="form-control" id="res-email" placeholder="Enter email">
-          </div>
-          <div class="submit-wrapper">
-            <button type="submit" class="btn btn-lg btn-primary" id="res-submit">Submit</button>
-          </div>
-    	  </form>
+        <div class="modal-header">
+          <h5 class="modal-title">Create new reservation</h5>
+          <p><i class="fa fa-times fa-2x modal-close"></i></p>
+        </div>
+        <div class="modal-body">
+          <form id="reserve-form">
+            <div class="form-group">
+              <label for="res-name"><i class="fa fa-user"></i> Name</label>
+              <input type="text" class="form-control" id="res-name" name="name" placeholder="Enter name" required>
+            </div>
+            <div class="form-group">
+              <label for="res-email"><i class="fa fa-envelope"></i> Email</label>
+              <input type="email" class="form-control" id="res-email" name="email" placeholder="Enter email" required>
+            </div>
+            <div class="submit-wrapper">
+              <button type="submit" class="btn btn-lg btn-primary" id="res-submit">Submit</button>
+            </div>
+      	  </form>
+        </div>
       </div>
 
       <table class="table trip-table">
@@ -66,34 +82,25 @@
             <th>
               <i class="fa fa-map-marker"></i>
               Name
-              <!-- <i id="name-sort" class="fa fa-sort"></i> -->
             </th>
             <th>
               <i class="fa fa-globe"></i>
-              Continent
-              <!-- <i id="cont-sort" class="fa fa-sort"></i> -->
+              Place
             </th>
             <th>
               <i class="fa fa-calendar"></i>
               Weeks
-              <!-- <i id="week-sort" class="fa fa-sort"></i> -->
             </th>
           </tr>
         </thead>
         <tbody id="trip-list"></tbody>
       </table>
     </section>
-
   </main>
 
-  <footer class="row footer">
-  </footer>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script src="index.js" type="text/javascript"></script>
 </body>
-
 </html>
