@@ -126,7 +126,7 @@ const findTrip = (tripID) => {
       <p>Trip Destination: ${response.continent}</p>
       <p>Duration(in weeks): ${response.weeks}</p>
       <p>Category: ${response.category}</p>
-      <p>Cost: $${response.cost}</p>
+      <p>Cost: $${(response.cost).toFixed(2)}</p>
       <h4>About:</h4>
       <p>${response.about}</p>
       <div id = "find-trip-btns">
