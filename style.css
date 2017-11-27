@@ -1,39 +1,9 @@
-/*.body {
-  background-image: a url('https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1784&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-}*/
-
-/*.bottom-banner {
-  background-image: url("https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1784&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D");
-  background-position: top center;
-  background-repeat: no-repeat;
-  padding-top: 200px;
-  padding-bottom: 200px;
-  background-size: 900px;
-  margin-bottom: 20px;
-}
-
-.bottom-banner:hover {
-  background-image:url("https://d4rlx3nshlrhf.cloudfront.net/images/post_images/tuni1472919292484_aspR_2.000_w1600_h800_e.jpg");
-  background-position: top center;
-  background-repeat: no-repeat;
-  padding-top: 200px;
-  padding-bottom: 200px;
-  background-size: 900px;
-  margin-bottom: 20px;
-}*/
-
-/*header {
-  margin-bottom: 50px;
-}*/
-
-
-/* Slideshow */
+/*********************************
+            SLIDE SHOW
+*********************************/
 #trips table {
   display: none;
 }
-
 
 #slideshow {
     position:relative;
@@ -69,15 +39,9 @@ h3 {
   font-weight: bold;
 }
 
-
-
 /*********************************
                  NAV
 *********************************/
-/*.button {
-  margin-left: 45%;
-  font-weight: bold;
-}*/
 
 .top-bar {
   /*margin-top: 10px;*/
@@ -131,34 +95,48 @@ div.top-bar-right {
 }*/
 
 
-/* search button */
+/*********************************
+              BUTTON
+*********************************/
 .button {
   background-color: #3FBFBF;
+  text-align: center;
+  margin-left: 45%;
+  font-weight: bold;
 }
 
 .button:hover {
   background-color: #DC7209;
 }
 
-/*slide-viewer {
-  position: relative;
-  overflow: hidden;
-  height: 300px;
+/*********************************
+                 TABLE
+*********************************/
+
+td, th {
+  font-style: bold;
 }
 
-.slide-group {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
 
-.slide {
-  width: 100%;
-  height: 100%;
-  display: none;
-  position: absolute;
-}
-
-.slide:first-child {
-  display: block;
+/*table, th, td {
+    border: 1px solid black;
 }*/
+
+/*********************************
+          SINGLE TRIP
+*********************************/
+
+#trip {
+  border-radius: .5px;
+  background-color: #f0ffff;
+  color: #3FBFBF;
+  margin-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+p, label {
+  color: #DC7209;
+  font-weight: bold;
+  text-align: left;
+}

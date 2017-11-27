@@ -1,5 +1,3 @@
-//hide rows not to be seen
-
 $(document).ready(() => {
   $('.search-trips').on('click', function() {
 
@@ -17,25 +15,8 @@ $(document).ready(() => {
         tableRows += '</tr>'
       })
 
-      // response.forEach(function(trip) {
-      //   let tripInfo = `<tr><h3 data-id=${trip.id}>  <a href='#'>${trip.name} </a></h3>
-      //
-      //   </li>`
-
       $('#trips table').show().append(tableRows);
-        // $("#trips ul").append(
-        // "<table><tr><td>My column 1, row 1</td>" +
-        // "<td>My column 2, row 2</td></tr>" +
-        // "<tr><td>My column 1, row 2</td>" +
-        // "<td>My column 2, row 2</td></tr></table>");
-        // });
 
-
-
-        // let tripInfo = `<li><h3 data-id=${trip.id}>  <a href='#'>${trip.name} </a></h3></li>`
-        // $('#trips ul').append(tripInfo);
-
-      // });
     })
     .fail(function(response) {
       //{"readyState":0,"status":0,"statusText":"error"}
@@ -54,7 +35,7 @@ $(document).ready(() => {
         (response) => {
           // console.log('this is' + response[name]);  //why is this returning object object
           let tripInfo = `
-          <h2> ${response[name]} </h2>
+
           <p> Id: ${response.id} </p>
           <p> Continent: ${response.continent} </p>
           <p> About: ${response.about} </p>
@@ -174,105 +155,3 @@ $(document).ready(() => {
 $(function() {
     setInterval( "slideSwitch()", 5000 );
 });
-
-// $('.slider').each(function() {
-//   let $this = $this;
-//   let $group = $this.find('.slide-group');
-//   let $slides = $this.find('.slide');
-//   let buttonArray = [];
-//   let currentIndex = 0;
-//   let timeout;
-//
-//   function move(newIndex) {
-//     let animateLeft
-//     let slideLeft;
-//
-//     advance();
-//
-//     if ($group.is(':animated') || currentIndex === newIndex) {
-//       return;
-//     }
-//
-//     buttonArray[currentIndex].removeClass('active');
-//     buttonArray[newIndex].addClass('active');
-//
-//     if (newIndex > currentIndex) {
-//       slideLeft = '100%';
-//       animateLeft = '-100%';
-//     } else {
-//       slideLeft = '-100%';
-//       animateLeft = '100%';
-//     }
-//
-//     $slides.eq(newIndex).css( {left: slideLeft, display: 'block'} );
-//     $group.animate( {left: animateLeft}, function() {
-//       $slides.eq(currentIndex).css( {display: 'none'} );
-//       $slides.eq(newIndex).css( {left: 0} );
-//       $group.css( {left: 0} );
-//       currentIndex = newIndex;
-//     });
-//   } //end of move function
-//
-//
-//   function advance() {
-//     clearTimeout(timeout);
-//
-//     timeout = setTimeout(function() {
-//       if (currentIndex < ($slides.length - 1)) {
-//         move(currentIndex + 1);
-//       } else {
-//         move(0);
-//       }
-//     }, 4000);
-//   } // end of advance function
-//
-//   $.each($slides, function(index) {
-//     let $button = $('<button type="button" class="slide-btn">&bull;</button>');
-//     if (index === currentIndex) {
-//       $button.addClass('active');
-//     }
-//     $button.on('click', function() {
-//       move(index);
-//     }).appendTo($this.find('.slide-buttons'));
-//     buttonArray.push($button);
-//   });
-//
-//   advance();
-//
-// }); //end of slide function
-
-
-// Another option that works
-
-// $(function() {
-//   $('#clickme').click(function() {
-//        $.ajax({
-//          method: 'GET',
-//          url: 'https://trektravel.herokuapp.com/trips',
-//          dataType: 'json',
-//          success: function(data) {
-//           let travelData = [];
-//           console.log(data);
-//           for(r in data) {
-//             let key = r;
-//             let val = data[r];
-//
-//             travelData.push('<li id="' + key + '">' + val.id + '</li>');
-//           }
-//           console.log(travelData);
-//
-//
-//           $('<ul/>', {
-//              'class': 'interest-list',
-//              html: travelData.join('')
-//           }).appendTo('body');
-//
-//        },
-//       statusCode: {
-//          404: function() {
-//            alert('There was a problem with the server.  Try again soon!');
-//          }
-//        }
-//     });
-//   });
-// });
