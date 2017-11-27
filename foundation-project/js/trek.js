@@ -28,10 +28,18 @@ $( document ).ready(function() {
         <p> description: ${response.about} </p>
         <p> trip id : ${response.id} </p>`;
 
-        let reserveButton = `<button type="button" name="button">Reserve Spot</button>`
+        let form = `
+          <form class="reserve" action="https://trektravel.herokuapp.com/trips/${response.id}/reservations" method="post">Reserve a spot!
+            <input type="text" name="name" value="your full name">
+            <input type="text" name="email" value="your email">
+            <input type="submit" value="Submit">
+          </form>`;
+          console.log(form);
+
+        // let reserveButton = `<button type="button" name="button">Reserve Spot</button>`
 
         $('#trip').html(tripInfo);
-        $('#reserve').html(reserveButton);
+        // $('#reserve').html(reserveButton);
         $('#reserve').html(form);
       }) // end .get
       .fail(function(response){
@@ -41,36 +49,36 @@ $( document ).ready(function() {
         .always(function(){
           console.log('always even if we have success or failure');
         });
-  }; // end of loadTrip()
 
-  let form = `
-    <form class="reserve" action="https://trektravel.herokuapp.com/trips/id/reservations" method="post">Reserve a spot!
-      <input type="text" name="name" value="your full name">
-      <input type="text" name="age" value="your age">
-      <input type="text" name="email" value="your email">
-      <input type="submit" value="Submit">
-    </form>`;
 
-//     // post
-//     $('form').submit( function(e) {
-//       e.preventDefault();
-//
-//       const url = $(this).attr('action'); // Retrieve the action from the form
-//       const formData = $(this).serialize();
-//
-//     $.post(url, formData, (response) => {
-//       $('#message').html('<p> added! </p>');
-//       // What do we get in the response?
-//       console.log(response);
-//     }).fail(() => {
-//       $('#message').html('<p>Adding Pet Failed</p>');
-//   });
-// });
+      // post
+      $('body').on('submit', 'form', function(e) {
+        e.preventDefault();
+
+        const url = $(this).attr('action'); // Retrieve the action from the form
+        const formData = $(this).serialize();
+
+      $.post(url, formData, (response) => {
+        $('#message').html('<p> it worked! </p>');
+        // What do we get in the response?
+        console.log(response);
+      }).fail(() => {
+        $('#message').html('<p>Failed</p>');
+        console.log(response);
+    })
+    .always(function(){
+      console.log('always even if we have success or failure');
+    });
+  });
+}; // end of loadTrip()
 
   // EVENTS
   $('ul').on('click', 'p', function(){
-    let tripID = $(this).attr('data-id');
+    const tripID = $(this).attr('data-id');
     loadTrip(tripID);
+    $("button").click(function(){
+        $('.trip-box').toggle();
+    });
   });
 
   $('#load').on('click', function(){
