@@ -12,6 +12,29 @@ body {
   background-color: steelblue;
 }
 
+.shrek{
+  background-image: url('https://images.moviepilot.com/images/c_limit,q_auto:good,w_600/clr44ylwoniaf3plvgas/fall-in-love-with-shrek-again-with-these-9-fascinating-movie-facts-you-probably-didn-t-know.jpg');
+  background-size:auto;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.shrek header{
+  background-color: rgb(19,24,98);
+}
+
+.shrek header label{
+  color: white;
+}
+
+.shrek .button{
+  background-color: rgb(39,163,73);
+}
+
+.shrek .trip-container{
+  background-color: rgba(146, 209, 187, 0.8);
+}
+
 #message{
   position: fixed;
   float: left;
@@ -22,7 +45,7 @@ body {
 }
 
 header {
-  background: #68edb8;
+  background: rgb(104,237,184);
 }
 
 #nav-buttons, #site-title{
@@ -34,7 +57,7 @@ header {
 }
 
 .trip-container {
-  background-color: #ccc;
+  background-color: rgb(204,204,204);
   margin-top: 10px;
   padding-top: 20px;
   padding-bottom: 10px;

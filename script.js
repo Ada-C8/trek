@@ -161,6 +161,13 @@ $(document).ready(() => {
   // NAVIGATION HANDLERS
   // Click to toggle search form
   $('#search-form-toggle').on('click', () => {
+    if ($('#search-form-container').data('toggled') === false) {
+      $('#search-form-toggle').text('Hide Search Form');
+      $('#search-form-container').data('toggled', true);
+    } else {
+      $('#search-form-toggle').text('Search For A Trip');
+      $('#search-form-container').data('toggled', false);
+    }
     $('#search-form-container').toggleClass('show');
   });
 
@@ -170,13 +177,11 @@ $(document).ready(() => {
     if (buttonText.innerHTML.includes('Exit')) {
       $('#site-title h2').html('T R E K');
       buttonText.innerHTML = 'Visit The Swamp';
-      $('body').css('background-image', 'none');
     } else {
       const shrekImage = '<a href="https://fontmeme.com/shrek-font/"><img src="https://fontmeme.com/permalink/171126/41e088cfebc3f66ae1927574b97b2ff1.png" alt="shrek-font" border="0"></a>';
-      // $('#site-title h2').html('S H R E K');
       $('#site-title h2').html(shrekImage);
       buttonText.innerHTML = 'Exit The Swamp';
-      $('body').css('background-image', "url('https://images.moviepilot.com/images/c_limit,q_auto:good,w_600/clr44ylwoniaf3plvgas/fall-in-love-with-shrek-again-with-these-9-fascinating-movie-facts-you-probably-didn-t-know.jpg')");
     }
+    $('body').toggleClass('shrek');
   });
 });
