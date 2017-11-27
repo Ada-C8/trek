@@ -53,58 +53,63 @@ $(document).ready(() => {
     $.get(singleTripURL, (response) => {
       console.log(response);
       const singleTripTable = `
-      <h3 class="trip-details-title">Trip Details</h3>
-      <p class="trip-details-title"><em>(Scroll left or right to view trip details table)</em><p>
+      <section id="single-trip-wrapper">
+        <h3 class="trip-details-title">
+          Trip Details
+        </h3>
+        <p class="trip-details-title">
+          <em>(Scroll left or right to view trip details table)</em>
+        <p>
 
-      <article class="trip-details-info column small-4 small-centered row">
+        <article class="trip-details-info column small-8 small-centered row">
+          <table data-tooltip data-options="hover_delay: 50;" title="Scroll left or right!" class="trip-info-table scroll centered has-tip">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Continent</th>
+                <th>Category</th>
+                <th>Weeks</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>${response.id}</td>
+                <td>${response.name}</td>
+                <td>${response.continent}</td>
+                <td>${response.category}</td>
+                <td>${response.weeks}</td>
+                <td>${response.cost}</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
 
-        <table data-tooltip data-options="hover_delay: 50;" title="Scroll left or right!" class="trip-info-table scroll centered has-tip">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Continent</th>
-              <th>Category</th>
-              <th>Weeks</th>
-              <th>Cost</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>${response.id}</td>
-              <td>${response.name}</td>
-              <td>${response.continent}</td>
-              <td>${response.category}</td>
-              <td>${response.weeks}</td>
-              <td>${response.cost}</td>
-            </tr>
-          </tbody>
-        </table>
+        <article class="trip-details-about column small-8 small-centered row">
+          <h4>Description</h4><p class="trip-about-text">${response.about}</p>
+        </article>
 
-      </article>
-      <article class="trip-details-about column small-8 small-centered row">
-        <h4>Description</h4><p class="trip-about-text">${response.about}</p>
-      </article>
+        <div class="column small-8 small-centered row">
+          <button id="reserve-trip" class="button expanded"><strong>MAKE A RESERVATION</strong></button>
 
-      <div class="column small-8 small-centered row">
-        <button id="reserve-trip" class="button expanded"><strong>Make a Reservation</strong></button>
+          <section id="reservation-modal">
+            <form id="reservation" data-id="${response.id}">
 
-        <section id="reservation-modal">
-          <form id="reservation" data-id="${response.id}">
+              <label for="name">Name:</label>
+              <input type="text" name="name" placeholder="Firstname Lastname" required="required"></input>
 
-            <label for="name">Name:</label>
-            <input type="text" name="name" placeholder="Firstname Lastname" required="required"></input>
+              <label for="age">Age:</label>
+              <input type="number" name="age" required="required"></input>
 
-            <label for="age">Age:</label>
-            <input type="number" name="age" required="required"></input>
+              <label for="email">Email:</label>
+              <input type="text" name="email" required="required"></input>
 
-            <label for="email">Email:</label>
-            <input type="text" name="email" required="required"></input>
-
-            <button class="button expanded" type="submit"><strong>Reserve Trip Now</strong></button>
-          </form>
-        </section>
-      </div>
+              <button class="button expanded" type="submit"><strong>RESERVE TRIP</strong></button>
+            </form>
+          </section>
+        </div>
+      </section>
       `;
 
       $('#single-trip-info').html(singleTripTable);

@@ -1,21 +1,60 @@
-td.atrip-cell {
-  vertical-align: text-top;
-  text-align: justify;
-  margin: 0;
-  height: 2px;
-}
-
 header {
-  margin-top: 80px;
+  margin-top: 40px;
   text-align: center;
-
 }
 
-.featured-content {
+header h1, a{
+  font-family: 'Bahiana', cursive;
+  font-size: 3em;
+  margin-bottom: -42px;
+  color: #534B52;
+}
+
+header h1:hover {
+  color: #F98B72;
+  text-shadow: 2px 5px #E0DDCF;
+}
+
+header p {
+  /*font-family: 'Patrick Hand SC', cursive;*/
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 2.2em;
+  font-weight: 600;
+  color: #534B52;
+}
+
+.button {
+  background-color: #F98B72;
+  /*font-family: 'Bahiana', cursive;*/
+  font-family: 'Jura', sans-serif;
+  font-size: 1em;
+  letter-spacing: 2px;
+}
+
+.button:hover {
+  background-color: #534B52;
+}
+
+/* NOT WORKING: https://foundation.zurb.com/forum/posts/34693-how-to-change-visited-text-color-for-class-button*/
+.button:visited {
+  color: #F98B72;
+}
+
+table {
+  border: 7px solid lightgray;
+}
+
+#single-trip-wrapper {
+  background-color: white;
+  opacity: .9;
+  margin: 0px 50px;
+  border: 7px solid lightgray;
+  border-radius: 20px;
   margin-bottom: 20px;
 }
 
 .trip-details-title, .trip-details-about {
+  padding-top: 20px;
   text-align: center;
 }
 
@@ -25,9 +64,8 @@ header {
 
 /* Background */
 body {
-  font-family: 'Barlow', sans-serif;
-  font-size: 16px;
-
+  font-family: 'Jura', sans-serif;
+  margin: 0 auto;
   position: relative;
   background: -webkit-linear-gradient(left top, #CCF5FC, #398694); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom right, #CCF5FC, #398694); /* For Opera 11.1 to 12.0 */
@@ -44,10 +82,12 @@ body {
 }
 
 /* FOOTER */
-footer {
+footer, h6{
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 1.5em;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: .04rem;
   text-align: center;
+  margin-top: -25px;
 }
