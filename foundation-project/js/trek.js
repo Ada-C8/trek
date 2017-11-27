@@ -24,22 +24,21 @@ $( document ).ready(function() {
         <h4>${response.name} in ${response.continent}</h4>
         <p> This is a <strong>${response.weeks}</strong> week long trip</p>
         <p> category: ${response.category} </p>
-        <p> cost: ${response.cost} </p>
+        <p> cost: <strong>$${response.cost}</strong> </p>
         <p> description: ${response.about} </p>
-        <p> trip id : ${response.id} </p>`;
+        <p> trip id : ${response.id} </p>
+        <p> <strong>RESERVE YOUR SPOT!</strong> </p>
+        `;
 
         let form = `
-          <form class="reserve" action="https://trektravel.herokuapp.com/trips/${response.id}/reservations" method="post">Reserve a spot!
-            <input type="text" name="name" value="your full name">Name
-            <input type="text" name="email" value="your email">Email
+          <form class="reserve" action="https://trektravel.herokuapp.com/trips/${response.id}/reservations" method="post">
+            Name:<input type="text" name="name" placeholder="your full name"><br>
+            Email:<input type="text" name="email" placeholder="your email"><br>
             <input type="submit" value="Submit">
           </form>`;
           console.log(form);
 
-        // let reserveButton = `<button type="button" name="button">Reserve Spot</button>`
-
         $('#trip').html(tripInfo);
-        // $('#reserve').html(reserveButton);
         $('#reserve').html(form);
       }) // end .get
       .fail(function(response){
