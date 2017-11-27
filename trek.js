@@ -30,7 +30,7 @@ $(document).ready(() => {
         $('#showForm').remove();
       }
       const details = `
-      <ul id='details'>
+      <ul id='details' class='columns large-6 small-8'>
         <li id='${response.id}'><strong>ID:</strong> ${response.id} </li>
         <li><strong>Destination:</strong> ${response.name} </li>
         <li><strong>Continent:</strong> ${response.continent} </li>

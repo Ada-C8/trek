@@ -59,8 +59,12 @@ ul{
 
 #tripSection{
   font-weight: bold;
+  padding-left: 40px;
 }
 
 h3{
   text-align: center;
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
 }

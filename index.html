@@ -17,15 +17,15 @@
   </head>
 
   <body>
-    <section id='header' class='row small-12 large-12'>
+    <section id='header' class='row'>
       <h2 id = "trips"><button>View All Trips</button></h2>
     </section>
 
-    <section class='row small-12 large-12' id='singleTripDetails'>
+    <section class='row' id='singleTripDetails'>
     </section>
 
-    <section class='row small-12 large-12' id='reservationForm'>
-      <form>
+    <section class='row' id='reservationForm'>
+      <form class='columns small-6 large-6'>
         <label for='name'>Name:</label>
         <input id='nameField' type='text' name='name'></input>
 
@@ -36,9 +36,9 @@
       </form>
     </section>
 
-    <section class='row small-12 large-12' id='displayArea'>
+    <section class='row' id='displayArea'>
       <h3> Available Trips </h3>
-      <ul id=tripSection></ul>
+      <ul id=tripSection class='large-6 small-6'></ul>
     </section>
   </body>
 </html>
