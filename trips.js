@@ -12,19 +12,15 @@ $(document).ready( () => {
 
   let loadTrips = function loadTrips() {
     $.get(baseURL, (response) => {
-      // $('#load').hide();
       response.forEach(function(trip)  {
         if (trip.id < 35) {
           let tripInfo = `<div class="column">
           <h3 class="card" data-id=${trip.id}>
-          ${trip.name}</h3>
-          </div>`
-
+          ${trip.name}</h3></div>`
           $('#trips .row').append(tripInfo);
         }
       }); //for each
-
-    })// get success response
+    })
     .fail(function(response) {
       console.log(response);
       $('#fail').html('<p>Your Request was Unsuccessful</p>')
@@ -40,15 +36,12 @@ $(document).ready( () => {
     $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
       let tripDetail = `
       <h2> ${response.name} </h2>
-      <p> ${response.weeks} weeks in ${response.continent} for $${response.cost} </p>
+      <p id="weeks"> ${response.weeks} weeks in ${response.continent} for $${response.cost} </p>
       <p> ${response.about} </p>
       <h3 data-id=${response.id}> Make a Reservation!</a> </h3>
       `;
 
-      console.log("here in the trip detail function this is " + $(this));
-
       let tripId = response.id;
-      console.log(`the trip id is ${tripId}`);
       $('.trip-details').prepend(tripDetail);
 
     }) //get trip function
@@ -70,8 +63,6 @@ $(document).ready( () => {
       alert("Your Trip is Reserved!");
       $('#book-trip-form').hide();
       $('.trip-details').children().hide();
-
-
     })
     .fail(function(response){
       $('#fail').html('<p>Request was unsuccessful</p>')
@@ -81,7 +72,6 @@ $(document).ready( () => {
     });
   };
 
-
   // EVENTS
 
 
@@ -89,11 +79,6 @@ $(document).ready( () => {
   $('#load').on('click', function() {
     loadTrips();
   });
-
-  // $('#trips .row').on('mouseover', 'h3' function() {
-  //   console.log("mouseenter!")
-  //   // $('h3').addClass('highlighted');
-  // });
 
   //load trip detail
   $('#trips .row').on('click', 'h3', function () {
@@ -107,10 +92,7 @@ $(document).ready( () => {
   // make reservations
   //show form
   $('.trip-details').on('click', 'h3', function() {
-    console.log(`this is ${this}`);
     let tripID = $(this).attr('data-id');
-    console.log(`and now tripid is ${tripID}`)
-
     $('#book-trip-form').attr("data-id", tripID);
     $('#book-trip-form').show();
   })
@@ -119,14 +101,8 @@ $(document).ready( () => {
 
   $('#book-trip-form').on('submit', function(event) {
     event.preventDefault();
-    console.log(`this is ${this}`);
     let tripID = $(this).attr('data-id');
-    console.log(`this is ${tripID}`);
-
-
     let formData = $('#book-trip-form').serialize();
-    console.log("Showing the form data!")
-    console.log(formData);
     reserveTrip(tripID, formData);
   }) //end book trip
 

@@ -2271,7 +2271,7 @@ select {
 .card {
   min-height: 14rem;
   margin-bottom: 1rem;
-  border: 2px solid #e6e6e6;
+  border: 2px solid red;
   border-radius: 10%;
   background: #fefefe;
   -webkit-box-shadow: none;
