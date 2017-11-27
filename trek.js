@@ -4,12 +4,12 @@ $(document).ready(() => {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       response.forEach((place) => {
         const location = `
-        <li><a><h3 data-id=${place.id}> ${place.name} </h3></a></li>`;
+        <li><a><h3 data-id="${place.id}"> ${place.name} </h3></a></li>`;
         // console.log(response);
         // console.log(location);
         $('#location').append(location);
       });
-    });
+    })
       .fail((response) => {
         console.log(response);
         $('#fail').html('<p>Request was unsuccessful</p>');
@@ -21,20 +21,20 @@ $(document).ready(() => {
 
   // Function for request and response for a specific trip.
 
-  const loadTrip = function loadTrip(id) {
+  const loadSingleTrip = function loadSingleTrip(id) {
     $.get(`https://trektravel.herokuapp.com/trips/${id}`, (response) => {
       const tripInfo = `
-        <p> Id: ${response.id} </p>
-        <p> Name: ${response.name} </p>
-        <p> Destination: ${response.destination} </p>
-        <p> Continent: ${response.continent} </p>
-        <p> About: ${response.about} </p>
-        <p> Category: ${response.category} </p>
-        <p> Weeks: ${response.weeks} </p>
-        <p> Cost: ${response.cost} </p>`;
+      <p> Id: ${response.id} </p>
+      <p> Name: ${response.name} </p>
+      <p> Destination: ${response.destination} </p>
+      <p> Continent: ${response.continent} </p>
+      <p> About: ${response.about} </p>
+      <p> Category: ${response.category} </p>
+      <p> Weeks: ${response.weeks} </p>
+      <p> Cost: ${response.cost} </p>`;
 
       $('#tripinfo').html(tripInfo);
-    });
+    })
       .fail((response) => {
         console.log(response);
         $('#fail').html('<p>Request was unsuccessful</p>');
@@ -44,11 +44,11 @@ $(document).ready(() => {
       });
   };
 
-    // EVENTS
-  $('#tripinfo ul').on('click', 'h3', () => {
+  // EVENTS
+  $('#location').on('click', () => {
     console.log($(this));
     const tripID = $(this).attr('data-id');
-    loadTrip(tripID);
+    loadSingleTrip(tripID);
   });
 
   $('#load').on('click', () => {
