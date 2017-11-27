@@ -13,7 +13,7 @@ body {
 }
 
 .shrek{
-  background-image: url('https://images.moviepilot.com/images/c_limit,q_auto:good,w_600/clr44ylwoniaf3plvgas/fall-in-love-with-shrek-again-with-these-9-fascinating-movie-facts-you-probably-didn-t-know.jpg');
+  background-image: url('../assets/background.jpg');
   background-size:auto;
   background-position: center;
   background-attachment: fixed;
