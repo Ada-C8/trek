@@ -33,11 +33,15 @@ header {
   font-size: 6rem;
 }
 
-.trips {
+.trips, .show {
   margin-top: 3rem;
-  width: 60%;
-  margin-right: 20%;
-  margin-left: 20%;
+  text-align: left;
+  width: 50%;
+  margin-right: 25%;
+  margin-left: 25%;
+}
+
+.trips, .show p {
   font-family: 'Spectral SC', serif;
 }
 
@@ -47,29 +51,14 @@ header {
   text-decoration: none;
 }
 
-.show {
-  text-align: left;
-  width: 50%;
-
-  margin-right: 25%;
-  margin-left: 25%;
-  overflow: auto;
-}
-
-.show p {
-  font-family: 'Spectral SC', serif;
-}
-
 .show h1, .show h3 {
-  text-align: left;
-  width: 100%;
   text-transform: uppercase;
   font-style: italic;
 }
 
-
-.reservation-form + .button{
-  display: inline;
+.reservation-form {
+  width: 120%;
+  margin-right: 25%;
 }
 
 .reservation-form label, button {
