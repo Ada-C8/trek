@@ -60,6 +60,7 @@ $(document).ready( function() {
 
   $('button#search').click(function() {
     loadTrips();
+    $('#trip').empty();
     $('#trip').hide();
     $('button#search').html('Find Trips');
   });
