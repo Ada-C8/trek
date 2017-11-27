@@ -24,10 +24,12 @@
   margin-bottom: 20px;
 }*/
 
-header {
+/*header {
   margin-bottom: 50px;
-}
+}*/
 
+
+/* Slideshow */
 #trips table {
   display: none;
 }
@@ -58,9 +60,71 @@ header {
     z-index:9;
 }
 
-.button {
-  margin-left: 600px;
+/*********************************
+            GENERAL
+*********************************/
+h3 {
+  color: #3FBFBF;
+  font-family: 'Pacifico', cursive;
+  font-weight: bold;
 }
+
+
+
+/*********************************
+                 NAV
+*********************************/
+/*.button {
+  margin-left: 45%;
+  font-weight: bold;
+}*/
+
+.top-bar {
+  /*margin-top: 10px;*/
+  background-color: white;
+  height: 80px;
+  margin-bottom: 50px;
+}
+
+nav.top-bar ul {
+  background-color: white;
+  line-height: 80px;
+  margin: 0;
+}
+
+nav.top-bar ul li a {
+  color: #3FBFBF;
+  font-size: 1.2rem;
+}
+
+div.top-bar-left {
+  padding-left: 1%
+}
+
+div.top-bar-right {
+  float: right;
+  width: 40%;
+  display: inline-block;
+}
+
+.site-title {
+  line-height: 80px;
+  padding: 0;
+}
+/*
+.top-bar ul {
+  line-height: 80px;
+  color: white;
+}*/
+
+.top-bar a {
+  display: inline-block;
+}
+
+.menu > li > a {
+  display: inline-block;
+}
+
 
 /*slide-viewer {
   position: relative;
