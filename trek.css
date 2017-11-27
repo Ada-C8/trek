@@ -8,9 +8,22 @@ body, html {
   background-size: cover;
   background-color:#464646;
 
-  }
+}
+#reserve-trip {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  width: 70%;
+  margin-left: calc((100% - 60%)/2);
+}
 .hide {
   display: none;
+}
+.bold {
+  font-weight: bold;
+}
+.trip-name {
+  text-align: center;
+  padding-bottom: 10px;
 }
 button {
   /*border-radius: 15px;*/
@@ -37,7 +50,7 @@ button {
 }
 #main-content {
   /*position: absolute;*/
-  margin-top: 85px;
+  margin-top: 105px;
   z-index: -1;
 }
 .one-trip {
@@ -46,7 +59,22 @@ button {
   width: 70%;
   padding: 40px;
   border-radius: 20px;
-  margin-left: calc((100% - 70%)/2)
+  margin-left: calc((100% - 70%)/2);
+  /*margin-bottom: 15px;*/
+  /*padding-bottom: 90px;
+  margin-top: 125px;*/
+  padding-bottom: 25px;
+}
+.form-group {
+  display: inline-block;
+  float: left;
+  padding-right: 20px;
+}
+.submit.btn {
+  margin: 0;
+  margin-top: -4px;
+  margin-left: 25px;
+
 }
 #main-content ul li a {
   color: 	#585858;
@@ -72,8 +100,9 @@ footer {
   bottom: 0;
   width: 100%;
   color: #B0B0B0;
-  /*background: rgba(255, 255, 255);*/
+  /*background: rgba(0, 0, 0, .1);*/
   text-align: center;
+  display: none;
 }
 ul {
   list-style: none;

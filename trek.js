@@ -26,15 +26,16 @@ const GetOneTrip = (response) => {
   let tripInfo = ''
   tripInfo += '<section id="main-content" class="one-trip">'
   ;
-  let tripTitle = `<h1>${response['name']}</h1>`;
-  let tripId = `<p>ID: ${response['id']}</p>`;
-  let tripDestination = `<p>Continent: ${response['continent']}</p>`;
-  let tripDescription = `<p>Description: ${response['about']}</p>`;
-  let tripDuration = `<p>Duration: ${response['weeks']} weeks</p>`;
-  let tripCost = `<p>Cost: $${response['cost']}</p>`;
-  let tripTags = `<p>Tags: ${response['category']}</p>`;
+  let tripTitle = `<h1 class="trip-name">${response['name']}</h1>`;
+  let tripId = `<p><span class="bold">ID:</span> ${response['id']}</p>`;
+  let tripDestination = `<p><span class="bold">Continent:</span> ${response['continent']}</p>`;
+  let tripDescription = `<p> ${response['about']}</p>`;
+  let tripDuration = `<p><span class="bold">Duration:</span> ${response['weeks']} weeks</p>`;
+  let tripCost = `<p><span class="bold">Cost:</span> $${response['cost']}</p>`;
+  let tripTags = `<p><span class="bold">Tags:</span> ${response['category']}</p>`;
   tripInfo += `${tripTitle}${tripId}${tripDestination}${tripDescription}${tripDuration}${tripCost}${tripTags}</section>`;
   $('#main-content').replaceWith(tripInfo);
+  // $('#main-content').append($('#reserve-trip').removeClass('hide'));
   $('#reserve-trip').removeClass('hide');
   $('#reserve-trip form').append(`<input type="hidden" id=trip_id name="trip_id" value=${response['id']}>`);
 
