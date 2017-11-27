@@ -41,7 +41,7 @@ $(document).ready(() => {
           <p> About: ${response.about} </p>
           <p> Category: ${response.category} </p>
           <p> Weeks: ${response.weeks} </p>
-          <p> Costs: ${response.cost} </p>
+          <p> Costs: $ ${response.cost} </p>
           <form id="add-name-form" action="https://trektravel.herokuapp.com/trips/${id}/reservations">
           <label for="name">Name:</label>
           <input type="text" name="name" placeholder="Name"></input>
