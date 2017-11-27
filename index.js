@@ -35,7 +35,7 @@ $(document).ready(function(){
         <p class="trip-about">
           <em>${about}</em>
         </p>
-        <a class="book-btn button no-collapse small-12 medium-6 large-3 columns">Book Now: $${cost}</a>
+        <a class="book-btn button no-collapse small-12 medium-6 large-3 columns">Book Now: $${cost.toFixed(2)}</a>
         <form class="hidden book-form no-collapse small-12 medium-8 columns row" id="book-form-${id}">
           <label for="email" class="no-collapse small-12 columns"><p><em>Enter your email address to reserve your spot now!</em></p></label>
           <input type="text" class="no-collapse small-12 medium-9 columns" name="email" placeholder="example@test.com" />
