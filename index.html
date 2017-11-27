@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Trek</title>
+    <link rel="stylesheet" href="foundation.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+<!------------------------------------------>
+<section id="fail" class="fail-style"><!-- error message --></section>
+
+<!-- display all trips button -->
+<button id="all-trips-btn" class="button large secondary hollow expanded">View List of Trips</button>
+
+<section id="confirmation-msg" class="confirmation-msg-style"><!-- made new reservation/added new trip --></section>
+
+<!-- one trip summary -->
+<article id="trip" class="trip-style">
+  <h4 id="trip-name"></h4>
+  <ul id="trip-summary"></ul>
+  <span id="show-reserve-btn"></span>
+</article>
+
+
+
+
+<!-- reserve a trip -->
+<div id="reserve-trip" class="reserve-trip-style">
+  <form action="#" method="post" id="reservation-form">
+    <section>
+      <label>Name: </label>
+      <input type="text" id="name" name="name"></input>
+    </section>
+    <section>
+      <label>Age: </label>
+      <input type="number" id="age" name="age"></input>
+    </section>
+    <section>
+      <label>Email: </label>
+      <input type="text" id="email" name="email"></input>
+    </section>
+
+    <section class="button">
+      <button id="submit-reservation" type="submit">Make Reservation</button>
+    </section>
+  </form>
+</div>
+
+<!-- all trips list -->
+<section id="trips" class="trips-style">
+  <ul><h4></h4></ul>
+</section>
+
+
+
+<!------------------------------------------>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
