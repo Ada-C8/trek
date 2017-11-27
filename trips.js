@@ -16,18 +16,6 @@ $(document).ready(()=>{
     }
   })
 
-  $('#countryMenu').on('click', 'li', function(){
-    $.get(url, response=> {
-      const allTrips = response;
-      for (let i = 0; i < allTrips.length; i++){
-        const trip = allTrips[i]
-        if (trip.continent === this.id) {
-          console.log(this.id)
-          $('#trips').append($(`<article><h3>${trip.name}</h3><p id="subDeets"> ${trip.continent} | ${trip.weeks} week(s)</p><img class="indexImg" src="http://images.all-free-download.com/images/graphiclarge/beautiful_natural_scenery_01_hd_picture_166232.jpg" alt="generic issue"></article>`).attr('id', `${trip.id}`).addClass('tripListAll column small-12 large-6 float-right'));
-        }
-      }
-    })
-  });
 
   $('#countryMenu').append()
   $('#all').on('click', () => {
@@ -99,5 +87,20 @@ $(document).ready(()=>{
 
     })
   });
+
+  $('#countryMenu').on('click', 'li', function(){
+    $('#trips').empty();
+    $.get(url, response=> {
+      const allTrips = response;
+      for (let i = 0; i < allTrips.length; i++){
+        const trip = allTrips[i]
+        if (trip.continent === this.id) {
+          console.log(this.id)
+          $('#trips').append($(`<article><h3>${trip.name}</h3><p id="subDeets"> ${trip.continent} | ${trip.weeks} week(s)</p><img class="indexImg" src="http://images.all-free-download.com/images/graphiclarge/beautiful_natural_scenery_01_hd_picture_166232.jpg" alt="generic issue"></article>`).attr('id', `${trip.id}`).addClass('tripListAll column small-12 large-6 float-right'));
+        }
+      }
+    })
+  });
+
 
 });
