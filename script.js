@@ -1,7 +1,7 @@
 // /* eslint-disable */
 $(document).ready(() => {
   // AJAX REQUEST TO TRIP API HANDLERS
-  // view all trips on click
+  // view all trips on click;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   $('#all-trips-btn').on('click', () => {
     const url = 'https://trektravel.herokuapp.com/trips';
     $.get(
@@ -118,6 +118,25 @@ $(document).ready(() => {
       $('#message').show().delay(2000).fadeOut('slow');
     });
   });
+
+  // submit search form to API and filter out results
+  // valid search request https://trektravel.herokuapp.com/trips/budget?query=5000&weeks?query=3&continent?query=Asia
+  // no search request format available for: (trip)name, category
+
+  $(document).on('submit', '#search-form', function callback(e) {
+    e.preventDefault();
+    const formData = $(this).serialize();
+    // parse formData and build url parameters for budget, weeks, and continent...
+    const formDataKeysAndValues = formData.split('&').map((resultString) => {
+      return resultString.split('=');
+    });
+    const formDataMap = new Map(formDataKeysAndValues);
+    console.log(formDataMap);
+    const url = `https://trektravel.herokuapp.com/trips/budget?query=5000&weeks?query=3&continent?query=Asia`;
+
+    //...and filter through results based on (trip) name and category
+  });
+
 
   // NAVIGATION HANDLERS
   // Click to toggle search form
