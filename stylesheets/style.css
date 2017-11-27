@@ -46,6 +46,12 @@ body {
 
 header {
   background: rgb(104,237,184);
+  position: fixed;
+  width: 100%;
+}
+
+#results{
+  padding-top: 120px;
 }
 
 #nav-buttons, #site-title{
