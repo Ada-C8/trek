@@ -136,6 +136,10 @@ div.top-bar-right {
   background-color: #3FBFBF;
 }
 
+.button:hover {
+  background-color: #DC7209;
+}
+
 /*slide-viewer {
   position: relative;
   overflow: hidden;
