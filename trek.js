@@ -45,7 +45,9 @@ $(document).ready(() => {
       $('#reservationForm').show();
       $('#nameField').val('');
       $('#emailField').val('');
-
+      $('html, body').animate({
+        scrollTop: $('#singleTripDetails').offset().top
+      }, 500);
     }).fail(() => {
       console.log('Something went wrong with the trip details');
     });
