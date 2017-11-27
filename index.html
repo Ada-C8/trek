@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TRAVEL WORLD WIDE!</title>
+  <title>Find Your Adventure</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
@@ -24,10 +24,10 @@
     </div>
   </header>
 
+  <!-- Display error -->
 
-  <!-- Display errors -->
   <div class="alert callout error" data-closable>
-    <p>Something went wrong with your request!</p>
+    <p class="cardo-font">Something went wrong with your request!</p>
     <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
@@ -36,10 +36,10 @@
   <main>
     <div id="trips">  <!-- HIDE HERE -->
       <header>
-        <h3 id="trip-header">Available Trips</h3>
+        <h3 id="trip-header" class="header-styling">Available Trips</h3>
       </header>
 
-      <table class="hover" id="trips-table">
+      <table class="hover cardo-font" id="trips-table">
         <thead>
           <tr>
             <th>Trip ID</th>
@@ -56,12 +56,12 @@
 
     <div id="single-trip"> <!-- HIDE HERE -->
       <header>
-        <h3 id="trip-name"></h3>
+        <h3 id="trip-name" class="header-styling"></h3>
         <h4 id="trip-country"></h4>
       </header>
 
       <div class="row">
-        <section id="about-styling" class="small-11 small-centered columns">
+        <section id="about-styling" class="small-11 small-centered columns cardo-font">
           <p id="about"></p>
           <p id="category"></p>
           <p id="weeks"></p>
@@ -72,9 +72,9 @@
     </div>
 
     <div id="reserve-trip"> <!-- HIDE HERE -->
-      <form id="reserve-form" class="small-11 small-centered columns" name="form-go">
+      <form id="reserve-form" class="small-11 small-centered columns cardo-font" name="form-go">
         <header>
-          <h4 id="info-header">Please enter your information below</h4>
+          <h4 id="info-header" class="header-styling cardo-font">Please enter your information below</h4>
         </header>
         <small class="error">ENTRY CANNOT BE BLANK</small>
 
@@ -92,9 +92,9 @@
       </form>
     </div>
 
-    <!-- Popup reservation confirmation -->
+    <!-- Reservation confirmation -->
 
-    <div id="confirmation">
+    <div id="confirmation" class="cardo-font">
       <p>Your reservation has been sent.</p>
       <p>Thank you for booking with us!</p>
     </div>
