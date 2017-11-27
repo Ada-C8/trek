@@ -47,12 +47,25 @@ main {
 
 }
 
-input {
+button {
+  display: block;
+  margin: 0 auto;
+}
 
+.button {
+  display: block;
+  margin: 0 auto;
 }
 
 h3 {
   margin: 10px;
+  background-color: #ECF0F1;
+  padding: 10px;
+}
+
+h3:hover {
+  background-color: #BDC3C7;
+
 }
 
 .trip-button {
@@ -61,4 +74,7 @@ h3 {
 
 .res_button {
   align-items: center;
+}
+
+li {
 }

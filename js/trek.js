@@ -13,7 +13,7 @@ $(document).ready(() => {
     $.get(baseURL, (response) => {
       $('.trip-button').hide();
       response.forEach(function(trip) {
-        let tripInfo = `<li class="small-4 large-6 columns"><h3 data-id=${trip.id}> ${trip.name}</li>`;
+        let tripInfo = `<li class="small-12 large-12 columns"><h3 data-id=${trip.id}> ${trip.name}</li>`;
 
         $('.triplist ul').append(tripInfo);
         $('.reveal').hide();
@@ -41,17 +41,13 @@ $(document).ready(() => {
       <p class="large-6 text-center columns"> Cost: $${response.cost} </p>
       </section>`;
 
-      let resButton = `<section class="res_modal"><p><button class="res_button small-12 small-centered large-12 large-centered text-center columns" data-open="reservation">Reserve a spot!</button></p></section>`
-
+      // let resButton = `<section class="res_modal"><p><button class="res_button small-12 small-centered large-12 large-centered text-center columns" data-open="reservation">Reserve a spot!</button></p></section>`
 
       $('.triplist ul').html("");
       $('.triplist').append(tripInfo);
-      $('.triplist').append(resButton);
 
-      $('.tripView').show();
+      // $('.tripView').show();
       $('.reveal').show();
-
-
     })
     .fail(function(response){
       console.log(response);
@@ -77,22 +73,22 @@ $(document).ready(() => {
     });
   };
 
-  let reserveForm = function reserveForm() {
-    let form = `<div class="reveal" id="reservation" data-reveal>
-          <form method="post" id="makeReservation">
-            <label for="name">Name</label>
-            <input type="text" name="name"></input>
-
-            <label>Email</label>
-            <input type="text" name="email"></input>
-
-            <input type="submit" value="Make Reservation"></input>
-          </form>
-          <button class="close-button" data-close aria-label="Close modal" type="button">
-          </button>
-        </div>`;
-      $('.res_modal').append(form);
-  };
+  // let reserveForm = function reserveForm() {
+  //   let form = `<div class="reveal" id="reservation" data-reveal>
+  //         <form method="post" id="makeReservation">
+  //           <label for="name">Name</label>
+  //           <input type="text" name="name"></input>
+  //
+  //           <label>Email</label>
+  //           <input type="text" name="email"></input>
+  //
+  //           <input type="submit" value="Make Reservation"></input>
+  //         </form>
+  //         <button class="close-button" data-close aria-label="Close modal" type="button">
+  //         </button>
+  //       </div>`;
+  //     $('.res_modal').append(form);
+  // };
 
   // EVENTS
 
@@ -107,9 +103,9 @@ $(document).ready(() => {
     loadTrip(tripID);
   });
 
-  $('.res_button').on('click', function(){
-    reserveForm();
-  })
+  // $('.res_button').on('click', function(){
+  //   reserveForm();
+  // });
 
   $('#makeReservation').on('submit', function(event){
     // this helps not to refresh the page
@@ -119,6 +115,6 @@ $(document).ready(() => {
     // this is a jQuery function that will take our form and turn it into query params
     let formData = $('#makeReservation').serialize();
     reserveTrip(tripID, formData);
-  })
+  });
 
 }); // document.ready end

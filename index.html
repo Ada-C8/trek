@@ -24,7 +24,7 @@
   <main>
 
     <section class="row">
-      <button class="trip-button small-12 small-centered large-12 large-centered text-center columns">Check out these amazing Trips!</button>
+      <button class="trip-button radius small-12 large-12 columns">Check out these amazing Trips!</button>
     </section>
 
     <section class="triplist">
@@ -33,15 +33,19 @@
     </section>
 
 
-    <div class="reveal" id="reservation" data-reveal>
+    <div class="reveal row" id="reservation" data-reveal>
       <form method="post" id="makeReservation">
+        <div class="large-5 columns">
         <label for="name">Name</label>
         <input type="text" name="name"></input>
+        </div>
 
+        <div class="large-5 columns">
         <label>Email</label>
         <input type="text" name="email"></input>
+        </div>
 
-        <input type="submit" value="Make Reservation"></input>
+        <input type="submit" value="Make Reservation" class="button radius small-6 small-centered text-center columns"></input>
       </form>
       <!-- <button class="close-button" data-close aria-label="Close modal" type="button"> -->
       <!-- </button> -->
@@ -61,5 +65,8 @@
   </script>
 
 </main>
+<footer>
+
+</footer>
 </body>
 </html>
