@@ -21,6 +21,14 @@ body, h1, h2, h3 {
   letter-spacing: 2px;
   margin: 0;
 }
+
+.padding {
+  padding: 2em;
+}
+
+.align-center {
+  text-align: center;
+}
 /********* BG IMAGE/HEADER *********/
 
 #bg-image {
@@ -39,7 +47,6 @@ body, h1, h2, h3 {
   margin: 0 auto;
   height: 100%;
   position: relative;
-  text-align: center;
 }
 
 #logo {
@@ -68,7 +75,6 @@ button.main-button {
 /********* ERRORS *********/
 
 .error p {
-  text-align: center;
   margin: 0;
 }
 
@@ -77,13 +83,6 @@ small {
 }
 
 /********* ALL TRIPS *********/
-
-h3#trip-header { /* TODO: Make this into a class */
-  text-align: center;
-  padding: 1em;
-  color: black;
-  letter-spacing: 2px;
-}
 
 #trips-table {
   width: 100%;
@@ -98,17 +97,8 @@ h3#trip-header { /* TODO: Make this into a class */
 }
 
 /********* SINGLE TRIP *********/
- /* TODO: Make this into a class */
-/*h3#trip-name {
-  text-align: center;
-  padding: 1em;
-  color: black;
-  letter-spacing: 2px;
-  margin: 0;
-}*/
 
 h4#trip-country {
-  text-align: center;
   color: black;
   letter-spacing: 2px;
   margin-bottom: 1em;
@@ -116,7 +106,6 @@ h4#trip-country {
 }
 
 #about-styling {
-  text-align: center;
   margin-top: 1em;
   margin-bottom: 3em;
 }
@@ -132,39 +121,19 @@ button.to-reserve {
 
 #reserve-form {
   width: 70%;
-  padding: 2em;
 }
 
 @media only screen and (max-width: 40em) {
   #reserve-form {
     width: 90%;
-    padding: 2em;
   }
-}
-
-/* TODO: Make this into a class */
-/*h4#info-header{
-  text-align: center;
-  padding: 1em;
-  color: black;
-  letter-spacing: 2px;
-  margin: 0;
-  font-family: 'Cardo', serif;
-}*/
-/********* POPUP CONFIRMATION *********/
-
-#confirmation {
-  text-align: center;
-  padding: 2em;
 }
 
 /********* FOOTER *********/
 
 footer {
   color: black;
-  text-align: center;
   font-size: 8px;
-  padding: 1em;
 }
 
 footer p {

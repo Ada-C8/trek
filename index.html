@@ -14,7 +14,7 @@
 <body>
   <header>
     <div id="bg-image">
-      <div id="logo-wrapper">
+      <div id="logo-wrapper" class="align-center">
         <div id="logo">
           <h1>FIND YOUR ADVENTURE</h1>
           <br>
@@ -27,14 +27,14 @@
   <!-- Display error -->
 
   <div class="alert callout error" data-closable>
-    <p class="cardo-font">Something went wrong with your request!</p>
+    <p class="cardo-font align-center">Something went wrong with your request!</p>
     <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 
   <main>
-    <div id="trips">  <!-- HIDE HERE -->
+    <div id="trips"> 
       <header>
         <h3 id="trip-header" class="header-styling">Available Trips</h3>
       </header>
@@ -54,14 +54,14 @@
       </table>
     </div>
 
-    <div id="single-trip"> <!-- HIDE HERE -->
+    <div id="single-trip">
       <header>
         <h3 id="trip-name" class="header-styling"></h3>
-        <h4 id="trip-country"></h4>
+        <h4 id="trip-country" class="align-center"></h4>
       </header>
 
       <div class="row">
-        <section id="about-styling" class="small-11 small-centered columns cardo-font">
+        <section id="about-styling" class="small-11 small-centered columns cardo-font align-center">
           <p id="about"></p>
           <p id="category"></p>
           <p id="weeks"></p>
@@ -71,12 +71,12 @@
       </div>
     </div>
 
-    <div id="reserve-trip"> <!-- HIDE HERE -->
-      <form id="reserve-form" class="small-11 small-centered columns cardo-font" name="form-go">
+    <div id="reserve-trip">
+      <form id="reserve-form" class="small-11 small-centered columns cardo-font padding" name="form-go">
         <header>
           <h4 id="info-header" class="header-styling cardo-font">Please enter your information below</h4>
         </header>
-        <small class="error">ENTRY CANNOT BE BLANK</small>
+        <small class="error">FIELDS CANNOT BE BLANK</small>
 
         <label>Name:</label>
         <input type="text" id="name" name="name"></input>
@@ -94,14 +94,14 @@
 
     <!-- Reservation confirmation -->
 
-    <div id="confirmation" class="cardo-font">
+    <div id="confirmation" class="cardo-font padding align-center">
       <p>Your reservation has been sent.</p>
       <p>Thank you for booking with us!</p>
     </div>
 
   </main>
 
-  <footer>
+  <footer class="padding align-center">
     <p>
       COPYRIGHT &copy; ID 2017
     </p>

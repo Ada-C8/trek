@@ -1,11 +1,7 @@
 $(document).ready(function() {
   $(document).foundation();
 
-  $('#trips').hide();
-  $('#single-trip').hide();
-  $('#reserve-trip').hide();
-  $('.error').hide();
-  $('#confirmation').hide();
+  $('#trips, #single-trip, #reserve-trip, .error, #confirmation').hide();
 
   const baseURL = 'https://trektravel.herokuapp.com/trips/';
 
@@ -13,7 +9,7 @@ $(document).ready(function() {
   const displayTrips = function displayTrips() {
     $.get(baseURL, successCallback)
     .fail(function(){
-        $('.error').show();
+      $('.error').show();
     });
   };
 
@@ -24,10 +20,8 @@ $(document).ready(function() {
     }
 
     $('#trip-name, #trip-country, #category, #weeks, #cost, #about').empty();
-    $('#single-trip').hide();
-    $('#reserve-trip').hide();
+    $('#single-trip, #reserve-trip, #confirmation').hide();
     $('#trips').show();
-    $('#confirmation').hide();
 
     for(let trip of response) {
       if (trip.name === null || trip.name === " " || trip.continent === null || trip.weeks === null) {  continue; }
@@ -49,11 +43,9 @@ $(document).ready(function() {
 
   /////// CALL BACK FOR A SINGLE TRIP
   const singleTripSuccessCallback = (response) => {
-    // console.log(response);
-    $('#trips').hide();
     $('#table-body').empty();
     $('#single-trip').show();
-    $('#confirmation').hide();
+    $('#trips, #confirmation').hide();
 
     $('#trip-name').append(response.name.toUpperCase());
     $('#trip-country').append(response.continent.toUpperCase());
@@ -85,12 +77,10 @@ $(document).ready(function() {
   ///// DISPLAY FORM ON CLICK OF A BUTTON
   const displayForm = function displayForm(tripID) {
     $('#trip-name, #trip-country, #category, #weeks, #cost, #about').empty();
-    $('#single-trip').hide();
-    $('small').hide();
+    $('#single-trip, small').hide();
     $('#reserve-trip').show();
 
     $('#reserve-form').on('submit', function(event) {
-      // Don't refresh the page (the default behavior)
       event.preventDefault();
 
       let name = $('[name=name]').val();
@@ -105,14 +95,10 @@ $(document).ready(function() {
       let formData = $('#reserve-form').serialize();
 
       $.post(baseURL + `${tripID}/reservations`, formData, formCallBack)
-        .fail((response) => {
-          $('.error').show();
+      .fail((response) => {
+        $('.error').show();
       });
     });
   };
 
 });
-
-
-// TODO: Fix responsive design for table
-// TODO: Direct to specific location on page
