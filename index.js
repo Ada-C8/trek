@@ -15,7 +15,7 @@ $(document).ready(() => {
         </tr>`);
       });
     }).fail(() => {
-      $('.message').html('<h2>Sorry, something went wrong! Try back later...</h2>');
+      $('.message').html('<h3>Sorry, something went wrong! Try back later...</h3>');
     });
   };
   const show = function show(trip) {
@@ -27,7 +27,7 @@ $(document).ready(() => {
         <h4>Trip Duration: ${showResponse.weeks} Weeks</h4>
         <h4>Continent: ${showResponse.continent}</h4>
         <h4>Category: ${showResponse.category}</h4>
-        <h4>About Trip:</h4>
+        <h4 class='about'>About Trip:</h4>
         <p>${showResponse.about}</p>
         <form action="https://trektravel.herokuapp.com/trips/${trip}/reservations" method="post">
           <section>
@@ -45,7 +45,7 @@ $(document).ready(() => {
       </div>
       </div>`);
     }).fail(() => {
-      $('.message').html('<h2>Sorry, something went wrong! Try back later...</h2>');
+      $('.message').html('<h3>Sorry, something went wrong! Try back later...</h3>');
     });
   };
   $('.index-button').click((e) => {
@@ -70,9 +70,9 @@ $(document).ready(() => {
     const formData = $('form').serialize();
 
     $.post(url, formData, () => {
-      $('.message').html('<h2>Pack your bags: your reservation is confirmed!</h2>');
+      $('.message').html('<h3>Pack your bags: your reservation is confirmed!</h3>');
     }).fail(() => {
-      $('.message').html('<h2>Sorry, something went wrong! Please try again!</h2>');
+      $('.message').html('<h3>Sorry, something went wrong! Please try again!</h3>');
     });
   });
 });
