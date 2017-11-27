@@ -110,17 +110,24 @@ div.top-bar-right {
 }
 
 /*********************************
-                 TABLE
+            TRIPS
 *********************************/
-
-td, th {
-  font-style: bold;
+#trips {
+  color: #DC7209;
+  font-size: 10pt;
+  font-weight: bold;
+  padding-left: 5%;
+  padding-top: 5%;
 }
 
-
-/*table, th, td {
-    border: 1px solid black;
+/*table #trips tr:nth-of-type(even) {
+    background-color: #3FBFBF;
 }*/
+
+
+table, th, td {
+    border: 1px solid #3FBFBF;
+}
 
 /*********************************
           SINGLE TRIP
@@ -135,7 +142,7 @@ td, th {
   padding-right: 5%;
 }
 
-p, label {
+p,label {
   color: #DC7209;
   font-weight: bold;
   text-align: left;
