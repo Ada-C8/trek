@@ -6,7 +6,7 @@ $(document).ready(() => {
       (response) => {
         response.forEach((trip) => {
           const tripsInfo = `<li id="trip-${trip.id}"><p id="${trip.id}">${trip.name}</p></li>`;
-          $('#trips ol').append(tripsInfo);
+          $('#trips ul').append(tripsInfo);
         });
       },
     )
@@ -26,7 +26,7 @@ $(document).ready(() => {
           <p> Category: ${response.category}</p>
           <p> Continent: ${response.continent}</p>
           <p> Description: ${response.about}</p>
-          <p> Duration: ${response.weeks}</p>
+          <p> Duration: ${response.weeks} weeks</p>
           <p> Cost: ${response.cost}</p>
         </div>`;
 
@@ -46,9 +46,9 @@ $(document).ready(() => {
             </section>
           </form>`;
 
-        $('#trips ol li > div').hide();
-        $(`#trips ol li#trip-${id}`).append(tripInfo);
-        $(`#trips ol li#trip-${id}`).append(reservation);
+        $('#trips ul li > div').hide();
+        $(`#trips ul li#trip-${id}`).append(tripInfo);
+        $(`#trips ul li#trip-${id}`).append(reservation);
       },
     ).fail(() => {
       $('#fail').html('<p>Could not find</p>');
@@ -57,7 +57,7 @@ $(document).ready(() => {
     });
   }; // end of loadTrip
 
-  $('#trips ol').on('click', 'p', function() {
+  $('#trips ul').on('click', 'p', function() {
     const tripID = $(this).attr('id');
     loadTrip(tripID);
   });
@@ -65,7 +65,7 @@ $(document).ready(() => {
   $('#load').click(() => {
     loadTrips();
     $('h3').text('Select a Trip');
-    $('#trips ol').empty();
+    $('#trips ul').empty();
   });
 
   $('body').on('submit', 'form', function (e) {
@@ -79,7 +79,7 @@ $(document).ready(() => {
     $.post(url, formData, () => { // on submit the js is doing this post request
       $('#form').html('<p> Reservation added </p>');
     }).fail(() => {
-      $('#form').html('<p>Reservation failed</p>');
+      $('#form').html('<p> Reservation failed </p>');
     }).always(() => {
       console.log("you're doing alright");
     });

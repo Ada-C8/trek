@@ -3,16 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>TREK</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.css" rel="stylesheet">
     <link href="trek.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
   </head>
   <body>
-
-    <div id="fail"></div>
-    <button id="load"> Get trips! </button>
+    <header class="header row">
+      <h1>TREK</h1>
+      <div id="fail"></div>
+      <button id="load" class="button"> Get trips! </button>
+    </header>
 
     <h3></h3>
-    <div id="trips">
-      <ol></ol>
+    <div class="small-12 columns">
+      <div id="trips">
+        <ul></ul>
+      </div>
     </div>
 
     <script

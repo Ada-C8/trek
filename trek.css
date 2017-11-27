@@ -1,3 +1,44 @@
+header {
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 6em;
+}
+
+#load {
+  background-color: white;
+  color: black;
+  font-family: 'Amatic SC', cursive;
+  font-size: 2em;
+}
+
+body {
+    background-color: #7DBEA5;
+}
+
+h3 {
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+}
+
+li {
+  background-color: white;
+  list-style: none;
+  border: solid;
+  border-color: #C0C0C0;
+  text-align: center;
+}
+
 p {
-  /*text-decoration: underline;*/
+  font-family: 'Amatic SC', cursive;
+}
+
+#form {
+  font-family: 'Amatic SC', cursive;
+}
+
+.button {
+  background-color: #C0C0C0;
 }
