@@ -30,7 +30,7 @@ $(document).ready(() => {
               <li>Price: $${response.cost}</li>
               <li><button class="reserve">RESERVE SPOT</button></li>`;
 
-            let reserveForm = `<form action="https://trektravel.herokuapp.com/trips/${id}/reservations" method="post">
+            let reserveForm = `<form id="form" action="https://trektravel.herokuapp.com/trips/${id}/reservations" method="post">
               <section>
                 <label>Name</label>
                 <input type="text" id="name" name="name"></input>
@@ -74,9 +74,9 @@ $(document).ready(() => {
     const formData = $(this).serialize();
 
     $.post(url, formData, () => {
-      $('#message').html('<p> Reservation added! </p>');
+      $('#form').html('<p> Reservation added! </p>');
     }).fail(() => {
-      $('#message').html('<p> Adding Reservation failed! </p>');
+      $('#form').html('<p> Adding Reservation failed! </p>');
     });
   });
 });
