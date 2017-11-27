@@ -1,6 +1,7 @@
 $(document).ready( function() {
   $('#reserve').hide('form');
   $('#filters').hide();
+  $('#trip').hide();
 
   const loadTrips = function loadTrips() {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
@@ -59,19 +60,21 @@ $(document).ready( function() {
 
   $('button#search').click(function() {
     loadTrips();
-    $('#trip').empty();
+    $('#trip').hide();
     $('button#search').html('Find Trips');
   });
 
   $('button.continent').click(function() {
     let query = $(this).html();
     $('#trips li').remove();
+    $('#trip').hide();
     continentFilter(query);
   });
 
   $('#trips ul').on('click', 'h3', function() {
     let tripID = $(this).attr('data-id');
     loadTrip(tripID);
+    $('#trip').show();
     $('#trips li').remove();
     $('button#search').html('Back to Trips');
   });
