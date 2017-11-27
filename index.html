@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TREK</title>
+
+    <link rel="stylesheet" href="foundation-6.4.2-essential/css/foundation.css">
+    <link rel="stylesheet" href="index.css">
+
+    <link rel="shortcut icon" href="favicon.png" type="favicon.png">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body>
+    <header class="row">
+      <h1> Welcome to TREK </h1>
+    </header>
+
+
+
+    <div>
+      <section>
+        <button id="load-trips" class="button">
+          ▶
+          &nbsp;&nbsp;
+          Search Trips
+
+        </button>
+
+        <div id="trips">
+          <div id="fail"></div>
+          <ul></ul>
+        </div>
+      </section>
+    </div>
+
+    <section class="grid-x">
+      <div class="columns medium-8 small-12">
+        <div id='trip' hidden=true>
+
+          <div id="ajax-results"></div>
+          <div id="fail-trip"></div>
+
+          <p id="name"></p>
+          <p> Category: <span id="category"></span></p>
+          <p> Duration: <span id="duration"></span></p>
+          <p> Cost: <span id="cost">$</span></p>
+          <p> About: <span id="about"></span></p>
+
+          <hr>
+          <h3>Make Your Reservation</h3>
+          <form id="add-res" id="">
+            <label for="name"> Name </label>
+            <input type="text" name="name"></input>
+
+            <input type="submit" value="Reserve Trip" class=""></input>
+          </form>
+        </div>
+      </div>
+    </section>
+
+
+
+  </body>
+</html>
