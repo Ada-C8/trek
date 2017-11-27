@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+@import url('https://fonts.googleapis.com/css?family=Schoolbell');
+
+*, h1, h2, h3, h4, h5, .button{
+  font-family: 'Bitter', serif;
+}
+
+.button, .trip-container, .reservation-form-container, #message{
+  border-radius: 10px;
+}
+
+body {
+  background-color: steelblue;
+}
+
+.shrek *{
+  font-family: 'Schoolbell', cursive;
+}
+
+.shrek p, .shrek .button {
+  font-size: 1.1em;
+}
+
+.shrek #results {
+  padding-top: 160px;
+}
+
+.shrek{
+  background-image: url('../assets/background.jpg');
+  background-size:auto;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.shrek header{
+  background-color: rgb(19,24,98);
+}
+
+.shrek header label{
+  color: white;
+}
+
+.shrek .button{
+  background-color: rgb(39,163,73);
+}
+
+.shrek .trip-container{
+  background-color: rgba(146, 209, 187, 0.8);
+}
+
+#message{
+  position: fixed;
+  float: left;
+  width: 80vw;
+  margin-left: 10vw;
+  top: 100px;
+  background-color: pink;
+}
+
+header {
+  background: rgb(104,237,184);
+  position: fixed;
+  width: 100%;
+}
+
+#results{
+  padding-top: 120px;
+}
+
+#nav-buttons, #site-title{
+  text-align: center;
+}
+
+#nav-buttons a{
+  margin-right: 40px;
+}
+
+.trip-container {
+  background-color: rgb(204,204,204);
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.reservation-form-container{
+  background-color: white;
+}
+
+.reservation-form-container form{
+  padding: 20px;
+}
+
+#search-form-container{
+  display: none;
+}
+
+.show{
+  display: block !important;
+}
+
+.form-submit-btn{
+  width: 100%;
+}

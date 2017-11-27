@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Trek</title>
+
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<!-- some... -->
+<body>
+  <header>
+    <section id="site-title">
+      <h2>T R E K</h2>
+    </section>
+    <nav class="row">
+      <section id="nav-buttons" class="large-12 columns">
+        <a id="all-trips-btn" class="button">View All Trips</a>
+        <a id="shrekify" class="button" data-toggled="false">Highlighted Location</a>
+        <a id="search-form-toggle" class="button">Search For A Trip</a>
+      </section>
+
+      <section id="search-form-container" data-toggled="false">
+        <form id="search-form">
+          <!-- criteria: name, about, continent, category, weeks, cost -->
+          <label for="trip-name" class="large-12 medium-12 columns">
+            Trip Name:
+            <input type="text" id="trip-name" name="trip-name" placeholder="Trip Name" />
+          </label>
+
+          <label for="continent" class="large-4 medium-4 columns">
+            Continent:
+            <input type="text" id="continent" name="continent" placeholder="Continent" />
+          </label>
+
+          <label for="weeks" class="large-4 medium-4 columns">
+            # of Weeks:
+            <input type="number" id="weeks" name="weeks" placeholder="Number of Weeks" />
+          </label>
+
+          <label for="budget" class="large-4 medium-4 columns">
+            Budget:
+            <input type="number" id="budget" name="budget" placeholder="Budget" />
+          </label>
+          <section class="large-4 large-centered medium-4 medium-centered columns">
+            <button type="submit" class="button form-submit-btn">Search</button>
+          </section>
+        </form>
+      </section>
+
+    </nav>
+  </header>
+  <section id="message"></section>
+  <section id="results" class="row"></section>
+
+</body>
+</html>
