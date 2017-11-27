@@ -1,0 +1,115 @@
+body {
+  text-align: center;
+}
+
+div {
+  text-align: center;
+}
+
+header {
+  background-image: url("crater_lake.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: #eeeeee;
+  height: 25em;
+}
+
+header h2 {
+  font-family: 'Dosis', sans-serif;
+  font-size: 6em;
+  text-shadow: 2px 2px #054d01;
+}
+
+header h3 {
+  font-family: 'Indie Flower', cursive;
+}
+
+button, p {
+  font-family: 'Dosis', sans-serif;
+}
+
+p {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+button#search {
+  font-size: 2em;
+  border: 2px white solid;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.continent, #reserve button {
+  background-color: #eee;
+  border: 4px black #054d01;
+  border-radius: 4px;
+  color: #054d01;
+  margin: 4px;
+  padding: 1em;
+}
+
+ul {
+  list-style: none;
+}
+
+li, div#trip {
+  border: 1em solid #269bfb;
+  border-radius: 1em;
+  margin: 1em auto;
+  width: 80%;
+}
+
+.details {
+  background-color: white;
+  margin: 1em 0 1em .5em;
+  padding: 1em;
+  text-align: left;
+  width: 50%;
+}
+
+#trip {
+  position: relative;
+}
+
+#trip h3 {
+  background-color: white;
+  border-bottom: 4px solid #054d01;
+  border-radius: 4px;
+  margin: 1em auto 0;
+  width: 80%;
+}
+
+#trip img {
+  background-color: white;
+  border: 1px black solid;
+  border-radius: 4px;
+  padding: 4px;
+  position: absolute;
+  top: 8em;
+  right: .5em;
+  margin: 2em 1em 1em 1em;
+  width: 45%;
+}
+
+#trip button {
+  border: 1px solid #054d01;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+form {
+  border: 3px solid #054d01;
+  border-radius: 4px;
+  color: #054d01;
+  margin: 0 auto;
+  padding: 1em;
+  width: 80%;
+}
+
+label {
+  text-align: left;
+  width: 80%;
+}
