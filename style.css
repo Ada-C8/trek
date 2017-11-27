@@ -82,49 +82,59 @@ h3 {
 .top-bar {
   /*margin-top: 10px;*/
   background-color: white;
-  height: 80px;
-  margin-bottom: 50px;
+  height: 50px;
+  margin-top: 2%;
+  margin-bottom: 5%;
 }
-
+/*
 nav.top-bar ul {
   background-color: white;
-  line-height: 80px;
+  line-height: 60px;
   margin: 0;
 }
 
 nav.top-bar ul li a {
   color: #3FBFBF;
   font-size: 1.2rem;
-}
+}*/
 
 div.top-bar-left {
   padding-left: 1%
 }
-
+/*
 div.top-bar-right {
   float: right;
   width: 40%;
   display: inline-block;
-}
-
-.site-title {
-  line-height: 80px;
-  padding: 0;
-}
-/*
-.top-bar ul {
-  line-height: 80px;
-  color: white;
+  padding-right: 6%;
 }*/
 
-.top-bar a {
+.site-title {
+  line-height: 60px;
+  padding: 0;
+}
+
+/*.top-bar a {
   display: inline-block;
 }
 
 .menu > li > a {
   display: inline-block;
-}
+}*/
 
+/*.nowrap {
+  width: 100%;
+  margin: 0;
+  margin-bottom: 80px;
+  box-sizing: content-box;
+  padding: 0.5% 5% 0.5% 5%
+}*/
+
+
+/* search button */
+.button {
+  background-color: #3FBFBF;
+}
 
 /*slide-viewer {
   position: relative;
