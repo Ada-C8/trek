@@ -171,16 +171,19 @@ $(document).ready(() => {
     $('#search-form-container').toggleClass('show');
   });
 
-  // someBODY once told me memes were outdated
+  // Code is like onions. It has layers.
+  // Changes CSS into a good time
   $('#shrekify').on('click', () => {
-    const buttonText = $('#shrekify')[0];
-    if (buttonText.innerHTML.includes('Exit')) {
-      $('#site-title h2').html('T R E K');
-      buttonText.innerHTML = 'Visit The Swamp';
+    const buttonText = $('#shrekify');
+    if ($('#shrekify').data('toggled') === true) {
+      $('#site-title h2').text('T R E K');
+      buttonText.text('Visit The Swamp');
+      buttonText.data('toggled', false);
     } else {
-      const shrekImage = '<a href="https://fontmeme.com/shrek-font/"><img src="https://fontmeme.com/permalink/171126/41e088cfebc3f66ae1927574b97b2ff1.png" alt="shrek-font" border="0"></a>';
+      const shrekImage = '<a href="https://fontmeme.com/shrek-font/"><img src="assets/title.png" alt="shrek-font" border="0"></a>';
       $('#site-title h2').html(shrekImage);
-      buttonText.innerHTML = 'Exit The Swamp';
+      buttonText.text('Exit The Swamp');
+      buttonText.data('toggled', true);
     }
     $('body').toggleClass('shrek');
   });
