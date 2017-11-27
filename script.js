@@ -1,9 +1,11 @@
 // /* eslint-disable */
 $(document).ready(() => {
   // AJAX REQUEST TO TRIP API HANDLERS
-  // view all trips on click;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  // view all trips on click
+  const BASE_URL = 'https://trektravel.herokuapp.com/trips/';
+
   $('#all-trips-btn').on('click', () => {
-    const url = 'https://trektravel.herokuapp.com/trips';
+    const url = BASE_URL;
     $.get(
       url,
       (response) => {
@@ -42,7 +44,7 @@ $(document).ready(() => {
       $(this).text('More Information');
     } else { // if toggled is false
       const tripID = $(this).parent().data('trip-id');
-      const url = `https://trektravel.herokuapp.com/trips/${tripID}`;
+      const url = `${BASE_URL}${tripID}`;
       // show details
       $.get(
         url,
@@ -71,7 +73,7 @@ $(document).ready(() => {
     // data to input then send: name, age, email
     const formContainer = $(this).parent().find('.reservation-form-container');
     const tripID = $(this).parent().parent().data('trip-id');
-    const postURL = `https://trektravel.herokuapp.com/trips/${tripID}/reservations`;
+    const postURL = `${BASE_URL}${tripID}/reservations`;
     const formHTML = `<form action="${postURL}" method="post" class="reservation-form">
                         <h4>Reservation Form:</h4>
                         <section class="row">
@@ -130,24 +132,50 @@ $(document).ready(() => {
     let formDataKeysAndValues = formData.split('&').map((resultString) => {
       return resultString.split('=');
     });
-    console.log(formDataKeysAndValues);
     formDataKeysAndValues = formDataKeysAndValues.reduce((objKeyValuePair, subArray) => {
       objKeyValuePair[subArray[0]] = subArray[1];
       return objKeyValuePair;
     }, {});
-    console.log(formDataKeysAndValues);
-    let url = 'https://trektravel.herokuapp.com/trips/';
+    let url = BASE_URL;
     const parameters = [];
     Object.keys(formDataKeysAndValues).forEach((key) => {
-      console.log(`${key} | ${formDataKeysAndValues[key]} | ${typeof formDataKeysAndValues[key]}`);
-      console.log(`Current Key: ${key}`);
       if (key !== 'trip-name' && key !== 'category' && formDataKeysAndValues[key] !== '') {
         parameters.push(`${key}?query=${formDataKeysAndValues[key]}`);
       }
     });
     url += parameters.join('&');
     console.log(url);
-
+    $.get(
+      url,
+      (response) => {
+        const resultsContainer = $('#results');
+        let allTrips = '';
+        console.log(response);
+        console.log(typeof response);
+        if (response) {
+          response.forEach((trip) => {
+            // id, name, continent, weeks, cost
+            console.log(`trip.name: ${trip.name} | formData trip-name: ${formDataKeysAndValues['trip-name']}`);
+            if (trip.name !== null && trip.name.toLowerCase().includes(formDataKeysAndValues['trip-name'].toLowerCase())) {
+              const tripText = `<article data-trip-id="${trip.id}" class="trip-container large-8 medium-8 small-10 small-centered medium-centered large-centered columns">
+              <h2>${trip.name}</h2>
+              <p>Continent: ${trip.continent}</p>
+              <p>Weeks: ${trip.weeks}</p>
+              <button class="button view-trip-details-btn">More Information</button>
+              <section data-toggled="false" class="trip-details"></section>
+              </article>`;
+              allTrips += tripText;
+            }
+          });
+        }
+        resultsContainer.html(allTrips);
+      },
+    ).fail(() => {
+      const message = `<h3>Unable to generate all trips.</h3>`;
+      $('#message').html(message);
+      $('#message').css('padding', '30px');
+      $('#message').show().delay(2000).fadeOut('slow');
+    });
     //...and filter through results based on (trip) name and category
   });
 
