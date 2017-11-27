@@ -44,13 +44,13 @@ $(document).ready(() => {
           <p> Costs: ${response.cost} </p>
           <form id="add-name-form" action="https://trektravel.herokuapp.com/trips/${id}/reservations">
           <label for="name">Name:</label>
-          <input type="text" name="name"></input>
+          <input type="text" name="name" placeholder="Name"></input>
 
           <label for="age">Age:</label>
-          <input type="number" age="age"></input>
+          <input type="number" age="age" placeholder="Age"></input>
 
           <label for="email">Email:</label>
-          <input type="text" email="email"></input>
+          <input type="text" email="email" placeholder="Email"></input>
 
           <input type="submit" value="Reserve Spot"></input>
           </form>`;
