@@ -1,4 +1,6 @@
 $(document).ready(() => {
+  $('form').hide();
+
   // Function for Ajax request and response for all trips.
   $('#load').click(() => {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
@@ -16,8 +18,7 @@ $(document).ready(() => {
       });
   });
 
-  // Function for request and response for a specific trip.
-
+  // Function for Ajax request and response for a specific trip.
   const loadSingleTrip = (id) => {
     $.get(`https:trektravel.herokuapp.com/trips/${id}`, (response) => {
       const tripInfo = `
@@ -31,6 +32,8 @@ $(document).ready(() => {
       <p> Cost: ${response.cost} </p>`;
 
       $('#tripinfo').html(tripInfo);
+      $('form').show();
+      $('form').attr('tripid', response.id);
     })
       .fail((response) => {
         console.log(response);
@@ -45,15 +48,18 @@ $(document).ready(() => {
     event.preventDefault();
 
     const url = $('form').attr('action');
+    console.log(url);
+    const id = ($('form').attr('tripid'));
+    const reservationUrl = `${url}${id}/reservations`;
     const formData = $('form').serialize();
 
-    $.post(url, formData, (response) => {
+    $.post(reservationUrl, formData, (response) => {
       $('#message').html('<p> Trip Reserved! </p>');
       console.log(response);
     });
   });
 
-  // EVENTS
+  // Events.
   $('#location').on('click', 'h3', (event) => {
     const tripID = $(event.currentTarget).attr('data-id');
     loadSingleTrip(tripID);
