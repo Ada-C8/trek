@@ -1,7 +1,7 @@
 //hide rows not to be seen
 
 $(document).ready(() => {
-  $('#search-trips').on('click', function() {
+  $('.search-trips').on('click', function() {
 
     $.get('https://trektravel.herokuapp.com/trips',
     response => {
@@ -85,7 +85,7 @@ $(document).ready(() => {
           console.log('always even if we have success or failure');
         });
     };
-    $('#trips table').on('click', 'tr',  function(){
+    $('#trips table').on('click', 'tr',  function() {
       let tripID = $(this).attr('data-id');
       console.log(tripID);
       $('#trip').show();

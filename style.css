@@ -36,6 +36,7 @@ header {
 #slideshow {
     position:relative;
     height:450px;
+    margin-bottom: 50px;
 }
 
 #slideshow IMG {
@@ -57,6 +58,9 @@ header {
     z-index:9;
 }
 
+.button {
+  margin-left: 600px;
+}
 
 /*slide-viewer {
   position: relative;
