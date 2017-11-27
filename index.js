@@ -14,6 +14,7 @@ $(document).ready(()=>{
 
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       console.log('success!');
+      $('#load').hide();
       response.forEach(function(trip) {
         let tripInfo =
         `<li class='listed-trip ${trip.continent}' trip-id=${trip.id}>${trip.name}</li>`;
@@ -24,10 +25,10 @@ $(document).ready(()=>{
         // continentArray.push(trip.continent);
         }
       });
-      $('#load').hide();
+
       //console.log(`continentArray: ${continentArray}`);
-      continentSet = [...new Set(continentArray)];
-      console.log(`continentSet: ${continentSet}`);
+      // continentSet = [...new Set(continentArray)];
+      // console.log(`continentSet: ${continentSet}`);
     })
         .fail(function(){
           console.log('failure');
@@ -55,7 +56,7 @@ $(document).ready(()=>{
       });
 
       //trip duration filters
-      const tripWeeks = [1,2,3,4,5,6]
+      // const tripWeeks = [1,2,3,4,5,6]
     };
 
   // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC TRIP
@@ -74,6 +75,7 @@ $(document).ready(()=>{
           `;
 
           $('#trip').html(indivTripInfo);
+          $('#load').hide();
           $(this).scrollTop(0);
           //
 
