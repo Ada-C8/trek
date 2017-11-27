@@ -18,19 +18,6 @@ const getTrips = (url) => {
       console.log('Adenture awaits you!');
   });
 };
-const filterTrips = (category, query) => {
-  let filteredURL = `https://trektravel.herokuapp.com/trips/${category}?query=${query}`;
-  let qURL = encodeURI(filteredURL);
-  console.log(filteredURL);
-  getTrips(qURL);
-  // $.get(`https://trektravel.herokuapp.com/trips/${query}`, (response) => {
-  //   console.log(`successfully filtered by ${query}`);
-  //   $('#trip-list ul').empty();
-  //
-  // }).fail(() => {
-  //   $('#message').html('<h3> Filter Unsuccessful</h3>');
-  // });
-};
 const addTrip = () => {
   // TODO: Add "Cancel" button to clear add new trip form
   const newTripForm = `
@@ -165,41 +152,4 @@ $(document).ready(() => {
     console.log('adding a trip');
     addTrip();
   });
-  $('#filter-query').on('change', function() {
-    let selectedVal = this.value;
-    let jquerySelected = $(this).find(':selected').val();
-    if (selectedVal == 'continent') {
-      console.log('checking continent validation');
-      // dropdown selector of available continents
-      // pass query, build query URL
-      console.log(continents);
-      let continentDrop = `<select id ="continentDrop"></select>`;
-      $('#trip-list p').append(continentDrop);
-      let selectContinent= $('#continentDrop')[0];
-      console.log(selectContinent);
-      continents.forEach((continent) => {
-        const opt = document.createElement('option');
-        opt.innerHTML = continent;
-        opt.value = continent;
-        selectContinent.appendChild(opt);
-      });
-      let jquerySelected = $(this).find(':selected').val();
-      filterTrips(selectedVal, optionalParams=[]);
-    } else {
-      let queryForm = `<form id="queryForm">
-        ${selectedVal}: <input type="text" name="fname"><br><br>
-        <input type="button" onclick="filterTrips()" value="Submit"></form>
-      `;
-      $('#trip-list p').append(queryForm);
-    }
-  });
-//   $("#filter-query").on("change", function() {
-//     // Pure JS
-//     var selectedVal = this.value;
-//     var selectedText = this.options[this.selectedIndex].text;
-//
-//     // jQuery
-//     var selectedVal = $(this).find(':selected').val();
-//     var selectedText = $(this).find(':selected').text();
-// }​​​​);​
 });
