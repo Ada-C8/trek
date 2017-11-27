@@ -4,8 +4,6 @@ $(document).ready(() => {
     $.get('https://trektravel.herokuapp.com/trips', (response) => {
       response.forEach((place) => {
         const location = `<li><a><h3 data-id="${place.id}"> ${place.name} </h3></a></li>`;
-        // console.log(response);
-        // console.log(location);
         $('#location').append(location);
       });
     })
@@ -42,6 +40,18 @@ $(document).ready(() => {
         console.log('always even if we have success or failure');
       });
   };
+
+  $('form').submit((event) => {
+    event.preventDefault();
+
+    const url = $('form').attr('action');
+    const formData = $('form').serialize();
+
+    $.post(url, formData, (response) => {
+      $('#message').html('<p> Trip Reserved! </p>');
+      console.log(response);
+    });
+  });
 
   // EVENTS
   $('#location').on('click', 'h3', (event) => {
