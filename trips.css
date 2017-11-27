@@ -70,5 +70,11 @@ form {
 }
 
 #countryMenu {
-  text-decoration: none;
+  list-style: none;
+  text-align: center;
+}
+
+#countryMenu a{
+  color: black;
+  font-family: 'Roboto Condensed', sans-serif;
 }
