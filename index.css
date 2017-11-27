@@ -1,10 +1,10 @@
 /* colors */
 :root {
---black: #333;
---white: #fefefe;
---owhite: #fafafa;
---dgray: #97aec1;
---ddgray: #7590a5;
+  --black: #333;
+  --white: #fefefe;
+  --owhite: #fafafa;
+  --dgray: #97aec1;
+  --ddgray: #7590a5;
 }
 
 /* main styles */
