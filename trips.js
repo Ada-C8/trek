@@ -95,6 +95,7 @@ $(document).ready(()=>{
 
   $('#countryMenu').on('click', 'li', function(){
     $('#trips').empty();
+    $('#countryMenu').hide();
     $.get(url, response=> {
       const allTrips = response;
       for (let i = 0; i < allTrips.length; i++){
@@ -105,7 +106,6 @@ $(document).ready(()=>{
         }
       }
     })
-    $('#countryMenu').hide();
   });
 
 
