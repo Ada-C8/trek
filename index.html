@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>TREK</title>
+      <meta charset="utf-8">
+
+      <script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous">
+      </script>
+       <script type="text/javascript" src="trek.js"></script>
+       <link href="styles/foundation.css" media="screen" rel="stylesheet" type="text/css"/>
+       <link href="styles/normalize.css" media="screen" rel="stylesheet" type="text/css"/>
+       <link href="styles/trek.css" media="screen" rel="stylesheet" type="text/css"/>
+
+  </head>
+
+  <body>
+    <section id='header' class='row'>
+      <h2 id = "trips"><button>View All Trips</button></h2>
+    </section>
+
+    <section class='row' id='singleTripDetails'>
+    </section>
+
+    <section class='row' id='reservationForm'>
+      <form class='columns small-6 large-6'>
+        <label for='name'>Name:</label>
+        <input id='nameField' type='text' name='name'></input>
+
+        <label for='email'>Email:</label>
+        <input id='emailField' type='text' name='email'></input>
+
+        <input id='completeReservation' type='submit' value='Confirm booking'></input>
+      </form>
+    </section>
+
+    <section class='row' id='displayArea'>
+      <h3> Available Trips </h3>
+      <ul id=tripSection class='large-6 small-6'></ul>
+    </section>
+  </body>
+</html>
