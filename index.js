@@ -85,9 +85,10 @@ $(document).ready(function(){
     console.log(id);
     let formData = $('#book-form-' + id).serialize();
     let postURL = URL + id + '/reservations';
-    $.post(postURL, formData, function(response){
-      console.log(response);
+    $.post(postURL, formData, () => {
+      $('#book-form-' + id).html('<h4>Reservation request submitted.</h4>\n<h4><small>We will get back to you as soon as possible.</small></h4>');
+    }).fail(() => {
+      $('#book-form-' + id).html('<h4>Something has gone wrong.</h4>\n<h4><small>Your reservation has not been submitted.</small></h4>');
     });
-    $('#book-form-' + id).html('<h4>Reservation request submitted.</h4>\n<h4><small>We will get back to you as soon as possible.</small></h4>');
   })
 });
