@@ -69,7 +69,7 @@ form {
   margin-bottom: 2vw;
 }
 
-#countryMenu {
+ul {
   list-style: none;
   text-align: center;
 }

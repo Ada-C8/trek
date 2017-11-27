@@ -3,7 +3,6 @@ $(document).ready(()=>{
   $('#bookingForm').hide();
   const url = 'https://trektravel.herokuapp.com/trips'
 
-
   $.get(url, response=> {
     let countries = []
     const allTrips = response;
@@ -44,6 +43,7 @@ $(document).ready(()=>{
     $('#bookingForm').hide();
     const id = $(this).attr('id');
     const url2 = `https://trektravel.herokuapp.com/trips/${id}`
+
     $.get(url2, response => {
       const thisTrip = response
       // console.log(thisTrip);
@@ -107,6 +107,21 @@ $(document).ready(()=>{
       }
     })
   });
+
+  // $('#priceMenu').on('click', 'li', function(){
+  //   $('#trips').empty();
+  //   // $('#priceMenu').hide();
+  //   $.get(url2, response=> {
+  //     const allTrips = response;
+  //     for (let i = 0; i < allTrips.length; i++){
+  //       const trip = allTrips[i]
+  //       if (Number(trip.price) <= Number(this.id)) {
+  //         console.log(id)
+  //         $('#trips').append($(`<article><h3>${trip.name}</h3><p id="subDeets"> ${trip.continent} | ${trip.weeks} week(s)</p><img class="indexImg" src="http://images.all-free-download.com/images/graphiclarge/beautiful_natural_scenery_01_hd_picture_166232.jpg" alt="generic issue"></article>`).attr('id', `${trip.id}`).addClass('tripListAll column small-12 large-6 float-left'));
+  //       }
+  //     }
+  //   })
+  // });
 
 
 });
