@@ -4,7 +4,6 @@ const successCallback = function(response){
   console.log("POST request to reserve a spot on a trip was successful");
   console.log(response);
   let name = $('#trip-form').data('name');
-  // console.log(`Trip name: ${name}`);
   $('#message').html(`Congratulations! You successfully reserved a spot on ${name}!`);
 };
 
@@ -19,12 +18,7 @@ const continents = {
 };
 
 const continentImgInfo = function(trip){
-  // console.log(continents[trip]);
   if (continents[trip]){
-    // console.log(`this trip exists! ${continents[trip]}`);
-    // let a = ;
-    // console.log(a);
-    console.log(trip.weeks);
     return `<img src="img/${continents[trip]}" alt="${trip} picture" class="continent"/>`;
   }
 };
@@ -43,10 +37,6 @@ $(document).ready(()=> {
         let a = continentImgInfo(trip.continent);
         let tripInfo = `<li><h2 data-id=${trip.id} data-name='${trip.name}'>` + trip.name + ` | <span>${a}</span> | ${trip.weeks}<h2></li><hr>`;
         $('#show-trips ul').append(tripInfo);
-        // console.log(trip.continent);
-        // 'data-name' , `${response.name
-        // console.log(a);
-        // $('#show-trips ul').append(a);
       });
     })
     .fail(function(response){
@@ -73,10 +63,7 @@ $(document).ready(()=> {
       `);
 
       button.click((event) => {
-        console.log(`trip id:${response.id}`);
         $('#reserve-form').show();
-        // $('#trip-form').attr('data-id' , `${response.id}`);
-        // $('#trip-form').attr('data-name' , `${response.name}`);
       });
       $('#resButton').html(button);
     })
@@ -87,6 +74,9 @@ $(document).ready(()=> {
   };
 
   // EVENTS
+
+  // show trip details when a user clicks on a ul
+  // also updates the trip from with attr data
   $('#show-trips ul').on('click', 'h2', function(){
     let tripId = $(this).attr('data-id');
     loadTrip(tripId);
@@ -98,12 +88,14 @@ $(document).ready(()=> {
       $('#trip-form').attr('data-name' , `${$(this).attr('data-name')}`);
   });
 
+  // when the main page button gets clicked it populates trips and scrolls to correct spot on page
   $('#load').on('click', function(){
     $('#content').show();
     loadTrips();
     $('html,body').animate({ scrollTop: $("#show-trips").offset().top -20},'slow');
   });
 
+  // on submit it sends post message and opens a modal
   $('#trip-form').on('submit', function(event){
     event.preventDefault();
     let url = baseUrl + `/${$(this).data('id')}/reservations`;
@@ -130,18 +122,17 @@ $(document).ready(()=> {
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
+    $('#reserve-form').hide();
   };
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      $('#reserve-form').hide();
     }
   };
 
-  // $("#load").mouseover(function(){
-  //   $("#highlight").addClass("on").removeClass("off");
-  // });
   // mouseover
   $("#load").hover(function() {
     $("#highlight").addClass("on").removeClass("off");
