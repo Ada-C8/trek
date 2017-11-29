@@ -31,11 +31,11 @@ header p {
   letter-spacing: 2px;
 }
 
-.button:hover {
+.button:hover, .button:focus {
   background-color: #534B52;
 }
 
-/* NOT WORKING: https://foundation.zurb.com/forum/posts/34693-how-to-change-visited-text-color-for-class-button*/
+/*https://foundation.zurb.com/forum/posts/34693-how-to-change-visited-text-color-for-class-button*/
 .button:visited {
   color: #F98B72;
 }
