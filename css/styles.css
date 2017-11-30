@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Eczar');
+
+
+html {
+
+}
+
+
+body {
+  background: rgba(255,255,255,0.2); /* applies a 50% transparent white background */
+}
+
+header {
+  background-image: url("travel_image.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 50px;
+}
+
+header h1, header h2 {
+  font-family: 'Eczar', serif;
+  color: black;
+  background-color: rgba(255,255,255,0.6);
+}
+
+main {
+  background-image: url("topography.png");
+}
+
+
+.indTrip {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.indTrip h2 {
+  padding-top: 80px;
+}
+
+.indTrip p{
+
+}
+
+.triplist ul {
+  list-style: none;
+  background-color: rgba(255,255,255, 0.6);
+
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+}
+
+.button {
+  display: block;
+  margin: 0 auto;
+}
+
+h3 {
+  margin: 10px;
+  background-color: #ECF0F1;
+  padding: 10px;
+}
+
+h3:hover {
+  background-color: #BDC3C7;
+
+}
+
+.trip-button {
+  margin-top: 20%;
+}
+
+.res_button {
+  align-items: center;
+}
+
+li {
+}
