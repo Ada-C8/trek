@@ -32,6 +32,7 @@ $(document).ready(() => {
       <p> Cost: ${response.cost} </p>`;
 
       $('#tripinfo').html(tripInfo);
+      $('#tripinfo').css('display', 'block');
       $('form').show();
       $('form').attr('tripid', response.id);
     })
