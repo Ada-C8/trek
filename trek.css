@@ -1,6 +1,7 @@
 body {
   background-color: lightgreen;
   font-family: 'Comfortaa', cursive;
+  text-align: center;
 }
 
 h2 {
@@ -50,6 +51,8 @@ div#tripinfo{
 
 form.reservation-form {
   text-align: center;
+  padding: .25rem;
+
 }
 
 ul {
