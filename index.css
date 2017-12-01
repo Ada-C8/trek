@@ -1,0 +1,233 @@
+/*font-family: 'Roboto', sans-serif;
+font-family: 'Catamaran', sans-serif;
+font-family: 'Archivo Narrow', sans-serif;
+font-family: 'Khula', sans-serif;*/
+/*font-family: 'Alegreya SC', serif;
+font-family: 'Biryani', sans-serif;*/
+
+
+
+html {
+  font-family: 'Roboto', sans-serif;
+  /*height: 100%;*/
+  /*box-sizing: border-box;*/
+}
+
+.title {
+  font-size: 4em;
+  color: white;
+  margin: 0;
+  font-family: 'Alegreya SC', serif;
+}
+
+span {
+  width: 100%;
+  background-color: darkorange;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  /*margin: 20px;*/
+}
+
+
+
+button {
+  /*background-color: #bbb;*/
+  background-color: #327a9e;
+  padding: .5em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 6px;
+  color: #fff;
+  font-family: 'Oswald';
+  font-size: 20px;
+  text-decoration: none;
+  border: none;
+}
+
+button:hover {
+  border: none;
+  background: orange;
+  box-shadow: 0px 0px 1px #777;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#load {
+  font-size: 1.2em;
+  margin: 2em;
+}
+
+/*.hline {
+  width:100%;
+  height:1px;
+  color:black;
+}*/
+
+#trips #trips-ul {
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*align-items: center;*/
+  background-color: lightblue;
+  list-style: none;
+  /*column-count: 3;
+  column-gap: 30px;*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  -webkit-margin-before: 0em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+
+}
+
+.listed-trip {
+  font-size:1.1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-width: 100px;
+  justify-content: center;
+  /*list-style: none;*/
+}
+
+#trips #trips-ul li:hover {
+  color: orange;
+}
+
+#trips #trips-ul li {
+  /*width:300px;
+  padding: 8px;
+  background-color: #327a9e;
+  border: black;*/
+  color:#444;
+  border:1px solid #CCC;
+  background:#DDD;
+  /*box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);*/
+  /*cursor:pointer;*/
+  vertical-align:middle;
+  padding: 5px;
+  /*text-align: center;*/
+  margin:10px;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.adventure-container {
+  background-color: #327a9e;
+  display: flex;
+  justify-content: center;
+  border-top: 10px;
+  border-color: white;
+}
+
+.adventure {
+    font-family: 'Alegreya SC', serif;
+    font-size: 2.5em;
+    /*padding-top: 0.5em;*/
+    margin: 0;
+    color: white;
+}
+
+#trip-name {
+  text-decoration: underline;
+}
+
+.trip {
+  /*max-width: 500px;*/
+  /*display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+
+  /*border: 2px solid black;*/
+}
+
+.about {
+  max-width: 50%;
+}
+
+p {
+  margin: 0;
+  padding: 5px;
+  padding-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+
+}
+
+#reserve-button {
+  /*margin: 10px;*/
+  padding: 10px;
+}
+
+form section {
+  padding: 5px;
+  /*display: flex;
+  flex-direction: row;*/
+  /*justify-content: flex-start;*/
+}
+
+label {
+  align-self: flex-start;
+}
+
+/*.h_line {
+  width: 100%;
+  background: blue;
+  size: 5px;
+}*/
+
+/*********************************/
+/***********FILTERS************/
+/*********************************/
+.select-by-continent {
+  padding: 0;
+  margin: 0;
+}
+
+#trips {
+  padding: 0;
+  margin: 0;
+}
+
+#continent-ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  flex-wrap:wrap;
+  align-items: baseline;
+  justify-content: center;
+  /*border: 2px solid black;*/
+}
+
+.continent {
+  padding: 10px;
+}
+
+.continent:hover {
+  background: orange;
+  box-shadow: 0px 0px 1px #777;
+}

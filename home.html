@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Trek</title>
+    <meta charset="utf-8">
+    <link href="index.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow|Catamaran|Khula|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+SC:900|Biryani:900" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <span>
+        <h1 class="title">World Trek</h1>
+      </span>
+      <button id="load">See All Trips</button>
+      <div class="globe-large"><img src="http://www.issaquahhighlands.com/wp-content/uploads/2015/06/Travel-Night-globe.png" alt="globe"></div>
+    </header>
+
+
+    <aside id="trip" class="trip">
+    </aside>
+
+    <div id="message"></div>
+    <form id="reservation-form" action="https://trektravel.herokuapp.com/trips/" method="post">
+      <section>
+        <label>Name:</label>
+        <input type="text" id="name" name="name"></input>
+      </section>
+      <section>
+        <label>Age:</label>
+        <input type="text" id="age" name="age"></input>
+      </section>
+      <section>
+        <label>Email:</label>
+        <input type="text" id="email" name="email"></input>
+      </section>
+      <section class="button" id="submit-reservation">
+        <button type="submit">Confirm Reservation</button>
+      </section>
+    </form>
+
+    <section id="trips">
+      <ul id="continent-ul">
+        <h3 class="select-by-continent">Select by Continent:</h3>
+      </ul>
+      <ul id="trips-ul">
+      </ul>
+    </section>
+
+  </body>
+</html>
