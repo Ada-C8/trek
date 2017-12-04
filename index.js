@@ -132,7 +132,7 @@ $(document).ready(() => {
     const successCallback = function(response) {
       console.log('POST request was successful');
       console.log(response);
-      $('#reservation-modal').html('Your trips has successfully been reserved!');
+      $('#reservation-modal').html('Your trip has successfully been reserved!');
     };
 
     const failCallback = function(response) {
@@ -166,7 +166,7 @@ $(document).ready(() => {
   // To Reserve Trip
   $('#single-trip-info').on('submit', '#reservation', function(response) {
     console.log('Button reserve trip clicked');
-    event.preventDefault();
+    response.preventDefault();
     let tripID = $(this).attr('data-id');
     makeTripReservation(tripID);
   });

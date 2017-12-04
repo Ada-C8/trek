@@ -89,6 +89,12 @@ table {
 #featured-content, #single-trip-info {
   margin-bottom: 30px;
 }
+
+#reservation-modal {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
 /* Background */
 body {
   font-family: 'Jura', sans-serif;
